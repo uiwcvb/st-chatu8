@@ -6,9 +6,7 @@
     "js": "index.js",
     "css": "style.css",
     "author": "从前跟你一样",
-    "version": "1.0.7",
-    "homePage": "yourUrlHere"
+    "version": "1.0.5",
+    "homePage": "https://github.com/damoshen123/st-chatu8",
+    "updata":"v.1.0.5:修复酒馆端生图问题\nv.1.0.4:修复新安装的用户无法启动0.0\nv1.0.3:更新说明:1.修复了换行无法识别的问题\n2.修复comfyui没有cfg参数问题.\n3.悬浮球无法关闭\n4.生成缩略图造成卡顿"
 }
-
-
-

@@ -165,6 +165,14 @@
                             <label for="negativePrompt">固定负面提示词 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
                             <textarea id="negativePrompt" class="st-chatu8-textarea" rows="4"></textarea>
                         </div>
+                        <h3>LORA</h3>
+                        <div class="st-chatu8-field">
+                            <label for="sd_cchatu_8_lora">添加 LORA</label>
+                            <div class="st-chatu8-profile-controls">
+                                <select id="sd_cchatu_8_lora" class="st-chatu8-select"></select>
+                                <button class="st-chatu8-icon-btn" id="sd_add_lora" title="添加"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
                     </div>
                         <div class="st-chatu8-settings-section"> 
                         <h3>提示词替换</h3>
@@ -212,6 +220,10 @@
                                 <input type="text" id="sdUrl" class="st-chatu8-text-input" placeholder="http://127.0.0.1:7860">
                                 <button id="testSd" class="st-chatu8-btn">测试连接</button>
                             </div>
+                        </div>
+                        <div class="st-chatu8-field">
+                            <label for="st_chatu8_sd_auth">身份验证</label>
+                            <input type="text" id="st_chatu8_sd_auth" class="st-chatu8-text-input" placeholder="例： 用户名:密码">
                         </div>
                     </div>
                         <div class="st-chatu8-settings-section">

@@ -7,3 +7,30 @@
 @import url('./styles/about.css');
 @import url('./styles/responsive.css');
 @import url('./styles/vocabulary.css');
+
+/* Sub-navigation styles */
+.st-chatu8-sub-nav {
+    display: flex;
+    border-bottom: 1px solid var(--st-chatu8-border-color);
+    margin-bottom: 20px;
+}
+
+.st-chatu8-sub-nav-link {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px; /* Overlap with parent border */
+    color: var(--st-chatu8-text-color);
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.st-chatu8-sub-nav-link:hover {
+    background-color: var(--st-chatu8-hover-bg-color);
+}
+
+.st-chatu8-sub-nav-link.active {
+    border-bottom-color: var(--st-chatu8-accent-color);
+    color: var(--st-chatu8-accent-color);
+    font-weight: bold;
+}

@@ -26,6 +26,25 @@
         <div id="vocabulary-tree-container" class="st-chatu8-tree-container"></div>
     </div>
     <div class="st-chatu8-settings-section">
+        <h3>手动标签管理</h3>
+        <div class="st-chatu8-field-col" style="gap: 10px;">
+            <label>添加新标签</label>
+            <div class="st-chatu8-input-group">
+                <input type="text" id="vocabulary-manual-tag-original-input" class="st-chatu8-text-input" placeholder="标签原文...">
+                <input type="text" id="vocabulary-manual-tag-translation-input" class="st-chatu8-text-input" placeholder="标签翻译...">
+                <button id="vocabulary-manual-tag-add-btn" class="st-chatu8-btn">添加</button>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label>操作</label>
+            <button id="vocabulary-manual-tags-refresh-btn" class="st-chatu8-btn">刷新列表</button>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label>手动添加的标签</label>
+            <div id="vocabulary-manual-tags-list" class="st-chatu8-vocabulary-list" style="max-height: 200px; overflow-y: auto;"></div>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
         <h3>搜索设置</h3>
         <div class="st-chatu8-field">
             <label for="vocabulary_search_startswith">开头匹配</label>

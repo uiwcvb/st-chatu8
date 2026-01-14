@@ -174,19 +174,29 @@
 }
 
 @keyframes st-chatu8-fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes st-chatu8-pulse-warning {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.25);
-    opacity: 1;
-  }
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.25);
+        opacity: 1;
+    }
 }
 
 #st-chatu8-settings .st-chatu8-tab-content h3 {
@@ -242,4 +252,361 @@
 .st-chatu8-image-button:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
+}
+
+/* ============================================
+   预设可视化选择器样式 (Premium & Cool Version)
+   ============================================ */
+
+/* 自定义对话框样式覆写 */
+#st-chatu8-settings .st-chatu8-preset-viz-dialog-wrapper {
+    background-color: #20202e;
+    /* 稍微调亮背景 */
+    box-shadow: 0 0 50px rgba(74, 144, 226, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#st-chatu8-settings .st-chatu8-preset-viz-dialog-wrapper .st-chatu8-workflow-viz-header {
+    background-color: rgba(30, 30, 46, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#st-chatu8-settings .st-chatu8-preset-viz-dialog-wrapper .st-chatu8-workflow-viz-toolbar {
+    background-color: rgba(30, 30, 46, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #a0a0b0;
+}
+
+/* 预设网格容器 - 放在 workflow-viz-container 中 */
+#st-chatu8-settings .st-chatu8-preset-grid {
+    column-count: 4;
+    /* 默认4列 */
+    column-gap: 24px;
+    padding: 30px;
+    perspective: 1000px;
+    /* 增加透视感 */
+}
+
+@media (max-width: 1400px) {
+    #st-chatu8-settings .st-chatu8-preset-grid {
+        column-count: 3;
+    }
+}
+
+@media (max-width: 900px) {
+    #st-chatu8-settings .st-chatu8-preset-grid {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 600px) {
+    #st-chatu8-settings .st-chatu8-preset-grid {
+        column-count: 1;
+    }
+}
+
+/* 预设卡片 */
+#st-chatu8-settings .st-chatu8-preset-card {
+    position: relative;
+    background-color: #252538;
+    /* 稍亮的卡片背景 */
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    display: inline-block;
+    /* 瀑布流布局必需 */
+    width: 100%;
+    /* 瀑布流布局必需 */
+    margin-bottom: 24px;
+    /* 卡片垂直间距 */
+    box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    break-inside: avoid;
+    /* 防止卡片被列断开 */
+
+    /* 初始出现动画 */
+    animation: st-chatu8-card-pop-in 0.5s ease-out forwards;
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+@keyframes st-chatu8-card-pop-in {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* 为每个卡片添加交错动画延迟 */
+#st-chatu8-settings .st-chatu8-preset-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:nth-child(4) {
+    animation-delay: 0.25s;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:nth-child(5) {
+    animation-delay: 0.3s;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:nth-child(6) {
+    animation-delay: 0.35s;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:nth-child(n+7) {
+    animation-delay: 0.4s;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.6);
+    border-color: rgba(74, 144, 226, 0.6);
+    z-index: 10;
+}
+
+
+
+#st-chatu8-settings .st-chatu8-preset-card.selected {
+    box-shadow: 0 0 0 3px #4a90e2, 0 15px 30px -10px rgba(74, 144, 226, 0.3);
+    transform: scale(1.02);
+    z-index: 20;
+    background-color: rgba(74, 144, 226, 0.05);
+}
+
+/* 选中标记 */
+#st-chatu8-settings .st-chatu8-preset-card.selected::before {
+    content: '✔';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #4a90e2;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    z-index: 5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: st-chatu8-check-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes st-chatu8-check-pop {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+/* 卡片图片区域 */
+#st-chatu8-settings .st-chatu8-preset-card-image {
+    position: relative;
+    /* 改为相对定位，由图片撑开高度 */
+    width: 100%;
+    height: auto;
+    /* 高度自适应 */
+    min-height: 150px;
+    /* 最小高度 */
+    background-color: #2e2e42;
+    /* 稍亮 */
+    display: block;
+    /* 改为块级 */
+    overflow: hidden;
+    z-index: 1;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* 消除底部间隙 */
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:hover .st-chatu8-preset-card-image img {
+    transform: scale(1.1);
+}
+
+/* 占位符 */
+#st-chatu8-settings .st-chatu8-preset-card-placeholder {
+    color: #666;
+    font-size: 4rem;
+    opacity: 0.2;
+    transform: rotate(-10deg);
+    transition: all 0.5s ease;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:hover .st-chatu8-preset-card-placeholder {
+    opacity: 0.4;
+    transform: rotate(0deg) scale(1.1);
+    color: var(--st-chatu8-accent-primary);
+}
+
+/* 卡片操作按钮 - 仅在悬停或管理模式下显示 */
+#st-chatu8-settings .st-chatu8-preset-card-actions {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 10;
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    /* 默认情况下不可点击，防止误触 */
+}
+
+/* 只有在管理模式下，操作按钮才可见且可点击 */
+#st-chatu8-settings .st-chatu8-preset-viz-dialog-wrapper.st-chatu8-mode-manage .st-chatu8-preset-card-actions {
+    opacity: 1;
+    transform: translateY(0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 6px;
+    border-radius: 8px;
+    pointer-events: auto;
+}
+
+/* PC端保持悬停显示逻辑 (可选，如果希望PC上也必须开管理模式则删除此段) */
+/* 为了保持"纯净"体验，建议PC端也统一遵循管理模式，或者仅保留微妙的悬停提示 */
+/* 搜索框样式 */
+#st-chatu8-settings .st-chatu8-viz-search-container input:focus {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: var(--st-chatu8-accent-primary) !important;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+#st-chatu8-settings .st-chatu8-viz-search-container input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#st-chatu8-settings .st-chatu8-viz-search-container i {
+    transition: color 0.3s;
+}
+
+#st-chatu8-settings .st-chatu8-viz-search-container input:focus+i,
+#st-chatu8-settings .st-chatu8-viz-search-container:focus-within i {
+    color: var(--st-chatu8-accent-primary) !important;
+}
+
+/* 如果用户仍希望PC端悬停能看到上传按钮，可以保留下面这段，但加上 .st-chatu8-mode-manage 前缀以强制统一? */
+/* 目前策略：完全由右上角开关控制，实现最纯净的浏览体验 */
+
+#st-chatu8-settings .st-chatu8-preset-action-btn {
+    background-color: rgba(30, 30, 46, 0.8);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+#st-chatu8-settings .st-chatu8-preset-action-btn:hover {
+    background-color: var(--st-chatu8-accent-primary);
+    transform: scale(1.1);
+    border-color: transparent;
+}
+
+#st-chatu8-settings .st-chatu8-preset-action-btn.danger:hover {
+    background-color: var(--st-chatu8-danger-primary);
+}
+
+/* 卡片名称 */
+#st-chatu8-settings .st-chatu8-preset-card-name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 16px;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #eee;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    z-index: 3;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: transparent;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:hover .st-chatu8-preset-card-name {
+    transform: translateY(-3px);
+    color: white;
+}
+
+/* 批量删除模式样式 */
+.st-chatu8-preset-card.selected-for-delete {
+    box-shadow: 0 0 0 3px #d9534f, 0 15px 30px -10px rgba(217, 83, 79, 0.3) !important;
+    transform: scale(0.95);
+    opacity: 0.9;
+    border-color: #d9534f;
+}
+
+/* 删除选中标记 - 覆盖普通选中标记 */
+.st-chatu8-preset-card.selected-for-delete::before {
+    content: '🗑' !important;
+    background: #d9534f !important;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: bold;
+    z-index: 25 !important;
+    /* Higher than normal selected */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: st-chatu8-check-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 批量删除模式下隐藏标准操作按钮 */
+.st-chatu8-mode-bulk-delete .st-chatu8-preset-card-actions {
+    display: none !important;
+}
+
+/* 批量删除模式下鼠标样式 */
+.st-chatu8-mode-bulk-delete .st-chatu8-preset-card {
+    cursor: alias;
+    /* Indicating selection */
 }

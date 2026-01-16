@@ -10,7 +10,25 @@
         </div>
         <div class="st-chatu8-field-col">
             <label for="ch-log-textarea">日志输出</label>
-            <textarea id="ch-log-textarea" class="st-chatu8-textarea" rows="20" readonly style="font-family: monospace; font-size: 12px;"></textarea>
+            <textarea id="ch-log-textarea" class="st-chatu8-textarea" rows="15" readonly style="font-family: monospace; font-size: 12px;"></textarea>
+        </div>
+    </div>
+
+    <!-- 任务管理器 -->
+    <div class="st-chatu8-settings-section">
+        <h3>📊 任务管理 <span id="ch-task-stats" class="st-chatu8-task-stats" style="display: none;"></span></h3>
+        <div class="st-chatu8-field">
+            <label>操作</label>
+            <div>
+                <button id="ch-cancel-all-tasks" class="st-chatu8-btn danger">全部取消</button>
+                <button id="ch-clear-completed" class="st-chatu8-btn">清空已完成</button>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label>任务列表</label>
+            <div id="ch-task-list" class="st-chatu8-task-list">
+                <div class="st-chatu8-task-empty">暂无任务</div>
+            </div>
         </div>
     </div>
 </div>

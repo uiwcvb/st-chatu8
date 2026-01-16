@@ -306,3 +306,68 @@
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
 }
+
+/* ==================== Image Size Popup Styles ==================== */
+
+/* Form section container */
+.st-chatu8-popup-size-form {
+    margin: 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Size row (label + input) */
+.st-chatu8-popup-size-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.st-chatu8-popup-size-row.swap-row {
+    justify-content: center;
+    margin-top: 4px;
+}
+
+/* Size label */
+.st-chatu8-popup-size-label {
+    width: 60px;
+    font-size: 14px;
+    color: var(--st-chatu8-text-secondary, rgba(255, 255, 255, 0.7));
+    text-align: right;
+}
+
+/* Size input */
+.st-chatu8-popup-size-input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid var(--st-chatu8-border-color, rgba(255, 255, 255, 0.15));
+    border-radius: 8px;
+    background: var(--st-chatu8-bg-secondary, rgba(0, 0, 0, 0.3));
+    color: var(--st-chatu8-text-primary, #fff);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.st-chatu8-popup-size-input:focus {
+    border-color: var(--st-chatu8-accent-primary, rgba(100, 150, 255, 0.5));
+    box-shadow: 0 0 10px rgba(100, 150, 255, 0.1);
+}
+
+/* Swap button */
+.st-chatu8-popup-swap-btn {
+    padding: 8px 20px;
+    border: 1px solid var(--st-chatu8-accent-primary, rgba(100, 150, 255, 0.4));
+    border-radius: 6px;
+    background: var(--st-chatu8-bg-tertiary, rgba(100, 150, 255, 0.1));
+    color: var(--st-chatu8-accent-primary, rgba(100, 150, 255, 0.9));
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.st-chatu8-popup-swap-btn:hover {
+    background: var(--st-chatu8-accent-secondary, rgba(100, 150, 255, 0.2));
+    border-color: var(--st-chatu8-accent-primary, rgba(100, 150, 255, 0.6));
+}

@@ -610,3 +610,119 @@
     cursor: alias;
     /* Indicating selection */
 }
+
+/* ============================================
+   任务管理器样式
+   ============================================ */
+
+/* 任务统计信息 */
+#st-chatu8-settings .st-chatu8-task-stats {
+    font-size: 0.85rem;
+    color: var(--st-chatu8-text-secondary);
+    background: var(--st-chatu8-bg-tertiary);
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin-left: 10px;
+    font-weight: normal;
+}
+
+/* 任务列表容器 */
+#st-chatu8-settings .st-chatu8-task-list {
+    max-height: 300px;
+    overflow-y: auto;
+    background: var(--st-chatu8-bg-tertiary);
+    border-radius: 8px;
+    padding: 8px;
+}
+
+/* 空列表提示 */
+#st-chatu8-settings .st-chatu8-task-empty {
+    text-align: center;
+    padding: 24px;
+    color: var(--st-chatu8-text-secondary);
+    font-style: italic;
+}
+
+/* 单个任务项 */
+#st-chatu8-settings .st-chatu8-task-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    background: var(--st-chatu8-bg-secondary);
+    border-radius: 6px;
+    margin-bottom: 6px;
+    transition: all 0.2s;
+    gap: 10px;
+}
+
+#st-chatu8-settings .st-chatu8-task-item:last-child {
+    margin-bottom: 0;
+}
+
+#st-chatu8-settings .st-chatu8-task-item:hover {
+    background: var(--st-chatu8-bg-primary);
+}
+
+/* 任务状态图标 */
+#st-chatu8-settings .st-chatu8-task-item .task-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    width: 24px;
+    text-align: center;
+}
+
+/* 任务信息 */
+#st-chatu8-settings .st-chatu8-task-item .task-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+#st-chatu8-settings .st-chatu8-task-item .task-name {
+    font-size: 0.9rem;
+    color: var(--st-chatu8-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#st-chatu8-settings .st-chatu8-task-item .task-meta {
+    font-size: 0.75rem;
+    color: var(--st-chatu8-text-secondary);
+}
+
+/* 取消按钮 */
+#st-chatu8-settings .st-chatu8-task-item .task-cancel-btn {
+    background: transparent;
+    border: 1px solid var(--st-chatu8-border-color);
+    color: var(--st-chatu8-text-secondary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+#st-chatu8-settings .st-chatu8-task-item .task-cancel-btn:hover {
+    background: var(--st-chatu8-danger-primary, #d9534f);
+    border-color: var(--st-chatu8-danger-primary, #d9534f);
+    color: white;
+}
+
+/* 运行中任务的动画 */
+#st-chatu8-settings .st-chatu8-task-item[data-status="running"] .task-icon {
+    animation: st-chatu8-task-spin 1s linear infinite;
+}
+
+@keyframes st-chatu8-task-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

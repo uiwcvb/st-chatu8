@@ -52,7 +52,7 @@
 
 /* Action Bubble Container */
 .st-chatu8-click-trigger-bubble {
-    position: absolute;
+    position: fixed;
     background: var(--st-chatu8-bg-primary, linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%));
     border: 1px solid var(--st-chatu8-border-color, rgba(255, 255, 255, 0.15));
     border-radius: var(--st-chatu8-border-radius, 12px);

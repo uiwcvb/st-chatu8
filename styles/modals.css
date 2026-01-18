@@ -386,6 +386,18 @@
 .st-chatu8-workflow-viz-toolbar .st-chatu8-btn {
     padding: 8px 14px;
     font-size: 0.9em;
+    background-color: #3a3a5e;
+    border: 1px solid #555;
+    color: #e0e0e0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.st-chatu8-workflow-viz-toolbar .st-chatu8-btn:hover {
+    background-color: #4a4a7e;
+    border-color: #4a90e2;
+    color: #fff;
 }
 
 .st-chatu8-workflow-viz-stats {
@@ -414,6 +426,12 @@
 
 .st-chatu8-workflow-viz-container:active {
     cursor: grabbing;
+}
+
+.st-chatu8-workflow-viz-svg-wrapper {
+    position: relative;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 .st-chatu8-workflow-viz-svg {

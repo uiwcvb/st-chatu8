@@ -36,8 +36,11 @@
         </div>
         <div class="st-chatu8-field">
             <label for="ch-llm_model_select">模型选择</label>
-            <div class="st-chatu8-profile-controls">
-                <select id="ch-llm_model_select" class="st-chatu8-select"></select>
+            <div class="st-chatu8-profile-controls" style="flex-wrap: wrap; gap: 8px;">
+                <select id="ch-llm_model_select" class="st-chatu8-select" style="flex: 0 0 auto; min-width: 150px;"></select>
+                <input type="text" id="ch-llm_model_input" class="st-chatu8-text-input" 
+                    placeholder="选择或输入模型名称" 
+                    style="flex: 1; min-width: 200px;" />
                 <button class="st-chatu8-btn" id="ch-llm_fetch_models_button" title="获取模型列表">
                     <i class="fa-solid fa-plug-circle-bolt"></i>
                     连接并获取模型

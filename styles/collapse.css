@@ -7,14 +7,13 @@
     margin: 8px 0;
     border-radius: 8px;
     overflow: hidden;
-    background: linear-gradient(135deg, rgba(74, 144, 226, 0.08) 0%, rgba(138, 180, 248, 0.05) 100%);
-    border: 1px solid rgba(74, 144, 226, 0.2);
+    background: transparent;
+    border: none;
     transition: all 0.3s ease;
 }
 
 .st-chatu8-collapse-wrapper:hover {
-    border-color: rgba(74, 144, 226, 0.4);
-    box-shadow: 0 2px 12px rgba(74, 144, 226, 0.15);
+    /* 无特殊效果 */
 }
 
 /* 折叠标题栏/指示器 */
@@ -105,8 +104,7 @@
 }
 
 .st-chatu8-collapse-wrapper[data-media-type="video"]:hover {
-    border-color: rgba(156, 39, 176, 0.4);
-    box-shadow: 0 2px 12px rgba(156, 39, 176, 0.15);
+    /* 无特殊效果 */
 }
 
 .st-chatu8-collapse-wrapper[data-media-type="video"] .st-chatu8-collapse-badge {

@@ -91,6 +91,28 @@
             <input type="text" id="novelaiOtherSite" class="st-chatu8-text-input">
         </div>
         <div class="st-chatu8-field">
+            <label for="enableCloudQueue">启用云端队列</label>
+            <div class="st-chatu8-toggle">
+                <input id="enableCloudQueue" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field" id="cloud-queue-url-field">
+            <label for="cloudQueueUrl">队列服务地址</label>
+            <input type="text" id="cloudQueueUrl" class="st-chatu8-text-input" placeholder="https://xxx.hf.space">
+        </div>
+        <div class="st-chatu8-field" id="cloud-queue-greeting-field">
+            <label for="cloudQueueGreeting">排队个性语 (15字)</label>
+            <input type="text" id="cloudQueueGreeting" class="st-chatu8-text-input" placeholder="正在生成中~" maxlength="15">
+        </div>
+        <div class="st-chatu8-field">
+            <label for="showQueueGreeting">显示他人个性语</label>
+            <div class="st-chatu8-toggle">
+                <input id="showQueueGreeting" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
             <label for="novelaimode">模型</label>
             <select id="novelaimode" class="st-chatu8-select">
                 <option>nai-diffusion-3</option>

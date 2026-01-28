@@ -65,9 +65,9 @@
 }
 
 .st-chatu8-edit-dialog {
-    background-color: #2c2c2c;
-    color: #f0f0f0;
-    border: 1px solid #444;
+    background-color: var(--st-chatu8-bg-primary, #2c2c2c);
+    color: var(--st-chatu8-text-primary, #f0f0f0);
+    border: 1px solid var(--st-chatu8-border-color, #444);
     border-radius: 12px;
     padding: 20px;
     z-index: 10001;
@@ -90,7 +90,7 @@
     font-weight: 600;
     margin-bottom: 5px;
     text-align: center;
-    color: #e0e0e0;
+    color: var(--st-chatu8-text-primary, #e0e0e0);
 }
 
 .st-chatu8-edit-input {
@@ -98,9 +98,9 @@
     min-height: 200px;
     max-height: 50vh;
     /* 限制最大高度，防止输入框过大 */
-    background-color: #3a3a3a;
-    color: #f0f0f0;
-    border: 1px solid #555;
+    background-color: var(--st-chatu8-input-bg, #3a3a3a);
+    color: var(--st-chatu8-input-text, #f0f0f0);
+    border: 1px solid var(--st-chatu8-input-border, #555);
     border-radius: 8px;
     padding: 10px;
     box-sizing: border-box;
@@ -113,7 +113,7 @@
 
 .st-chatu8-edit-input:focus {
     outline: none;
-    border-color: #4a90e2;
+    border-color: var(--st-chatu8-accent-primary, #4a90e2);
     box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.3);
 }
 
@@ -139,21 +139,144 @@
 }
 
 .st-chatu8-edit-button.send {
-    background-color: #4a90e2;
-    color: white;
+    background-color: var(--st-chatu8-accent-primary, #4a90e2);
+    color: var(--st-chatu8-text-highlight, white);
 }
 
 .st-chatu8-edit-button.send:hover {
-    background-color: #357abd;
+    background-color: var(--st-chatu8-accent-secondary, #357abd);
 }
 
 .st-chatu8-edit-button.cancel {
-    background-color: #555;
-    color: #f0f0f0;
+    background-color: var(--st-chatu8-bg-secondary, #555);
+    color: var(--st-chatu8-text-primary, #f0f0f0);
 }
 
 .st-chatu8-edit-button.cancel:hover {
-    background-color: #666;
+    background-color: var(--st-chatu8-bg-tertiary, #666);
+}
+
+/* ComfyUI Inpaint Dialog Specific Styles */
+
+/* Editor container */
+.st-chatu8-inpaint-editor-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Toolbar styles */
+.st-chatu8-inpaint-toolbar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.st-chatu8-tool-btn {
+    padding: 8px 12px;
+    border: 1px solid var(--st-chatu8-border-color, #444);
+    border-radius: 6px;
+    background: var(--st-chatu8-bg-secondary, #2a2a4a);
+    color: var(--st-chatu8-text-primary, #fff);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9em;
+}
+
+.st-chatu8-tool-btn:hover {
+    background: var(--st-chatu8-accent-secondary, #3a3a5a);
+}
+
+.st-chatu8-tool-btn.active {
+    background: var(--st-chatu8-accent-primary, #4a4a8a);
+    border-color: var(--st-chatu8-accent-primary, #6a6aaa);
+}
+
+.st-chatu8-inpaint-brush-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+    color: var(--st-chatu8-text-secondary, #ccc);
+}
+
+.st-chatu8-inpaint-brush-slider {
+    width: 100px;
+}
+
+/* Prompt section styles */
+.st-chatu8-inpaint-prompt-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.st-chatu8-inpaint-prompt-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: relative;
+}
+
+.st-chatu8-inpaint-prompt-group label {
+    font-size: 0.9em;
+    color: var(--st-chatu8-text-secondary, #ccc);
+}
+
+.st-chatu8-inpaint-denoise-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.st-chatu8-inpaint-denoise-label {
+    flex-shrink: 0;
+    font-size: 0.9em;
+    color: var(--st-chatu8-text-secondary, #ccc);
+}
+
+.st-chatu8-inpaint-denoise-slider {
+    flex: 1;
+    min-width: 100px;
+}
+
+.st-chatu8-inpaint-denoise-value {
+    min-width: 40px;
+    text-align: right;
+    font-size: 0.9em;
+    color: var(--st-chatu8-text-primary, #fff);
+}
+
+/* Autocomplete styles for inpaint dialog */
+.st-chatu8-edit-backdrop .ch-autocomplete-results {
+    display: none;
+    position: absolute;
+    background-color: var(--st-chatu8-dropdown-list-bg, #2a2a4a);
+    border: 1px solid var(--st-chatu8-border-color, #444);
+    border-radius: 6px;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 100%;
+}
+
+.st-chatu8-edit-backdrop .ch-autocomplete-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    color: var(--st-chatu8-dropdown-text, #fff);
+    font-size: 0.9em;
+}
+
+.st-chatu8-edit-backdrop .ch-autocomplete-item:hover {
+    background-color: var(--st-chatu8-accent-secondary, #3a3a5a);
+    color: var(--st-chatu8-text-highlight, #fff);
 }
 
 /* Image Preview Modal */

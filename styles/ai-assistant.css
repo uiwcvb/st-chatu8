@@ -1,0 +1,379 @@
+/* 智绘姬全局悬浮心动图标 */
+/* AI助手触发心动图标样式 */
+.st-chatu8-ai-heart-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    color: var(--st-chatu8-accent-primary);
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+    animation: st-chatu8-heartbeat 2s infinite ease-in-out;
+}
+
+.st-chatu8-ai-heart-icon:hover {
+    transform: scale(1.2);
+    color: var(--st-chatu8-accent-secondary);
+    animation: none;
+    /* 悬停时停止呼吸动画 */
+}
+
+@keyframes st-chatu8-heartbeat {
+    0% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.15);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.15);
+    }
+
+    60% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 智绘姬AI助手悬浮对话框 - 毛玻璃风格 */
+.st-chatu8-ai-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    height: 500px;
+    max-height: calc(100vh - 100px);
+    background: color-mix(in srgb, var(--st-chatu8-bg-primary) 85%, transparent);
+    /* 半透明主题背景 */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--st-chatu8-border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px color-mix(in srgb, var(--st-chatu8-accent-primary) 20%, transparent);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10000;
+    /* 需要在最顶层 */
+    overflow: hidden;
+    /* 初始状态隐藏，通过 JS 切换 class 显示 */
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, calc(-50% - 20px)) scale(0.95);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+.st-chatu8-ai-dialog.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.st-chatu8-ai-dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--st-chatu8-accent-primary) 20%, transparent), transparent);
+    border-bottom: 1px solid var(--st-chatu8-border-color);
+    cursor: grab;
+    /* 拖拽手势 */
+    user-select: none;
+}
+
+.st-chatu8-ai-dialog-header:active {
+    cursor: grabbing;
+}
+
+.st-chatu8-ai-dialog-header h3 {
+    margin: 0;
+    font-size: 16px;
+    color: var(--st-chatu8-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-shadow: 0 0 8px color-mix(in srgb, var(--st-chatu8-accent-primary) 40%, transparent);
+}
+
+.st-chatu8-ai-dialog-header h3 i {
+    color: var(--st-chatu8-accent-primary);
+}
+
+.st-chatu8-ai-dialog-close {
+    color: var(--st-chatu8-text-secondary);
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px;
+    transition: color 0.2s;
+}
+
+.st-chatu8-ai-dialog-close:hover {
+    color: var(--st-chatu8-text-primary);
+}
+
+.st-chatu8-ai-dialog-body {
+    flex-grow: 1;
+    padding: 16px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* 隐藏滚动条增强美观 */
+.st-chatu8-ai-dialog-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.st-chatu8-ai-dialog-body::-webkit-scrollbar-thumb {
+    background: var(--st-chatu8-border-color);
+    border-radius: 3px;
+}
+
+.st-chatu8-ai-msg {
+    display: flex;
+    gap: 10px;
+    max-width: 90%;
+}
+
+.st-chatu8-ai-msg.system-msg {
+    align-self: flex-start;
+}
+
+.st-chatu8-ai-msg.user-msg {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.st-chatu8-ai-msg .msg-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--st-chatu8-accent-primary), var(--st-chatu8-accent-secondary));
+    color: var(--st-chatu8-text-highlight, white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px color-mix(in srgb, var(--st-chatu8-accent-primary) 30%, transparent);
+}
+
+.st-chatu8-ai-msg.user-msg .msg-avatar {
+    background: var(--st-chatu8-accent-secondary);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--st-chatu8-accent-secondary) 30%, transparent);
+}
+
+.st-chatu8-ai-msg .msg-content {
+    background: var(--st-chatu8-bg-secondary);
+    color: var(--st-chatu8-text-primary);
+    border: 1px solid var(--st-chatu8-border-color);
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+.st-chatu8-ai-msg.system-msg .msg-content {
+    border-top-left-radius: 2px;
+}
+
+.st-chatu8-ai-msg.user-msg .msg-content {
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 15%, var(--st-chatu8-bg-secondary));
+    border-color: color-mix(in srgb, var(--st-chatu8-accent-primary) 40%, var(--st-chatu8-border-color));
+    border-top-right-radius: 2px;
+}
+
+.st-chatu8-ai-dialog-footer {
+    padding: 12px;
+    border-top: 1px solid var(--st-chatu8-border-color);
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    background: var(--st-chatu8-bg-secondary);
+}
+
+#st-chatu8-ai-input {
+    flex-grow: 1;
+    background: var(--st-chatu8-input-bg);
+    border: 1px solid var(--st-chatu8-input-border);
+    border-radius: 20px;
+    color: var(--st-chatu8-input-text);
+    padding: 10px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: none;
+    outline: none;
+    max-height: 100px;
+    transition: border-color 0.2s;
+    line-height: 1.4;
+}
+
+#st-chatu8-ai-input:focus {
+    border-color: var(--st-chatu8-accent-primary);
+}
+
+#st-chatu8-ai-input::placeholder {
+    color: var(--st-chatu8-text-secondary);
+}
+
+.st-chatu8-ai-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--st-chatu8-accent-primary);
+    color: var(--st-chatu8-text-highlight, white);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    flex-shrink: 0;
+}
+
+.st-chatu8-ai-btn:hover {
+    background: var(--st-chatu8-accent-secondary);
+    transform: scale(1.05);
+}
+
+.st-chatu8-ai-btn:active {
+    transform: scale(0.95);
+}
+
+/* 智绘姬AI助手设置按钮与面板 */
+.st-chatu8-ai-settings-icon {
+    font-size: 14px;
+    margin-left: 5px;
+    color: var(--st-chatu8-text-secondary);
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.st-chatu8-ai-settings-icon:hover {
+    color: var(--st-chatu8-accent-primary);
+    transform: rotate(90deg);
+}
+
+.st-chatu8-ai-settings-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: color-mix(in srgb, var(--st-chatu8-bg-primary) 95%, transparent);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    z-index: 10001;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.st-chatu8-ai-settings-panel.active {
+    transform: translateY(0);
+}
+
+.st-chatu8-ai-settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--st-chatu8-border-color);
+}
+
+.st-chatu8-ai-settings-header h4 {
+    margin: 0;
+    color: var(--st-chatu8-text-primary);
+    font-size: 16px;
+}
+
+.st-chatu8-ai-settings-close {
+    cursor: pointer;
+    color: var(--st-chatu8-text-secondary);
+    font-size: 18px;
+    transition: color 0.2s;
+}
+
+.st-chatu8-ai-settings-close:hover {
+    color: var(--st-chatu8-text-primary);
+}
+
+.st-chatu8-ai-settings-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+}
+
+.st-chatu8-ai-setting-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.st-chatu8-ai-setting-item.checkbox {
+    flex-direction: row;
+    align-items: center;
+}
+
+.st-chatu8-ai-setting-item label {
+    font-size: 13px;
+    color: var(--st-chatu8-text-secondary);
+}
+
+.st-chatu8-ai-setting-item input[type="text"],
+.st-chatu8-ai-setting-item input[type="password"] {
+    background: var(--st-chatu8-bg-secondary);
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 8px;
+    padding: 10px;
+    color: var(--st-chatu8-text-primary);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.st-chatu8-ai-setting-item input[type="text"]:focus,
+.st-chatu8-ai-setting-item input[type="password"]:focus {
+    border-color: var(--st-chatu8-accent-primary);
+}
+
+.st-chatu8-ai-setting-item small {
+    font-size: 11px;
+    color: color-mix(in srgb, var(--st-chatu8-text-secondary) 70%, transparent);
+}
+
+.st-chatu8-ai-save-btn {
+    margin-top: 10px;
+    background: linear-gradient(135deg, var(--st-chatu8-accent-primary), var(--st-chatu8-accent-secondary));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.1s;
+}
+
+.st-chatu8-ai-save-btn:hover {
+    box-shadow: 0 4px 15px color-mix(in srgb, var(--st-chatu8-accent-primary) 40%, transparent);
+}
+
+.st-chatu8-ai-save-btn:active {
+    transform: scale(0.98);
+}

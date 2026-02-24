@@ -2,7 +2,12 @@
     <div id="ch-settings-modal" class="st-chatu8-modal-backdrop" style="display: none;">
         <div class="st-chatu8-modal-content" tabindex="-1">
             <div class="st-chatu8-modal-header">
-                <h2>智绘姬 <span id="ch-version-display" class="st-chatu8-version-tag"></span><span id="ch-title-update-notification" style="display: none; color: var(--st-chatu8-accent-color); font-weight: bold; font-size: 0.8em;"> (发现新版本, 请到“关于”中更新)</span></h2>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <h2 style="margin: 0;">智绘姬 <span id="ch-version-display" class="st-chatu8-version-tag"></span><span id="ch-title-update-notification" style="display: none; color: var(--st-chatu8-accent-color); font-weight: bold; font-size: 0.8em;"> (发现新版本, 请到“关于”中更新)</span></h2>
+                    <div id="st-chatu8-ai-trigger" class="st-chatu8-ai-heart-icon" title="呼唤智绘姬 AI 助手">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                </div>
                 <span id="ch-settings-modal-close" class="st-chatu8-modal-close">&times;</span>
             </div>
             <div class="st-chatu8-settings-layout">
@@ -42,7 +47,62 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
+    <!-- 智绘姬 AI 助手对话框 (独立于设置面板外) -->
+    <div id="st-chatu8-ai-dialog" class="st-chatu8-ai-dialog">
+        <div class="st-chatu8-ai-dialog-header">
+            <h3><i class="fa-solid fa-robot"></i> 智绘姬 AI 助手 <span id="st-chatu8-ai-settings-btn" class="st-chatu8-ai-settings-icon" title="设置"><i class="fa-solid fa-gear"></i></span></h3>
+            <span class="st-chatu8-ai-dialog-close" id="st-chatu8-ai-close"><i class="fa-solid fa-xmark"></i></span>
+        </div>
+        <div class="st-chatu8-ai-dialog-body" id="st-chatu8-ai-chat-body">
+            <div class="st-chatu8-ai-msg system-msg">
+                <div class="msg-avatar"><i class="fa-solid fa-heart"></i></div>
+                <div class="msg-content">你好呀！我是智绘姬 AI 助手，有什么可以帮到你？(UI原型版)</div>
+            </div>
+        </div>
+        <div class="st-chatu8-ai-dialog-footer">
+            <textarea id="st-chatu8-ai-input" placeholder="输入... (Enter 发送)" rows="1"></textarea>
+            <button id="st-chatu8-ai-send" class="st-chatu8-ai-btn"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+        
+        <!-- 智绘姬设置面板 (默认隐藏) -->
+        <div id="st-chatu8-ai-settings-panel" class="st-chatu8-ai-settings-panel">
+            <div class="st-chatu8-ai-settings-header">
+                <h4>API 配置</h4>
+                <span class="st-chatu8-ai-settings-close" id="st-chatu8-ai-settings-close"><i class="fa-solid fa-xmark"></i></span>
+            </div>
+            <div class="st-chatu8-ai-settings-body">
+                <div class="st-chatu8-ai-setting-item">
+                    <label for="chatu8-ai-api-url">API 地址</label>
+                    <input type="text" id="chatu8-ai-api-url" placeholder="如: https://api.openai.com/v1">
+                    <small>如果不填使用酒馆默认后端代理地址，需用酒馆代理时填 /api/v1 形式</small>
+                </div>
+                <div class="st-chatu8-ai-setting-item">
+                    <label for="chatu8-ai-api-key">API Key</label>
+                    <input type="password" id="chatu8-ai-api-key" placeholder="sk-...">
+                </div>
+                <div class="st-chatu8-ai-setting-item">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <label for="chatu8-ai-model" style="margin-bottom: 0;">模型名称</label>
+                        <button id="chatu8-ai-fetch-models" class="st-chatu8-ai-btn" style="width: auto; height: auto; border-radius: 4px; padding: 4px 10px; font-size: 0.85em; display: flex; align-items: center; gap: 5px;" title="获取模型列表"><i class="fa-solid fa-sync"></i> 获取可用模型</button>
+                    </div>
+                    <select id="chatu8-ai-model-select" title="选择获取到的模型" style="width: 100%; margin-bottom: 5px; padding: 8px; border-radius: 4px; background: rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: inherit; font-family: inherit;">
+                        <option value="">(请先获取并选择模型)</option>
+                    </select>
+                    <input type="text" id="chatu8-ai-model" placeholder="支持上面自动选择或手动输入 (如: gpt-3.5-turbo)" style="width: 100%;">
+                </div>
+                <div class="st-chatu8-ai-setting-item checkbox">
+                    <input type="checkbox" id="chatu8-ai-bypass-proxy">
+                    <label for="chatu8-ai-bypass-proxy">直接请求 (不通过酒馆代理)</label>
+                </div>
+                <div class="st-chatu8-ai-setting-item checkbox">
+                    <input type="checkbox" id="chatu8-ai-stream">
+                    <label for="chatu8-ai-stream">流式输出 (Stream)</label>
+                </div>
+                <button id="st-chatu8-ai-save-settings" class="st-chatu8-ai-save-btn">保存配置</button>
+            </div>
+        </div>
+    </div>
 <div id="st-chatu8-fab" style="display: none;">
     <i class="fa-solid fa-paintbrush"></i>
 </div>

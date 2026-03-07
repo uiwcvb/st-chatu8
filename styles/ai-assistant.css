@@ -1262,3 +1262,36 @@
     font-style: italic;
     line-height: 1.4;
 }
+
+/* ==================== Resize Handle Styles ==================== */
+
+/* 调整大小手柄 */
+.st-chatu8-ai-resize-handle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    cursor: nwse-resize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--st-chatu8-text-secondary);
+    font-size: 12px;
+    opacity: 0.5;
+    transition: all 0.2s ease;
+    z-index: 10;
+    border-radius: 0 0 16px 0;
+    background: linear-gradient(135deg, transparent 50%, color-mix(in srgb, var(--st-chatu8-accent-primary) 10%, transparent) 50%);
+}
+
+.st-chatu8-ai-resize-handle:hover {
+    opacity: 1;
+    color: var(--st-chatu8-accent-primary);
+    background: linear-gradient(135deg, transparent 50%, color-mix(in srgb, var(--st-chatu8-accent-primary) 20%, transparent) 50%);
+}
+
+.st-chatu8-ai-resize-handle i {
+    transform: rotate(-45deg);
+    pointer-events: none;
+}

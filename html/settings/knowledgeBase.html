@@ -1,0 +1,368 @@
+<div id="ch-tab-knowledgeBase">
+    <!-- 子导航 -->
+    <div class="st-chatu8-sub-nav">
+        <a href="#" class="st-chatu8-sub-nav-link active" data-sub-tab="ch-sub-tab-kb-entries">资料库管理</a>
+        <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-kb-persona">人设管理</a>
+        <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-kb-user">user管理</a>
+    </div>
+
+    <!-- ===== 资料库管理子标签页（原有功能完整保留） ===== -->
+    <div id="ch-sub-tab-kb-entries" class="st-chatu8-sub-tab-content" style="display: block;">
+        <!-- 资料库预设管理 -->
+        <div class="st-chatu8-settings-section">
+            <h4>资料库管理</h4>
+            <div class="st-chatu8-field">
+                <label for="ch-kb-select">当前资料库</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="ch-kb-select" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="ch-kb-new-btn" title="新建">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <button class="st-chatu8-icon-btn" id="ch-kb-rename-btn" title="重命名">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button class="st-chatu8-icon-btn" id="ch-kb-import-btn" title="导入">
+                        <i class="fa-solid fa-file-import"></i>
+                    </button>
+                    <button class="st-chatu8-icon-btn" id="ch-kb-export-btn" title="导出">
+                        <i class="fa-solid fa-file-export"></i>
+                    </button>
+                    <button class="st-chatu8-icon-btn danger" id="ch-kb-delete-btn" title="删除">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+            <input type="file" id="ch-kb-import-file" accept=".json" style="display: none;" />
+        </div>
+
+        <!-- 资料库详情 -->
+        <div class="st-chatu8-settings-section" id="ch-kb-detail-section" style="display: none;">
+            <h4>资料库信息</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-kb-name">名称</label>
+                <input type="text" id="ch-kb-name" class="st-chatu8-text-input" placeholder="资料库名称" />
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-kb-description">简介</label>
+                <textarea id="ch-kb-description" class="st-chatu8-textarea" rows="3"
+                    placeholder="描述这个资料库的用途（按需调用模式下，智绘姬会参考此简介决定是否检索）"></textarea>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="ch-kb-always-on">常开模式</label>
+                <div class="st-chatu8-toggle">
+                    <input id="ch-kb-always-on" type="checkbox" />
+                    <span class="st-chatu8-slider"></span>
+                </div>
+            </div>
+            <p class="st-chatu8-hint">
+                常开：内容直接注入系统提示词，智绘姬始终可见。<br>
+                关闭：智绘姬按需自主检索调用。
+            </p>
+            <div class="st-chatu8-field">
+                <label for="ch-kb-enabled">启用此资料库</label>
+                <div class="st-chatu8-toggle">
+                    <input id="ch-kb-enabled" type="checkbox" />
+                    <span class="st-chatu8-slider"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 资料条目 -->
+        <div class="st-chatu8-settings-section" id="ch-kb-entries-section" style="display: none;">
+            <h4>资料条目 <span id="ch-kb-entry-count" class="st-chatu8-hint" style="margin-left: 8px;"></span></h4>
+            <div class="st-chatu8-add-entry-area">
+                <button class="st-chatu8-btn st-chatu8-add-entry-btn" id="ch-kb-add-entry-btn">
+                    <i class="fa-solid fa-plus"></i> 添加条目
+                </button>
+            </div>
+            <div id="ch-kb-entries-container" class="st-chatu8-kb-entries-container">
+                <!-- 条目由 JS 动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== User管理子标签页 ===== -->
+    <div id="ch-sub-tab-kb-user" class="st-chatu8-sub-tab-content" style="display: none;">
+
+        <!-- 预设管理栏 -->
+        <div class="st-chatu8-settings-section">
+            <h4>User预设</h4>
+            <div class="st-chatu8-field">
+                <label for="ch-user-preset-id">当前预设</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="ch-user-preset-id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="ch-user-new" title="新建"><i class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-user-save" title="保存"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-user-save-as" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-user-export" title="导出"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-user-export-all" title="导出全部"><i class="fa-solid fa-cloud-upload-alt"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-user-import" title="导入"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="ch-user-delete" title="删除"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <input type="file" id="ch-user-import-file" accept=".json" style="display: none;" />
+        </div>
+
+        <!-- 全局控制区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>User人设控制</h4>
+            <div class="st-chatu8-field">
+                <label for="ch-user-enabled">启用User人设注入</label>
+                <div class="st-chatu8-toggle">
+                    <input id="ch-user-enabled" type="checkbox" />
+                    <span class="st-chatu8-slider"></span>
+                </div>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="ch-user-injection-mode">注入模式</label>
+                <select id="ch-user-injection-mode" class="st-chatu8-select" style="max-width: 200px;">
+                    <option value="alwaysOn">常驻注入</option>
+                    <option value="onDemand">按需调用</option>
+                </select>
+            </div>
+            <p class="st-chatu8-hint">
+                常驻注入：User人设内容直接注入系统提示词，AI 始终可见。<br>
+                按需调用：仅在 AI 需要时才查询User人设资料。<br>
+                提示：User人设与角色人设共享预设池，可使用模板变量 <code>{{userpersona}}</code> 注入。
+            </p>
+        </div>
+
+        <!-- 基本信息区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>基本信息</h4>
+            <div class="st-chatu8-persona-row">
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-user-name">角色名称</label>
+                    <input type="text" id="ch-user-name" class="st-chatu8-text-input" placeholder="User的名字" />
+                </div>
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-user-age">年龄</label>
+                    <input type="text" id="ch-user-age" class="st-chatu8-text-input" placeholder="如：18岁、不详" />
+                </div>
+            </div>
+            <div class="st-chatu8-persona-row">
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-user-gender">性别</label>
+                    <input type="text" id="ch-user-gender" class="st-chatu8-text-input" placeholder="如：女、男、其他" />
+                </div>
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-user-race">种族/物种</label>
+                    <input type="text" id="ch-user-race" class="st-chatu8-text-input" placeholder="如：人类、精灵、猫娘" />
+                </div>
+            </div>
+        </div>
+
+        <!-- 性格与背景区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>性格与背景</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-personality">性格</label>
+                <textarea id="ch-user-personality" class="st-chatu8-textarea" rows="3" placeholder="角色的性格特征描述..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-background">背景</label>
+                <textarea id="ch-user-background" class="st-chatu8-textarea" rows="3" placeholder="角色的故事背景、出身经历..."></textarea>
+            </div>
+        </div>
+
+        <!-- 外貌描述区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>外貌描述</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-bodyType">身材</label>
+                <textarea id="ch-user-bodyType" class="st-chatu8-textarea" rows="2" placeholder="身高、体型等描述..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-appearance">外貌特征</label>
+                <textarea id="ch-user-appearance" class="st-chatu8-textarea" rows="2" placeholder="发色、瞳色、肤色等外貌细节..."></textarea>
+            </div>
+        </div>
+
+        <!-- 其他信息区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>其他信息</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-hobbies">爱好</label>
+                <textarea id="ch-user-hobbies" class="st-chatu8-textarea" rows="2" placeholder="角色的兴趣爱好..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-abilities">特殊能力</label>
+                <textarea id="ch-user-abilities" class="st-chatu8-textarea" rows="2" placeholder="角色拥有的特殊能力/技能..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-speechStyle">口癖/说话方式</label>
+                <textarea id="ch-user-speechStyle" class="st-chatu8-textarea" rows="2" placeholder="角色的语言习惯、常用口头禅..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-relationships">人际关系</label>
+                <textarea id="ch-user-relationships" class="st-chatu8-textarea" rows="2" placeholder="与其他角色的关系描述..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-notes">其他备注</label>
+                <textarea id="ch-user-notes" class="st-chatu8-textarea" rows="2" placeholder="其他自定义补充信息..."></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== 人设管理子标签页（新增） ===== -->
+    <div id="ch-sub-tab-kb-persona" class="st-chatu8-sub-tab-content" style="display: none;">
+
+        <!-- 预设管理栏 -->
+        <div class="st-chatu8-settings-section">
+            <h4>人设预设</h4>
+            <div class="st-chatu8-field">
+                <label for="ch-persona-preset-id">当前预设</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="ch-persona-preset-id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="ch-persona-new" title="新建"><i class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-persona-save" title="保存"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-persona-save-as" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-persona-export" title="导出"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-persona-export-all" title="导出全部"><i class="fa-solid fa-cloud-upload-alt"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-persona-import" title="导入"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="ch-persona-delete" title="删除"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <input type="file" id="ch-persona-import-file" accept=".json" style="display: none;" />
+        </div>
+
+        <!-- 人设生成区域 -->
+        <div class="ch-persona-gen-section">
+            <div class="ch-persona-gen-header">
+                <span class="ch-section-title">✨ AI 人设生成</span>
+            </div>
+            <div class="ch-persona-gen-controls">
+                <!-- 需求输入 -->
+                <div class="ch-persona-gen-demand">
+                    <label>生成需求（可选）</label>
+                    <textarea id="ch-persona-gen-demand" 
+                              class="ch-textarea" 
+                              placeholder="描述你想要的角色人设特点，留空则根据当前角色卡自动生成..."
+                              rows="3"></textarea>
+                </div>
+                <!-- 参考图片上传 -->
+                <div class="ch-persona-gen-upload">
+                    <div class="ch-persona-gen-upload-header">
+                        <label>📎 参考图片（可选）</label>
+                        <button type="button" id="ch-persona-gen-upload-btn" class="ch-btn-small">
+                            <i class="fa-solid fa-plus"></i> 添加图片
+                        </button>
+                        <input type="file" id="ch-persona-gen-upload-input" accept="image/*" multiple style="display: none;" />
+                    </div>
+                    <div id="ch-persona-gen-preview" class="ch-persona-gen-preview-container">
+                        <div class="ch-persona-gen-empty-hint">点击上方按钮添加参考图片，AI 将根据图片内容辅助生成人设</div>
+                    </div>
+                </div>
+                <!-- 生成按钮 -->
+                <div class="ch-persona-gen-actions">
+                    <button id="ch-persona-gen-btn" class="ch-btn ch-btn-primary">
+                        <span class="ch-btn-icon">🎭</span>
+                        <span class="ch-btn-text">生成人设</span>
+                    </button>
+                    <span id="ch-persona-gen-status" class="ch-status-text"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 全局控制区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>人设控制</h4>
+            <div class="st-chatu8-field">
+                <label for="ch-persona-enabled">启用人设注入</label>
+                <div class="st-chatu8-toggle">
+                    <input id="ch-persona-enabled" type="checkbox" />
+                    <span class="st-chatu8-slider"></span>
+                </div>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="ch-persona-injection-mode">注入模式</label>
+                <select id="ch-persona-injection-mode" class="st-chatu8-select" style="max-width: 200px;">
+                    <option value="alwaysOn">常驻注入</option>
+                    <option value="onDemand">按需调用</option>
+                </select>
+            </div>
+            <p class="st-chatu8-hint">
+                常驻注入：人设内容直接注入系统提示词，AI 始终可见。<br>
+                按需调用：仅在 AI 需要时才查询人设资料。
+            </p>
+        </div>
+
+        <!-- 基本信息区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>基本信息</h4>
+            <div class="st-chatu8-persona-row">
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-persona-name">角色名称</label>
+                    <input type="text" id="ch-persona-name" class="st-chatu8-text-input" placeholder="角色的名字" />
+                </div>
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-persona-age">年龄</label>
+                    <input type="text" id="ch-persona-age" class="st-chatu8-text-input" placeholder="如：18岁、不详" />
+                </div>
+            </div>
+            <div class="st-chatu8-persona-row">
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-persona-gender">性别</label>
+                    <input type="text" id="ch-persona-gender" class="st-chatu8-text-input" placeholder="如：女、男、其他" />
+                </div>
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-persona-race">种族/物种</label>
+                    <input type="text" id="ch-persona-race" class="st-chatu8-text-input" placeholder="如：人类、精灵、猫娘" />
+                </div>
+            </div>
+        </div>
+
+        <!-- 性格与背景区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>性格与背景</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-personality">性格</label>
+                <textarea id="ch-persona-personality" class="st-chatu8-textarea" rows="3" placeholder="角色的性格特征描述..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-background">背景</label>
+                <textarea id="ch-persona-background" class="st-chatu8-textarea" rows="3" placeholder="角色的故事背景、出身经历..."></textarea>
+            </div>
+        </div>
+
+        <!-- 外貌描述区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>外貌描述</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-bodyType">身材</label>
+                <textarea id="ch-persona-bodyType" class="st-chatu8-textarea" rows="2" placeholder="身高、体型等描述..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-appearance">外貌特征</label>
+                <textarea id="ch-persona-appearance" class="st-chatu8-textarea" rows="2" placeholder="发色、瞳色、肤色等外貌细节..."></textarea>
+            </div>
+        </div>
+
+        <!-- 其他信息区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>其他信息</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-hobbies">爱好</label>
+                <textarea id="ch-persona-hobbies" class="st-chatu8-textarea" rows="2" placeholder="角色的兴趣爱好..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-abilities">特殊能力</label>
+                <textarea id="ch-persona-abilities" class="st-chatu8-textarea" rows="2" placeholder="角色拥有的特殊能力/技能..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-speechStyle">口癖/说话方式</label>
+                <textarea id="ch-persona-speechStyle" class="st-chatu8-textarea" rows="2" placeholder="角色的语言习惯、常用口头禅..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-relationships">人际关系</label>
+                <textarea id="ch-persona-relationships" class="st-chatu8-textarea" rows="2" placeholder="与其他角色的关系描述..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-notes">其他备注</label>
+                <textarea id="ch-persona-notes" class="st-chatu8-textarea" rows="2" placeholder="其他自定义补充信息..."></textarea>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -61,6 +61,16 @@
                 <span class="st-chatu8-slider"></span>
             </div>
         </div>
+        <div class="st-chatu8-field">
+            <label for="ch-llm_merge_system_user">合并 System 和 User</label>
+            <div class="st-chatu8-toggle">
+                <input id="ch-llm_merge_system_user" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 4px;">
+            开启后，合并相邻消息时会将 system 和 user 视为同类角色一并合并。
+        </p>
     </div>
 
     <div class="st-chatu8-settings-section">
@@ -168,110 +178,147 @@
             为三种请求类型分别选择要使用的 API 配置和上下文预设。
         </p>
 
-        <!-- 正文图片生成 -->
-        <div class="st-chatu8-field"
-            style="margin-bottom: 16px; padding: 12px; background: var(--st-chatu8-bg-secondary); border-radius: 8px;">
-            <div style="margin-bottom: 8px; font-weight: bold; color: var(--st-chatu8-text-primary);">
-                <i class="fa-solid fa-image"></i> 正文图片生成
-            </div>
-            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 200px;">
-                    <label for="ch-llm_image_gen_api_select" style="font-size: 12px;">API 配置</label>
-                    <select id="ch-llm_image_gen_api_select" class="st-chatu8-select"></select>
+        <!-- 请求类型卡片网格 -->
+        <div class="st-chatu8-request-cards-grid">
+            <!-- 正文图片生成 -->
+            <div class="st-chatu8-request-card">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-image"></i> 正文图片生成
                 </div>
-                <div style="flex: 1; min-width: 200px;">
-                    <label for="ch-llm_image_gen_context_select" style="font-size: 12px;">上下文预设</label>
-                    <select id="ch-llm_image_gen_context_select" class="st-chatu8-select"></select>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_image_gen_api_select">API 配置</label>
+                        <select id="ch-llm_image_gen_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_image_gen_context_select">上下文预设</label>
+                        <select id="ch-llm_image_gen_context_select" class="st-chatu8-select"></select>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- 角色/服装设计 -->
-        <div class="st-chatu8-field"
-            style="margin-bottom: 16px; padding: 12px; background: var(--st-chatu8-bg-secondary); border-radius: 8px;">
-            <div style="margin-bottom: 8px; font-weight: bold; color: var(--st-chatu8-text-primary);">
-                <i class="fa-solid fa-palette"></i> 角色/服装设计
-            </div>
-            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 200px;">
-                    <label for="ch-llm_char_design_api_select" style="font-size: 12px;">API 配置</label>
-                    <select id="ch-llm_char_design_api_select" class="st-chatu8-select"></select>
+            <!-- 角色/服装设计 -->
+            <div class="st-chatu8-request-card">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-palette"></i> 角色/服装设计
                 </div>
-                <div style="flex: 1; min-width: 200px;">
-                    <label for="ch-llm_char_design_context_select" style="font-size: 12px;">上下文预设</label>
-                    <select id="ch-llm_char_design_context_select" class="st-chatu8-select"></select>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_char_design_api_select">API 配置</label>
+                        <select id="ch-llm_char_design_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_char_design_context_select">上下文预设</label>
+                        <select id="ch-llm_char_design_context_select" class="st-chatu8-select"></select>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- 角色/服装展示 -->
-        <div class="st-chatu8-field"
-            style="margin-bottom: 16px; padding: 12px; background: var(--st-chatu8-bg-secondary); border-radius: 8px;">
-            <div style="margin-bottom: 8px; font-weight: bold; color: var(--st-chatu8-text-primary);">
-                <i class="fa-solid fa-user"></i> 角色/服装展示
-            </div>
-            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 200px;">
-                    <label for="ch-llm_char_display_api_select" style="font-size: 12px;">API 配置</label>
-                    <select id="ch-llm_char_display_api_select" class="st-chatu8-select"></select>
+            <!-- 角色/服装展示 -->
+            <div class="st-chatu8-request-card">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-user"></i> 角色/服装展示
                 </div>
-                <div style="flex: 1; min-width: 200px;">
-                    <label for="ch-llm_char_display_context_select" style="font-size: 12px;">上下文预设</label>
-                    <select id="ch-llm_char_display_context_select" class="st-chatu8-select"></select>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_char_display_api_select">API 配置</label>
+                        <select id="ch-llm_char_display_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_char_display_context_select">上下文预设</label>
+                        <select id="ch-llm_char_display_context_select" class="st-chatu8-select"></select>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- 角色/服装修改 -->
-        <div class="st-chatu8-field"
-            style="margin-bottom: 16px; padding: 12px; background: var(--st-chatu8-bg-secondary); border-radius: 8px;">
-            <div style="margin-bottom: 8px; font-weight: bold; color: var(--st-chatu8-text-primary);">
-                <i class="fa-solid fa-pen-to-square"></i> 角色/服装修改
-            </div>
-            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 200px;">
-                    <label for="ch-llm_char_modify_api_select" style="font-size: 12px;">API 配置</label>
-                    <select id="ch-llm_char_modify_api_select" class="st-chatu8-select"></select>
+            <!-- 角色/服装修改 -->
+            <div class="st-chatu8-request-card">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-pen-to-square"></i> 角色/服装修改
                 </div>
-                <div style="flex: 1; min-width: 200px;">
-                    <label for="ch-llm_char_modify_context_select" style="font-size: 12px;">上下文预设</label>
-                    <select id="ch-llm_char_modify_context_select" class="st-chatu8-select"></select>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_char_modify_api_select">API 配置</label>
+                        <select id="ch-llm_char_modify_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_char_modify_context_select">上下文预设</label>
+                        <select id="ch-llm_char_modify_context_select" class="st-chatu8-select"></select>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- 翻译 -->
-        <div class="st-chatu8-field"
-            style="margin-bottom: 16px; padding: 12px; background: var(--st-chatu8-bg-secondary); border-radius: 8px;">
-            <div style="margin-bottom: 8px; font-weight: bold; color: var(--st-chatu8-text-primary);">
-                <i class="fa-solid fa-language"></i> 翻译
-            </div>
-            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 200px;">
-                    <label for="ch-llm_translation_api_select" style="font-size: 12px;">API 配置</label>
-                    <select id="ch-llm_translation_api_select" class="st-chatu8-select"></select>
+            <!-- 翻译 -->
+            <div class="st-chatu8-request-card">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-language"></i> 翻译
                 </div>
-                <div style="flex: 1; min-width: 200px;">
-                    <label for="ch-llm_translation_context_select" style="font-size: 12px;">上下文预设</label>
-                    <select id="ch-llm_translation_context_select" class="st-chatu8-select"></select>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_translation_api_select">API 配置</label>
+                        <select id="ch-llm_translation_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_translation_context_select">上下文预设</label>
+                        <select id="ch-llm_translation_context_select" class="st-chatu8-select"></select>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Tag修改 -->
-        <div class="st-chatu8-field"
-            style="margin-bottom: 16px; padding: 12px; background: var(--st-chatu8-bg-secondary); border-radius: 8px;">
-            <div style="margin-bottom: 8px; font-weight: bold; color: var(--st-chatu8-text-primary);">
-                <i class="fa-solid fa-tags"></i> Tag修改
-            </div>
-            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 200px;">
-                    <label for="ch-llm_tag_modify_api_select" style="font-size: 12px;">API 配置</label>
-                    <select id="ch-llm_tag_modify_api_select" class="st-chatu8-select"></select>
+            <!-- Tag修改 -->
+            <div class="st-chatu8-request-card">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-tags"></i> Tag修改
                 </div>
-                <div style="flex: 1; min-width: 200px;">
-                    <label for="ch-llm_tag_modify_context_select" style="font-size: 12px;">上下文预设</label>
-                    <select id="ch-llm_tag_modify_context_select" class="st-chatu8-select"></select>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_tag_modify_api_select">API 配置</label>
+                        <select id="ch-llm_tag_modify_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_tag_modify_context_select">上下文预设</label>
+                        <select id="ch-llm_tag_modify_context_select" class="st-chatu8-select"></select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 智绘姬助手 -->
+            <div class="st-chatu8-request-card st-chatu8-request-card--accent-pink">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-robot"></i> 智绘姬助手
+                </div>
+                <p class="st-chatu8-request-card-desc">
+                    当智绘姬面板「预设角色」选择「自定义 (LLM预设)」时，将使用此处配置的上下文预设。
+                </p>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label>API 配置</label>
+                        <span class="st-chatu8-request-card-hint" style="font-size: 12px; color: var(--st-chatu8-text-secondary); padding: 6px 0;">使用「智绘姬AI」设置面板的配置</span>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_ai_assistant_context_select">上下文预设</label>
+                        <select id="ch-llm_ai_assistant_context_select" class="st-chatu8-select"></select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 人设生成 -->
+            <div class="st-chatu8-request-card st-chatu8-request-card--accent-purple">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-id-card"></i> 人设生成
+                </div>
+                <p class="st-chatu8-request-card-desc">
+                    通过 LLM 自动生成角色人设数据，结果将填充到人设管理界面的各字段中。
+                </p>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_persona_gen_api_select">API 配置</label>
+                        <select id="ch-llm_persona_gen_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_persona_gen_context_select">上下文预设</label>
+                        <select id="ch-llm_persona_gen_context_select" class="st-chatu8-select"></select>
+                    </div>
                 </div>
             </div>
         </div>

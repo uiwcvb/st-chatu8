@@ -29,6 +29,8 @@
 #st-chatu8-fab.st-chatu8-fab-video-mode {
     border-radius: 0;
     box-shadow: none;
+    /* ✅ 修复：视频模式下让透明区域的事件穿透到下层页面 */
+    pointer-events: none;
 }
 
 /* 视频模式下隐藏图标 */

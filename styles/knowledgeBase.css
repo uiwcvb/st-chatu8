@@ -1,0 +1,385 @@
+/* ===== 资料库管理样式 ===== */
+
+/* 条目容器 */
+.st-chatu8-kb-entries-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+/* 单个条目卡片 */
+.st-chatu8-kb-entry-card {
+    background: var(--st-chatu8-bg-secondary);
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 8px;
+    padding: 12px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.st-chatu8-kb-entry-card:hover {
+    border-color: var(--st-chatu8-accent-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.st-chatu8-kb-entry-card.disabled {
+    opacity: 0.5;
+}
+
+/* 条目头部：标题 + 操作按钮 */
+.st-chatu8-kb-entry-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.st-chatu8-kb-entry-header input[type="text"] {
+    flex: 1;
+}
+
+.st-chatu8-kb-entry-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+/* 条目内容区域 */
+.st-chatu8-kb-entry-content textarea {
+    width: 100%;
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* 条目底部控制 */
+.st-chatu8-kb-entry-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--st-chatu8-text-secondary);
+}
+
+/* 添加条目按钮区域 */
+.st-chatu8-add-entry-area {
+    margin-bottom: 12px;
+}
+
+.st-chatu8-add-entry-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* 智绘姬对话窗内的资料库入口按钮 */
+.st-chatu8-ai-kb-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    margin-top: 10px;
+    background: var(--st-chatu8-bg-secondary);
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--st-chatu8-text-primary);
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+.st-chatu8-ai-kb-btn:hover {
+    background: var(--st-chatu8-accent-color);
+    color: #fff;
+    border-color: var(--st-chatu8-accent-color);
+}
+
+/* ===== 人设管理样式 ===== */
+
+/* 人设字段两列布局行 */
+.st-chatu8-persona-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.st-chatu8-persona-half {
+    flex: 1;
+    min-width: 0;
+}
+
+.st-chatu8-persona-half label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 13px;
+    color: var(--st-chatu8-text-secondary);
+}
+
+.st-chatu8-persona-half input,
+.st-chatu8-persona-half textarea {
+    width: 100%;
+}
+
+/* 人设分组标题 */
+.st-chatu8-persona-group-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--st-chatu8-text-primary);
+    margin: 16px 0 8px 0;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--st-chatu8-border-color);
+}
+
+.st-chatu8-persona-group-title:first-of-type {
+    margin-top: 8px;
+}
+
+/* 人设全局控制区 */
+.st-chatu8-persona-global-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 12px;
+    background: var(--st-chatu8-bg-secondary);
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.st-chatu8-persona-global-controls label {
+    font-size: 13px;
+    color: var(--st-chatu8-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.st-chatu8-persona-global-controls select {
+    max-width: 160px;
+}
+
+/* ===== 人设生成区域样式 ===== */
+
+.ch-persona-gen-section {
+    margin: 12px 0;
+    padding: 16px;
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: var(--st-chatu8-border-radius, 8px);
+    background: var(--st-chatu8-bg-secondary);
+}
+
+.ch-persona-gen-header {
+    margin-bottom: 8px;
+}
+
+.ch-persona-gen-header .ch-section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--st-chatu8-text-primary);
+}
+
+.ch-persona-gen-demand {
+    margin-bottom: 8px;
+}
+
+.ch-persona-gen-demand label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 13px;
+    color: var(--st-chatu8-text-secondary);
+}
+
+.ch-persona-gen-demand textarea {
+    width: 100%;
+    resize: vertical;
+    min-height: 60px;
+    background: var(--st-chatu8-bg-secondary);
+    border: 1px solid var(--st-chatu8-border-color);
+    color: var(--st-chatu8-text-primary);
+    border-radius: 6px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.ch-persona-gen-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.ch-persona-gen-actions .ch-btn {
+    min-width: 120px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: 1px solid var(--st-chatu8-accent-primary, var(--st-chatu8-accent-color, #9b59b6));
+    border-radius: 6px;
+    background: var(--st-chatu8-accent-primary, var(--st-chatu8-accent-color, #9b59b6));
+    color: var(--st-chatu8-text-highlight, #fff);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.ch-persona-gen-actions .ch-btn:hover {
+    opacity: 0.85;
+    background: var(--st-chatu8-accent-secondary, var(--st-chatu8-accent-color, #9b59b6));
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.ch-persona-gen-actions .ch-status-text {
+    font-size: 0.85em;
+    color: var(--st-chatu8-text-secondary);
+}
+
+#ch-persona-gen-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#ch-persona-gen-btn:disabled:hover {
+    box-shadow: none;
+}
+
+/* ===== 人设生成 - 图片上传区域样式 ===== */
+
+.ch-persona-gen-upload {
+    margin-bottom: 10px;
+}
+
+.ch-persona-gen-upload-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.ch-persona-gen-upload-header label {
+    font-size: 13px;
+    color: var(--st-chatu8-text-secondary);
+}
+
+.ch-btn-small {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 4px;
+    background: var(--st-chatu8-bg-tertiary);
+    color: var(--st-chatu8-text-primary);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.ch-btn-small:hover {
+    background: var(--st-chatu8-accent-primary, var(--st-chatu8-accent-color, #9b59b6));
+    color: var(--st-chatu8-text-highlight, #fff);
+    border-color: var(--st-chatu8-accent-primary, var(--st-chatu8-accent-color, #9b59b6));
+}
+
+.ch-persona-gen-preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 40px;
+    padding: 8px;
+    border: 1px dashed var(--st-chatu8-border-color);
+    border-radius: 6px;
+    background: var(--st-chatu8-bg-tertiary);
+}
+
+.ch-persona-gen-empty-hint {
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    color: var(--st-chatu8-text-secondary);
+    opacity: 0.6;
+    padding: 4px 0;
+}
+
+/* 单张图片项 */
+.ch-persona-gen-img-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 80px;
+}
+
+.ch-persona-gen-img-wrapper {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--st-chatu8-border-color);
+    background: var(--st-chatu8-bg-tertiary);
+}
+
+.ch-persona-gen-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ch-persona-gen-img-delete {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 18px;
+    height: 18px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(231, 76, 60, 0.85);
+    color: #fff;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.ch-persona-gen-img-wrapper:hover .ch-persona-gen-img-delete {
+    opacity: 1;
+}
+
+.ch-persona-gen-img-name {
+    width: 72px;
+    padding: 2px 4px;
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 3px;
+    background: transparent;
+    color: var(--st-chatu8-text-primary);
+    font-size: 11px;
+    text-align: center;
+}
+
+.ch-persona-gen-img-name::placeholder {
+    color: var(--st-chatu8-text-secondary);
+    opacity: 0.5;
+}
+
+.ch-persona-gen-img-count {
+    width: 100%;
+    text-align: right;
+    font-size: 11px;
+    color: var(--st-chatu8-text-secondary);
+    padding-top: 2px;
+}
+
+/* 响应式：小屏幕时两列变单列 */
+@media (max-width: 500px) {
+    .st-chatu8-persona-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+}

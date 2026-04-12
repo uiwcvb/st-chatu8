@@ -52,3 +52,17 @@
 .st-chatu8-sub-tab-content[style*="display: block"] {
     display: block;
 }
+
+/* User 人设生成 - 类型选择器样式 */
+.ch-persona-gen-type-selector {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ch-persona-gen-type-selector label {
+    font-weight: 500;
+    color: var(--st-chatu8-text-primary);
+    white-space: nowrap;
+}

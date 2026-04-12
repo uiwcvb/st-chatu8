@@ -52,9 +52,10 @@
     <!-- 智绘姬 AI 助手对话框 (独立于设置面板外) -->
     <div id="st-chatu8-ai-dialog" class="st-chatu8-ai-dialog">
         <div class="st-chatu8-ai-dialog-header">
-            <h3><i class="fa-solid fa-robot"></i> 智绘姬 AI 助手 
+            <h3><i class="fa-solid fa-robot"></i> <span id="st-chatu8-ai-dialog-title">智绘姬 AI 助手</span> 
                 <span id="st-chatu8-ai-history-btn" class="st-chatu8-ai-settings-icon" title="聊天历史记录" style="margin-left: 10px;"><i class="fa-solid fa-clock-rotate-left"></i></span>
                 <span id="st-chatu8-ai-new-chat" class="st-chatu8-ai-settings-icon" title="新建聊天" style="margin-left: 5px;"><i class="fa-solid fa-broom"></i></span>
+                <span id="st-chatu8-ai-summary-btn" class="st-chatu8-ai-settings-icon" title="聊天总结" style="margin-left: 5px;"><i class="fa-solid fa-layer-group"></i></span>
                 <span id="st-chatu8-ai-settings-btn" class="st-chatu8-ai-settings-icon" title="设置"><i class="fa-solid fa-gear"></i></span>
             </h3>
             <span class="st-chatu8-ai-dialog-close" id="st-chatu8-ai-close"><i class="fa-solid fa-xmark"></i></span>
@@ -199,11 +200,25 @@
                     <!-- TTS 语音朗读参数设置 (启用后显示) -->
                     <div id="chatu8-ai-tts-settings" style="display:none; border: 1px solid var(--st-chatu8-border-color); border-radius: 8px; padding: 12px; margin-top: -5px; margin-bottom: 5px;">
                         <div class="st-chatu8-ai-setting-item">
+                            <label for="chatu8-ai-tts-scope">朗读范围</label>
+                            <select id="chatu8-ai-tts-scope" class="st-chatu8-ai-select" style="width: 100%;">
+                                <option value="dialogue">仅语音（「」内对话）</option>
+                                <option value="full">全文（包含叙述）</option>
+                            </select>
+                        </div>
+                        <div class="st-chatu8-ai-setting-item">
                             <label for="chatu8-ai-tts-engine">TTS 引擎</label>
                             <select id="chatu8-ai-tts-engine" class="st-chatu8-ai-select" style="width: 100%;">
                                 <option value="qwen">Qwen (默认)</option>
                                 <option value="edge">Edge TTS (微软)</option>
                             </select>
+                        </div>
+                        <!-- Qwen TTS 专属设置 -->
+                        <div id="chatu8-ai-tts-qwen-options" style="display:none; margin-top: 10px;">
+                            <div class="st-chatu8-ai-setting-item">
+                                <label for="chatu8-ai-tts-qwen-voice">声音角色</label>
+                                <select id="chatu8-ai-tts-qwen-voice" class="st-chatu8-ai-select" style="width: 100%;"></select>
+                            </div>
                         </div>
                         <!-- Edge TTS 专属设置 -->
                         <div id="chatu8-ai-tts-edge-options" style="display:none; margin-top: 10px;">
@@ -270,6 +285,11 @@
                                 <option value="false">替换现有文本</option>
                             </select>
                         </div>
+                        <div class="st-chatu8-ai-setting-item checkbox" style="margin-top: 10px;">
+                            <input type="checkbox" id="chatu8-ai-asr-auto-send" checked>
+                            <label for="chatu8-ai-asr-auto-send">识别后自动发送</label>
+                            <small style="margin-top: 2px; display: block; color: var(--st-chatu8-text-secondary);">关闭后语音识别结果仅填入输入框，不会自动发送</small>
+                        </div>
                         <div class="st-chatu8-ai-setting-item" style="margin-top: 10px;">
                             <label for="chatu8-ai-asr-conv-mode">对话模式</label>
                             <select id="chatu8-ai-asr-conv-mode" class="st-chatu8-ai-select" style="width: 100%;">
@@ -307,6 +327,51 @@
 
                 <!-- 关闭按钮（所有 tab 共用） -->
                 <button id="st-chatu8-ai-save-settings" class="st-chatu8-ai-save-btn" style="margin-top: 20px;">关闭设置面板</button>
+            </div>
+        </div>
+
+        <!-- 聊天总结管理面板 (默认隐藏) -->
+        <div id="st-chatu8-summary-manager" class="st-chatu8-summary-manager" style="display:none;">
+            <!-- 顶部工具栏 -->
+            <div class="summary-toolbar">
+                <div class="summary-toolbar-left">
+                    <span class="summary-title"><i class="fa-solid fa-layer-group"></i> 聊天总结</span>
+                </div>
+                <div class="summary-toolbar-actions">
+                    <button id="summary-toggle-multiselect" class="summary-btn summary-btn--outline" title="开启多选模式">
+                        <i class="fa-solid fa-check-double"></i> 多选
+                    </button>
+                    <button id="summary-generate-selected-btn" class="summary-btn summary-btn--primary" disabled title="对选中项生成合并总结">
+                        <i class="fa-solid fa-compress-alt"></i> 总结选中
+                    </button>
+                    <button id="summary-enable-selected-btn" class="summary-btn summary-btn--success" disabled title="启用选中的总结">
+                        <i class="fa-solid fa-check"></i> 启用
+                    </button>
+                    <button id="summary-disable-selected-btn" class="summary-btn summary-btn--warning" disabled title="取消启用选中的总结">
+                        <i class="fa-solid fa-times"></i> 禁用
+                    </button>
+                </div>
+                <button id="summary-close-btn" class="summary-btn summary-btn--icon" title="关闭">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- 状态提示栏 -->
+            <div id="summary-status-bar" class="summary-status-bar" style="display:none;"></div>
+
+            <!-- 主体：水平滚动容器 -->
+            <div class="summary-body">
+                <div class="summary-columns" id="summary-columns">
+                    <!-- SVG 连线层（绝对定位，随列滚动） -->
+                    <svg class="summary-svg-lines" id="summary-svg-lines" xmlns="http://www.w3.org/2000/svg"></svg>
+                    <!-- JS 动态按层级创建列 -->
+                </div>
+            </div>
+
+            <!-- 底部提示 -->
+            <div class="summary-footer">
+                <span id="summary-enabled-hint" class="summary-enabled-hint"></span>
+                <span class="summary-footer-tip">提示：启用的总结会替换对应轮次的对话历史发送给 AI（始终保留最近 15 轮）</span>
             </div>
         </div>
 

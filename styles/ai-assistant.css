@@ -180,6 +180,31 @@
     box-shadow: 0 0 15px color-mix(in srgb, var(--st-chatu8-accent-primary) 30%, transparent);
 }
 
+/* 楼层号标识 */
+.st-chatu8-ai-msg-floor {
+    position: absolute;
+    top: -8px;
+    font-size: 10px;
+    color: var(--st-chatu8-text-secondary);
+    opacity: 0.5;
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+    transition: opacity 0.2s;
+}
+
+.st-chatu8-ai-msg:hover .st-chatu8-ai-msg-floor {
+    opacity: 0.85;
+}
+
+.st-chatu8-ai-msg.system-msg .st-chatu8-ai-msg-floor {
+    left: 42px;
+}
+
+.st-chatu8-ai-msg.user-msg .st-chatu8-ai-msg-floor {
+    right: 42px;
+}
+
 /* 消息操作按钮容器 */
 .st-chatu8-ai-msg-actions {
     display: none;
@@ -895,6 +920,27 @@
     color: var(--st-chatu8-text-secondary);
 }
 
+.st-chatu8-ai-history-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.st-chatu8-ai-history-rename {
+    color: var(--st-chatu8-text-secondary);
+    padding: 8px;
+    font-size: 13px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.st-chatu8-ai-history-rename:hover {
+    color: var(--st-chatu8-accent-primary);
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 15%, transparent);
+}
+
 .st-chatu8-ai-history-delete {
     color: var(--st-chatu8-text-secondary);
     padding: 8px;
@@ -906,6 +952,25 @@
 .st-chatu8-ai-history-delete:hover {
     color: #ff4d4f;
     background: color-mix(in srgb, #ff4d4f 15%, transparent);
+}
+
+/* 重命名输入框 */
+.st-chatu8-ai-history-rename-input {
+    width: 100%;
+    padding: 2px 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--st-chatu8-text-primary);
+    background: var(--st-chatu8-bg-primary);
+    border: 1px solid var(--st-chatu8-accent-primary);
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--st-chatu8-accent-primary) 25%, transparent);
+}
+
+.st-chatu8-ai-history-rename-input:focus {
+    border-color: var(--st-chatu8-accent-secondary);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--st-chatu8-accent-secondary) 30%, transparent);
 }
 
 /* 智绘姬内部查询工具结果 折叠面板样式 */
@@ -1680,4 +1745,94 @@
 .st-chatu8-ai-floor-indicator:hover {
     background: rgba(255, 152, 0, 0.35);
     transform: scale(1.1);
+}
+
+
+/* ==================== 滚动优化相关样式 ==================== */
+
+/* "加载更多"提示 */
+.st-chatu8-ai-load-more-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    margin-bottom: 16px;
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 8%, var(--st-chatu8-bg-secondary));
+    border: 1px dashed var(--st-chatu8-border-color);
+    border-radius: 8px;
+    color: var(--st-chatu8-text-secondary);
+    font-size: 13px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.st-chatu8-ai-load-more-indicator i {
+    color: var(--st-chatu8-accent-primary);
+    font-size: 14px;
+}
+
+.st-chatu8-ai-load-more-indicator:hover {
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 12%, var(--st-chatu8-bg-secondary));
+    border-color: var(--st-chatu8-accent-primary);
+}
+
+/* "回到底部"浮动按钮 */
+.st-chatu8-ai-scroll-to-bottom {
+    position: absolute;
+    bottom: 80px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--st-chatu8-accent-primary);
+    color: var(--st-chatu8-text-highlight, white);
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.st-chatu8-ai-scroll-to-bottom:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    background: var(--st-chatu8-accent-secondary);
+}
+
+.st-chatu8-ai-scroll-to-bottom:active {
+    transform: scale(0.95);
+}
+
+/* 未读消息徽章 */
+.st-chatu8-ai-scroll-to-bottom .unread-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4d4f;
+    color: white;
+    border-radius: 10px;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(255, 77, 79, 0.4);
+    animation: st-chatu8-badge-pulse 2s infinite ease-in-out;
+}
+
+@keyframes st-chatu8-badge-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
 }

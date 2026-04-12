@@ -169,6 +169,18 @@
         <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 8px;">
             开启后，在图片标签前显示 &lt;imgthink&gt; 中的思考内容（不含 regex 行）。
         </p>
+        <div class="st-chatu8-field" style="margin-top: 16px;">
+            <label for="ch-llm_retry_count">LLM 错误重试次数</label>
+            <div class="st-chatu8-range-container">
+                <input class="st-chatu8-range-slider" type="range" id="ch-llm_retry_count" min="0" max="5"
+                    step="1" value="0">
+                <input class="st-chatu8-range-input" type="number" id="ch-llm_retry_count_value"
+                    data-for="ch-llm_retry_count" min="0" max="5" step="1" value="0">
+            </div>
+        </div>
+        <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 8px;">
+            当 LLM 返回空响应或 429 等错误时，自动重试的次数（每次间隔 2 秒）。0 表示不重试。
+        </p>
     </div>
 
     <div class="st-chatu8-settings-section">
@@ -302,13 +314,13 @@
                 </div>
             </div>
 
-            <!-- 人设生成 -->
+            <!-- 角色人设生成 -->
             <div class="st-chatu8-request-card st-chatu8-request-card--accent-purple">
                 <div class="st-chatu8-request-card-header">
-                    <i class="fa-solid fa-id-card"></i> 人设生成
+                    <i class="fa-solid fa-id-card"></i> 角色人设生成
                 </div>
                 <p class="st-chatu8-request-card-desc">
-                    通过 LLM 自动生成角色人设数据，结果将填充到人设管理界面的各字段中。
+                    通过 LLM 自动生成角色人设数据（含穿越设定），结果将填充到人设管理界面的各字段中。
                 </p>
                 <div class="st-chatu8-request-card-selects">
                     <div class="st-chatu8-request-card-select-item">
@@ -318,6 +330,46 @@
                     <div class="st-chatu8-request-card-select-item">
                         <label for="ch-llm_persona_gen_context_select">上下文预设</label>
                         <select id="ch-llm_persona_gen_context_select" class="st-chatu8-select"></select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User 人设生成 -->
+            <div class="st-chatu8-request-card st-chatu8-request-card--accent-blue">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-user"></i> User 人设生成
+                </div>
+                <p class="st-chatu8-request-card-desc">
+                    通过 LLM 自动生成 User 人设数据（无穿越设定），适用于玩家角色设定。
+                </p>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_user_persona_gen_api_select">API 配置</label>
+                        <select id="ch-llm_user_persona_gen_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_user_persona_gen_context_select">上下文预设</label>
+                        <select id="ch-llm_user_persona_gen_context_select" class="st-chatu8-select"></select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 聊天总结 -->
+            <div class="st-chatu8-request-card st-chatu8-request-card--accent-teal">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-layer-group"></i> 聊天总结
+                </div>
+                <p class="st-chatu8-request-card-desc">
+                    用于生成聊天记录总结的 LLM 配置和上下文预设。总结以角色第一人称日记形式书写。
+                </p>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_summary_api_select">API 配置</label>
+                        <select id="ch-llm_summary_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_summary_context_select">上下文预设</label>
+                        <select id="ch-llm_summary_context_select" class="st-chatu8-select"></select>
                     </div>
                 </div>
             </div>

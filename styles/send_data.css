@@ -430,6 +430,22 @@
     vertical-align: middle;
 }
 
+/* --- 常开条目样式 --- */
+/* 常开条目边框高亮 */
+#st-chatu8-tab-send_data .st-chatu8-entry-container .st-chatu8-list-item.constant-entry {
+    border-left: 3px solid rgba(255, 193, 7, 0.6) !important;
+}
+
+/* 常开条目选中时的背景色（黄色调） */
+#st-chatu8-tab-send_data .st-chatu8-entry-container .st-chatu8-list-item.constant-entry.selected {
+    background-color: rgba(255, 193, 7, 0.15) !important;
+}
+
+/* 常开条目强制启用时的背景色 */
+#st-chatu8-tab-send_data .st-chatu8-entry-container .st-chatu8-list-item.constant-entry.force-enabled {
+    background-color: rgba(255, 193, 7, 0.25) !important;
+}
+
 /* --- 批量操作新条目按钮样式 --- */
 /* 新条目按钮容器 */
 .st-chatu8-new-entry-buttons {

@@ -46,6 +46,22 @@
     /* 确保图标在video上方（作为占位符时） */
 }
 
+#st-chatu8-fab .st-chatu8-fab-custom-icon {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: none;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    z-index: 1;
+}
+
+#st-chatu8-fab.st-chatu8-fab-video-mode .st-chatu8-fab-custom-icon {
+    display: none !important;
+}
+
 #st-chatu8-fab:active {
     cursor: grabbing;
 }
@@ -104,6 +120,10 @@
     display: none;
 }
 
+#st-chatu8-fab.st-chatu8-fab-loading .st-chatu8-fab-custom-icon {
+    display: none !important;
+}
+
 #st-chatu8-fab.st-chatu8-fab-loading .st-chatu8-fab-video {
     display: none !important;
     /* 加载动画时隐藏video */
@@ -133,4 +153,57 @@
     to {
         transform: translate(-50%, -50%) rotate(360deg);
     }
+}
+
+.st-chatu8-fab-icon-config {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.st-chatu8-fab-icon-preview {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--SmartThemeBlurTintColor, rgba(173, 216, 230, 0.8));
+    border: 1px solid var(--SmartThemeBorderColor, rgba(255, 255, 255, 0.18));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex: 0 0 auto;
+}
+
+.st-chatu8-fab-icon-preview i {
+    color: #fff;
+    font-size: 22px;
+}
+
+.st-chatu8-fab-icon-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.st-chatu8-fab-icon-preview.has-image i {
+    display: none;
+}
+
+.st-chatu8-fab-icon-preview.has-image img {
+    display: block;
+}
+
+.st-chatu8-fab-icon-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.st-chatu8-fab-icon-actions small {
+    width: 100%;
+    color: var(--SmartThemeEmColor, #888);
+    font-size: 12px;
 }

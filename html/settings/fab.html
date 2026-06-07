@@ -41,6 +41,25 @@
                 <input type="color" id="chatu8_fab_icon_color" class="st-chatu8-color-picker">
             </div>
             <div class="st-chatu8-field">
+                <label>自定义图标</label>
+                <div class="st-chatu8-fab-icon-config">
+                    <div id="chatu8_fab_icon_preview" class="st-chatu8-fab-icon-preview">
+                        <i class="fa-solid fa-paintbrush"></i>
+                        <img id="chatu8_fab_icon_preview_img" alt="悬浮球图标预览">
+                    </div>
+                    <div class="st-chatu8-fab-icon-actions">
+                        <input type="file" id="chatu8_fab_icon_upload_input" accept="image/png,image/jpeg,image/webp,image/gif" style="display: none;">
+                        <button id="chatu8_fab_icon_upload_btn" class="st-chatu8-btn" type="button">
+                            <i class="fa-solid fa-upload"></i> 上传图片
+                        </button>
+                        <button id="chatu8_fab_icon_remove_btn" class="st-chatu8-btn danger" type="button" style="display: none;">
+                            <i class="fa-solid fa-rotate-left"></i> 恢复默认
+                        </button>
+                        <small>图片会保存到酒馆</small>
+                    </div>
+                </div>
+            </div>
+            <div class="st-chatu8-field">
                 <label for="chatu8_fab_opacity">不透明度</label>
                 <div class="st-chatu8-range-container">
                     <input type="range" id="chatu8_fab_opacity" class="st-chatu8-range-slider" min="0" max="1" step="0.1">

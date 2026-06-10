@@ -66,12 +66,17 @@
 /* Constrain the width of controls inside a field for better aesthetics */
 #st-chatu8-settings .st-chatu8-field>.st-chatu8-select,
 #st-chatu8-settings .st-chatu8-field>.st-chatu8-text-input,
-#st-chatu8-settings .st-chatu8-field>.st-chatu8-input-group,
-#st-chatu8-settings .st-chatu8-field>.st-chatu8-profile-controls {
+#st-chatu8-settings .st-chatu8-field>.st-chatu8-input-group {
     max-width: 420px;
     flex-grow: 1;
     min-width: 0;
     /* Allow shrinking */
+}
+
+#st-chatu8-settings .st-chatu8-field>.st-chatu8-profile-controls {
+    max-width: 480px;
+    flex-grow: 1;
+    min-width: 0;
 }
 
 #st-chatu8-settings .st-chatu8-field>.st-chatu8-text-input {
@@ -246,12 +251,11 @@
 /* Vibration Profile Controls */
 #st-chatu8-settings .st-chatu8-profile-controls {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
     align-items: center;
     min-width: 0;
     /* Allow shrinking in flexbox */
-    overflow: hidden;
-    /* Prevent content overflow */
 }
 
 #st-chatu8-settings .st-chatu8-select {
@@ -266,8 +270,8 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    min-width: 0;
-    /* Allow shrinking in flexbox */
+    min-width: 120px;
+    /* Prevent squashing to 0 width */
 }
 
 #st-chatu8-settings .st-chatu8-select:hover {

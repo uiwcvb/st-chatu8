@@ -105,6 +105,12 @@
     padding: 10px;
     box-sizing: border-box;
     font-size: 1em;
+    font-family: var(--st-chatu8-font-family, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
+    line-height: 1.5;
+    letter-spacing: normal;
+    word-spacing: normal;
+    white-space: pre-wrap;
+    word-wrap: break-word;
     resize: vertical;
     overflow-y: auto;
     /* 启用垂直滚动 */
@@ -115,6 +121,20 @@
     outline: none;
     border-color: var(--st-chatu8-accent-primary, #4a90e2);
     box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.3);
+}
+
+.st-chatu8-highlight-match {
+    background-color: rgba(46, 204, 113, 0.25);
+    border-radius: 4px;
+    padding: 2px 0;
+    box-shadow: 0 0 0 1px rgba(46, 204, 113, 0.4);
+}
+
+.st-chatu8-highlight-error {
+    background-color: rgba(231, 76, 60, 0.25);
+    border-radius: 4px;
+    padding: 2px 0;
+    box-shadow: 0 0 0 1px rgba(231, 76, 60, 0.4);
 }
 
 .st-chatu8-edit-buttons {

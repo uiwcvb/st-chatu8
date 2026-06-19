@@ -20,17 +20,20 @@
             <label for="fixedPrompt_novelai">固定正面提示词 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
             <button class="st-chatu8-icon-btn" id="translate_fixedPrompt_novelai" title="翻译" style="align-self: flex-end; margin: 4px 0;"><i class="fa-solid fa-language"></i></button>
             <textarea id="fixedPrompt_novelai" class="st-chatu8-textarea" rows="4"></textarea>
+            <div id="novelai_fixedPrompt_tokens" class="st-chatu8-token-display" style="font-size: 0.85em; color: var(--SmartThemeBodyColor); margin-top: 4px; opacity: 0.8;">当前占用: 0 | 总占用: 0 / 512</div>
             <div id="fixedPrompt_novelai-results" class="ch-autocomplete-results"></div>
         </div>
         <div class="st-chatu8-field-col">
             <label for="fixedPrompt_end_novelai">后置固定正面提示词 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
             <button class="st-chatu8-icon-btn" id="translate_fixedPrompt_end_novelai" title="翻译" style="align-self: flex-end; margin: 4px 0;"><i class="fa-solid fa-language"></i></button>
             <textarea id="fixedPrompt_end_novelai" class="st-chatu8-textarea" rows="4"></textarea>
+            <div id="novelai_fixedPrompt_end_tokens" class="st-chatu8-token-display" style="font-size: 0.85em; color: var(--SmartThemeBodyColor); margin-top: 4px; opacity: 0.8;">当前占用: 0 | 总占用: 0 / 512</div>
             <div id="fixedPrompt_end_novelai-results" class="ch-autocomplete-results"></div>
         </div>
         <div class="st-chatu8-field-col">
             <label for="negativePrompt_novelai">固定负面提示词 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
             <textarea id="negativePrompt_novelai" class="st-chatu8-textarea" rows="4"></textarea>
+            <div id="novelai_negativePrompt_tokens" class="st-chatu8-token-display" style="font-size: 0.85em; color: var(--SmartThemeBodyColor); margin-top: 4px; opacity: 0.8;">当前占用: 0 / 512</div>
             <div id="negativePrompt_novelai-results" class="ch-autocomplete-results"></div>
         </div>
 
@@ -88,6 +91,9 @@
                 </button>
                 <button class="st-chatu8-icon-btn" id="novelai_profile_new" title="新建">
                     <i class="fa-solid fa-plus"></i>
+                </button>
+                <button class="st-chatu8-icon-btn" id="novelai_profile_save" title="保存当前">
+                    <i class="fa-solid fa-save"></i>
                 </button>
                 <button class="st-chatu8-icon-btn danger" id="novelai_profile_delete" title="删除">
                     <i class="fa-solid fa-trash"></i>

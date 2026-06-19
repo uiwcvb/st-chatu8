@@ -26,7 +26,7 @@
         <!-- API 配置 -->
         <h4>API 配置</h4>
         <div class="st-chatu8-field-col">
-            <label for="ch-llm_api_url">API Base URL</label>
+            <label for="ch-llm_api_url">API Base URL <span style="font-size: 12px; color: var(--st-chatu8-text-secondary); font-weight: normal;">(请自行添加 /v1 等版本后缀)</span></label>
             <textarea id="ch-llm_api_url" class="st-chatu8-textarea" rows="2"
                 placeholder="例如: https://api.openai.com/v1"></textarea>
         </div>
@@ -214,6 +214,19 @@
         <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-bottom: 12px;">
             为三种请求类型分别选择要使用的 API 配置和上下文预设。
         </p>
+
+        <!-- 请求类型档案配置 -->
+        <div class="st-chatu8-field">
+            <label for="ch-llm_request_type_profile_select">请求类型档案</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="ch-llm_request_type_profile_select" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="ch-load_llm_request_type_profile_button" title="读取"><i class="fa-solid fa-folder-open"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-new_llm_request_type_profile_button" title="新建"><i class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-save_llm_request_type_profile_button" title="保存当前"><i class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-rename_llm_request_type_profile_button" title="重命名"><i class="fa-solid fa-pen"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="ch-delete_llm_request_type_profile_button" title="删除"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>
 
         <!-- 请求类型卡片网格 -->
         <div class="st-chatu8-request-cards-grid">

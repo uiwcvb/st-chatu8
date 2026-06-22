@@ -65,5 +65,13 @@
 .ch-persona-gen-type-selector label {
     font-weight: 500;
     color: var(--st-chatu8-text-primary);
-    white-space: nowrap;
+}
+
+/* 统一控制 token 占用的样式 */
+.st-chatu8-token-display {
+    font-size: 0.85em;
+    color: inherit;
+    margin-top: 4px;
+    opacity: 0.8;
+    font-weight: 600;
 }

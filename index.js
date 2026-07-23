@@ -103,7 +103,7 @@ import { extension_settings as extension_settings42 } from "../../../extensions.
 import { getContext as getContext15 } from "../../../st-context.js";
 import { extension_settings as extension_settings69 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced45 } from "../../../../script.js";
-import { eventSource as eventSource28, event_types as event_types5, saveSettingsDebounced as saveSettingsDebounced46, saveChatConditional as saveChatConditional5 } from "../../../../script.js";
+import { eventSource as eventSource28, event_types as event_types5, saveSettingsDebounced as saveSettingsDebounced46, saveChatConditional as saveChatConditional5, saveMetadata } from "../../../../script.js";
 import { extension_settings as extension_settings70 } from "../../../extensions.js";
 import { getContext as getContext16 } from "../../../st-context.js";
 import { extension_settings as extension_settings71 } from "../../../extensions.js";
@@ -37198,18 +37198,18 @@ function initSendData(settingsModal) {
   const intervalId = setInterval(async () => {
     let conet = getContext16();
     const settings3 = extension_settings70[extensionName];
-    if (conet && conet.chatId) {
+    if (conet && conet.chatId && conet.chat && conet.chat.length > 0) {
       if (!conet.chatMetadata) conet.chatMetadata = {};
       if (!conet.chatMetadata.variables) conet.chatMetadata.variables = {};
       conet.chatMetadata.variables.zhihuiji = settings3.scriptEnabled;
-      await saveChatConditional5();
+      await saveMetadata();
       clearInterval(intervalId);
     }
   }, 2e3);
   eventSource28.on(event_types5.CHAT_CHANGED, async () => {
     let conet = getContext16();
     const settings3 = extension_settings70[extensionName];
-    if (conet && conet.chatId) {
+    if (conet && conet.chatId && conet.chat && conet.chat.length > 0) {
       if (!conet.chatMetadata) conet.chatMetadata = {};
       if (!conet.chatMetadata.variables) conet.chatMetadata.variables = {};
       conet.chatMetadata.variables.zhihuiji = settings3.scriptEnabled;
@@ -37251,7 +37251,7 @@ function initSendData(settingsModal) {
           }
         }
       }
-      await saveChatConditional5();
+      await saveMetadata();
     }
   });
 }

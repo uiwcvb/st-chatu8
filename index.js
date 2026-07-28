@@ -101,48 +101,48 @@ import { eventSource as eventSource20 } from "../../../../script.js";
 import { eventSource as eventSource21, event_types as event_types4 } from "../../../../script.js";
 import { extension_settings as extension_settings42 } from "../../../extensions.js";
 import { getContext as getContext15 } from "../../../st-context.js";
-import { extension_settings as extension_settings69 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced45 } from "../../../../script.js";
-import { eventSource as eventSource28, event_types as event_types5, saveSettingsDebounced as saveSettingsDebounced46, saveChatConditional as saveChatConditional5, saveMetadata } from "../../../../script.js";
 import { extension_settings as extension_settings70 } from "../../../extensions.js";
-import { getContext as getContext16 } from "../../../st-context.js";
+import { saveSettingsDebounced as saveSettingsDebounced46 } from "../../../../script.js";
+import { eventSource as eventSource28, event_types as event_types5, saveSettingsDebounced as saveSettingsDebounced47, saveChatConditional as saveChatConditional5, saveMetadata } from "../../../../script.js";
 import { extension_settings as extension_settings71 } from "../../../extensions.js";
+import { getContext as getContext16 } from "../../../st-context.js";
+import { extension_settings as extension_settings72 } from "../../../extensions.js";
 import { getContext as getContext17 } from "../../../st-context.js";
 import { eventSource as eventSource29 } from "../../../../script.js";
 import { eventSource as eventSource30 } from "../../../../script.js";
 import { getContext as getContext18 } from "../../../st-context.js";
-import { extension_settings as extension_settings72 } from "../../../extensions.js";
-import { extension_settings as extension_settings75 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced48 } from "../../../../script.js";
-import { world_info as world_info2 } from "../../../world-info.js";
+import { extension_settings as extension_settings73 } from "../../../extensions.js";
 import { extension_settings as extension_settings76 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced49 } from "../../../../script.js";
+import { world_info as world_info2 } from "../../../world-info.js";
 import { extension_settings as extension_settings77 } from "../../../extensions.js";
+import { saveSettingsDebounced as saveSettingsDebounced50 } from "../../../../script.js";
 import { extension_settings as extension_settings78 } from "../../../extensions.js";
-import { extension_settings as extension_settings81 } from "../../../extensions.js";
+import { extension_settings as extension_settings79 } from "../../../extensions.js";
 import { extension_settings as extension_settings82 } from "../../../extensions.js";
-import { eventSource as eventSource32, saveSettingsDebounced as saveSettingsDebounced52 } from "../../../../script.js";
-import { eventSource as eventSource33, saveSettingsDebounced as saveSettingsDebounced53 } from "../../../../script.js";
 import { extension_settings as extension_settings83 } from "../../../extensions.js";
+import { eventSource as eventSource32, saveSettingsDebounced as saveSettingsDebounced53 } from "../../../../script.js";
+import { eventSource as eventSource33, saveSettingsDebounced as saveSettingsDebounced54 } from "../../../../script.js";
 import { extension_settings as extension_settings84 } from "../../../extensions.js";
 import { extension_settings as extension_settings85 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced54 } from "../../../../script.js";
 import { extension_settings as extension_settings86 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced55 } from "../../../../script.js";
 import { extension_settings as extension_settings87 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced56 } from "../../../../script.js";
-import { eventSource as eventSource34 } from "../../../../script.js";
 import { extension_settings as extension_settings88 } from "../../../extensions.js";
-import { eventSource as eventSource35 } from "../../../../script.js";
+import { saveSettingsDebounced as saveSettingsDebounced57 } from "../../../../script.js";
+import { eventSource as eventSource34 } from "../../../../script.js";
 import { extension_settings as extension_settings89 } from "../../../extensions.js";
+import { eventSource as eventSource35 } from "../../../../script.js";
 import { extension_settings as extension_settings90 } from "../../../extensions.js";
 import { extension_settings as extension_settings91 } from "../../../extensions.js";
-import { getContext as getContext20 } from "../../../st-context.js";
 import { extension_settings as extension_settings92 } from "../../../extensions.js";
+import { getContext as getContext20 } from "../../../st-context.js";
 import { extension_settings as extension_settings93 } from "../../../extensions.js";
-import { eventSource as eventSource36, saveSettingsDebounced as saveSettingsDebounced57 } from "../../../../script.js";
-import { extension_settings as extension_settings100, extensionTypes } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced60, eventSource as eventSource40, event_types as event_types8, reloadCurrentChat, saveChatConditional as saveChatConditional6, chat as chat3, messageFormatting as messageFormatting3, saveChat } from "../../../../script.js";
+import { extension_settings as extension_settings94 } from "../../../extensions.js";
+import { eventSource as eventSource36, saveSettingsDebounced as saveSettingsDebounced58 } from "../../../../script.js";
+import { extension_settings as extension_settings101, extensionTypes } from "../../../extensions.js";
+import { saveSettingsDebounced as saveSettingsDebounced61, eventSource as eventSource40, event_types as event_types8, reloadCurrentChat, saveChatConditional as saveChatConditional6, chat as chat3, messageFormatting as messageFormatting3, saveChat } from "../../../../script.js";
 import { extension_settings as extension_settings47 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced26, eventSource as eventSource25 } from "../../../../script.js";
 import { extension_settings as extension_settings46 } from "../../../extensions.js";
@@ -160,26 +160,26 @@ import { extension_settings as extension_settings50 } from "../../../extensions.
 import { saveSettingsDebounced as saveSettingsDebounced28 } from "../../../../script.js";
 import { extension_settings as extension_settings49 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced27 } from "../../../../script.js";
-import { extension_settings as extension_settings97 } from "../../../extensions.js";
+import { extension_settings as extension_settings98 } from "../../../extensions.js";
 import { getContext as getContext22 } from "../../../st-context.js";
-import { saveSettingsDebounced as saveSettingsDebounced59 } from "../../../../script.js";
+import { saveSettingsDebounced as saveSettingsDebounced60 } from "../../../../script.js";
 import { extension_settings as extension_settings52 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced30 } from "../../../../script.js";
-import { extension_settings as extension_settings54 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced31 } from "../../../../script.js";
-import { eventSource as eventSource27 } from "../../../../script.js";
 import { extension_settings as extension_settings53 } from "../../../extensions.js";
-import { extension_settings as extension_settings56 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced33 } from "../../../../script.js";
+import { saveSettingsDebounced as saveSettingsDebounced31 } from "../../../../script.js";
 import { extension_settings as extension_settings55 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced32 } from "../../../../script.js";
+import { eventSource as eventSource27 } from "../../../../script.js";
+import { extension_settings as extension_settings54 } from "../../../extensions.js";
 import { extension_settings as extension_settings57 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced34 } from "../../../../script.js";
-import { extension_settings as extension_settings59 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced35 } from "../../../../script.js";
+import { extension_settings as extension_settings56 } from "../../../extensions.js";
+import { saveSettingsDebounced as saveSettingsDebounced33 } from "../../../../script.js";
 import { extension_settings as extension_settings58 } from "../../../extensions.js";
+import { saveSettingsDebounced as saveSettingsDebounced35 } from "../../../../script.js";
 import { extension_settings as extension_settings60 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced36 } from "../../../../script.js";
+import { extension_settings as extension_settings59 } from "../../../extensions.js";
 import { extension_settings as extension_settings61 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced37 } from "../../../../script.js";
 import { extension_settings as extension_settings62 } from "../../../extensions.js";
@@ -192,27 +192,29 @@ import { extension_settings as extension_settings65 } from "../../../extensions.
 import { saveSettingsDebounced as saveSettingsDebounced41 } from "../../../../script.js";
 import { extension_settings as extension_settings66 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced42 } from "../../../../script.js";
-import { saveSettingsDebounced as saveSettingsDebounced43 } from "../../../../script.js";
 import { extension_settings as extension_settings67 } from "../../../extensions.js";
-import { extension_settings as extension_settings74 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced47, eventSource as eventSource31 } from "../../../../script.js";
-import { extension_settings as extension_settings68 } from "../../../extensions.js";
+import { saveSettingsDebounced as saveSettingsDebounced43 } from "../../../../script.js";
 import { saveSettingsDebounced as saveSettingsDebounced44 } from "../../../../script.js";
+import { extension_settings as extension_settings68 } from "../../../extensions.js";
+import { extension_settings as extension_settings75 } from "../../../extensions.js";
+import { saveSettingsDebounced as saveSettingsDebounced48, eventSource as eventSource31 } from "../../../../script.js";
+import { extension_settings as extension_settings69 } from "../../../extensions.js";
+import { saveSettingsDebounced as saveSettingsDebounced45 } from "../../../../script.js";
 import { getContext as getContext19 } from "../../../st-context.js";
-import { extension_settings as extension_settings73 } from "../../../extensions.js";
-import { extension_settings as extension_settings79 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced50 } from "../../../../script.js";
+import { extension_settings as extension_settings74 } from "../../../extensions.js";
 import { extension_settings as extension_settings80 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced51 } from "../../../../script.js";
-import { extension_settings as extension_settings94 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced58 } from "../../../../script.js";
+import { extension_settings as extension_settings81 } from "../../../extensions.js";
+import { saveSettingsDebounced as saveSettingsDebounced52 } from "../../../../script.js";
 import { extension_settings as extension_settings95 } from "../../../extensions.js";
-import { eventSource as eventSource37, event_types as event_types6 } from "../../../../script.js";
+import { saveSettingsDebounced as saveSettingsDebounced59 } from "../../../../script.js";
 import { extension_settings as extension_settings96 } from "../../../extensions.js";
+import { eventSource as eventSource37, event_types as event_types6 } from "../../../../script.js";
+import { extension_settings as extension_settings97 } from "../../../extensions.js";
 import { getContext as getContext21 } from "../../../st-context.js";
-import { extension_settings as extension_settings99 } from "../../../extensions.js";
+import { extension_settings as extension_settings100 } from "../../../extensions.js";
 import { eventSource as eventSource39, event_types as event_types7 } from "../../../../script.js";
-import { extension_settings as extension_settings98 } from "../../../extensions.js";
+import { extension_settings as extension_settings99 } from "../../../extensions.js";
 import { eventSource as eventSource38 } from "../../../../script.js";
 
 var __defProp = Object.defineProperty;
@@ -2124,6 +2126,7 @@ var init_config = __esm({
         editModel: "",
         videoModel: "",
         aspectRatio: "1:1",
+        imageSize: "1024x1024",
         useGrokFormat: "false",
         conversationPresetId: "\u9ED8\u8BA4",
         editPresetId: "\u9ED8\u8BA4",
@@ -2370,6 +2373,14 @@ function base64ToArrayBuffer(base64) {
     bytes[i] = binaryString.charCodeAt(i);
   }
   return bytes.buffer;
+}
+function base64ByteLength(base64) {
+  if (!base64) return 0;
+  const len = base64.length;
+  let padding = 0;
+  if (base64[len - 1] === "=") padding++;
+  if (base64[len - 2] === "=") padding++;
+  return Math.floor(len * 3 / 4) - padding;
 }
 function arrayBufferToBase64(buffer) {
   let binary = "";
@@ -3002,6 +3013,7 @@ async function setItemImg(tag, imgBase64, options = { format: "png" }) {
       const result = await response.json();
       const imagePath = result.path;
       let thumbnailPath = null;
+      let thumbnailSize = 0;
       try {
         let thumbnailBlob;
         if (isVideo) {
@@ -3031,6 +3043,7 @@ async function setItemImg(tag, imgBase64, options = { format: "png" }) {
         if (thumbnailResponse.ok) {
           const thumbnailResult = await thumbnailResponse.json();
           thumbnailPath = thumbnailResult.path;
+          thumbnailSize = base64ByteLength(thumbnailData);
         } else {
           console.error("Failed to upload thumbnail:", thumbnailResponse.statusText);
         }
@@ -3048,7 +3061,9 @@ async function setItemImg(tag, imgBase64, options = { format: "png" }) {
         thumbnail_path: thumbnailPath,
         date: newDate,
         isVideo,
-        originalUrl: originalUrl || ""
+        originalUrl: originalUrl || "",
+        size: base64ByteLength(base64Data),
+        thumbnail_size: thumbnailSize
       };
       const entry = storage[md5];
       if (entry) {
@@ -3080,6 +3095,7 @@ async function setItemImg(tag, imgBase64, options = { format: "png" }) {
     const uuid = generateUUID();
     const newDate = (/* @__PURE__ */ new Date()).getTime();
     const thumbnailUUID = generateUUID();
+    let thumbnailSize = 0;
     try {
       let thumbnailBlob;
       if (isVideo) {
@@ -3088,6 +3104,7 @@ async function setItemImg(tag, imgBase64, options = { format: "png" }) {
         thumbnailBlob = await createThumbnailFromBuffer(imageBuffer);
       }
       const thumbnailBuffer = await thumbnailBlob.arrayBuffer();
+      thumbnailSize = thumbnailBuffer.byteLength;
       await storeReadWrite({ id: thumbnailUUID, data: thumbnailBuffer });
     } catch (error) {
       console.error("Failed to create or store thumbnail:", error);
@@ -3100,7 +3117,9 @@ async function setItemImg(tag, imgBase64, options = { format: "png" }) {
       thumbnail_uuid: thumbnailUUID,
       date: newDate,
       isVideo,
-      originalUrl: originalUrl || ""
+      originalUrl: originalUrl || "",
+      size: imageBuffer.byteLength,
+      thumbnail_size: thumbnailSize
     };
     if (entry) {
       if (!entry.images) entry.images = [];
@@ -3650,6 +3669,393 @@ async function getAllImageMetadata() {
   }
   return mergedMetadata;
 }
+function isRemoteJiuguan() {
+  const host = window.location.hostname;
+  if (!host) return true;
+  if (host === "localhost" || host === "127.0.0.1" || host === "::1" || host === "[::1]") return false;
+  if (/^10\./.test(host)) return false;
+  if (/^192\.168\./.test(host)) return false;
+  if (/^172\.(1[6-9]|2\d|3[01])\./.test(host)) return false;
+  if (host.endsWith(".local")) return false;
+  return true;
+}
+function notifySizeCalcListeners(payload) {
+  for (const fn of sizeCalcListeners) {
+    try {
+      fn(payload);
+    } catch (e) {
+      console.error("[DB] \u5C3A\u5BF8\u7EDF\u8BA1\u76D1\u542C\u5668\u5F02\u5E38:", e);
+    }
+  }
+}
+function subscribeSizeCalcProgress(fn) {
+  sizeCalcListeners.add(fn);
+  return () => sizeCalcListeners.delete(fn);
+}
+function getSizeCalcTask() {
+  if (!sizeCalcTask) return null;
+  return {
+    running: sizeCalcTask.running,
+    lastProgress: sizeCalcTask.lastProgress,
+    startedAt: sizeCalcTask.startedAt
+  };
+}
+function cancelSizeCalc() {
+  if (sizeCalcTask && sizeCalcTask.running) {
+    sizeCalcTask.controller.abort();
+    return true;
+  }
+  return false;
+}
+async function calculateAllImageSizes(options = {}) {
+  if (sizeCalcTask && sizeCalcTask.running) {
+    console.log("[DB] \u5C3A\u5BF8\u7EDF\u8BA1\u5DF2\u5728\u8FDB\u884C\u4E2D\uFF0C\u590D\u7528\u73B0\u6709\u4EFB\u52A1");
+    return sizeCalcTask.promise;
+  }
+  const controller = new AbortController();
+  const task = {
+    running: true,
+    controller,
+    startedAt: Date.now(),
+    lastProgress: null,
+    promise: null
+  };
+  sizeCalcTask = task;
+  const onProgress = (payload) => {
+    task.lastProgress = payload;
+    notifySizeCalcListeners(payload);
+  };
+  task.promise = (async () => {
+    try {
+      const report = await runSizeCalculation({
+        ...options,
+        signal: controller.signal,
+        onProgress
+      });
+      task.running = false;
+      notifySizeCalcListeners({ phase: "finished", report, current: 1, total: 1, detail: "" });
+      return report;
+    } catch (error) {
+      task.running = false;
+      notifySizeCalcListeners({ phase: "error", error, current: 0, total: 1, detail: error.message });
+      throw error;
+    }
+  })();
+  return task.promise;
+}
+async function runSizeCalculation(options = {}) {
+  const { onProgress = null, signal = null, force = false } = options;
+  const BATCH_SIZE = 200;
+  const READ_CHUNK = 25;
+  const remote = isRemoteJiuguan();
+  const HEAD_CONCURRENCY = remote ? 2 : 6;
+  const BATCH_DELAY_MS = remote ? 300 : 0;
+  const isReservedKey = (key) => key === metadataId || typeof key === "string" && key.startsWith("cache_");
+  const report = {
+    dbCount: 0,
+    dbBytes: 0,
+    serverCount: 0,
+    serverBytes: 0,
+    thumbnailCount: 0,
+    thumbnailBytes: 0,
+    orphanCount: 0,
+    orphanBytes: 0,
+    failedCount: 0,
+    skippedCount: 0,
+    // 断点继续时跳过的已统计项
+    cancelled: false,
+    remote,
+    // 是否走了云酒馆限流
+    concurrency: HEAD_CONCURRENCY,
+    errors: []
+  };
+  const checkCancel = () => {
+    if (signal && signal.aborted) {
+      report.cancelled = true;
+      return true;
+    }
+    return false;
+  };
+  const emit = (phase, current, total, detail) => {
+    if (onProgress) onProgress({ phase, current, total, detail, report });
+  };
+  const tallyTotals = () => {
+    report.dbCount = 0;
+    report.dbBytes = 0;
+    report.serverCount = 0;
+    report.serverBytes = 0;
+    report.thumbnailCount = 0;
+    report.thumbnailBytes = 0;
+    for (const md5 in dbMetadata) {
+      const entry = dbMetadata[md5];
+      if (!entry || !Array.isArray(entry.images)) continue;
+      for (const img of entry.images) {
+        if (typeof img.size === "number") {
+          report.dbCount++;
+          report.dbBytes += img.size;
+        }
+        if (typeof img.thumbnail_size === "number") {
+          report.thumbnailCount++;
+          report.thumbnailBytes += img.thumbnail_size;
+        }
+      }
+    }
+    for (const md5 in serverStorage) {
+      const entry = serverStorage[md5];
+      if (!entry || !Array.isArray(entry.images)) continue;
+      for (const img of entry.images) {
+        if (typeof img.size === "number") {
+          report.serverCount++;
+          report.serverBytes += img.size;
+        }
+        if (typeof img.thumbnail_size === "number") {
+          report.thumbnailCount++;
+          report.thumbnailBytes += img.thumbnail_size;
+        }
+      }
+    }
+  };
+  const dbMetadata = await getMetadata();
+  const serverStorage = extension_settings[extensionName].jiuguanStorage || {};
+  const knownDbIds = /* @__PURE__ */ new Set();
+  const dbTargets = /* @__PURE__ */ new Map();
+  for (const md5 in dbMetadata) {
+    const entry = dbMetadata[md5];
+    if (!entry || !Array.isArray(entry.images)) continue;
+    for (const img of entry.images) {
+      if (img.uuid) {
+        knownDbIds.add(img.uuid);
+        if (force || typeof img.size !== "number") {
+          dbTargets.set(img.uuid, { img, field: "size" });
+        } else {
+          report.skippedCount++;
+        }
+      }
+      if (img.thumbnail_uuid) {
+        knownDbIds.add(img.thumbnail_uuid);
+        if (force || typeof img.thumbnail_size !== "number") {
+          dbTargets.set(img.thumbnail_uuid, { img, field: "thumbnail_size" });
+        } else {
+          report.skippedCount++;
+        }
+      }
+    }
+  }
+  const database = await openDB();
+  let totalRows = 0;
+  try {
+    totalRows = await new Promise((resolve, reject) => {
+      const tx = database.transaction([objectStoreName], "readonly");
+      const req = tx.objectStore(objectStoreName).count();
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+  } catch (e) {
+    report.errors.push(`\u7EDF\u8BA1\u8BB0\u5F55\u6570\u5931\u8D25: ${e.message}`);
+  }
+  let lastKey = null;
+  let scanned = 0;
+  let measuredSinceSave = 0;
+  let dbDirty = false;
+  emit("db", 0, totalRows, "\u6B63\u5728\u626B\u63CF\u6D4F\u89C8\u5668\u6570\u636E\u5E93...");
+  const flushDbMetadata = async () => {
+    if (!dbDirty) return;
+    await setMetadata(dbMetadata);
+    dbDirty = false;
+    measuredSinceSave = 0;
+  };
+  while (true) {
+    if (checkCancel()) {
+      await flushDbMetadata();
+      tallyTotals();
+      return report;
+    }
+    const keys = await new Promise((resolve, reject) => {
+      const tx = database.transaction([objectStoreName], "readonly");
+      const store = tx.objectStore(objectStoreName);
+      const range = lastKey === null ? null : IDBKeyRange.lowerBound(lastKey, true);
+      const req = store.openKeyCursor(range);
+      const out = [];
+      req.onsuccess = (event) => {
+        const cursor = event.target.result;
+        if (!cursor || out.length >= BATCH_SIZE) {
+          resolve(out);
+          return;
+        }
+        out.push(cursor.key);
+        cursor.continue();
+      };
+      req.onerror = () => reject(req.error);
+    });
+    if (keys.length === 0) break;
+    lastKey = keys[keys.length - 1];
+    const toMeasure = keys.filter((key) => {
+      if (isReservedKey(key)) return false;
+      return dbTargets.has(key) || !knownDbIds.has(key);
+    });
+    const measured = [];
+    for (let c = 0; c < toMeasure.length; c += READ_CHUNK) {
+      if (checkCancel()) {
+        await flushDbMetadata();
+        tallyTotals();
+        return report;
+      }
+      const chunk = toMeasure.slice(c, c + READ_CHUNK);
+      const rows = await new Promise((resolve, reject) => {
+        const tx = database.transaction([objectStoreName], "readonly");
+        const store = tx.objectStore(objectStoreName);
+        const out = [];
+        let pending = chunk.length;
+        let failed = false;
+        for (const key of chunk) {
+          const req = store.get(key);
+          req.onsuccess = () => {
+            if (failed) return;
+            const row = req.result;
+            const bytes = row && row.data && typeof row.data.byteLength === "number" ? row.data.byteLength : null;
+            out.push({ key, bytes });
+            if (--pending === 0) resolve(out);
+          };
+          req.onerror = () => {
+            if (failed) return;
+            failed = true;
+            reject(req.error);
+          };
+        }
+      });
+      measured.push(...rows);
+    }
+    for (const { key, bytes } of measured) {
+      if (bytes === null) continue;
+      const target = dbTargets.get(key);
+      if (target) {
+        target.img[target.field] = bytes;
+        dbDirty = true;
+        measuredSinceSave++;
+      } else {
+        report.orphanCount++;
+        report.orphanBytes += bytes;
+      }
+    }
+    scanned += keys.length;
+    if (measuredSinceSave >= BATCH_SIZE) {
+      await flushDbMetadata();
+    }
+    emit("db", scanned, totalRows, `\u6D4F\u89C8\u5668\u6570\u636E\u5E93: ${scanned} / ${totalRows} \u6761`);
+    await new Promise((r) => setTimeout(r, 0));
+  }
+  await flushDbMetadata();
+  const serverTargets = [];
+  for (const md5 in serverStorage) {
+    const entry = serverStorage[md5];
+    if (!entry || !Array.isArray(entry.images)) continue;
+    for (const img of entry.images) {
+      if (img.path) {
+        if (force || typeof img.size !== "number") {
+          serverTargets.push({ img, path: img.path, field: "size" });
+        } else {
+          report.skippedCount++;
+        }
+      }
+      if (img.thumbnail_path) {
+        if (force || typeof img.thumbnail_size !== "number") {
+          serverTargets.push({ img, path: img.thumbnail_path, field: "thumbnail_size" });
+        } else {
+          report.skippedCount++;
+        }
+      }
+    }
+  }
+  const probeSize2 = async (path) => {
+    try {
+      const head = await fetch(path, { method: "HEAD", signal });
+      if (head.ok) {
+        const len = head.headers.get("Content-Length");
+        if (len !== null) return parseInt(len, 10);
+      }
+    } catch (e) {
+      if (e.name === "AbortError") throw e;
+    }
+    if (remote) {
+      throw new Error("HEAD \u4E0D\u53EF\u7528\uFF0C\u4E91\u9152\u9986\u4E0B\u8DF3\u8FC7\uFF08\u907F\u514D\u4E0B\u8F7D\u6574\u56FE\uFF09");
+    }
+    const res = await fetch(path, { signal });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const blob = await res.blob();
+    return blob.size;
+  };
+  let probed = 0;
+  let serverDirty = false;
+  const flushServerMetadata = async () => {
+    if (!serverDirty) return;
+    saveSettingsDebounced();
+    serverDirty = false;
+    try {
+      await updateStegoImage();
+    } catch (e) {
+      report.errors.push(`\u66F4\u65B0\u9690\u5199\u56FE\u7247\u5931\u8D25: ${e.message}`);
+    }
+  };
+  if (serverTargets.length > 0) {
+    const modeLabel = remote ? `\u4E91\u9152\u9986\u9650\u6D41\u6A21\u5F0F (\u5E76\u53D1 ${HEAD_CONCURRENCY})` : `\u672C\u5730\u6A21\u5F0F (\u5E76\u53D1 ${HEAD_CONCURRENCY})`;
+    emit("server", 0, serverTargets.length, `\u6B63\u5728\u63A2\u6D4B\u9152\u9986\u6587\u4EF6\u5927\u5C0F... ${modeLabel}`);
+    for (let i = 0; i < serverTargets.length; i += HEAD_CONCURRENCY) {
+      if (checkCancel()) {
+        await flushServerMetadata();
+        tallyTotals();
+        return report;
+      }
+      const slice = serverTargets.slice(i, i + HEAD_CONCURRENCY);
+      await Promise.all(slice.map(async (target) => {
+        try {
+          const bytes = await probeSize2(target.path);
+          if (Number.isFinite(bytes) && bytes >= 0) {
+            target.img[target.field] = bytes;
+            serverDirty = true;
+          } else {
+            report.failedCount++;
+          }
+        } catch (e) {
+          if (e.name === "AbortError") return;
+          report.failedCount++;
+          if (report.errors.length < 20) {
+            report.errors.push(`${target.path}: ${e.message}`);
+          }
+        }
+        probed++;
+      }));
+      emit(
+        "server",
+        probed,
+        serverTargets.length,
+        `\u9152\u9986\u5B58\u50A8: ${probed} / ${serverTargets.length} \u4E2A\u6587\u4EF6 \xB7 ${modeLabel}`
+      );
+      if (BATCH_DELAY_MS > 0 && i + HEAD_CONCURRENCY < serverTargets.length) {
+        await new Promise((r) => setTimeout(r, BATCH_DELAY_MS));
+      }
+    }
+    if (serverDirty) {
+      saveSettingsDebounced();
+      serverDirty = false;
+    }
+  }
+  if (checkCancel()) {
+    tallyTotals();
+    return report;
+  }
+  emit("writeback", 0, 1, "\u6B63\u5728\u4FDD\u5B58\u7EDF\u8BA1\u7ED3\u679C...");
+  tallyTotals();
+  if (serverTargets.length > 0) {
+    saveSettingsDebounced();
+    try {
+      await updateStegoImage();
+    } catch (e) {
+      report.errors.push(`\u66F4\u65B0\u9690\u5199\u56FE\u7247\u5931\u8D25: ${e.message}`);
+    }
+  }
+  emit("done", 1, 1, "\u7EDF\u8BA1\u5B8C\u6210");
+  return report;
+}
 async function deleteMultipleImages(md5s) {
   if (!Array.isArray(md5s) || md5s.length === 0) {
     return;
@@ -4141,6 +4547,71 @@ async function addTag(tag) {
     request.onerror = (event) => reject(event.target.error);
   });
 }
+async function __syncDiagnostics({ folderName, serverImageNames, storedFileNames, nameOrigins, storage, metadata }) {
+  try {
+    console.groupCollapsed("%c[Sync \u8BCA\u65AD] \u70B9\u5F00\u67E5\u770B\u8BE6\u60C5", "color:#4CAF50;font-weight:bold");
+    const imageSet = new Set(serverImageNames);
+    console.log("\u3010A. \u670D\u52A1\u5668\u5217\u8868\u3011");
+    console.log(`  \u6587\u4EF6\u5939 ${folderName} \u8FD4\u56DE\u6587\u4EF6\u6570: ${serverImageNames.length}\uFF08\u542B\u56FE\u7247/\u89C6\u9891/\u97F3\u9891\uFF09`);
+    console.log("  \u2139 list \u63A5\u53E3\u4E0D\u9012\u5F52\u5B50\u76EE\u5F55\uFF0C\u4E5F\u4E0D\u8FD4\u56DE mime \u65E0\u6CD5\u8BC6\u522B\u7684\u6587\u4EF6\uFF08\u5982\u65E0\u6269\u5C55\u540D\uFF09\u3002");
+    console.log("    \u82E5\u6587\u4EF6\u7BA1\u7406\u5668\u91CC\u6570\u5230\u7684\u6587\u4EF6\u6570 > \u4E0A\u9762\u7684\u6570\u5B57\uFF0C\u5DEE\u989D\u5C31\u662F\u5B50\u76EE\u5F55\u5185\u6216 mime \u65E0\u6CD5\u8BC6\u522B\u7684\u6587\u4EF6\u3002");
+    const extCount2 = {};
+    for (const n of serverImageNames) {
+      const ext = n.includes(".") ? n.split(".").pop().toLowerCase() : "(\u65E0\u6269\u5C55\u540D)";
+      extCount2[ext] = (extCount2[ext] || 0) + 1;
+    }
+    console.log("\u3010B. \u670D\u52A1\u5668\u6587\u4EF6\u6269\u5C55\u540D\u5206\u5E03\u3011", extCount2);
+    const originCount = { "storage.path": 0, "storage.thumb": 0, "metadata.path": 0, "metadata.thumb": 0 };
+    for (const origins of nameOrigins.values()) {
+      for (const o of origins) originCount[o] = (originCount[o] || 0) + 1;
+    }
+    console.log("\u3010C. \u672C\u5730\u767D\u540D\u5355\u6587\u4EF6\u540D\u6765\u6E90\u3011", originCount);
+    console.log(`  \u767D\u540D\u5355\u603B\u6570(\u53BB\u91CD\u540E): ${storedFileNames.size}`);
+    const thumbOnly = [];
+    for (const [name, origins] of nameOrigins.entries()) {
+      const hasPath = origins.has("storage.path") || origins.has("metadata.path");
+      if (!hasPath) thumbOnly.push(name);
+    }
+    const thumbOnlyOnServer = thumbOnly.filter((n) => imageSet.has(n));
+    console.log("\u3010D. \u4EC5\u56E0\u7F29\u7565\u56FE\u800C\u8FDB\u5165\u767D\u540D\u5355\u7684\u6587\u4EF6\u540D\u3011");
+    console.log(`  \u5171 ${thumbOnly.length} \u4E2A\uFF0C\u5176\u4E2D ${thumbOnlyOnServer.length} \u4E2A\u786E\u5B9E\u5B58\u5728\u4E8E\u670D\u52A1\u5668\u4E0A`);
+    if (thumbOnlyOnServer.length > 0) {
+      console.log("  \u8FD9\u4E9B\u6587\u4EF6\u56E0\u88AB\u67D0\u6761\u5B58\u6D3B\u8BB0\u5F55\u7684 thumbnail_path \u5F15\u7528\u800C\u4FDD\u7559\uFF08\u6B63\u5E38\u60C5\u51B5\u4E0B\u5C31\u8BE5\u4FDD\u7559\uFF09:");
+      console.log("   ", thumbOnlyOnServer.slice(0, 50));
+      if (thumbOnlyOnServer.length > 50) console.log(`    ...\u8FD8\u6709 ${thumbOnlyOnServer.length - 50} \u4E2A`);
+    }
+    const staleWhitelist = [...storedFileNames].filter((n) => !imageSet.has(n));
+    console.log("\u3010E. \u767D\u540D\u5355\u4E2D\u670D\u52A1\u5668\u5DF2\u4E0D\u5B58\u5728\u7684\u540D\u5B57\u3011");
+    console.log(`  \u5171 ${staleWhitelist.length} \u4E2A\uFF08\u5E7D\u7075\u5224\u5B9A\u53EA\u770B\u4E3B\u8DEF\u5F84 path/video_path\uFF0C\u4E0D\u770B thumbnail_path\uFF0C\u6545\u6B7B\u7F29\u7565\u56FE\u5F15\u7528\u53EF\u80FD\u6B8B\u7559\uFF09`);
+    if (staleWhitelist.length > 0) {
+      const staleThumbOnly = staleWhitelist.filter((n) => {
+        const o = nameOrigins.get(n);
+        return o && !o.has("storage.path") && !o.has("metadata.path");
+      });
+      console.log(`  \u5176\u4E2D\u4EC5\u6765\u81EA\u7F29\u7565\u56FE\u7684: ${staleThumbOnly.length} \u4E2A`);
+      console.log("   ", staleWhitelist.slice(0, 30));
+    }
+    const toDelete = serverImageNames.filter((n) => !storedFileNames.has(n));
+    console.log("\u3010F. \u672C\u6B21\u5224\u5B9A\u4E3A\u5B64\u513F\u3001\u5C06\u88AB\u5220\u9664\u3011");
+    console.log(`  \u5171 ${toDelete.length} \u4E2A`);
+    if (toDelete.length > 0) console.log("   ", toDelete.slice(0, 50));
+    const survivors = serverImageNames.filter((n) => storedFileNames.has(n));
+    console.log("\u3010G. \u672A\u88AB\u5220\u9664\u7684\u670D\u52A1\u5668\u6587\u4EF6\u53CA\u4FDD\u62A4\u539F\u56E0\u3011");
+    console.log(`  \u5171 ${survivors.length} \u4E2A`);
+    const reasonTable = survivors.slice(0, 80).map((n) => ({
+      \u6587\u4EF6\u540D: n,
+      \u4FDD\u62A4\u6765\u6E90: [...nameOrigins.get(n) || []].join(", ")
+    }));
+    if (reasonTable.length > 0) console.table(reasonTable);
+    if (survivors.length > 80) console.log(`  ...\u8FD8\u6709 ${survivors.length - 80} \u4E2A\u672A\u5217\u51FA`);
+    console.log("\u3010H. \u672C\u5730\u6570\u636E\u7ED3\u6784\u6982\u89C8\u3011");
+    console.log(`  jiuguanStorage \u6761\u76EE(md5)\u6570: ${Object.keys(storage).length}`);
+    console.log(`  IndexedDB metadata \u6761\u76EE(md5)\u6570: ${Object.keys(metadata).length}`);
+    console.groupEnd();
+  } catch (e) {
+    console.error("[Sync \u8BCA\u65AD] \u8BCA\u65AD\u8F93\u51FA\u81EA\u8EAB\u51FA\u9519\uFF08\u4E0D\u5F71\u54CD\u540C\u6B65\uFF09:", e);
+  }
+}
 async function syncServerImagesWithStorage(folderName = "chatu8", onProgress = null) {
   const result = {
     deletedCount: 0,
@@ -4148,11 +4619,11 @@ async function syncServerImagesWithStorage(folderName = "chatu8", onProgress = n
     errors: []
   };
   try {
-    if (onProgress) onProgress(0, 100, "\u6B63\u5728\u83B7\u53D6\u670D\u52A1\u5668\u56FE\u7247\u5217\u8868...");
+    if (onProgress) onProgress(0, 100, "\u6B63\u5728\u83B7\u53D6\u670D\u52A1\u5668\u5A92\u4F53\u5217\u8868...");
     const response = await fetch("/api/images/list", {
       method: "POST",
       headers: getRequestHeaders(window.token),
-      body: JSON.stringify({ folder: folderName })
+      body: JSON.stringify({ folder: folderName, type: 7 })
     });
     if (!response.ok) {
       throw new Error(`\u83B7\u53D6\u670D\u52A1\u5668\u56FE\u7247\u5217\u8868\u5931\u8D25: ${response.statusText}`);
@@ -4184,12 +4655,25 @@ async function syncServerImagesWithStorage(folderName = "chatu8", onProgress = n
       }
     }
     console.log(`[Sync] \u670D\u52A1\u5668\u5B9E\u9645\u6587\u4EF6\u6570: ${serverImageNames.length}, jiuguanStorage \u4E2D\u5E26path\u6761\u76EE: ${totalStoragePaths}, IndexedDB metadata \u4E2D\u5E26path\u6761\u76EE: ${totalMetadataPaths}`);
+    let storageThumbs = 0, metadataThumbs = 0;
+    for (const md5 in storage) {
+      storage[md5]?.images?.forEach((img) => {
+        if (img.thumbnail_path) storageThumbs++;
+      });
+    }
+    for (const md5 in metadata) {
+      metadata[md5]?.images?.forEach((img) => {
+        if (img.thumbnail_path) metadataThumbs++;
+      });
+    }
+    console.log(`[Sync] \u5E26 thumbnail_path \u6761\u76EE: jiuguanStorage ${storageThumbs} \u4E2A, metadata ${metadataThumbs} \u4E2A\uFF08\u5E7D\u7075\u5224\u5B9A\u4E0D\u68C0\u67E5 thumbnail_path\uFF09`);
     let storageChanged = false;
     let metadataChanged = false;
     const ghostUuidsToDelete = /* @__PURE__ */ new Set();
     const isGhost = (img) => {
-      if (!img || !img.path) return false;
-      const fileName = img.path.split("/").pop();
+      const primary = img && (img.path || img.video_path);
+      if (!primary) return false;
+      const fileName = String(primary).split("/").pop();
       return !!fileName && !serverFileSet.has(fileName);
     };
     for (const md5 of Object.keys(storage)) {
@@ -4279,41 +4763,46 @@ async function syncServerImagesWithStorage(folderName = "chatu8", onProgress = n
     }
     if (onProgress) onProgress(20, 100, "\u6B63\u5728\u5206\u6790\u63D2\u4EF6\u5B58\u50A8...");
     const storedFileNames = /* @__PURE__ */ new Set();
-    for (const md5 in storage) {
-      const entry = storage[md5];
-      if (entry && entry.images) {
+    const nameOrigins = /* @__PURE__ */ new Map();
+    const addName = (fileName, origin) => {
+      if (!fileName) return;
+      storedFileNames.add(fileName);
+      if (!nameOrigins.has(fileName)) nameOrigins.set(fileName, /* @__PURE__ */ new Set());
+      nameOrigins.get(fileName).add(origin);
+    };
+    const PATH_FIELDS = [
+      ["path", "path"],
+      ["thumbnail_path", "thumb"],
+      ["video_path", "video"]
+    ];
+    const collectFrom = (source, label) => {
+      for (const md5 in source) {
+        const entry = source[md5];
+        if (!entry || !Array.isArray(entry.images)) continue;
         entry.images.forEach((img) => {
-          if (img.path) {
-            const fileName = img.path.split("/").pop();
-            storedFileNames.add(fileName);
-          }
-          if (img.thumbnail_path) {
-            const fileName = img.thumbnail_path.split("/").pop();
-            storedFileNames.add(fileName);
+          if (!img) return;
+          for (const [field, tag] of PATH_FIELDS) {
+            if (img[field]) addName(String(img[field]).split("/").pop(), `${label}.${tag}`);
           }
         });
       }
-    }
-    for (const md5 in metadata) {
-      const entry = metadata[md5];
-      if (entry && entry.images) {
-        entry.images.forEach((img) => {
-          if (img.path) {
-            const fileName = img.path.split("/").pop();
-            storedFileNames.add(fileName);
-          }
-          if (img.thumbnail_path) {
-            const fileName = img.thumbnail_path.split("/").pop();
-            storedFileNames.add(fileName);
-          }
-        });
-      }
-    }
-    console.log(`[Sync] \u670D\u52A1\u5668\u56FE\u7247\u603B\u6570: ${serverImageNames.length}, \u63D2\u4EF6\u5B58\u50A8\u6587\u4EF6\u540D\u6570: ${storedFileNames.size}`);
+    };
+    collectFrom(storage, "storage");
+    collectFrom(metadata, "metadata");
+    console.log(`[Sync] \u670D\u52A1\u5668\u5A92\u4F53\u603B\u6570: ${serverImageNames.length}, \u63D2\u4EF6\u5B58\u50A8\u6587\u4EF6\u540D\u6570: ${storedFileNames.size}`);
+    await __syncDiagnostics({ folderName, serverImageNames, storedFileNames, nameOrigins, storage, metadata });
     const fileNamesToDelete = serverImageNames.filter((fileName) => !storedFileNames.has(fileName));
-    console.log(`[Sync] \u627E\u5230 ${fileNamesToDelete.length} \u4E2A\u9700\u8981\u5220\u9664\u7684\u56FE\u7247`);
+    const delExtCount = {};
+    for (const n of fileNamesToDelete) {
+      const ext = n.includes(".") ? n.split(".").pop().toLowerCase() : "(\u65E0\u6269\u5C55\u540D)";
+      delExtCount[ext] = (delExtCount[ext] || 0) + 1;
+    }
+    console.log(`[Sync] \u627E\u5230 ${fileNamesToDelete.length} \u4E2A\u9700\u8981\u5220\u9664\u7684\u5B64\u513F\u6587\u4EF6`, delExtCount);
+    if (fileNamesToDelete.length > 0) {
+      console.log("[Sync] \u5F85\u5220\u9664\u6E05\u5355:", fileNamesToDelete);
+    }
     if (fileNamesToDelete.length === 0) {
-      if (onProgress) onProgress(100, 100, "\u6240\u6709\u56FE\u7247\u5DF2\u540C\u6B65\uFF0C\u65E0\u9700\u5220\u9664");
+      if (onProgress) onProgress(100, 100, "\u6240\u6709\u5A92\u4F53\u5DF2\u540C\u6B65\uFF0C\u65E0\u9700\u5220\u9664");
       return result;
     }
     const totalToDelete = fileNamesToDelete.length;
@@ -4500,7 +4989,7 @@ async function deleteStegoImage() {
     console.warn("[Stego] \u5220\u9664\u65E7\u56FE\u7247\u5931\u8D25\uFF08\u53EF\u80FD\u4E0D\u5B58\u5728\uFF09:", error);
   }
 }
-var objectStoreName, metadataId, db, oldDbName, dbName, dbVersion, migrationFlag, STEGO_FOLDER, STEGO_FILENAME, dbs;
+var objectStoreName, metadataId, db, oldDbName, dbName, dbVersion, migrationFlag, sizeCalcTask, sizeCalcListeners, STEGO_FOLDER, STEGO_FILENAME, dbs;
 var init_database = __esm({
   "utils/database.js"() {
     init_config();
@@ -4512,6 +5001,8 @@ var init_database = __esm({
     dbName = "chatu8_gallery";
     dbVersion = 6;
     migrationFlag = "chatu8_gallery_migration_v1_done";
+    sizeCalcTask = null;
+    sizeCalcListeners = /* @__PURE__ */ new Set();
     STEGO_FOLDER = "chatu8List";
     STEGO_FILENAME = "\u56FE\u7247\u7F13\u5B58\u5217\u8868";
     dbs = {
@@ -4528,6 +5019,10 @@ var init_database = __esm({
       getImageBlobByUUID,
       getImageThumbnailBlobByUUID,
       getAllImageMetadata,
+      calculateAllImageSizes,
+      subscribeSizeCalcProgress,
+      getSizeCalcTask,
+      cancelSizeCalc,
       deleteMultipleImages,
       deleteImagesByUuids,
       getMergedAndSortedImages,
@@ -8529,7 +9024,8 @@ function showSettingsPanel() {
   logJSZipStatus();
   const lastTab = settings3.lastTab || "main";
   const lastTabLink = panel.find(`.st-chatu8-nav-link[data-tab="${lastTab}"]`);
-  if (lastTabLink.length) {
+  const lastTabHidden = lastTabLink.length && lastTabLink[0].style.display === "none";
+  if (lastTabLink.length && !lastTabHidden) {
     lastTabLink.click();
   } else {
     panel.find('.st-chatu8-nav-link[data-tab="main"]').click();
@@ -10165,6 +10661,7 @@ function applyImageFrameStyle(styleName, isDark = true) {
         ${containerSelector} video {
             display: inline-block !important;
             max-width: ${imageSizeScale}% !important;
+            max-height: none !important;
             height: auto !important;
             vertical-align: middle;
         }
@@ -14482,10 +14979,46 @@ async function getWorldEntries(world_name) {
     return;
   }
 }
-function getglobalvar(name) {
+function resolveNestedVariable(store, name) {
+  if (!store) return "";
+  const pathParts = name.split(".");
+  let value = store[pathParts[0]];
+  for (let i = 1; i < pathParts.length; i++) {
+    if (value == null || typeof value !== "object") {
+      value = void 0;
+      break;
+    }
+    value = value[pathParts[i]];
+  }
+  if (value === void 0 || value === null) {
+    return "";
+  }
+  if (typeof value === "object") {
+    return JSON.stringify(value, null, 2);
+  }
+  return String(value);
+}
+function setNestedVariable(store, name, value) {
+  if (!store) return;
+  const pathParts = name.split(".");
+  if (pathParts.length === 1) {
+    store[name] = value;
+    return;
+  }
+  let node = store;
+  for (let i = 0; i < pathParts.length - 1; i++) {
+    const key = pathParts[i];
+    if (node[key] == null || typeof node[key] !== "object") {
+      node[key] = {};
+    }
+    node = node[key];
+  }
+  node[pathParts[pathParts.length - 1]] = value;
+}
+function resolveGlobalVariable(name) {
   const context = getContext2();
   const variables = context.extensionSettings?.variables || {};
-  return variables[name];
+  return resolveNestedVariable(variables, name);
 }
 function setglobalvar(name, value) {
   const context = getContext2();
@@ -14495,7 +15028,7 @@ function setglobalvar(name, value) {
   if (!context.extensionSettings.variables) {
     context.extensionSettings.variables = {};
   }
-  context.extensionSettings.variables[name] = value;
+  setNestedVariable(context.extensionSettings.variables, name, value);
 }
 var init_chatDataUtils = __esm({
   "utils/chatDataUtils.js"() {
@@ -14518,10 +15051,10 @@ __export(worldbookProcessor_exports, {
 
 
 function getworldvar(name) {
-  return worldVars[name] || "";
+  return resolveNestedVariable(worldVars, name);
 }
 function setworldvar(name, value) {
-  worldVars[name] = value;
+  setNestedVariable(worldVars, name, value);
 }
 function clearWorldVars() {
   worldVars = {};
@@ -14594,12 +15127,12 @@ function processVariablePlaceholders(content) {
   let result = content;
   result = result.replace(/\{@setvar::([^:@]+)::([\s\S]*?)@\}/g, (match, name, value) => {
     const trimmedName = name.trim();
-    context.chatMetadata.variables[trimmedName] = value;
+    setNestedVariable(context.chatMetadata.variables, trimmedName, value);
     return "";
   });
   result = result.replace(/\{@getvar::([^@]+)@\}/g, (match, name) => {
     const trimmedName = name.trim();
-    const value = context.chatMetadata.variables[trimmedName] || "";
+    const value = resolveNestedVariable(context.chatMetadata.variables, trimmedName);
     return value;
   });
   result = result.replace(/\{@setglobalvar::([^:@]+)::([\s\S]*?)@\}/g, (match, name, value) => {
@@ -14609,7 +15142,7 @@ function processVariablePlaceholders(content) {
   });
   result = result.replace(/\{@getglobalvar::([^@]+)@\}/g, (match, name) => {
     const trimmedName = name.trim();
-    const value = getglobalvar(trimmedName) || "";
+    const value = resolveGlobalVariable(trimmedName);
     return value;
   });
   result = result.replace(/\{@setworldvar::([^:@]+)::([\s\S]*?)@\}/g, (match, name, value) => {
@@ -14954,7 +15487,7 @@ function processStringVariables(str, context, replacedVariables) {
   let result = str;
   result = result.replace(/\{@setvar::([^:@]+)::([\s\S]*?)@\}/g, (match, name, value) => {
     const trimmedName = name.trim();
-    context.chatMetadata.variables[trimmedName] = value;
+    setNestedVariable(context.chatMetadata.variables, trimmedName, value);
     if (replacedVariables) {
       replacedVariables.add(`{@setvar::${trimmedName}@}`);
     }
@@ -14962,7 +15495,7 @@ function processStringVariables(str, context, replacedVariables) {
   });
   result = result.replace(/\{@getvar::([^@]+)@\}/g, (match, name) => {
     const trimmedName = name.trim();
-    const value = context.chatMetadata.variables[trimmedName] || "";
+    const value = resolveNestedVariable(context.chatMetadata.variables, trimmedName);
     if (replacedVariables) {
       replacedVariables.add(`{@getvar::${trimmedName}@}`);
     }
@@ -14978,7 +15511,7 @@ function processStringVariables(str, context, replacedVariables) {
   });
   result = result.replace(/\{@getglobalvar::([^@]+)@\}/g, (match, name) => {
     const trimmedName = name.trim();
-    const value = getglobalvar(trimmedName) || "";
+    const value = resolveGlobalVariable(trimmedName);
     if (replacedVariables) {
       replacedVariables.add(`{@getglobalvar::${trimmedName}@}`);
     }
@@ -35842,7 +36375,7 @@ var init_avatarConfig = __esm({
 
 
 function ensureDataStructure() {
-  const settings3 = extension_settings69[extensionName];
+  const settings3 = extension_settings70[extensionName];
   if (!settings3.personaProfiles) {
     settings3.personaProfiles = {
       presets: {},
@@ -35938,7 +36471,7 @@ async function onPresetChange() {
   const newPresetId = $container?.find("#ch-persona-preset-id").val() || "";
   profiles.currentPresetId = newPresetId;
   await loadPersonaPresetData();
-  saveSettingsDebounced45();
+  saveSettingsDebounced46();
 }
 async function onNewPreset() {
   clearTimeout(_autoSaveTimer);
@@ -35956,7 +36489,7 @@ async function onNewPreset() {
   });
   profiles.presets[name] = emptyPreset;
   profiles.currentPresetId = name;
-  saveSettingsDebounced45();
+  saveSettingsDebounced46();
   loadPersonaPresetList();
   clearPersonaFields();
   toastr.success(`\u4EBA\u8BBE\u9884\u8BBE\u300C${name}\u300D\u5DF2\u521B\u5EFA\u3002`);
@@ -35979,7 +36512,7 @@ async function onSaveAsPreset() {
   const name = result.trim();
   saveCurrentPersonaData(name);
   profiles.currentPresetId = name;
-  saveSettingsDebounced45();
+  saveSettingsDebounced46();
   loadPersonaPresetList();
   toastr.success(`\u4EBA\u8BBE\u9884\u8BBE\u300C${name}\u300D\u5DF2\u4FDD\u5B58\u3002`);
 }
@@ -36007,7 +36540,7 @@ async function onRenamePreset() {
   if (profiles.currentUserPresetId === currentName) {
     profiles.currentUserPresetId = newName;
   }
-  saveSettingsDebounced45();
+  saveSettingsDebounced46();
   loadPersonaPresetList();
   toastr.success(`\u4EBA\u8BBE\u9884\u8BBE\u5DF2\u91CD\u547D\u540D\u4E3A\u300C${newName}\u300D`);
 }
@@ -36032,7 +36565,7 @@ async function onDeletePreset() {
   delete profiles.presets[presetId];
   const remaining = Object.keys(profiles.presets);
   profiles.currentPresetId = remaining.length > 0 ? remaining[0] : "";
-  saveSettingsDebounced45();
+  saveSettingsDebounced46();
   loadPersonaPresetList();
   await loadPersonaPresetData();
   toastr.success(`\u4EBA\u8BBE\u9884\u8BBE\u300C${presetId}\u300D\u5DF2\u5220\u9664\u3002`);
@@ -36141,7 +36674,7 @@ async function onImportPreset(event) {
     if (firstKey) {
       profiles.currentPresetId = firstKey;
     }
-    saveSettingsDebounced45();
+    saveSettingsDebounced46();
     loadPersonaPresetList();
     await loadPersonaPresetData();
     const total = Object.keys(presetsToImport).length;
@@ -36155,7 +36688,7 @@ async function onImportPreset(event) {
 function onGlobalSettingChange() {
   const profiles = ensureDataStructure();
   profiles.enabled = $container?.find("#ch-persona-enabled").prop("checked") || false;
-  saveSettingsDebounced45();
+  saveSettingsDebounced46();
 }
 function bindFieldAutoSave(container) {
   PERSONA_FIELDS.forEach((field) => {
@@ -36199,7 +36732,7 @@ function createPersonaPreset(name, data = {}) {
   });
   profiles.presets[finalName] = preset;
   profiles.currentPresetId = finalName;
-  saveSettingsDebounced45();
+  saveSettingsDebounced46();
   loadPersonaPresetList();
   loadPersonaPresetData();
   return finalName;
@@ -36214,7 +36747,7 @@ function saveCurrentPersonaData(presetId) {
     }
   });
   profiles.presets[presetId] = preset;
-  saveSettingsDebounced45();
+  saveSettingsDebounced46();
 }
 function downloadJson(data, filename) {
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
@@ -36258,7 +36791,7 @@ async function onPersonaAvatarUpload(event) {
         await deleteConfigImage(oldAvatarId);
       }
       profiles.presets[presetId].avatarId = avatarId;
-      saveSettingsDebounced45();
+      saveSettingsDebounced46();
     }
     displayPersonaAvatar(compressedBase64);
     toastr.success("\u5934\u50CF\u4E0A\u4F20\u6210\u529F\uFF01");
@@ -36283,7 +36816,7 @@ async function onPersonaAvatarRemove() {
   try {
     await deleteConfigImage(avatarId);
     profiles.presets[presetId].avatarId = "";
-    saveSettingsDebounced45();
+    saveSettingsDebounced46();
     clearPersonaAvatarDisplay();
     toastr.success("\u5934\u50CF\u5DF2\u79FB\u9664\u3002");
   } catch (error) {
@@ -36690,7 +37223,7 @@ __export(send_data_exports, {
 
 
 function getWorldBookConfig() {
-  const settings3 = extension_settings70[extensionName];
+  const settings3 = extension_settings71[extensionName];
   if (!settings3.worldBookConfig) {
     settings3.worldBookConfig = {
       worldBookSelections: {},
@@ -36711,7 +37244,7 @@ function saveWorldBookConfig() {
     }
   }
   config.worldBookSelections = newWorldBookSelections;
-  saveSettingsDebounced46();
+  saveSettingsDebounced47();
 }
 function toggleWorldEntryState(worldName, entryUid, newState = null) {
   if (!worldEntrySelections[worldName]) {
@@ -37197,7 +37730,7 @@ function initSendData(settingsModal) {
   eventSource28.on(event_types5.GENERATION_STARTED, loadAndRenderWorlds);
   const intervalId = setInterval(async () => {
     let conet = getContext16();
-    const settings3 = extension_settings70[extensionName];
+    const settings3 = extension_settings71[extensionName];
     if (conet && conet.chatId && conet.chat && conet.chat.length > 0) {
       if (!conet.chatMetadata) conet.chatMetadata = {};
       if (!conet.chatMetadata.variables) conet.chatMetadata.variables = {};
@@ -37208,7 +37741,7 @@ function initSendData(settingsModal) {
   }, 2e3);
   eventSource28.on(event_types5.CHAT_CHANGED, async () => {
     let conet = getContext16();
-    const settings3 = extension_settings70[extensionName];
+    const settings3 = extension_settings71[extensionName];
     if (conet && conet.chatId && conet.chat && conet.chat.length > 0) {
       if (!conet.chatMetadata) conet.chatMetadata = {};
       if (!conet.chatMetadata.variables) conet.chatMetadata.variables = {};
@@ -37386,12 +37919,12 @@ function displayTestResult(container, worldBooksData, contextElements) {
       const isConstant = entry.constant === true;
       const keys = Array.isArray(entry.key) ? entry.key : entry.key ? [entry.key] : [];
       const keyDisplay = keys.length > 0 ? keys.slice(0, 5).join(", ") + (keys.length > 5 ? "..." : "") : "";
-      const escapeHtml4 = (text) => $("<div>").text(text).html();
-      const escapedContent = escapeHtml4(entryContent);
-      const escapedPreview = escapeHtml4(entryPreview);
-      const escapedName = escapeHtml4(entryName);
-      const escapedKeyDisplay = escapeHtml4(keyDisplay);
-      const escapedKeysTitle = escapeHtml4(keys.join(", "));
+      const escapeHtml5 = (text) => $("<div>").text(text).html();
+      const escapedContent = escapeHtml5(entryContent);
+      const escapedPreview = escapeHtml5(entryPreview);
+      const escapedName = escapeHtml5(entryName);
+      const escapedKeyDisplay = escapeHtml5(keyDisplay);
+      const escapedKeysTitle = escapeHtml5(keys.join(", "));
       const borderColor = isConstant ? "rgba(255, 193, 7, 0.4)" : "rgba(66, 165, 245, 0.3)";
       const bgColor = isConstant ? "rgba(255, 193, 7, 0.08)" : "rgba(66, 165, 245, 0.05)";
       const titleColor = isConstant ? "#ffc107" : "#64b5f6";
@@ -37706,7 +38239,7 @@ function setFloorTargetElement(element) {
       text: cleanedText,
       timestamp: Date.now()
     });
-    const settings3 = extension_settings71[extensionName]?.chatu8_ai_assistant;
+    const settings3 = extension_settings72[extensionName]?.chatu8_ai_assistant;
     const maxCount = settings3?.floor_count || 1;
     if (manualCollectedMessages.length > maxCount) {
       const removed = manualCollectedMessages.splice(0, manualCollectedMessages.length - maxCount);
@@ -37799,7 +38332,7 @@ function processTextThroughRegex(text) {
   });
 }
 async function buildFloorContext() {
-  const settings3 = extension_settings71[extensionName]?.chatu8_ai_assistant;
+  const settings3 = extension_settings72[extensionName]?.chatu8_ai_assistant;
   if (!settings3?.floor_message_enabled) {
     return "";
   }
@@ -37840,7 +38373,7 @@ async function showFloorInfoPanel() {
     console.warn("[FloorMessage] \u672A\u6536\u96C6\u697C\u5C42\u4FE1\u606F");
     return;
   }
-  const settings3 = extension_settings71[extensionName]?.chatu8_ai_assistant;
+  const settings3 = extension_settings72[extensionName]?.chatu8_ai_assistant;
   const count = settings3?.floor_count || 1;
   const messages = await collectFloorMessagesFromContext(count);
   if (messages.length === 0) {
@@ -38611,7 +39144,7 @@ async function handlePersonaGenRequest(el = null, extraContext = "", overrideDem
     let contextElements = [];
     let nowtxt = extraContext || "";
     if (el) {
-      const historyDepth = (extension_settings72[extensionName]?.llm_history_depth ?? 2) + 1;
+      const historyDepth = (extension_settings73[extensionName]?.llm_history_depth ?? 2) + 1;
       contextElements = await getElContext(el, historyDepth) || [];
       if (contextElements.length > 0) {
         nowtxt = contextElements[contextElements.length - 1];
@@ -38681,11 +39214,11 @@ ${extraContext}`);
 `;
     }
     updateCombinedPrompt(prompt2, diagnosticText);
-    const isRegexTestMode = extension_settings72[extensionName]?.regexTestMode ?? false;
+    const isRegexTestMode = extension_settings73[extensionName]?.regexTestMode ?? false;
     if (isRegexTestMode) {
       setStatus(statusEl, "\u{1F9EA} \u6B63\u5219\u6D4B\u8BD5\u6A21\u5F0F\uFF1A\u5DF2\u505C\u6B62 LLM \u8BF7\u6C42\uFF0C\u4EC5\u5C55\u793A Prompt");
       console.log("[PersonaGen] \u6B63\u5219\u6D4B\u8BD5\u6A21\u5F0F - LLM \u8BF7\u6C42\u5DF2\u8DF3\u8FC7");
-      extension_settings72[extensionName].regexTestMode = false;
+      extension_settings73[extensionName].regexTestMode = false;
       $("#ch-regex-test-mode").prop("checked", false);
       console.log("[PersonaGen] \u6B63\u5219\u6D4B\u8BD5\u6A21\u5F0F\u5DF2\u81EA\u52A8\u5173\u95ED\uFF08\u4E00\u6B21\u6027\u89E6\u53D1\uFF09");
       if (btnEl) btnEl.disabled = false;
@@ -39270,7 +39803,7 @@ async function refreshWorldBookCache(worldName) {
   }
 }
 function getKnowledgeBaseConfig() {
-  const settings3 = extension_settings75[extensionName];
+  const settings3 = extension_settings76[extensionName];
   if (!settings3.knowledgeBaseConfig) {
     settings3.knowledgeBaseConfig = {
       enabled: false,
@@ -39294,7 +39827,7 @@ function isKnowledgeBaseEnabled() {
 }
 function setKnowledgeBaseEnabled(enabled) {
   getKnowledgeBaseConfig().enabled = enabled;
-  saveSettingsDebounced48();
+  saveSettingsDebounced49();
 }
 async function buildKnowledgeBasePromptContent(lastUserText = "") {
   const config = getKnowledgeBaseConfig();
@@ -39527,7 +40060,7 @@ var init_knowledgeBaseService = __esm({
 
 
 function ensureDataStructure2() {
-  const settings3 = extension_settings76[extensionName];
+  const settings3 = extension_settings77[extensionName];
   if (!settings3.personaProfiles) {
     settings3.personaProfiles = {
       presets: {},
@@ -39635,7 +40168,7 @@ async function onPresetChange2() {
   const newPresetId = $container2?.find("#ch-user-preset-id").val() || "";
   profiles.currentUserPresetId = newPresetId;
   await loadUserPresetData();
-  saveSettingsDebounced49();
+  saveSettingsDebounced50();
 }
 async function onNewPreset2() {
   clearTimeout(_autoSaveTimer2);
@@ -39653,7 +40186,7 @@ async function onNewPreset2() {
   });
   profiles.presets[name] = emptyPreset;
   profiles.currentUserPresetId = name;
-  saveSettingsDebounced49();
+  saveSettingsDebounced50();
   loadUserPresetList();
   clearUserFields();
   toastr.success(`User\u9884\u8BBE\u300C${name}\u300D\u5DF2\u521B\u5EFA\u3002`);
@@ -39676,7 +40209,7 @@ async function onSaveAsPreset2() {
   const name = result.trim();
   saveCurrentUserData(name);
   profiles.currentUserPresetId = name;
-  saveSettingsDebounced49();
+  saveSettingsDebounced50();
   loadUserPresetList();
   toastr.success(`User\u9884\u8BBE\u300C${name}\u300D\u5DF2\u4FDD\u5B58\u3002`);
 }
@@ -39704,7 +40237,7 @@ async function onRenamePreset2() {
   if (profiles.currentPresetId === currentName) {
     profiles.currentPresetId = newName;
   }
-  saveSettingsDebounced49();
+  saveSettingsDebounced50();
   loadUserPresetList();
   toastr.success(`User\u9884\u8BBE\u5DF2\u91CD\u547D\u540D\u4E3A\u300C${newName}\u300D`);
 }
@@ -39732,7 +40265,7 @@ async function onDeletePreset2() {
   if (profiles.currentPresetId === presetId) {
     profiles.currentPresetId = "";
   }
-  saveSettingsDebounced49();
+  saveSettingsDebounced50();
   loadUserPresetList();
   await loadUserPresetData();
   toastr.success(`\u9884\u8BBE\u300C${presetId}\u300D\u5DF2\u5220\u9664\u3002`);
@@ -39839,7 +40372,7 @@ async function onImportPreset2(event) {
     if (firstKey) {
       profiles.currentUserPresetId = firstKey;
     }
-    saveSettingsDebounced49();
+    saveSettingsDebounced50();
     loadUserPresetList();
     await loadUserPresetData();
     const total = Object.keys(presetsToImport).length;
@@ -39853,7 +40386,7 @@ async function onImportPreset2(event) {
 function onGlobalSettingChange2() {
   const profiles = ensureDataStructure2();
   profiles.userEnabled = $container2?.find("#ch-user-enabled").prop("checked") || false;
-  saveSettingsDebounced49();
+  saveSettingsDebounced50();
 }
 function bindFieldAutoSave2(container) {
   PERSONA_FIELDS.forEach((field) => {
@@ -39893,7 +40426,7 @@ function saveCurrentUserData(presetId) {
     }
   });
   profiles.presets[presetId] = preset;
-  saveSettingsDebounced49();
+  saveSettingsDebounced50();
 }
 function downloadJson2(data, filename) {
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
@@ -39937,7 +40470,7 @@ async function onUserAvatarUpload(event) {
         await deleteConfigImage(oldAvatarId);
       }
       profiles.presets[presetId].avatarId = avatarId;
-      saveSettingsDebounced49();
+      saveSettingsDebounced50();
     }
     displayUserAvatar(compressedBase64);
     toastr.success("\u5934\u50CF\u4E0A\u4F20\u6210\u529F\uFF01");
@@ -39962,7 +40495,7 @@ async function onUserAvatarRemove() {
   try {
     await deleteConfigImage(avatarId);
     profiles.presets[presetId].avatarId = "";
-    saveSettingsDebounced49();
+    saveSettingsDebounced50();
     clearUserAvatarDisplay();
     toastr.success("\u5934\u50CF\u5DF2\u79FB\u9664\u3002");
   } catch (error) {
@@ -40058,12 +40591,12 @@ var init_userPreset = __esm({
 // utils/settings/knowledgeBase/personaService.js
 
 function isPersonaEnabled() {
-  const profiles = extension_settings77[extensionName]?.personaProfiles;
+  const profiles = extension_settings78[extensionName]?.personaProfiles;
   if (!profiles) return false;
   return profiles.enabled === true && !!profiles.currentPresetId && !!profiles.presets?.[profiles.currentPresetId];
 }
 function getCurrentPersona() {
-  const profiles = extension_settings77[extensionName]?.personaProfiles;
+  const profiles = extension_settings78[extensionName]?.personaProfiles;
   if (!profiles || !profiles.currentPresetId) return null;
   return profiles.presets?.[profiles.currentPresetId] || null;
 }
@@ -40142,12 +40675,12 @@ var init_personaService = __esm({
 // utils/settings/knowledgeBase/userService.js
 
 function isUserEnabled() {
-  const profiles = extension_settings78[extensionName]?.personaProfiles;
+  const profiles = extension_settings79[extensionName]?.personaProfiles;
   if (!profiles) return false;
   return profiles.userEnabled === true && !!profiles.currentUserPresetId && !!profiles.presets?.[profiles.currentUserPresetId];
 }
 function getCurrentUser() {
-  const profiles = extension_settings78[extensionName]?.personaProfiles;
+  const profiles = extension_settings79[extensionName]?.personaProfiles;
   if (!profiles || !profiles.currentUserPresetId) return null;
   return profiles.presets?.[profiles.currentUserPresetId] || null;
 }
@@ -40267,12 +40800,12 @@ function clearAvatarCache() {
   _userAvatarCache = { key: null, value: null };
 }
 async function getCurrentCharAvatar() {
-  const aiConfig = extension_settings81[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings82[extensionName]?.chatu8_ai_assistant || {};
   const systemPromptKey = aiConfig.system_prompt_key || "default";
   if (systemPromptKey !== "custom") {
     return DEFAULT_AVATARS.persona;
   }
-  const personaProfiles = extension_settings81[extensionName]?.personaProfiles;
+  const personaProfiles = extension_settings82[extensionName]?.personaProfiles;
   if (!personaProfiles || !personaProfiles.enabled) {
     return DEFAULT_AVATARS.persona;
   }
@@ -40289,12 +40822,12 @@ async function getCurrentCharAvatar() {
   return result;
 }
 async function getCurrentUserAvatar() {
-  const aiConfig = extension_settings81[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings82[extensionName]?.chatu8_ai_assistant || {};
   const systemPromptKey = aiConfig.system_prompt_key || "default";
   if (systemPromptKey !== "custom") {
     return DEFAULT_AVATARS.user;
   }
-  const personaProfiles = extension_settings81[extensionName]?.personaProfiles;
+  const personaProfiles = extension_settings82[extensionName]?.personaProfiles;
   if (!personaProfiles || !personaProfiles.userEnabled) {
     return DEFAULT_AVATARS.user;
   }
@@ -40311,10 +40844,10 @@ async function getCurrentUserAvatar() {
   return result;
 }
 function getAssistantDisplayName() {
-  const aiConfig = extension_settings81[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings82[extensionName]?.chatu8_ai_assistant || {};
   const systemPromptKey = aiConfig.system_prompt_key || "default";
   if (systemPromptKey === "custom") {
-    const personaProfiles = extension_settings81[extensionName]?.personaProfiles;
+    const personaProfiles = extension_settings82[extensionName]?.personaProfiles;
     if (personaProfiles?.enabled) {
       const presetId = personaProfiles.currentPresetId;
       const preset = presetId ? personaProfiles.presets?.[presetId] : null;
@@ -40347,11 +40880,11 @@ async function updateChatAvatars(chatBody) {
 function initAvatarUpdateListener(chatBody) {
   if (!chatBody || !chatBody.length) return;
   const checkInterval = setInterval(async () => {
-    const personaProfiles = extension_settings81[extensionName]?.personaProfiles;
+    const personaProfiles = extension_settings82[extensionName]?.personaProfiles;
     if (!personaProfiles) return;
     const currentPresetId = personaProfiles.currentPresetId;
     const currentUserPresetId = personaProfiles.currentUserPresetId;
-    const aiConfig = extension_settings81[extensionName]?.chatu8_ai_assistant || {};
+    const aiConfig = extension_settings82[extensionName]?.chatu8_ai_assistant || {};
     const currentPromptKey = aiConfig.system_prompt_key || "default";
     const lastPresetId = chatBody.data("last-persona-preset-id");
     const lastUserPresetId = chatBody.data("last-user-preset-id");
@@ -40904,18 +41437,18 @@ var init_aiPrompts = __esm({
 
 
 function saveEdgePingToSettings() {
-  if (!extension_settings82[extensionName]) return;
-  extension_settings82[extensionName].edgePingCache = {
+  if (!extension_settings83[extensionName]) return;
+  extension_settings83[extensionName].edgePingCache = {
     servers: availableEdgeServers.map((s) => ({ name: s.name, url: s.url, latency: s.latency })),
     pingResult: lastEdgePingResult,
     pingTime: lastEdgePingTime
   };
-  saveSettingsDebounced52();
+  saveSettingsDebounced53();
   log("\u{1F4BE} Edge ping \u7ED3\u679C\u5DF2\u4FDD\u5B58\u5230\u63D2\u4EF6\u8BBE\u7F6E (edgePingCache)");
 }
 function loadEdgePingFromSettings() {
-  if (!extension_settings82[extensionName]) return false;
-  const cache = extension_settings82[extensionName].edgePingCache;
+  if (!extension_settings83[extensionName]) return false;
+  const cache = extension_settings83[extensionName].edgePingCache;
   if (!cache || !cache.servers || !cache.pingTime) return false;
   availableEdgeServers = cache.servers.map((s) => ({ name: s.name, url: s.url, latency: s.latency }));
   edgeServerIndex = 0;
@@ -41921,7 +42454,7 @@ function log2(msg) {
   console.log("[ASR]", msg);
 }
 function getASRConfig() {
-  const settings3 = extension_settings83[extensionName];
+  const settings3 = extension_settings84[extensionName];
   const defaults = defaultSettings.asr;
   return {
     ...defaults,
@@ -41929,12 +42462,12 @@ function getASRConfig() {
   };
 }
 function saveASRConfig(partial) {
-  if (!extension_settings83[extensionName]) return;
-  if (!extension_settings83[extensionName].asr) {
-    extension_settings83[extensionName].asr = { ...defaultSettings.asr };
+  if (!extension_settings84[extensionName]) return;
+  if (!extension_settings84[extensionName].asr) {
+    extension_settings84[extensionName].asr = { ...defaultSettings.asr };
   }
-  Object.assign(extension_settings83[extensionName].asr, partial);
-  saveSettingsDebounced53();
+  Object.assign(extension_settings84[extensionName].asr, partial);
+  saveSettingsDebounced54();
 }
 async function ensureMic() {
   if (persistentStream && persistentStream.active) return true;
@@ -42818,7 +43351,7 @@ function notifyAiGenerating() {
 }
 function notifyAiGenerationDone() {
   if (!conversationModeActive) return;
-  const settings3 = extension_settings83[extensionName];
+  const settings3 = extension_settings84[extensionName];
   const aiConfig = settings3?.chatu8_ai_assistant || {};
   if (!aiConfig.tts_enabled) {
     conversationMuted = false;
@@ -49812,7 +50345,7 @@ __export(configUIRefresh_exports, {
 
 async function refreshAffectedUI(changedSettings) {
   try {
-    const settings3 = extension_settings84[extensionName];
+    const settings3 = extension_settings85[extensionName];
     if (changedSettings.workers || changedSettings.workerid || changedSettings.editWorkerid) {
       refreshWorkflowSelectors(settings3);
     }
@@ -50717,7 +51250,7 @@ function syncRangeInputs(key, value) {
     const maxTokensSlider2 = document.getElementById("ch-llm_max_tokens");
     const maxTokensInput = document.getElementById("ch-llm_max_tokens_value");
     if (maxTokensSlider2 && maxTokensInput) {
-      const settings3 = extension_settings84[extensionName];
+      const settings3 = extension_settings85[extensionName];
       const currentProfile = settings3.llm_profiles?.[settings3.current_llm_profile];
       if (currentProfile?.max_tokens !== void 0) {
         if (document.activeElement !== maxTokensSlider2) {
@@ -50740,7 +51273,7 @@ var init_configUIRefresh = __esm({
 
 
 function getExposedSettings() {
-  const rawSettings = extension_settings85[extensionName];
+  const rawSettings = extension_settings86[extensionName];
   if (!rawSettings) return {};
   const safeSettings = JSON.parse(JSON.stringify(rawSettings));
   delete safeSettings.themes;
@@ -50749,7 +51282,7 @@ function getExposedSettings() {
 }
 function updateSettingSafely(newSettings) {
   if (!newSettings || typeof newSettings !== "object") return false;
-  const currentSettings = extension_settings85[extensionName];
+  const currentSettings = extension_settings86[extensionName];
   if (!currentSettings) return false;
   let isModified = false;
   for (const [key, value] of Object.entries(newSettings)) {
@@ -50762,7 +51295,7 @@ function updateSettingSafely(newSettings) {
     }
   }
   if (isModified) {
-    saveSettingsDebounced54();
+    saveSettingsDebounced55();
     document.dispatchEvent(new CustomEvent("st-chatu8-config-updated", { detail: { changed: newSettings } }));
     refreshAffectedUI(newSettings);
     return true;
@@ -50770,12 +51303,12 @@ function updateSettingSafely(newSettings) {
   return false;
 }
 function getDetailedConfigKeys() {
-  const rawSettings = extension_settings85[extensionName];
+  const rawSettings = extension_settings86[extensionName];
   if (!rawSettings) return [];
   return Object.keys(rawSettings);
 }
 function getSpecificConfigData(key) {
-  const rawSettings = extension_settings85[extensionName];
+  const rawSettings = extension_settings86[extensionName];
   if (!rawSettings || !(key in rawSettings)) {
     return `[\u83B7\u53D6\u5931\u8D25] \u6240\u6709\u7684\u8BBE\u7F6E\u4E2D\u4E0D\u5B58\u5728\u952E\u540D\u4E3A: ${key} \u7684\u6570\u636E\u3002`;
   }
@@ -50790,7 +51323,7 @@ function getSpecificConfigData(key) {
   return String(data);
 }
 function checkRequiredConfigs() {
-  const s = extension_settings85[extensionName];
+  const s = extension_settings86[extensionName];
   if (!s) return "\u274C \u63D2\u4EF6\u914D\u7F6E\u5C1A\u672A\u521D\u59CB\u5316\u3002";
   const results = [];
   const mode = s.mode || "comfyui";
@@ -50881,7 +51414,7 @@ var init_configValidation = __esm({
 
 
 function resolveConfigPath(dotPath) {
-  const rawSettings = extension_settings86[extensionName];
+  const rawSettings = extension_settings87[extensionName];
   if (!rawSettings) return { target: null, error: "[\u9519\u8BEF] \u63D2\u4EF6\u914D\u7F6E\u5C1A\u672A\u521D\u59CB\u5316\u3002" };
   if (!dotPath || dotPath === "") {
     return { target: rawSettings, error: null };
@@ -50983,7 +51516,7 @@ ${jsonStr}`;
 }
 function writeConfigPath(dotPath, newValue) {
   if (!dotPath) return "[\u9519\u8BEF] write \u64CD\u4F5C\u9700\u8981\u6307\u5B9A\u8DEF\u5F84\u3002";
-  const rawSettings = extension_settings86[extensionName];
+  const rawSettings = extension_settings87[extensionName];
   if (!rawSettings) return "[\u9519\u8BEF] \u63D2\u4EF6\u914D\u7F6E\u5C1A\u672A\u521D\u59CB\u5316\u3002";
   const parts = dotPath.split(".");
   const lastKey = parts.pop();
@@ -51034,7 +51567,7 @@ function writeConfigPath(dotPath, newValue) {
   }
   const oldValue = isNewKey ? void 0 : parent[lastKey];
   parent[lastKey] = newValue;
-  saveSettingsDebounced55();
+  saveSettingsDebounced56();
   document.dispatchEvent(new CustomEvent("st-chatu8-config-updated", {
     detail: { changed: { [dotPath]: newValue } }
   }));
@@ -51292,7 +51825,7 @@ var init_configRegexBridge = __esm({
 
 
 function getWorkflowList() {
-  const s = extension_settings87[extensionName];
+  const s = extension_settings88[extensionName];
   if (!s || !s.workers) return "\u274C \u672A\u627E\u5230\u5DE5\u4F5C\u6D41\u6570\u636E\u3002";
   const names = Object.keys(s.workers);
   const current = s.workerid || "(\u672A\u9009\u62E9)";
@@ -51311,7 +51844,7 @@ function getWorkflowList() {
   return result;
 }
 function readWorkflow(name) {
-  const s = extension_settings87[extensionName];
+  const s = extension_settings88[extensionName];
   if (!s || !s.workers) return "\u274C \u672A\u627E\u5230\u5DE5\u4F5C\u6D41\u6570\u636E\u3002";
   if (!name) return "\u274C \u8BF7\u6307\u5B9A\u5DE5\u4F5C\u6D41\u540D\u79F0\u3002";
   if (!(name in s.workers)) {
@@ -51324,7 +51857,7 @@ function readWorkflow(name) {
 ${content}`;
 }
 function scanWorkflowVariables(name) {
-  const s = extension_settings87[extensionName];
+  const s = extension_settings88[extensionName];
   if (!s || !s.workers) return "\u274C \u672A\u627E\u5230\u5DE5\u4F5C\u6D41\u6570\u636E\u3002";
   if (!name) return "\u274C \u8BF7\u6307\u5B9A\u5DE5\u4F5C\u6D41\u540D\u79F0\u3002";
   if (!(name in s.workers)) {
@@ -51382,7 +51915,7 @@ function scanWorkflowVariables(name) {
   return result;
 }
 function replaceWorkflowVariable(name, variable, value) {
-  const s = extension_settings87[extensionName];
+  const s = extension_settings88[extensionName];
   if (!s || !s.workers) return "\u274C \u672A\u627E\u5230\u5DE5\u4F5C\u6D41\u6570\u636E\u3002";
   if (!name) return "\u274C \u8BF7\u6307\u5B9A\u5DE5\u4F5C\u6D41\u540D\u79F0\u3002";
   if (!variable) return "\u274C \u8BF7\u6307\u5B9A\u53D8\u91CF\u540D\u3002";
@@ -51408,11 +51941,11 @@ function replaceWorkflowVariable(name, variable, value) {
   if (s.workerid === name) {
     s.worker = content;
   }
-  saveSettingsDebounced56();
+  saveSettingsDebounced57();
   return `\u2705 \u5DF2\u5728\u5DE5\u4F5C\u6D41 "${name}" \u4E2D\u66FF\u6362 ${placeholder} \u2192 ${replacement} (${count} \u5904)`;
 }
 function saveWorkflow(name, content) {
-  const s = extension_settings87[extensionName];
+  const s = extension_settings88[extensionName];
   if (!s) return "\u274C \u63D2\u4EF6\u914D\u7F6E\u5C1A\u672A\u521D\u59CB\u5316\u3002";
   if (!name) return "\u274C \u8BF7\u6307\u5B9A\u5DE5\u4F5C\u6D41\u540D\u79F0\u3002";
   if (!content) return "\u274C \u8BF7\u63D0\u4F9B\u5DE5\u4F5C\u6D41\u5185\u5BB9\u3002";
@@ -51427,12 +51960,12 @@ function saveWorkflow(name, content) {
   if (s.workerid === name) {
     s.worker = content;
   }
-  saveSettingsDebounced56();
+  saveSettingsDebounced57();
   refreshWorkflowSelectors(s);
   return `\u2705 \u5DE5\u4F5C\u6D41 "${name}" \u5DF2${isNew ? "\u521B\u5EFA" : "\u4FDD\u5B58"} (${content.length}\u5B57\u7B26)`;
 }
 function listWorkflowNodes(name) {
-  const s = extension_settings87[extensionName];
+  const s = extension_settings88[extensionName];
   if (!s || !s.workers) return "\u274C \u672A\u627E\u5230\u5DE5\u4F5C\u6D41\u6570\u636E\u3002";
   if (!name) return "\u274C \u8BF7\u6307\u5B9A\u5DE5\u4F5C\u6D41\u540D\u79F0\u3002";
   if (!(name in s.workers)) {
@@ -51467,7 +52000,7 @@ function listWorkflowNodes(name) {
   return result;
 }
 function readWorkflowNode(name, nodeId) {
-  const s = extension_settings87[extensionName];
+  const s = extension_settings88[extensionName];
   if (!s || !s.workers) return "\u274C \u672A\u627E\u5230\u5DE5\u4F5C\u6D41\u6570\u636E\u3002";
   if (!name) return "\u274C \u8BF7\u6307\u5B9A\u5DE5\u4F5C\u6D41\u540D\u79F0\u3002";
   if (!nodeId) return "\u274C \u8BF7\u6307\u5B9A\u8282\u70B9ID\u3002";
@@ -51495,7 +52028,7 @@ function readWorkflowNode(name, nodeId) {
   return result;
 }
 function updateWorkflowNodeInput(name, nodeId, inputKey, value) {
-  const s = extension_settings87[extensionName];
+  const s = extension_settings88[extensionName];
   if (!s || !s.workers) return "\u274C \u672A\u627E\u5230\u5DE5\u4F5C\u6D41\u6570\u636E\u3002";
   if (!name) return "\u274C \u8BF7\u6307\u5B9A\u5DE5\u4F5C\u6D41\u540D\u79F0\u3002";
   if (!nodeId) return "\u274C \u8BF7\u6307\u5B9A\u8282\u70B9ID\u3002";
@@ -51528,7 +52061,7 @@ function updateWorkflowNodeInput(name, nodeId, inputKey, value) {
   if (s.workerid === name) {
     s.worker = newContent;
   }
-  saveSettingsDebounced56();
+  saveSettingsDebounced57();
   const title = node._meta?.title || node.class_type || "(\u672A\u547D\u540D)";
   let result = `\u2705 \u5DF2\u4FEE\u6539\u8282\u70B9 [${nodeId}] ${title} \u7684\u53C2\u6570\uFF1A
   ${inputKey}: ${JSON.stringify(oldValue)} \u2192 ${JSON.stringify(value)}`;
@@ -51541,7 +52074,7 @@ function updateWorkflowNodeInput(name, nodeId, inputKey, value) {
   return result;
 }
 function batchUpdateWorkflowNodes(name, updates) {
-  const s = extension_settings87[extensionName];
+  const s = extension_settings88[extensionName];
   if (!s || !s.workers) return "\u274C \u672A\u627E\u5230\u5DE5\u4F5C\u6D41\u6570\u636E\u3002";
   if (!name) return "\u274C \u8BF7\u6307\u5B9A\u5DE5\u4F5C\u6D41\u540D\u79F0\u3002";
   if (!Array.isArray(updates) || updates.length === 0) {
@@ -51592,7 +52125,7 @@ function batchUpdateWorkflowNodes(name, updates) {
   if (s.workerid === name) {
     s.worker = newContent;
   }
-  saveSettingsDebounced56();
+  saveSettingsDebounced57();
   let result = `\u{1F4DD} \u6279\u91CF\u4FEE\u6539\u5DE5\u4F5C\u6D41 "${name}" (\u6210\u529F ${successCount}/${updates.length})\uFF1A
 `;
   result += "\u2500".repeat(60) + "\n";
@@ -51603,7 +52136,7 @@ function batchUpdateWorkflowNodes(name, updates) {
   return result;
 }
 function deleteWorkflowNode(name, nodeId) {
-  const s = extension_settings87[extensionName];
+  const s = extension_settings88[extensionName];
   if (!s || !s.workers) return "\u274C \u672A\u627E\u5230\u5DE5\u4F5C\u6D41\u6570\u636E\u3002";
   if (!name) return "\u274C \u8BF7\u6307\u5B9A\u5DE5\u4F5C\u6D41\u540D\u79F0\u3002";
   if (!nodeId) return "\u274C \u8BF7\u6307\u5B9A\u8282\u70B9ID\u3002";
@@ -51629,11 +52162,11 @@ function deleteWorkflowNode(name, nodeId) {
   if (s.workerid === name) {
     s.worker = newContent;
   }
-  saveSettingsDebounced56();
+  saveSettingsDebounced57();
   return `\u2705 \u5DF2\u5220\u9664\u8282\u70B9 [${nodeId}] ${title}`;
 }
 function addWorkflowNode(name, nodeId, nodeData) {
-  const s = extension_settings87[extensionName];
+  const s = extension_settings88[extensionName];
   if (!s || !s.workers) return "\u274C \u672A\u627E\u5230\u5DE5\u4F5C\u6D41\u6570\u636E\u3002";
   if (!name) return "\u274C \u8BF7\u6307\u5B9A\u5DE5\u4F5C\u6D41\u540D\u79F0\u3002";
   if (!nodeId) return "\u274C \u8BF7\u6307\u5B9A\u8282\u70B9ID\u3002";
@@ -51660,7 +52193,7 @@ function addWorkflowNode(name, nodeId, nodeData) {
   if (s.workerid === name) {
     s.worker = newContent;
   }
-  saveSettingsDebounced56();
+  saveSettingsDebounced57();
   const title = nodeData._meta?.title || nodeData.class_type || "(\u672A\u547D\u540D)";
   return `\u2705 \u5DF2\u6DFB\u52A0\u8282\u70B9 [${nodeId}] ${title}`;
 }
@@ -52704,7 +53237,7 @@ function extractDialogueForTTS(rawReply, scope = "dialogue") {
   return { text: joinedText, segments };
 }
 function getEdgeTTSParams() {
-  const aiConfig = extension_settings88[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings89[extensionName]?.chatu8_ai_assistant || {};
   if (aiConfig.tts_engine !== "edge") return {};
   return {
     edgeVoice: aiConfig.tts_edge_voice,
@@ -52714,7 +53247,7 @@ function getEdgeTTSParams() {
   };
 }
 function speakNotification(text) {
-  const aiConfig = extension_settings88[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings89[extensionName]?.chatu8_ai_assistant || {};
   if (!aiConfig.tts_enabled || !text) return;
   eventSource35.emit(eventNames.TTS_STOP);
   const reqId = "tts-notify-" + Date.now();
@@ -52722,7 +53255,7 @@ function speakNotification(text) {
   eventSource35.emit(eventNames.TTS_REQUEST, { id: reqId, text, ...edgeParams });
 }
 function injectTTSStyleInstruction(systemPromptStr) {
-  const aiConfig = extension_settings88[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings89[extensionName]?.chatu8_ai_assistant || {};
   if (!aiConfig.tts_enabled || aiConfig.tts_engine !== "edge") return systemPromptStr;
   const voiceId = aiConfig.tts_edge_voice || "zh-CN-XiaoxiaoNeural";
   const styles = getEdgeVoiceStyles(voiceId);
@@ -52868,7 +53401,7 @@ function playCachedAudio(blobUrls, messageIndex) {
   playNext();
 }
 function tryPlayTTS(accumulatedReply, messageIndex = -1) {
-  const aiConfig = extension_settings88[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings89[extensionName]?.chatu8_ai_assistant || {};
   if (!aiConfig.tts_enabled) return;
   const scope = aiConfig.tts_scope || "dialogue";
   const result = extractDialogueForTTS(accumulatedReply, scope);
@@ -52916,7 +53449,7 @@ function handleTTSButtonClick(messageIndex) {
   const msgContent = activeChat.messages[messageIndex].content;
   const rawText = typeof msgContent === "string" ? msgContent : "";
   if (!rawText) return;
-  const aiConfig = extension_settings88[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings89[extensionName]?.chatu8_ai_assistant || {};
   const scope = aiConfig.tts_scope || "dialogue";
   const result = extractDialogueForTTS(rawText, scope);
   if (!result || !result.text) {
@@ -52968,7 +53501,7 @@ function setupTTSEventListeners() {
           if (activeChat && activeChat.messages[ttsActiveMessageIndex]) {
             const msgContent = activeChat.messages[ttsActiveMessageIndex].content;
             const rawText = typeof msgContent === "string" ? msgContent : "";
-            const aiConfig = extension_settings88[extensionName]?.chatu8_ai_assistant || {};
+            const aiConfig = extension_settings89[extensionName]?.chatu8_ai_assistant || {};
             const scope = aiConfig.tts_scope || "dialogue";
             const cacheResult = extractDialogueForTTS(rawText, scope);
             if (cacheResult && cacheResult.text) {
@@ -54711,7 +55244,7 @@ var init_assistantSession = __esm({
 // utils/assistant/assistantCommand.js
 
 function getAutoExecuteMode() {
-  const aiConfig = extension_settings90[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings91[extensionName]?.chatu8_ai_assistant || {};
   return aiConfig.auto_execute_commands === true;
 }
 function createPendingCommand(messageElement, commandContent) {
@@ -55188,11 +55721,11 @@ __export(assistantLLM_exports, {
 
 
 function isCustomMode() {
-  const aiConfig = extension_settings91[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings92[extensionName]?.chatu8_ai_assistant || {};
   return (aiConfig.system_prompt_key || defaultSystemPromptKey) === "custom";
 }
 function buildProfileData() {
-  const aiConfig = extension_settings91[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings92[extensionName]?.chatu8_ai_assistant || {};
   let sendImages;
   if (isCustomMode()) {
     try {
@@ -55218,7 +55751,7 @@ function buildProfileData() {
   };
 }
 async function buildSystemPrompt(kbTriggerText = "") {
-  const aiConfig = extension_settings91[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings92[extensionName]?.chatu8_ai_assistant || {};
   const promptKey = aiConfig.system_prompt_key || defaultSystemPromptKey;
   if (promptKey === "custom") {
     return null;
@@ -55233,7 +55766,7 @@ async function buildSystemPrompt(kbTriggerText = "") {
     systemPromptStr = systemPromptStr.replace("{settings}", "\n" + contextStr + "\n");
   }
   if (systemPromptStr.includes("{chatu8_code}")) {
-    const settings3 = extension_settings91[extensionName];
+    const settings3 = extension_settings92[extensionName];
     const chatu8Code = settings3?.chatu8_code || "\u672A\u5206\u914D";
     systemPromptStr = systemPromptStr.replace(/{chatu8_code}/g, chatu8Code);
   }
@@ -55577,7 +56110,7 @@ function _buildConversationHistory(rawMessages, imageCache) {
 }
 async function runLlmChain(activeChatRef, profileData, requestId, iterState, handleSendFn, handleRegenerateFn, boundAppendMessage) {
   const chatMessages = Array.isArray(activeChatRef.messages) ? activeChatRef.messages.filter((msg) => msg && typeof msg === "object") : [];
-  const kbConfig = extension_settings91[extensionName]?.knowledgeBaseConfig || {};
+  const kbConfig = extension_settings92[extensionName]?.knowledgeBaseConfig || {};
   const kbTriggerDepth = typeof kbConfig.triggerDepth === "number" ? kbConfig.triggerDepth : 1;
   const kbTriggerMessages = chatMessages.slice(-(kbTriggerDepth + 1));
   const kbTriggerText = kbTriggerMessages.map((m) => Array.isArray(m.content) ? m.content.find((c) => c.type === "text")?.text || "" : String(m.content || "")).filter((t) => t.trim()).join("\n");
@@ -55875,7 +56408,7 @@ async function handleSend(handleSendFn, handleRegenerateFn, boundAppendMessage, 
       return;
     }
   }
-  const aiConfig = extension_settings91[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings92[extensionName]?.chatu8_ai_assistant || {};
   const apiKey = aiConfig.api_key;
   if (!apiKey) {
     toastr?.error("\u672A\u914D\u7F6E\u667A\u7ED8\u59EC API Key\uFF0C\u8BF7\u70B9\u51FB\u9F7F\u8F6E\u56FE\u6807\u8BBE\u7F6E\u3002");
@@ -57445,7 +57978,7 @@ function updatePingStatusDisplay(pingData) {
   }
 }
 function refreshSettingsPanel() {
-  const aiConfig = extension_settings93[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings94[extensionName]?.chatu8_ai_assistant || {};
   dom.inputApiUrl.val(aiConfig.api_url || "");
   dom.inputApiKey.val(aiConfig.api_key || "");
   dom.inputModel.val(aiConfig.model || "mistral");
@@ -57515,7 +58048,7 @@ function refreshSettingsPanel() {
   dom.inputTopP.val(aiConfig.top_p ?? 1);
 }
 function checkAndShowSettings() {
-  const aiConfig = extension_settings93[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings94[extensionName]?.chatu8_ai_assistant || {};
   if (!aiConfig.api_key) {
     dom.settingsPanel.addClass("active");
     toastr?.info("\u521D\u6B21\u4F7F\u7528\u8BF7\u5148\u914D\u7F6E\u597D API \u548C \u6A21\u578B\u4FE1\u606F\u54E6~");
@@ -57523,10 +58056,10 @@ function checkAndShowSettings() {
   refreshSettingsPanel();
 }
 function autoSaveSettings() {
-  if (!extension_settings93[extensionName].chatu8_ai_assistant) {
-    extension_settings93[extensionName].chatu8_ai_assistant = {};
+  if (!extension_settings94[extensionName].chatu8_ai_assistant) {
+    extension_settings94[extensionName].chatu8_ai_assistant = {};
   }
-  const aiConfig = extension_settings93[extensionName].chatu8_ai_assistant;
+  const aiConfig = extension_settings94[extensionName].chatu8_ai_assistant;
   aiConfig.api_url = dom.inputApiUrl.val().trim();
   aiConfig.api_key = dom.inputApiKey.val().trim();
   aiConfig.model = dom.inputModel.val().trim();
@@ -57558,7 +58091,7 @@ function autoSaveSettings() {
   aiConfig.temperature = !isNaN(temp) ? temp : 0.8;
   const topP = parseFloat(dom.inputTopP.val());
   aiConfig.top_p = !isNaN(topP) ? topP : 1;
-  saveSettingsDebounced57();
+  saveSettingsDebounced58();
 }
 function initDialogEvents() {
   const {
@@ -57675,7 +58208,7 @@ function initDialogEvents() {
     setTTSEngineType(engine);
     ttsQwenOptions.toggle(engine === "qwen");
     ttsEdgeOptions.toggle(engine === "edge");
-    const aiConfig = extension_settings93[extensionName]?.chatu8_ai_assistant || {};
+    const aiConfig = extension_settings94[extensionName]?.chatu8_ai_assistant || {};
     if (engine === "qwen") {
       populateQwenVoices(aiConfig.tts_qwen_voice);
     } else if (engine === "edge") {
@@ -57719,11 +58252,11 @@ function initDialogEvents() {
         bestLatency: result.servers.length > 0 ? result.servers[0].latency : 0,
         timestamp: result.timestamp
       };
-      if (!extension_settings93[extensionName].chatu8_ai_assistant) {
-        extension_settings93[extensionName].chatu8_ai_assistant = {};
+      if (!extension_settings94[extensionName].chatu8_ai_assistant) {
+        extension_settings94[extensionName].chatu8_ai_assistant = {};
       }
-      extension_settings93[extensionName].chatu8_ai_assistant.tts_edge_ping = pingData;
-      saveSettingsDebounced57();
+      extension_settings94[extensionName].chatu8_ai_assistant.tts_edge_ping = pingData;
+      saveSettingsDebounced58();
       updatePingStatusDisplay(pingData);
     } catch (e) {
       ttsEdgePingStatus.text("\u68C0\u6D4B\u5931\u8D25: " + e.message).css("color", "#f44336");
@@ -57909,7 +58442,7 @@ function initDialogEvents() {
   let pipVideoElement = null;
   checkDesktopPet.on("change", async function() {
     const checked = $(this).prop("checked");
-    const settings3 = extension_settings93[extensionName];
+    const settings3 = extension_settings94[extensionName];
     if (checked) {
       try {
         const videoModeWasOff = !(settings3.enable_chatu8_fab_video === true || settings3.enable_chatu8_fab_video === "true");
@@ -60881,6 +61414,7 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
   }
   const bananaSettings = extension_settings46[extensionName].banana;
   const { model, editModel, videoModel, apiUrl, apiKey, conversationPresets, conversationPresetId, editPresetId, videoPresetId, aspectRatio } = bananaSettings;
+  const imageSize = (bananaSettings.imageSize || "").trim() || "1024x1024";
   const useGrokFormat = String(bananaSettings.useGrokFormat) === "true";
   const isEditMode = !!(change && change.includes("{\u4FEE\u56FE}"));
   const isVideoMode = !!(change && change.includes("{\u89C6\u9891}"));
@@ -60902,11 +61436,12 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
     addLog(`[Banana] Grok prompt: ${grokFinalPrompt}`);
     const grokPath = "/v1/images/generations";
     let grokBaseUrl = apiUrl.replace(/\/$/, "");
-    let grokDirectUrl = grokBaseUrl + "/images/generations";
+    let grokDirectUrl = /\/generations$/.test(grokBaseUrl) ? grokBaseUrl : grokBaseUrl + "/images/generations";
     const grokPayload = {
       model,
       prompt: grokFinalPrompt,
       n: 1,
+      size: imageSize,
       response_format: "b64_json"
     };
     const grokRequestUrl = grokDirectUrl;
@@ -61103,7 +61638,8 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
     }
     payload = {
       model: effectiveModel,
-      messages: history.filter((entry) => entry.content.length > 0)
+      messages: history.filter((entry) => entry.content.length > 0),
+      size: imageSize
       // 临时禁用 config.imageConfig，排查部分模型（如 grok-imagine-*）不识别该字段导致生图异常
       // config: {
       //     imageConfig: {
@@ -61128,6 +61664,7 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
       custom_include_headers: `Authorization: "Bearer ${apiKey}"`,
       model: proxyModel,
       messages: payload.messages,
+      size: imageSize,
       stream: false
     };
     if (proxyModel.startsWith("imagen")) {
@@ -66492,12 +67029,531 @@ async function replaceWithnovelai() {
 init_config();
 init_database();
 init_configDatabase();
+
+
+
+
+// utils/configStorageDiagnose.js
+init_config();
+init_utils();
+
+
+var CONFIG_FOLDER = "chatu8_config";
+var CONFIG_DB_NAME2 = "chatu8_config_images";
+var CONFIG_STORE_NAME2 = "config_images";
+function baseName(p) {
+  return String(p || "").split("/").pop();
+}
+function extCount(names) {
+  const c = {};
+  for (const n of names) {
+    const ext = n.includes(".") ? n.split(".").pop().toLowerCase() : "(\u65E0\u6269\u5C55\u540D)";
+    c[ext] = (c[ext] || 0) + 1;
+  }
+  return c;
+}
+function classifyKey(key) {
+  if (key.startsWith("cfgimg_")) return "\u914D\u7F6E\u56FE\u7247";
+  if (key.startsWith("ai_chat_data_")) return "AI\u804A\u5929\u6570\u636E";
+  if (key.startsWith("kb_content_")) return "\u77E5\u8BC6\u5E93\u5185\u5BB9";
+  if (key.startsWith("log_session_")) return "\u65E5\u5FD7\u4F1A\u8BDD";
+  if (key === "ai_chat_history" || key === "ai_chat_index") return "AI\u804A\u5929\u7D22\u5F15";
+  if (key === "log_index") return "\u65E5\u5FD7\u7D22\u5F15";
+  return "\u5176\u4ED6JSON\u6570\u636E";
+}
+async function getIndexedDbIds() {
+  return new Promise((resolve) => {
+    try {
+      const req = indexedDB.open(CONFIG_DB_NAME2);
+      req.onsuccess = () => {
+        const db2 = req.result;
+        if (!db2.objectStoreNames.contains(CONFIG_STORE_NAME2)) {
+          db2.close();
+          return resolve([]);
+        }
+        const tx = db2.transaction([CONFIG_STORE_NAME2], "readonly");
+        const store = tx.objectStore(CONFIG_STORE_NAME2);
+        const kreq = store.getAllKeys();
+        kreq.onsuccess = () => {
+          resolve(kreq.result || []);
+          db2.close();
+        };
+        kreq.onerror = () => {
+          resolve([]);
+          db2.close();
+        };
+      };
+      req.onerror = () => resolve([]);
+    } catch (_) {
+      resolve([]);
+    }
+  });
+}
+async function probeSize(path) {
+  try {
+    const url = path.startsWith("/") ? path : `/${path}`;
+    const resp = await fetch(url, { method: "HEAD" });
+    if (!resp.ok) return null;
+    const len = resp.headers.get("content-length");
+    return len ? Number(len) : null;
+  } catch (_) {
+    return null;
+  }
+}
+function fmtMB(bytes) {
+  return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+}
+async function diagnoseConfigStorage(options = {}) {
+  const { probeSizes = true } = options;
+  const out = { folder: CONFIG_FOLDER };
+  console.group(`%c[ConfigDB \u8BCA\u65AD] ${CONFIG_FOLDER} \u6587\u4EF6\u5939\uFF08\u53EA\u8BFB\uFF0C\u4E0D\u4F1A\u5220\u9664\u4EFB\u4F55\u4E1C\u897F\uFF09`, "color:#2196F3;font-weight:bold");
+  try {
+    const resp = await fetch("/api/images/list", {
+      method: "POST",
+      headers: getRequestHeaders(window.token),
+      body: JSON.stringify({ folder: CONFIG_FOLDER, type: 7 })
+    });
+    if (!resp.ok) throw new Error(`\u5217\u8868\u8BF7\u6C42\u5931\u8D25: ${resp.status} ${resp.statusText}`);
+    const serverFiles = await resp.json();
+    if (!Array.isArray(serverFiles)) throw new Error("\u670D\u52A1\u5668\u8FD4\u56DE\u683C\u5F0F\u5F02\u5E38");
+    out.serverFileCount = serverFiles.length;
+    console.log("\u30101. \u670D\u52A1\u5668\u5B9E\u9645\u6587\u4EF6\u3011");
+    console.log(`  \u603B\u6570: ${serverFiles.length}`, extCount(serverFiles));
+    const registry = extension_settings52[extensionName]?.configImageStorage || {};
+    const registryKeys = Object.keys(registry);
+    const kindCount = {};
+    const referencedFiles = /* @__PURE__ */ new Set();
+    const registryNoPath = [];
+    for (const key of registryKeys) {
+      const kind = classifyKey(key);
+      kindCount[kind] = (kindCount[kind] || 0) + 1;
+      const p = registry[key]?.path;
+      if (p) referencedFiles.add(baseName(p));
+      else registryNoPath.push(key);
+    }
+    out.registryCount = registryKeys.length;
+    out.registryKinds = kindCount;
+    console.log("\u30102. \u6CE8\u518C\u8868 configImageStorage\u3011");
+    console.log(`  \u6761\u76EE\u603B\u6570: ${registryKeys.length}`);
+    console.log("  \u6309\u7528\u9014\u5206\u7C7B:", kindCount);
+    console.log(`  \u5F15\u7528\u7684\u552F\u4E00\u6587\u4EF6\u540D\u6570: ${referencedFiles.size}`);
+    if (registryNoPath.length) {
+      console.log(`  \u26A0 \u6709 ${registryNoPath.length} \u6761\u6CA1\u6709 path\uFF08\u5B58\u5728 IndexedDB \u800C\u975E\u670D\u52A1\u5668\uFF09`);
+    }
+    const dbIds = await getIndexedDbIds();
+    out.indexedDbCount = dbIds.length;
+    console.log("\u30103. \u6D4F\u89C8\u5668 IndexedDB \u6761\u76EE\u3011");
+    console.log(`  \u6761\u76EE\u6570: ${dbIds.length}\uFF08\u5B58\u5728\u6D4F\u89C8\u5668\u672C\u5730\uFF0C\u4E0D\u5360\u670D\u52A1\u5668\u7A7A\u95F4\uFF0C\u4E0E\u5B64\u513F\u5224\u5B9A\u65E0\u5173\uFF09`);
+    const serverSet = new Set(serverFiles);
+    const orphans = serverFiles.filter((f) => !referencedFiles.has(f));
+    const missing = [...referencedFiles].filter((f) => !serverSet.has(f));
+    out.orphans = orphans;
+    out.missing = missing;
+    out.orphanTotalBytes = 0;
+    const missingSet = new Set(missing);
+    out.missingEntries = registryKeys.filter((k) => registry[k]?.path && missingSet.has(baseName(registry[k].path))).map((k) => ({ key: k, path: registry[k].path, kind: classifyKey(k) }));
+    console.log("\u30104. \u4EA4\u53C9\u6BD4\u5BF9\u7ED3\u679C\u3011");
+    console.log(`  \u2713 \u6709\u6CE8\u518C\u8868\u5F15\u7528\u7684\u6587\u4EF6: ${serverFiles.length - orphans.length}`);
+    console.log(`  \u26A0 \u5B64\u513F\u6587\u4EF6\uFF08\u670D\u52A1\u5668\u6709\u3001\u6CE8\u518C\u8868\u65E0\u5F15\u7528\uFF09: ${orphans.length}`, extCount(orphans));
+    console.log(`  \u26A0 \u5931\u6548\u5F15\u7528\uFF08\u6CE8\u518C\u8868\u6709\u3001\u670D\u52A1\u5668\u5DF2\u65E0\u6587\u4EF6\uFF09: ${missing.length} \u4E2A\u6587\u4EF6\u540D / ${out.missingEntries.length} \u6761\u6CE8\u518C\u8868\u952E`);
+    if (missing.length) {
+      console.log("    \u5931\u6548\u5F15\u7528\u5BF9\u5E94\u7684\u6587\u4EF6\u540D:", missing.slice(0, 30));
+      console.log("    \u5BF9\u5E94\u6CE8\u518C\u8868\u952E\uFF08\u8FD9\u4E9B\u914D\u7F6E\u9879\u7684\u6570\u636E\u5DF2\u4E22\u5931\uFF09:");
+      console.table(out.missingEntries.slice(0, 40).map((e) => ({ \u952E: e.key, \u7528\u9014: e.kind, \u8DEF\u5F84: e.path })));
+    }
+    let settingsBlob = "";
+    try {
+      settingsBlob = JSON.stringify(extension_settings52[extensionName] || {});
+    } catch (_) {
+    }
+    const orphanSafe = [];
+    const orphanRisky = [];
+    for (const f of orphans) {
+      if (settingsBlob.includes(f)) orphanRisky.push(f);
+      else orphanSafe.push(f);
+    }
+    out.orphanSafe = orphanSafe;
+    out.orphanRisky = orphanRisky;
+    console.log("\u30105. \u5B64\u513F\u6587\u4EF6\u4E8C\u6B21\u6821\u9A8C\u3011");
+    console.log(`  \u5728\u63D2\u4EF6\u8BBE\u7F6E\u5168\u6587\u4E2D\u627E\u4E0D\u5230 \u2192 \u53EF\u5B89\u5168\u5220\u9664: ${orphanSafe.length}`);
+    console.log(`  \u5728\u63D2\u4EF6\u8BBE\u7F6E\u4E2D\u4ECD\u88AB\u63D0\u53CA \u2192 \u9700\u4EBA\u5DE5\u786E\u8BA4: ${orphanRisky.length}`);
+    if (orphanRisky.length) {
+      console.warn("  \u26A0 \u4EE5\u4E0B\u5B64\u513F\u867D\u65E0\u6CE8\u518C\u8868\u5F15\u7528\uFF0C\u4F46\u8BBE\u7F6E\u91CC\u4ECD\u51FA\u73B0\uFF0C\u6682\u4E0D\u5EFA\u8BAE\u5220\u9664:");
+      console.log("   ", orphanRisky);
+    }
+    const orphanSizes = {};
+    out.orphanSizes = orphanSizes;
+    if (probeSizes && orphans.length) {
+      console.log("\u30106. \u5B64\u513F\u6587\u4EF6\u4F53\u79EF\u63A2\u6D4B\u4E2D...\u3011");
+      const rows = [];
+      let totalBytes = 0;
+      for (const f of orphans) {
+        const size = await probeSize(`/user/images/${CONFIG_FOLDER}/${f}`);
+        if (typeof size === "number") {
+          totalBytes += size;
+          orphanSizes[f] = size;
+        }
+        rows.push({
+          \u6587\u4EF6\u540D: f,
+          \u4F53\u79EF: typeof size === "number" ? `${(size / 1024).toFixed(0)} KB` : "(\u63A2\u6D4B\u5931\u8D25)",
+          \u5224\u5B9A: orphanSafe.includes(f) ? "\u53EF\u5B89\u5168\u5220\u9664" : "\u9700\u4EBA\u5DE5\u786E\u8BA4"
+        });
+      }
+      out.orphanTotalBytes = totalBytes;
+      console.log(`  \u5B64\u513F\u6587\u4EF6\u5408\u8BA1\u7EA6 ${fmtMB(totalBytes)}`);
+      console.table(rows);
+    } else if (orphans.length) {
+      console.log("\u30106. \u5B64\u513F\u6587\u4EF6\u6E05\u5355\u3011");
+      console.table(orphans.map((f) => ({
+        \u6587\u4EF6\u540D: f,
+        \u5224\u5B9A: orphanSafe.includes(f) ? "\u53EF\u5B89\u5168\u5220\u9664" : "\u9700\u4EBA\u5DE5\u786E\u8BA4"
+      })));
+    }
+    console.log("\u30107. \u6C47\u603B\u3011");
+    console.log(`  \u670D\u52A1\u5668\u6587\u4EF6 ${serverFiles.length} \u4E2A`);
+    console.log(`  \u5176\u4E2D\u88AB\u5F15\u7528 ${serverFiles.length - orphans.length} \u4E2A\uFF0C\u5B64\u513F ${orphans.length} \u4E2A`);
+    if (typeof out.orphanTotalBytes === "number") {
+      console.log(`  \u5B64\u513F\u53EF\u56DE\u6536\u7A7A\u95F4: ${fmtMB(out.orphanTotalBytes)}`);
+    }
+    console.log(`  \u6CE8\u518C\u8868\u5931\u6548\u5F15\u7528 ${missing.length} \u4E2A`);
+    console.log("  \u2139 \u672C\u6B21\u4E3A\u53EA\u8BFB\u8BCA\u65AD\uFF0C\u672A\u5220\u9664\u4EFB\u4F55\u6587\u4EF6\u3002");
+    console.log("  \u2139 \u5B8C\u6574\u7ED3\u679C\u5BF9\u8C61\u5DF2\u8FD4\u56DE\uFF0C\u53EF\u5C55\u5F00\u4E0B\u65B9\u67E5\u770B\uFF1A");
+    console.log(out);
+  } catch (error) {
+    console.error("[ConfigDB \u8BCA\u65AD] \u5931\u8D25:", error);
+    out.error = error.message;
+  } finally {
+    console.groupEnd();
+  }
+  return out;
+}
+async function cleanupConfigStorage(options = {}) {
+  const { orphanFiles = [], deadKeys = [], onProgress = null } = options;
+  const result = { deletedFiles: [], deletedKeys: [], skipped: [], errors: [] };
+  let settingsBlob = "";
+  try {
+    settingsBlob = JSON.stringify(extension_settings52[extensionName] || {});
+  } catch (_) {
+  }
+  const total = orphanFiles.length;
+  for (let i = 0; i < orphanFiles.length; i++) {
+    const fileName = orphanFiles[i];
+    if (onProgress) onProgress(i, total, fileName);
+    if (settingsBlob && settingsBlob.includes(fileName)) {
+      result.skipped.push(fileName);
+      console.warn(`[ConfigDB \u6E05\u7406] \u8DF3\u8FC7\uFF08\u8BBE\u7F6E\u4E2D\u4ECD\u88AB\u5F15\u7528\uFF09: ${fileName}`);
+      continue;
+    }
+    try {
+      const resp = await fetch("/api/images/delete", {
+        method: "POST",
+        headers: getRequestHeaders(window.token),
+        body: JSON.stringify({ path: `user/images/${CONFIG_FOLDER}/${fileName}` })
+      });
+      if (resp.ok || resp.status === 404) {
+        result.deletedFiles.push(fileName);
+      } else {
+        result.errors.push(`\u5220\u9664\u5931\u8D25 (${resp.status}): ${fileName}`);
+      }
+    } catch (e) {
+      result.errors.push(`\u5220\u9664\u5F02\u5E38: ${fileName} - ${e.message}`);
+    }
+    await new Promise((r) => setTimeout(r, 50));
+  }
+  if (onProgress && total) onProgress(total, total, "");
+  if (deadKeys.length) {
+    const registry = extension_settings52[extensionName]?.configImageStorage;
+    if (registry) {
+      for (const key of deadKeys) {
+        if (key in registry) {
+          delete registry[key];
+          result.deletedKeys.push(key);
+        }
+      }
+      if (result.deletedKeys.length) saveSettingsDebounced30();
+    }
+  }
+  console.log(`[ConfigDB \u6E05\u7406] \u5B8C\u6210\uFF1A\u5220\u9664\u6587\u4EF6 ${result.deletedFiles.length} \u4E2A\uFF0C\u79FB\u9664\u6CE8\u518C\u8868\u6761\u76EE ${result.deletedKeys.length} \u6761\uFF0C\u8DF3\u8FC7 ${result.skipped.length} \u4E2A\uFF0C\u5931\u8D25 ${result.errors.length} \u4E2A`);
+  if (result.errors.length) console.warn("[ConfigDB \u6E05\u7406] \u5931\u8D25\u8BE6\u60C5:", result.errors);
+  return result;
+}
+if (typeof window !== "undefined") {
+  window.chatu8DiagnoseConfigStorage = diagnoseConfigStorage;
+  window.chatu8CleanupConfigStorage = cleanupConfigStorage;
+}
+
+// utils/configStorageCleanupModal.js
+init_ui_common();
+var CONFIG_FOLDER2 = "chatu8_config";
+var MODAL_ID = "st-chatu8-cfgclean-modal";
+function fileUrl(fileName) {
+  return `/user/images/${CONFIG_FOLDER2}/${encodeURIComponent(fileName)}`;
+}
+function escapeHtml2(str) {
+  return String(str ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+function fmtSize(bytes) {
+  if (typeof bytes !== "number" || !isFinite(bytes)) return "";
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+  return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+}
+function fmtMB2(bytes) {
+  return `${((bytes || 0) / 1024 / 1024).toFixed(1)} MB`;
+}
+async function showConfigStorageCleanupModal() {
+  $(`#${MODAL_ID}`).remove();
+  const parent = document.getElementById("st-chatu8-settings") || document.body;
+  const $backdrop = $(`
+        <div id="${MODAL_ID}" class="st-chatu8-modal-backdrop st-chatu8-cfgclean-modal"
+             style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:10200;">
+            <div class="st-chatu8-confirm-box st-chatu8-popup-modal st-chatu8-popup-modal-large"
+                 style="max-width:700px; max-height:85vh; overflow-y:auto;">
+                <h3 class="st-chatu8-popup-title">\u914D\u7F6E\u5B58\u50A8\u6E05\u7406</h3>
+                <div class="st-chatu8-cfgclean-body">
+                    <div class="st-chatu8-cfgclean-empty">\u6B63\u5728\u626B\u63CF...</div>
+                </div>
+                <div class="st-chatu8-confirm-buttons">
+                    <button class="st-chatu8-btn st-chatu8-cfgclean-close-btn">\u5173\u95ED</button>
+                </div>
+            </div>
+        </div>
+    `);
+  $(parent).append($backdrop);
+  const $body = $backdrop.find(".st-chatu8-cfgclean-body");
+  const close = () => {
+    $backdrop.remove();
+  };
+  $backdrop.find(".st-chatu8-cfgclean-close-btn").on("click", close);
+  $backdrop.on("click", (e) => {
+    if (e.target === $backdrop[0]) close();
+  });
+  await renderContent($body, $backdrop);
+}
+async function renderContent($body, $backdrop) {
+  $body.html('<div class="st-chatu8-cfgclean-empty">\u6B63\u5728\u626B\u63CF\u670D\u52A1\u5668\u6587\u4EF6\u4E0E\u6CE8\u518C\u8868...</div>');
+  let data;
+  try {
+    data = await diagnoseConfigStorage();
+  } catch (e) {
+    $body.html(`<div class="st-chatu8-cfgclean-empty">\u626B\u63CF\u5931\u8D25: ${escapeHtml2(e.message)}</div>`);
+    return;
+  }
+  if (data.error) {
+    $body.html(`<div class="st-chatu8-cfgclean-empty">\u626B\u63CF\u5931\u8D25: ${escapeHtml2(data.error)}</div>`);
+    return;
+  }
+  const orphans = data.orphans || [];
+  const sizes = data.orphanSizes || {};
+  const riskySet = new Set(data.orphanRisky || []);
+  const missingEntries = data.missingEntries || [];
+  const summary = `\u670D\u52A1\u5668\u6587\u4EF6 ${data.serverFileCount} \u4E2A \xB7 \u5B64\u513F ${orphans.length} \u4E2A\uFF08${fmtMB2(data.orphanTotalBytes)}\uFF09\xB7 \u5931\u6548\u5F15\u7528 ${missingEntries.length} \u6761`;
+  const parts = [`<p class="st-chatu8-popup-description">${escapeHtml2(summary)}</p>`];
+  parts.push('<div class="st-chatu8-cfgclean-section-title">\u5B64\u513F\u6587\u4EF6\uFF08\u670D\u52A1\u5668\u4E0A\u5B58\u5728\uFF0C\u4F46\u6CE8\u518C\u8868\u65E0\u5F15\u7528\uFF09</div>');
+  if (!orphans.length) {
+    parts.push('<div class="st-chatu8-cfgclean-empty">\u6CA1\u6709\u5B64\u513F\u6587\u4EF6\uFF0C\u65E0\u9700\u6E05\u7406\u3002</div>');
+  } else {
+    parts.push(`
+            <div class="st-chatu8-import-toolbar">
+                <button class="st-chatu8-btn" data-act="orphan-all"><i class="fa-solid fa-check-double"></i> \u5168\u9009</button>
+                <button class="st-chatu8-btn" data-act="orphan-none"><i class="fa-solid fa-xmark"></i> \u53D6\u6D88\u5168\u9009</button>
+                <button class="st-chatu8-btn danger" data-act="orphan-del"><i class="fa-solid fa-trash"></i> \u5220\u9664\u9009\u4E2D</button>
+            </div>
+            <div class="st-chatu8-import-list" data-list="orphan">
+        `);
+    orphans.forEach((f, i) => {
+      const risky = riskySet.has(f);
+      const id = `cfgclean-orphan-${i}`;
+      parts.push(`
+                <div class="st-chatu8-import-item st-chatu8-cfgclean-item">
+                    <input type="checkbox" class="st-chatu8-import-checkbox" id="${id}"
+                           data-file="${escapeHtml2(f)}" ${risky ? "" : "checked"}>
+                    <div class="st-chatu8-cfgclean-thumb" data-file="${escapeHtml2(f)}" title="\u70B9\u51FB\u9884\u89C8">
+                        <img loading="lazy" src="${fileUrl(f)}" alt="${escapeHtml2(f)}">
+                    </div>
+                    <label class="st-chatu8-import-name" for="${id}">
+                        ${escapeHtml2(f)}
+                        <span class="st-chatu8-cfgclean-size">${fmtSize(sizes[f])}</span>
+                        ${risky ? '<span class="st-chatu8-cfgclean-badge">\u9700\u4EBA\u5DE5\u786E\u8BA4</span>' : ""}
+                    </label>
+                </div>
+            `);
+    });
+    parts.push("</div>");
+    parts.push('<div class="st-chatu8-cfgclean-empty">\u63D0\u793A\uFF1A\u90E8\u5206\u6587\u4EF6\u662F\u4F2A\u88C5\u6210 .png \u7684 JSON \u6570\u636E\uFF0C\u7F29\u7565\u56FE\u65E0\u6CD5\u663E\u793A\u5C5E\u6B63\u5E38\u73B0\u8C61\uFF0C\u4E0D\u4EE3\u8868\u6587\u4EF6\u635F\u574F\u3002\u5224\u5B9A\u53EF\u5220\u9664\u7684\u4F9D\u636E\u662F\u6CE8\u518C\u8868\u65E0\u5F15\u7528\u3002</div>');
+  }
+  parts.push('<div class="st-chatu8-cfgclean-section-title">\u5931\u6548\u5F15\u7528\uFF08\u6CE8\u518C\u8868\u6709\u8BB0\u5F55\uFF0C\u4F46\u670D\u52A1\u5668\u6587\u4EF6\u5DF2\u4E0D\u5B58\u5728\uFF09</div>');
+  if (!missingEntries.length) {
+    parts.push('<div class="st-chatu8-cfgclean-empty">\u6CA1\u6709\u5931\u6548\u5F15\u7528\u3002</div>');
+  } else {
+    parts.push(`
+            <div class="st-chatu8-import-toolbar">
+                <button class="st-chatu8-btn" data-act="dead-all"><i class="fa-solid fa-check-double"></i> \u5168\u9009</button>
+                <button class="st-chatu8-btn" data-act="dead-none"><i class="fa-solid fa-xmark"></i> \u53D6\u6D88\u5168\u9009</button>
+                <button class="st-chatu8-btn danger" data-act="dead-del"><i class="fa-solid fa-broom"></i> \u6E05\u7406\u9009\u4E2D</button>
+            </div>
+            <div class="st-chatu8-import-list" data-list="dead">
+        `);
+    missingEntries.forEach((e, i) => {
+      const id = `cfgclean-dead-${i}`;
+      parts.push(`
+                <div class="st-chatu8-import-item st-chatu8-cfgclean-item">
+                    <input type="checkbox" class="st-chatu8-import-checkbox" id="${id}"
+                           data-key="${escapeHtml2(e.key)}" checked>
+                    <label class="st-chatu8-import-name" for="${id}">
+                        ${escapeHtml2(e.key)}
+                        <span class="st-chatu8-cfgclean-size">${escapeHtml2(e.kind)}</span>
+                    </label>
+                </div>
+            `);
+    });
+    parts.push("</div>");
+    parts.push('<div class="st-chatu8-cfgclean-empty">\u8FD9\u4E9B\u6761\u76EE\u6307\u5411\u7684\u6587\u4EF6\u5DF2\u4ECE\u670D\u52A1\u5668\u6D88\u5931\uFF0C\u6570\u636E\u5DF2\u65E0\u6CD5\u6062\u590D\uFF0C\u6E05\u7406\u53EA\u662F\u79FB\u9664\u5931\u6548\u8BB0\u5F55\u3002</div>');
+  }
+  parts.push(`
+        <div class="st-chatu8-cfgclean-progress" style="display:none;">
+            <div class="st-chatu8-cfgclean-progress-track">
+                <div class="st-chatu8-cfgclean-progress-fill"></div>
+            </div>
+            <div class="st-chatu8-cfgclean-progress-text"></div>
+        </div>
+    `);
+  $body.html(parts.join(""));
+  bindThumbFallback($body);
+  bindEvents($body, $backdrop, { sizes });
+  updateCounts($body);
+}
+function bindThumbFallback($body) {
+  $body.find(".st-chatu8-cfgclean-thumb img").each(function() {
+    const img = this;
+    const replace = () => {
+      $(img).closest(".st-chatu8-cfgclean-thumb").removeAttr("title").html('<div class="st-chatu8-cfgclean-thumb-fallback" title="\u975E\u56FE\u7247\u6570\u636E\uFF0C\u65E0\u6CD5\u9884\u89C8"><i class="fa-solid fa-file-lines"></i></div>');
+    };
+    img.addEventListener("error", replace);
+    if (img.complete && img.naturalWidth === 0) replace();
+  });
+}
+function updateCounts($body) {
+  const orphanN = $body.find('[data-list="orphan"] .st-chatu8-import-checkbox:checked').length;
+  const deadN = $body.find('[data-list="dead"] .st-chatu8-import-checkbox:checked').length;
+  const $od = $body.find('[data-act="orphan-del"]');
+  $od.html(`<i class="fa-solid fa-trash"></i> \u5220\u9664\u9009\u4E2D(${orphanN})`).prop("disabled", orphanN === 0);
+  const $dd = $body.find('[data-act="dead-del"]');
+  $dd.html(`<i class="fa-solid fa-broom"></i> \u6E05\u7406\u9009\u4E2D(${deadN})`).prop("disabled", deadN === 0);
+}
+function bindEvents($body, $backdrop, ctx) {
+  $body.on("change", ".st-chatu8-import-checkbox", () => updateCounts($body));
+  $body.on("click", '[data-act="orphan-all"]', () => {
+    $body.find('[data-list="orphan"] .st-chatu8-import-checkbox').prop("checked", true);
+    updateCounts($body);
+  });
+  $body.on("click", '[data-act="orphan-none"]', () => {
+    $body.find('[data-list="orphan"] .st-chatu8-import-checkbox').prop("checked", false);
+    updateCounts($body);
+  });
+  $body.on("click", '[data-act="dead-all"]', () => {
+    $body.find('[data-list="dead"] .st-chatu8-import-checkbox').prop("checked", true);
+    updateCounts($body);
+  });
+  $body.on("click", '[data-act="dead-none"]', () => {
+    $body.find('[data-list="dead"] .st-chatu8-import-checkbox').prop("checked", false);
+    updateCounts($body);
+  });
+  $body.on("click", ".st-chatu8-cfgclean-thumb", function() {
+    const f = $(this).data("file");
+    if (f && $(this).find("img").length) showLightbox(f);
+  });
+  $body.on("click", '[data-act="orphan-del"]', async function() {
+    const files = $body.find('[data-list="orphan"] .st-chatu8-import-checkbox:checked').map((_, el) => $(el).data("file")).get();
+    if (!files.length) return;
+    const bytes = files.reduce((s, f) => s + (ctx.sizes[f] || 0), 0);
+    const ok = await stylishConfirm(
+      `\u786E\u8BA4\u5220\u9664 ${files.length} \u4E2A\u6587\u4EF6\uFF1F\u5171 ${fmtMB2(bytes)}\uFF0C\u5220\u9664\u540E\u65E0\u6CD5\u6062\u590D\u3002`
+    );
+    if (!ok) return;
+    await runCleanup($body, $backdrop, { orphanFiles: files });
+  });
+  $body.on("click", '[data-act="dead-del"]', async function() {
+    const keys = $body.find('[data-list="dead"] .st-chatu8-import-checkbox:checked').map((_, el) => $(el).data("key")).get();
+    if (!keys.length) return;
+    const ok = await stylishConfirm(
+      `\u786E\u8BA4\u79FB\u9664 ${keys.length} \u6761\u5931\u6548\u6CE8\u518C\u8868\u8BB0\u5F55\uFF1F\u5BF9\u5E94\u6587\u4EF6\u5DF2\u4E0D\u5B58\u5728\uFF0C\u6B64\u64CD\u4F5C\u53EA\u6E05\u7406\u8BB0\u5F55\u3002`
+    );
+    if (!ok) return;
+    await runCleanup($body, $backdrop, { deadKeys: keys });
+  });
+}
+async function runCleanup($body, $backdrop, payload) {
+  const $progress = $body.find(".st-chatu8-cfgclean-progress");
+  const $fill = $progress.find(".st-chatu8-cfgclean-progress-fill");
+  const $text = $progress.find(".st-chatu8-cfgclean-progress-text");
+  const $buttons = $body.find(".st-chatu8-btn").add($backdrop.find(".st-chatu8-cfgclean-close-btn"));
+  $buttons.prop("disabled", true);
+  $progress.show();
+  $fill.css("width", "0%");
+  $text.text("\u51C6\u5907\u4E2D...");
+  let result;
+  try {
+    result = await cleanupConfigStorage({
+      ...payload,
+      onProgress: (done, total, name) => {
+        const pct = total ? Math.floor(done / total * 100) : 100;
+        $fill.css("width", `${pct}%`);
+        $text.text(name ? `\u6B63\u5728\u5220\u9664 (${done}/${total}): ${name}` : `\u5904\u7406\u4E2D (${done}/${total})`);
+      }
+    });
+  } catch (e) {
+    console.error("[ConfigDB \u6E05\u7406] \u5931\u8D25:", e);
+    showToast(`\u6E05\u7406\u5931\u8D25: ${e.message}`, "error");
+    $buttons.prop("disabled", false);
+    $progress.hide();
+    return;
+  }
+  $progress.hide();
+  $buttons.prop("disabled", false);
+  const msgs = [];
+  if (result.deletedFiles.length) msgs.push(`\u5220\u9664 ${result.deletedFiles.length} \u4E2A\u6587\u4EF6`);
+  if (result.deletedKeys.length) msgs.push(`\u79FB\u9664 ${result.deletedKeys.length} \u6761\u8BB0\u5F55`);
+  if (result.skipped.length) msgs.push(`\u8DF3\u8FC7 ${result.skipped.length} \u4E2A\uFF08\u8BBE\u7F6E\u4E2D\u4ECD\u88AB\u5F15\u7528\uFF09`);
+  if (result.errors.length) msgs.push(`\u5931\u8D25 ${result.errors.length} \u4E2A`);
+  showToast(
+    msgs.length ? `\u6E05\u7406\u5B8C\u6210\uFF1A${msgs.join("\uFF0C")}` : "\u6CA1\u6709\u5185\u5BB9\u88AB\u6E05\u7406",
+    result.errors.length ? "warning" : "success"
+  );
+  await renderContent($body, $backdrop);
+}
+function showLightbox(fileName) {
+  const parent = document.getElementById("st-chatu8-settings") || document.body;
+  const $lb = $(`
+        <div class="st-chatu8-preview-backdrop" style="z-index:10300;">
+            <div class="st-chatu8-preview-dialog">
+                <span class="st-chatu8-preview-close">&times;</span>
+                <div class="st-chatu8-preview-image-container">
+                    <img src="${fileUrl(fileName)}" alt="${escapeHtml2(fileName)}"
+                         style="max-width:100%; max-height:100%; object-fit:contain;">
+                </div>
+            </div>
+        </div>
+    `);
+  const onKey = (e) => {
+    if (e.key === "Escape") close();
+  };
+  const close = () => {
+    document.removeEventListener("keydown", onKey);
+    $lb.remove();
+  };
+  $lb.find(".st-chatu8-preview-close").on("click", close);
+  $lb.on("click", (e) => {
+    if (e.target === $lb[0]) close();
+  });
+  document.addEventListener("keydown", onKey);
+  $(parent).append($lb);
+}
+
+// utils/ui.js
 init_ui_common();
 init_utils();
 init_workers();
-
-
-
 
 // utils/settings/prompt_replace.js
 init_config();
@@ -66506,7 +67562,7 @@ init_ui_common();
 
 var generationTabs = ["sd", "novelai", "comfyui"];
 function syncAllPromptReplaceFields(force = false) {
-  const settings3 = extension_settings52[extensionName];
+  const settings3 = extension_settings53[extensionName];
   const presetName = settings3.prompt_replace_id;
   const currentPreset = settings3.prompt_replace[presetName] || {};
   generationTabs.forEach((mode) => {
@@ -66523,7 +67579,7 @@ function syncAllPromptReplaceFields(force = false) {
   });
 }
 function prompt_replace_change(mode) {
-  const settings3 = extension_settings52[extensionName];
+  const settings3 = extension_settings53[extensionName];
   const suffix = getSuffix(mode);
   const selectElement = document.getElementById("prompt_replace_id" + suffix);
   const newPresetId = selectElement.value;
@@ -66535,7 +67591,7 @@ function prompt_replace_change(mode) {
     stylishConfirm("\u60A8\u6709\u672A\u4FDD\u5B58\u7684\u66FF\u6362\u89C4\u5219\u3002\u8981\u653E\u5F03\u8FD9\u4E9B\u66F4\u6539\u5E76\u5207\u6362\u9884\u8BBE\u5417\uFF1F").then((confirmed) => {
       if (confirmed) {
         settings3.prompt_replace_id = newPresetId;
-        saveSettingsDebounced30();
+        saveSettingsDebounced31();
         syncAllPromptReplaceFields(true);
       } else {
         selectElement.value = currentPresetId;
@@ -66543,12 +67599,12 @@ function prompt_replace_change(mode) {
     });
   } else {
     settings3.prompt_replace_id = newPresetId;
-    saveSettingsDebounced30();
+    saveSettingsDebounced31();
     syncAllPromptReplaceFields(true);
   }
 }
 function prompt_replace_new(mode) {
-  const settings3 = extension_settings52[extensionName];
+  const settings3 = extension_settings53[extensionName];
   stylInput("\u8BF7\u8F93\u5165\u65B0\u66FF\u6362\u89C4\u5219\u914D\u7F6E\u7684\u540D\u79F0").then((newName) => {
     if (newName && newName.trim() !== "") {
       if (settings3.prompt_replace[newName]) {
@@ -66557,7 +67613,7 @@ function prompt_replace_new(mode) {
       }
       settings3.prompt_replace[newName] = { "text": "" };
       settings3.prompt_replace_id = newName;
-      saveSettingsDebounced30();
+      saveSettingsDebounced31();
       try {
         if (typeof window.loadSilterTavernChatu8Settings === "function") {
           window.loadSilterTavernChatu8Settings();
@@ -66569,7 +67625,7 @@ function prompt_replace_new(mode) {
   });
 }
 function prompt_replace_rename(mode) {
-  const settings3 = extension_settings52[extensionName];
+  const settings3 = extension_settings53[extensionName];
   const currentName = settings3.prompt_replace_id;
   if (currentName === "\u9ED8\u8BA4" || !settings3.prompt_replace[currentName]) {
     alert("\u9ED8\u8BA4\u914D\u7F6E\u6216\u4E0D\u5B58\u5728\u7684\u914D\u7F6E\u4E0D\u80FD\u91CD\u547D\u540D\u3002");
@@ -66584,7 +67640,7 @@ function prompt_replace_rename(mode) {
       settings3.prompt_replace[newName] = settings3.prompt_replace[currentName];
       delete settings3.prompt_replace[currentName];
       settings3.prompt_replace_id = newName;
-      saveSettingsDebounced30();
+      saveSettingsDebounced31();
       try {
         if (typeof window.loadSilterTavernChatu8Settings === "function") {
           window.loadSilterTavernChatu8Settings();
@@ -66596,14 +67652,14 @@ function prompt_replace_rename(mode) {
   });
 }
 function prompt_replace_save(mode) {
-  const settings3 = extension_settings52[extensionName];
+  const settings3 = extension_settings53[extensionName];
   const suffix = getSuffix(mode);
   stylInput("\u8BF7\u8F93\u5165\u65B0\u66FF\u6362\u89C4\u5219\u914D\u7F6E\u7684\u540D\u79F0").then((result) => {
     if (result && result.trim() !== "") {
       const text = document.getElementById("prompt_replace_text" + suffix).value;
       settings3.prompt_replace[result] = { "text": text };
       settings3.prompt_replace_id = result;
-      saveSettingsDebounced30();
+      saveSettingsDebounced31();
       try {
         if (typeof window.loadSilterTavernChatu8Settings === "function") {
           window.loadSilterTavernChatu8Settings();
@@ -66616,7 +67672,7 @@ function prompt_replace_save(mode) {
   });
 }
 function prompt_replace_update(mode) {
-  const settings3 = extension_settings52[extensionName];
+  const settings3 = extension_settings53[extensionName];
   const suffix = getSuffix(mode);
   const presetName = settings3.prompt_replace_id;
   if (!presetName || !settings3.prompt_replace[presetName]) {
@@ -66627,7 +67683,7 @@ function prompt_replace_update(mode) {
     if (confirmed) {
       const text = document.getElementById("prompt_replace_text" + suffix).value;
       settings3.prompt_replace[presetName] = { "text": text };
-      saveSettingsDebounced30();
+      saveSettingsDebounced31();
       const textarea = document.getElementById("prompt_replace_text" + suffix);
       const warning = textarea.closest(".st-chatu8-field-col").querySelector(".st-chatu8-unsaved-warning");
       if (warning) $(warning).hide();
@@ -66635,7 +67691,7 @@ function prompt_replace_update(mode) {
   });
 }
 function prompt_replace_delete(mode) {
-  const settings3 = extension_settings52[extensionName];
+  const settings3 = extension_settings53[extensionName];
   const suffix = getSuffix(mode);
   const selectElement = document.getElementById("prompt_replace_id" + suffix);
   const valueToDelete = selectElement.value;
@@ -66647,7 +67703,7 @@ function prompt_replace_delete(mode) {
     if (result) {
       Reflect.deleteProperty(settings3.prompt_replace, valueToDelete);
       settings3.prompt_replace_id = "\u9ED8\u8BA4";
-      saveSettingsDebounced30();
+      saveSettingsDebounced31();
       try {
         if (typeof window.loadSilterTavernChatu8Settings === "function") {
           window.loadSilterTavernChatu8Settings();
@@ -66659,7 +67715,7 @@ function prompt_replace_delete(mode) {
   });
 }
 function prompt_replace_export_current() {
-  const settings3 = extension_settings52[extensionName];
+  const settings3 = extension_settings53[extensionName];
   const selectedId = settings3.prompt_replace_id;
   if (!selectedId || !settings3.prompt_replace[selectedId]) {
     alert("\u6CA1\u6709\u9009\u4E2D\u7684\u66FF\u6362\u89C4\u5219\u53EF\u5BFC\u51FA\u3002");
@@ -66678,7 +67734,7 @@ function prompt_replace_export_current() {
   URL.revokeObjectURL(url);
 }
 function prompt_replace_export_all() {
-  const settings3 = extension_settings52[extensionName];
+  const settings3 = extension_settings53[extensionName];
   if (!settings3.prompt_replace || Object.keys(settings3.prompt_replace).length === 0) {
     alert("\u6CA1\u6709\u66FF\u6362\u89C4\u5219\u53EF\u5BFC\u51FA\u3002");
     return;
@@ -66695,7 +67751,7 @@ function prompt_replace_export_all() {
   URL.revokeObjectURL(url);
 }
 function prompt_replace_import() {
-  const settings3 = extension_settings52[extensionName];
+  const settings3 = extension_settings53[extensionName];
   const input = document.createElement("input");
   input.type = "file";
   input.accept = ".json";
@@ -66715,7 +67771,7 @@ function prompt_replace_import() {
             settings3.prompt_replace[key] = importedData[key];
           }
         }
-        saveSettingsDebounced30();
+        saveSettingsDebounced31();
         try {
           if (typeof window.loadSilterTavernChatu8Settings === "function") {
             window.loadSilterTavernChatu8Settings();
@@ -66746,7 +67802,7 @@ function initPromptReplaceControls(settingsModal) {
     settingsModal.find(`#prompt_replace_export_all${suffix}`).on("click", prompt_replace_export_all);
     settingsModal.find(`#prompt_replace_import${suffix}`).on("click", prompt_replace_import);
     $(`#prompt_replace_text${suffix}`).on("input", function() {
-      const settings3 = extension_settings52[extensionName];
+      const settings3 = extension_settings53[extensionName];
       const presetName = settings3.prompt_replace_id;
       const currentPreset = settings3.prompt_replace[presetName] || {};
       const isDirty = $(this).val() !== (currentPreset.text ?? "");
@@ -66842,7 +67898,7 @@ function handleCancelTask(taskId) {
     } else if (task.type === TaskType.BANANA) {
       eventSource27.emit("st_chatu8_cancel_banana_task", { taskId });
       console.log("[TaskManager] \u5DF2\u89E6\u53D1 Banana \u53D6\u6D88\u4E8B\u4EF6");
-    } else if (extension_settings53[extensionName]?.client === "jiuguan") {
+    } else if (extension_settings54[extensionName]?.client === "jiuguan") {
       eventSource27.emit("sd_stop_generation");
       console.log("[TaskManager] \u5DF2\u901A\u77E5\u9152\u9986\u53D6\u6D88\u4EFB\u52A1");
     } else {
@@ -66919,8 +67975,8 @@ async function handleExportLog() {
     alert("\u65E5\u5FD7\u4E3A\u7A7A\u3002");
     return;
   }
-  const { extension_settings: extension_settings101 } = await import("../../../extensions.js");
-  const settings3 = extension_settings101["st-chatu8"] || {};
+  const { extension_settings: extension_settings102 } = await import("../../../extensions.js");
+  const settings3 = extension_settings102["st-chatu8"] || {};
   let settingsInfo = "========== st-chatu8 \u63D2\u4EF6\u8BBE\u7F6E\u4FE1\u606F ==========\n";
   settingsInfo += `1. \u667A\u6167\u59EC\u7684\u7248\u672C: 2.7.8 (\u6839\u636Emanifest.json)
 
@@ -67194,7 +68250,7 @@ function handleClearLog() {
   stylishConfirm("\u786E\u5B9A\u8981\u6E05\u7A7A\u6240\u6709\u65E5\u5FD7\u5417\uFF1F\u6B64\u64CD\u4F5C\u5C06\u5F7B\u5E95\u5220\u9664\u6240\u6709\u5386\u53F2\u65E5\u5FD7\uFF0C\u4E0D\u53EF\u64A4\u9500\u3002").then((confirmed) => {
     if (confirmed) {
       clearAllLogs();
-      saveSettingsDebounced31();
+      saveSettingsDebounced32();
       updateLogView();
       toastr.success("\u65E5\u5FD7\u5DF2\u5168\u90E8\u6E05\u7A7A\u3002");
     }
@@ -67610,31 +68666,31 @@ function handleViewErrors() {
     const scopeLabel = error.sourceScope === "plugin" ? "\u672C\u63D2\u4EF6\u76F8\u5173" : error.sourceScope === "external" ? "\u5916\u90E8\u6765\u6E90" : "\u672A\u77E5\u6765\u6E90";
     html += `<div style="border-bottom: 1px solid #eee; padding: 10px 0;">`;
     html += `<div style="color: #f44336; font-weight: bold;">[${time}] ${error.type.toUpperCase()} <span style="color:#666; font-weight:normal;">(${scopeLabel})</span></div>`;
-    html += `<div style="margin: 5px 0;"><strong>\u7C7B\u578B:</strong> ${escapeHtml2(error.message)}</div>`;
+    html += `<div style="margin: 5px 0;"><strong>\u7C7B\u578B:</strong> ${escapeHtml3(error.message)}</div>`;
     html += `<div style="margin: 5px 0;"><strong>\u6B21\u6570:</strong> ${error.count || 1}</div>`;
-    html += `<div style="margin: 5px 0;"><strong>\u9996\u6B21\u51FA\u73B0:</strong> ${escapeHtml2(firstSeen)}</div>`;
+    html += `<div style="margin: 5px 0;"><strong>\u9996\u6B21\u51FA\u73B0:</strong> ${escapeHtml3(firstSeen)}</div>`;
     if (error.source) {
-      html += `<div style="margin: 5px 0;"><strong>\u6587\u4EF6:</strong> ${escapeHtml2(error.source)}</div>`;
+      html += `<div style="margin: 5px 0;"><strong>\u6587\u4EF6:</strong> ${escapeHtml3(error.source)}</div>`;
     }
     if (error.lineno != null || error.colno != null) {
-      html += `<div style="margin: 5px 0;"><strong>\u4F4D\u7F6E:</strong> ${escapeHtml2(`${error.lineno ?? "?"}:${error.colno ?? "?"}`)}</div>`;
+      html += `<div style="margin: 5px 0;"><strong>\u4F4D\u7F6E:</strong> ${escapeHtml3(`${error.lineno ?? "?"}:${error.colno ?? "?"}`)}</div>`;
     }
     if (error.context && error.context.message) {
-      html += `<div style="margin: 5px 0;"><strong>\u5185\u5BB9:</strong> ${escapeHtml2(error.context.message)}</div>`;
+      html += `<div style="margin: 5px 0;"><strong>\u5185\u5BB9:</strong> ${escapeHtml3(error.context.message)}</div>`;
     }
     if (error.context && error.context.title) {
-      html += `<div style="margin: 5px 0;"><strong>\u6807\u9898:</strong> ${escapeHtml2(error.context.title)}</div>`;
+      html += `<div style="margin: 5px 0;"><strong>\u6807\u9898:</strong> ${escapeHtml3(error.context.title)}</div>`;
     }
     if (error.errorMessage) {
-      html += `<div style="margin: 5px 0;"><strong>\u8BE6\u60C5:</strong> ${escapeHtml2(error.errorMessage)}</div>`;
+      html += `<div style="margin: 5px 0;"><strong>\u8BE6\u60C5:</strong> ${escapeHtml3(error.errorMessage)}</div>`;
     }
     if (error.errorName) {
-      html += `<div style="margin: 5px 0;"><strong>\u9519\u8BEF\u540D:</strong> ${escapeHtml2(error.errorName)}</div>`;
+      html += `<div style="margin: 5px 0;"><strong>\u9519\u8BEF\u540D:</strong> ${escapeHtml3(error.errorName)}</div>`;
     }
     if (error.stack) {
       const stackLines = error.stack.split("\n").slice(0, 3);
       html += `<div style="margin: 5px 0;"><strong>\u5806\u6808:</strong></div>`;
-      html += `<pre style="background: #f5f5f5; padding: 5px; overflow-x: auto; font-size: 11px;">${escapeHtml2(stackLines.join("\n"))}</pre>`;
+      html += `<pre style="background: #f5f5f5; padding: 5px; overflow-x: auto; font-size: 11px;">${escapeHtml3(stackLines.join("\n"))}</pre>`;
     }
     html += "</div>";
   }
@@ -67678,7 +68734,7 @@ function handleClearErrors() {
     }
   });
 }
-function escapeHtml2(text) {
+function escapeHtml3(text) {
   const div = document.createElement("div");
   div.textContent = text;
   return div.innerHTML;
@@ -67771,12 +68827,12 @@ function renderChangelog(entries, currentVersion) {
       } else if (/^(更名|重命名|rename)/.test(change)) {
         icon = "\u{1F4DD}";
       }
-      return `<li><span class="st-chatu8-changelog-icon">${icon}</span><span>${escapeHtml3(change)}</span></li>`;
+      return `<li><span class="st-chatu8-changelog-icon">${icon}</span><span>${escapeHtml4(change)}</span></li>`;
     }).join("");
     html += `
         <div class="st-chatu8-changelog-entry${isLatest ? " latest" : ""}${isCurrent ? " current" : ""}">
             <div class="st-chatu8-changelog-version-row">
-                <span class="st-chatu8-changelog-version">${escapeHtml3(entry.version)}</span>
+                <span class="st-chatu8-changelog-version">${escapeHtml4(entry.version)}</span>
                 ${badgeHtml}
             </div>
             ${entry.changes.length > 0 ? `<ul class="st-chatu8-changelog-changes">${changesHtml}</ul>` : ""}
@@ -67784,7 +68840,7 @@ function renderChangelog(entries, currentVersion) {
   }
   return html;
 }
-function escapeHtml3(str) {
+function escapeHtml4(str) {
   const div = document.createElement("div");
   div.textContent = str;
   return div.innerHTML;
@@ -68081,7 +69137,7 @@ async function showPresetVisualSelector(mode, settings3, onSelect) {
           settings3[yusheIdKey2] = "\u9ED8\u8BA4";
         }
       }
-      await saveSettingsDebounced32();
+      await saveSettingsDebounced33();
       alert(`\u6210\u529F\u5220\u9664 ${deletedCount} \u4E2A\u9884\u8BBE\u3002`);
       exitBulkDeleteMode();
       updateFilteredPresets();
@@ -68183,14 +69239,14 @@ async function showPresetVisualSelector(mode, settings3, onSelect) {
   paginationSizeSelect.onchange = (e) => {
     pageSize = parseInt(e.target.value);
     settings3.presetVisualPageSize = pageSize;
-    saveSettingsDebounced32();
+    saveSettingsDebounced33();
     currentPage = 1;
     renderCurrentPage();
   };
   gridColumnsSelect.onchange = (e) => {
     gridColumns = parseInt(e.target.value);
     settings3.presetVisualGridColumns = gridColumns;
-    saveSettingsDebounced32();
+    saveSettingsDebounced33();
     updateGridLayout();
   };
   parent.appendChild(backdrop);
@@ -68250,7 +69306,7 @@ async function createPresetCard2(presetName, preset, isSelected, settings3, mode
       if (confirm(`\u786E\u5B9A\u8981\u5220\u9664\u9884\u8BBE "${presetName}" \u7684\u9884\u89C8\u56FE\u5417\uFF1F`)) {
         await deleteConfigImage(previewImageId);
         delete preset.previewImageId;
-        saveSettingsDebounced32();
+        saveSettingsDebounced33();
         refreshCardImage2(imageContainer, null);
       }
     };
@@ -68275,7 +69331,7 @@ async function createPresetCard2(presetName, preset, isSelected, settings3, mode
       if (settings3[yusheIdKey] === presetName) {
         settings3[yusheIdKey] = newName;
       }
-      saveSettingsDebounced32();
+      saveSettingsDebounced33();
       const backdrop = document.querySelector(".st-chatu8-workflow-viz-backdrop");
       if (backdrop) backdrop.parentNode.removeChild(backdrop);
       showPresetVisualSelector(mode, settings3, (name) => onClick(name, null)).then(() => {
@@ -68300,7 +69356,7 @@ async function createPresetCard2(presetName, preset, isSelected, settings3, mode
       if (isDeletingCurrentPreset) {
         settings3[yusheIdKey] = "\u9ED8\u8BA4";
       }
-      saveSettingsDebounced32();
+      saveSettingsDebounced33();
       const backdrop = document.querySelector(".st-chatu8-workflow-viz-backdrop");
       if (backdrop) backdrop.parentNode.removeChild(backdrop);
       if (isDeletingCurrentPreset && typeof window.loadSilterTavernChatu8Settings === "function") {
@@ -68374,7 +69430,7 @@ function handleImageUpload2(presetName, settings3, container) {
           settings3.yushe[presetName] = {};
         }
         settings3.yushe[presetName].previewImageId = newImageId;
-        saveSettingsDebounced32();
+        saveSettingsDebounced33();
         refreshCardImage2(container, newImageId);
       };
       reader.readAsDataURL(file);
@@ -68549,7 +69605,7 @@ async function handleAutocomplete3(inputEl, resultsEl) {
     return;
   }
   try {
-    const settings3 = extension_settings56[extensionName];
+    const settings3 = extension_settings57[extensionName];
     const startsWith = String(settings3.vocabulary_search_startswith) === "true";
     const limit = parseInt(settings3.vocabulary_search_limit, 10);
     const sortBy = settings3.vocabulary_search_sort;
@@ -68637,7 +69693,7 @@ function initPromptSettings(settingsModal, settings3) {
       $(warning).hide();
       if (presetName && settings3.yushe[presetName]) {
         settings3.yushe[presetName][field] = $(this).val();
-        saveSettingsDebounced33();
+        saveSettingsDebounced34();
       }
     });
     settingsModal.find(`#translate_fixedPrompt${suffix}`).on("click", () => translateAndAnnotateField("fixedPrompt", suffix));
@@ -68647,7 +69703,7 @@ function initPromptSettings(settingsModal, settings3) {
         const fixedPromptEl = document.getElementById(`fixedPrompt${suffix}`);
         const fixedPromptEndEl = document.getElementById(`fixedPrompt_end${suffix}`);
         const negativePromptEl = document.getElementById(`negativePrompt${suffix}`);
-        const presetsText = getNovelAIQualityPresetsText(extension_settings56[extensionName]);
+        const presetsText = getNovelAIQualityPresetsText(extension_settings57[extensionName]);
         if (fixedPromptEl && fixedPromptEndEl) {
           const t1 = await calculateNovelAITokens(fixedPromptEl.value);
           const t2 = await calculateNovelAITokens(fixedPromptEndEl.value);
@@ -68699,7 +69755,7 @@ function st_chatu8_tishici_change(mode, settings3) {
   const isDirty = fixedPrompt !== (currentPreset.fixedPrompt ?? "") || fixedPrompt_end !== (currentPreset.fixedPrompt_end ?? "") || negativePrompt !== (currentPreset.negativePrompt ?? "");
   const switchPreset = () => {
     settings3[yusheIdKey] = newPresetId;
-    saveSettingsDebounced33();
+    saveSettingsDebounced34();
     const newPreset = settings3.yushe[newPresetId] || {};
     document.getElementById("fixedPrompt" + suffix).value = newPreset.fixedPrompt ?? "";
     document.getElementById("fixedPrompt_end" + suffix).value = newPreset.fixedPrompt_end ?? "";
@@ -68737,7 +69793,7 @@ function st_chatu8_tishici_new(mode, settings3) {
       }
       settings3.yushe[newName] = { fixedPrompt: "", fixedPrompt_end: "", negativePrompt: "" };
       settings3[yusheIdKey] = newName;
-      saveSettingsDebounced33();
+      saveSettingsDebounced34();
       window.loadSilterTavernChatu8Settings();
       toastr.success(`\u5DF2\u521B\u5EFA\u7A7A\u9884\u8BBE "${newName}"`);
     }
@@ -68760,7 +69816,7 @@ function st_chatu8_tishici_rename(mode, settings3) {
       settings3.yushe[newName] = settings3.yushe[currentName];
       delete settings3.yushe[currentName];
       settings3[yusheIdKey] = newName;
-      saveSettingsDebounced33();
+      saveSettingsDebounced34();
       window.loadSilterTavernChatu8Settings();
       toastr.success(`\u9884\u8BBE\u5DF2\u91CD\u547D\u540D\u4E3A "${newName}"`);
     }
@@ -68776,7 +69832,7 @@ function st_chatu8_tishici_save(mode, settings3) {
       const yusheIdKey = `yusheid${mode === "sd" ? "_sd" : suffix}`;
       settings3.yushe[result] = { ...settings3.yushe[result] || {}, "fixedPrompt": fixedPrompt, "fixedPrompt_end": fixedPrompt_end, "negativePrompt": negativePrompt };
       settings3[yusheIdKey] = result;
-      saveSettingsDebounced33();
+      saveSettingsDebounced34();
       window.loadSilterTavernChatu8Settings();
       alert(`\u9884\u8BBE "${result}" \u5DF2\u4FDD\u5B58\u3002`);
     }
@@ -68796,7 +69852,7 @@ function st_chatu8_tishici_update(mode, settings3) {
       const fixedPrompt_end = document.getElementById("fixedPrompt_end" + suffix).value;
       const negativePrompt = document.getElementById("negativePrompt" + suffix).value;
       settings3.yushe[presetName] = { ...settings3.yushe[presetName], "fixedPrompt": fixedPrompt, "fixedPrompt_end": fixedPrompt_end, "negativePrompt": negativePrompt };
-      saveSettingsDebounced33();
+      saveSettingsDebounced34();
       const fields = ["fixedPrompt", "fixedPrompt_end", "negativePrompt"];
       fields.forEach((field) => {
         const textarea = document.getElementById(field + suffix);
@@ -68837,7 +69893,7 @@ function st_chatu8_tishici_delete(mode, settings3) {
     if (result) {
       Reflect.deleteProperty(settings3.yushe, valueToDelete);
       settings3[yusheIdKey] = "\u9ED8\u8BA4";
-      saveSettingsDebounced33();
+      saveSettingsDebounced34();
       window.loadSilterTavernChatu8Settings();
     }
   });
@@ -68975,7 +70031,7 @@ function st_chatu8_tishici_import(settings3) {
             settings3.yushe[key] = presetsToImport[key];
           }
         }
-        saveSettingsDebounced33();
+        saveSettingsDebounced34();
         window.loadSilterTavernChatu8Settings();
         let message = `\u6210\u529F\u5BFC\u5165 ${Object.keys(presetsToImport).length} \u4E2A\u9884\u8BBE\uFF0C\u5176\u4E2D ${newPresetsCount} \u4E2A\u662F\u5168\u65B0\u7684\u3002`;
         if (importedImagesCount > 0) {
@@ -69109,7 +70165,7 @@ function removeComfyUIImage() {
   dbs.storeDelete(COMFYUI_REF_CACHE_KEY);
 }
 async function handleImageUpload22(event) {
-  const settings3 = extension_settings57[extensionName];
+  const settings3 = extension_settings58[extensionName];
   const file = event.target.files[0];
   if (!file) return;
   try {
@@ -69239,14 +70295,14 @@ var PING_TIMEOUT = 5e3;
 var consecutiveErrors = 0;
 var keepAliveSuspended = false;
 function shouldKeepAlive() {
-  const settings3 = extension_settings58[extensionName];
+  const settings3 = extension_settings59[extensionName];
   if (!settings3) return false;
   const isEnabled = settings3.scriptEnabled === true || settings3.scriptEnabled === "true";
   const isComfyUIMode = settings3.mode === "comfyui";
   return isEnabled && isComfyUIMode && !keepAliveSuspended;
 }
 function pingViaSillyTavern() {
-  const comfyUrl = extension_settings58[extensionName]?.comfyuiUrl?.trim();
+  const comfyUrl = extension_settings59[extensionName]?.comfyuiUrl?.trim();
   if (!comfyUrl) {
     return;
   }
@@ -69271,7 +70327,7 @@ function pingViaSillyTavern() {
   });
 }
 function pingDirect() {
-  const comfyUrl = extension_settings58[extensionName]?.comfyuiUrl?.trim();
+  const comfyUrl = extension_settings59[extensionName]?.comfyuiUrl?.trim();
   if (!comfyUrl) {
     return;
   }
@@ -69305,7 +70361,7 @@ function doPing() {
   if (!shouldKeepAlive()) {
     return;
   }
-  const client = extension_settings58[extensionName]?.client;
+  const client = extension_settings59[extensionName]?.client;
   if (client === "jiuguan") {
     pingViaSillyTavern();
   } else {
@@ -69352,7 +70408,7 @@ function resetKeepAliveState() {
 // utils/settings/api_connections.js
 init_configDatabase();
 async function testComfyui() {
-  const settings3 = extension_settings59[extensionName];
+  const settings3 = extension_settings60[extensionName];
   let el = document.getElementById("comfyuiUrl");
   let testurl1 = removeTrailingSlash(el.value);
   let testurl = testurl1 + "/object_info";
@@ -69428,7 +70484,7 @@ async function testComfyui() {
   }
 }
 async function testSd() {
-  const settings3 = extension_settings59[extensionName];
+  const settings3 = extension_settings60[extensionName];
   const el = document.getElementById("sdUrl");
   const baseUrl = removeTrailingSlash(el.value);
   if (!isValidUrl(baseUrl)) {
@@ -69530,7 +70586,7 @@ function ComfyuiaddLORA() {
   const fixedPrompt = activeTab.find("#fixedPrompt_comfyui");
   const loraSelect = document.getElementById("ComfyuiLORA");
   if (!loraSelect.value || loraSelect.value.trim() === "" || loraSelect.disabled) {
-    if (extension_settings60[extensionName].client == "jiuguan") {
+    if (extension_settings61[extensionName].client == "jiuguan") {
       alert("\u62B1\u6B49\u9152\u9986\u5BA2\u6237\u7AEF\u65E0\u6CD5\u652F\u6301lora\u83B7\u53D6,\u8BF7\u53C2\u8003\u6587\u6863\u5C1D\u8BD5\u4F7F\u7528\u6D4F\u89C8\u5668\u5BA2\u6237\u7AEF");
     } else {
       alert("\u8BF7\u5148\u8FDE\u63A5ComfyUI\u83B7\u53D6lora");
@@ -69547,7 +70603,7 @@ function sd_add_lora() {
   const fixedPrompt = activeTab.find("#fixedPrompt");
   const loraSelect = document.getElementById("sd_cchatu_8_lora");
   if (!loraSelect.value || loraSelect.value.trim() === "" || loraSelect.disabled) {
-    if (extension_settings60[extensionName].client == "jiuguan") {
+    if (extension_settings61[extensionName].client == "jiuguan") {
       alert("\u62B1\u6B49\u9152\u9986\u5BA2\u6237\u7AEF\u65E0\u6CD5\u652F\u6301lora\u83B7\u53D6,\u8BF7\u53C2\u8003\u6587\u6863\u5C1D\u8BD5\u4F7F\u7528\u6D4F\u89C8\u5668\u5BA2\u6237\u7AEF");
     } else {
       alert("\u8BF7\u5148\u8FDE\u63A5SD\u83B7\u53D6lora");
@@ -69576,12 +70632,12 @@ function onRestoreDefaultSettingsClick() {
       stylishConfirm("\u4F60\u771F\u7684\u786E\u5B9A\u5417\uFF1F").then(async (result2) => {
         if (result2) {
           const defaults = JSON.parse(JSON.stringify(defaultSettings));
-          const settings3 = extension_settings61[extensionName];
+          const settings3 = extension_settings62[extensionName];
           Object.keys(settings3).forEach((key) => {
             delete settings3[key];
           });
           Object.assign(settings3, defaults);
-          saveSettingsDebounced37();
+          saveSettingsDebounced38();
           try {
             await initJiuguanStorage();
             console.log("[Settings] \u5DF2\u4ECE\u9690\u5199\u56FE\u7247\u91CD\u65B0\u52A0\u8F7D\u56FE\u7247\u7F13\u5B58");
@@ -69596,7 +70652,7 @@ function onRestoreDefaultSettingsClick() {
   });
 }
 function onExportSettingsClick() {
-  const settingsString = JSON.stringify(extension_settings61[extensionName], null, 4);
+  const settingsString = JSON.stringify(extension_settings62[extensionName], null, 4);
   const blob = new Blob([settingsString], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -69619,8 +70675,8 @@ function onImportSettingsClick() {
       reader.onload = async (e) => {
         try {
           const importedSettings = JSON.parse(e.target.result);
-          Object.assign(extension_settings61[extensionName], importedSettings);
-          saveSettingsDebounced37();
+          Object.assign(extension_settings62[extensionName], importedSettings);
+          saveSettingsDebounced38();
           try {
             await initJiuguanStorage();
             console.log("[Settings] \u5DF2\u4ECE\u9690\u5199\u56FE\u7247\u91CD\u65B0\u52A0\u8F7D\u56FE\u7247\u7F13\u5B58");
@@ -69659,6 +70715,12 @@ var imageCacheItemsPerPage = 15;
 var selectedImages = /* @__PURE__ */ new Set();
 var imageObserver;
 var isMultiSelectMode = false;
+var recalcStartedAt = 0;
+var recalcPanelDismissed = false;
+function formatMB(bytes) {
+  if (!Number.isFinite(bytes) || bytes < 0) return "0 MB";
+  return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+}
 function showCacheImagePreview(initialUUID) {
   const doc = document;
   let currentIndex = allCachedImages.findIndex((img) => img.uuid === initialUUID);
@@ -70230,7 +71292,59 @@ function updateImageCacheInfo() {
   const selected = selectedImages.size;
   const videoCount = allCachedImages.filter((img) => img.isVideo).length;
   const imageCount = total - videoCount;
-  info.textContent = `\u603B\u8BA1 ${total} \u4E2A\u5A92\u4F53 (\u56FE\u7247: ${imageCount}, \u89C6\u9891: ${videoCount}) | \u9009\u4E2D ${selected} \u4E2A`;
+  let serverBytes = 0, serverCounted = 0, serverTotal = 0;
+  let dbBytes = 0, dbCounted = 0, dbTotal = 0;
+  for (const img of allCachedImages) {
+    const bytes = (typeof img.size === "number" ? img.size : 0) + (typeof img.thumbnail_size === "number" ? img.thumbnail_size : 0);
+    const counted = typeof img.size === "number";
+    if (img.source === "server") {
+      serverTotal++;
+      if (counted) {
+        serverCounted++;
+        serverBytes += bytes;
+      }
+    } else {
+      dbTotal++;
+      if (counted) {
+        dbCounted++;
+        dbBytes += bytes;
+      }
+    }
+  }
+  const unCounted = serverTotal - serverCounted + (dbTotal - dbCounted);
+  info.innerHTML = "";
+  const line1 = document.createElement("div");
+  line1.textContent = `\u603B\u8BA1 ${total} \u4E2A\u5A92\u4F53 (\u56FE\u7247: ${imageCount}, \u89C6\u9891: ${videoCount}) | \u9009\u4E2D ${selected} \u4E2A`;
+  info.appendChild(line1);
+  const line2 = document.createElement("div");
+  line2.className = "st-chatu8-cache-size-line";
+  const parts = [
+    `\u9152\u9986\u670D\u52A1\u5668 ${formatMB(serverBytes)} (${serverCounted}/${serverTotal} \u9879)`,
+    `\u6D4F\u89C8\u5668\u6570\u636E\u5E93 ${formatMB(dbBytes)} (${dbCounted}/${dbTotal} \u9879)`,
+    `\u5408\u8BA1 ${formatMB(serverBytes + dbBytes)}`
+  ];
+  if (unCounted > 0) parts.push(`\u672A\u7EDF\u8BA1 ${unCounted} \u9879`);
+  line2.textContent = parts.join(" \xB7 ");
+  info.appendChild(line2);
+  const line3 = document.createElement("div");
+  line3.className = "st-chatu8-cache-quota-line";
+  line3.id = "image-cache-quota-line";
+  info.appendChild(line3);
+  updateStorageQuotaLine();
+}
+async function updateStorageQuotaLine() {
+  const line = document.getElementById("image-cache-quota-line");
+  if (!line) return;
+  if (!navigator.storage || typeof navigator.storage.estimate !== "function") {
+    line.textContent = "\u6D4F\u89C8\u5668\u914D\u989D: \u5F53\u524D\u73AF\u5883\u4E0D\u652F\u6301\u67E5\u8BE2";
+    return;
+  }
+  try {
+    const { usage, quota } = await navigator.storage.estimate();
+    line.textContent = `\u6D4F\u89C8\u5668\u5B58\u50A8\u914D\u989D: \u5DF2\u7528 ${formatMB(usage)} / \u4E0A\u9650 ${formatMB(quota)}\uFF08\u6D4F\u89C8\u5668\u672C\u5730\u5168\u90E8\u6570\u636E\uFF0C\u542B\u804A\u5929\u8BB0\u5F55\u4E0E\u5176\u4ED6\u6269\u5C55\uFF0C\u4E0E\u4E0A\u65B9\u9152\u9986\u670D\u52A1\u5668\u6570\u5B57\u65E0\u5173\uFF09`;
+  } catch (e) {
+    line.textContent = "\u6D4F\u89C8\u5668\u914D\u989D: \u67E5\u8BE2\u5931\u8D25";
+  }
 }
 async function loadImageCache(options = {}) {
   const { preservePage = false } = options;
@@ -70255,8 +71369,11 @@ async function loadImageCache(options = {}) {
             path: imageEntry.path || null,
             // 服务器路径（如果有）
             thumbnail_path: imageEntry.thumbnail_path || null,
-            isVideo: imageEntry.isVideo || false
+            isVideo: imageEntry.isVideo || false,
             // 添加视频标识
+            // 尺寸字段：旧数据没有，保持 undefined 以区分「0 字节」和「未统计」
+            size: typeof imageEntry.size === "number" ? imageEntry.size : void 0,
+            thumbnail_size: typeof imageEntry.thumbnail_size === "number" ? imageEntry.thumbnail_size : void 0
           };
           allCachedImages.push(imageData);
         }
@@ -70281,7 +71398,7 @@ async function loadImageCache(options = {}) {
   }
 }
 async function clearCache() {
-  const settings3 = extension_settings62[extensionName];
+  const settings3 = extension_settings63[extensionName];
   stylishConfirm(`\u4F60\u786E\u5B9A\u8981\u6E05\u9664\u6240\u6709\u8FC7\u671F\u7684\u56FE\u7247\u7F13\u5B58\u5417\uFF1F (\u8FC7\u671F\u65F6\u95F4: ${settings3.cache} \u5929)`).then(async (confirmed) => {
     if (confirmed) {
       try {
@@ -70329,8 +71446,167 @@ async function clearCache() {
     }
   });
 }
+var RECALC_PHASE_LABELS = {
+  db: "\u6D4F\u89C8\u5668\u6570\u636E\u5E93",
+  server: "\u9152\u9986\u5B58\u50A8",
+  writeback: "\u4FDD\u5B58\u7ED3\u679C",
+  done: "\u5B8C\u6210",
+  finished: "\u7EDF\u8BA1\u5B8C\u6210",
+  error: "\u7EDF\u8BA1\u5931\u8D25"
+};
+function renderRecalcProgress(payload) {
+  const panel = document.getElementById("image-cache-recalc-progress");
+  const bar = document.getElementById("image-cache-recalc-bar");
+  const title = document.getElementById("image-cache-recalc-title");
+  const detail = document.getElementById("image-cache-recalc-detail");
+  if (!panel || !bar || !title || !detail || !payload) return;
+  if (recalcPanelDismissed) return;
+  panel.style.display = "";
+  const { phase, current, total: phaseTotal, detail: msg, report: r, error } = payload;
+  if (phase === "error") {
+    title.textContent = "\u7EDF\u8BA1\u5931\u8D25";
+    detail.textContent = `\u53D1\u751F\u9519\u8BEF: ${error ? error.message : msg}\uFF0C\u8BE6\u60C5\u8BF7\u67E5\u770B\u63A7\u5236\u53F0\u3002`;
+    return;
+  }
+  if (phase === "finished") {
+    bar.style.width = "100%";
+    renderRecalcSummary(r);
+    return;
+  }
+  const pct = phaseTotal > 0 ? Math.min(100, Math.round(current / phaseTotal * 100)) : 0;
+  bar.style.width = `${pct}%`;
+  title.textContent = `${RECALC_PHASE_LABELS[phase] || phase} \u2014 ${pct}%`;
+  const lines = [msg || ""];
+  if (recalcStartedAt) {
+    lines.push(`\u5DF2\u7528\u65F6 ${((Date.now() - recalcStartedAt) / 1e3).toFixed(1)}s`);
+  }
+  if (r) {
+    if (r.skippedCount > 0) lines.push(`\u5DF2\u8DF3\u8FC7 ${r.skippedCount} \u9879\uFF08\u4E4B\u524D\u5DF2\u7EDF\u8BA1\uFF09`);
+    if (r.orphanCount > 0) lines.push(`\u53D1\u73B0\u5B64\u513F\u6570\u636E ${r.orphanCount} \u6761 (${formatMB(r.orphanBytes)})`);
+    if (r.failedCount > 0) lines.push(`\u63A2\u6D4B\u5931\u8D25 ${r.failedCount} \u4E2A`);
+  }
+  detail.textContent = lines.filter(Boolean).join("\n");
+}
+function renderRecalcSummary(report) {
+  if (recalcPanelDismissed) return;
+  const title = document.getElementById("image-cache-recalc-title");
+  const detail = document.getElementById("image-cache-recalc-detail");
+  if (!title || !detail || !report) return;
+  const elapsed = recalcStartedAt ? ((Date.now() - recalcStartedAt) / 1e3).toFixed(1) : "?";
+  if (report.cancelled) {
+    title.textContent = "\u5DF2\u53D6\u6D88";
+    detail.textContent = [
+      `\u7EDF\u8BA1\u88AB\u4E2D\u65AD\uFF0C\u5DF2\u5B8C\u6210\u7684\u90E8\u5206\u5DF2\u4FDD\u5B58\uFF0C\u4E0B\u6B21\u70B9\u51FB\u300C\u7EE7\u7EED\u7EDF\u8BA1\u300D\u53EF\u63A5\u7740\u7B97\u3002`,
+      `\u7528\u65F6 ${elapsed}s`
+    ].join("\n");
+    return;
+  }
+  title.textContent = "\u7EDF\u8BA1\u5B8C\u6210";
+  const summary = [
+    `\u9152\u9986\u5B58\u50A8\u539F\u56FE: ${formatMB(report.serverBytes)} (${report.serverCount} \u9879)`,
+    `\u6D4F\u89C8\u5668\u5B58\u50A8\u539F\u56FE: ${formatMB(report.dbBytes)} (${report.dbCount} \u9879)`,
+    `\u7F29\u7565\u56FE\u5408\u8BA1: ${formatMB(report.thumbnailBytes)} (${report.thumbnailCount} \u9879)`,
+    `\u5408\u8BA1: ${formatMB(report.serverBytes + report.dbBytes + report.thumbnailBytes)}`,
+    `\u7528\u65F6 ${elapsed}s`
+  ];
+  if (report.skippedCount > 0) {
+    summary.push(`\u8DF3\u8FC7 ${report.skippedCount} \u9879\uFF08\u4E4B\u524D\u5DF2\u7EDF\u8BA1\uFF09`);
+  }
+  if (report.remote) {
+    summary.push(`\u5DF2\u542F\u7528\u4E91\u9152\u9986\u9650\u6D41\uFF08\u5E76\u53D1 ${report.concurrency}\uFF09\uFF0C\u907F\u514D\u5360\u7528\u516C\u5171\u8D44\u6E90`);
+  }
+  if (report.orphanCount > 0) {
+    summary.push(`\u5B64\u513F\u6570\u636E: ${report.orphanCount} \u6761 (${formatMB(report.orphanBytes)})\uFF0C\u5143\u6570\u636E\u672A\u5F15\u7528\uFF0C\u53EF\u8003\u8651\u6E05\u7406`);
+  }
+  if (report.failedCount > 0) {
+    summary.push(`\u63A2\u6D4B\u5931\u8D25: ${report.failedCount} \u4E2A\u6587\u4EF6\uFF08\u53EF\u80FD\u5DF2\u88AB\u5220\u9664\uFF09`);
+  }
+  if (report.errors && report.errors.length > 0) {
+    summary.push(`\u9519\u8BEF\u793A\u4F8B: ${report.errors.slice(0, 3).join("; ")}`);
+    console.warn("[ImageCache] \u5C3A\u5BF8\u7EDF\u8BA1\u9519\u8BEF:", report.errors);
+  }
+  detail.textContent = summary.join("\n");
+}
+function syncRecalcButtons() {
+  const task = getSizeCalcTask();
+  const running = !!(task && task.running);
+  const startBtn = document.getElementById("image-cache-recalc-size");
+  const cancelBtn = document.getElementById("image-cache-recalc-cancel");
+  if (startBtn) {
+    startBtn.disabled = running;
+    startBtn.innerHTML = running ? '<i class="fa-solid fa-spinner fa-spin"></i> \u7EDF\u8BA1\u4E2D...' : '<i class="fa-solid fa-calculator"></i> \u8BA1\u7B97\u5927\u5C0F';
+  }
+  if (cancelBtn) {
+    cancelBtn.disabled = false;
+    cancelBtn.textContent = running ? "\u53D6\u6D88" : "\u5173\u95ED";
+    cancelBtn.classList.toggle("danger", running);
+  }
+}
+function hideRecalcPanel() {
+  const panel = document.getElementById("image-cache-recalc-progress");
+  if (panel) panel.style.display = "none";
+  recalcPanelDismissed = true;
+}
+async function recalcImageSizes(options = {}) {
+  const { force = false } = options;
+  const existing = getSizeCalcTask();
+  if (existing && existing.running) {
+    renderRecalcProgress(existing.lastProgress);
+    syncRecalcButtons();
+    return;
+  }
+  const total = allCachedImages.length;
+  if (total === 0) {
+    alert("\u56FE\u7247\u5E93\u4E3A\u7A7A\uFF0C\u65E0\u9700\u7EDF\u8BA1\u3002");
+    return;
+  }
+  let pending = 0;
+  for (const img of allCachedImages) {
+    if (typeof img.size !== "number") pending++;
+    if (typeof img.thumbnail_size !== "number") pending++;
+  }
+  const workload = force ? total * 2 : pending;
+  if (workload === 0) {
+    alert("\u6240\u6709\u9879\u76EE\u90FD\u5DF2\u7EDF\u8BA1\u5B8C\u6210\u3002\u5982\u9700\u91CD\u65B0\u6838\u5BF9\uFF0C\u8BF7\u4F7F\u7528\u300C\u5168\u90E8\u91CD\u7B97\u300D\u3002");
+    return;
+  }
+  if (workload > 3e3) {
+    const ok = await stylishConfirm(
+      `\u672C\u6B21\u9700\u8981\u7EDF\u8BA1 ${workload} \u4E2A\u9879\u76EE\uFF0C\u9884\u8BA1\u9700\u8981\u6570\u5206\u949F\u3002\u7EDF\u8BA1\u4F1A\u5728\u540E\u53F0\u8FDB\u884C\uFF0C\u53EF\u4EE5\u5173\u95ED\u8BBE\u7F6E\u9762\u677F\u3002\u662F\u5426\u7EE7\u7EED\uFF1F`
+    );
+    if (!ok) return;
+  }
+  recalcStartedAt = Date.now();
+  recalcPanelDismissed = false;
+  renderRecalcProgress({ phase: "db", current: 0, total: 1, detail: "\u51C6\u5907\u4E2D..." });
+  syncRecalcButtons();
+  try {
+    const report = await calculateAllImageSizes({ force });
+    renderRecalcSummary(report);
+    if (!report.cancelled) {
+      await loadImageCache({ preservePage: true });
+    } else {
+      await loadImageCache({ preservePage: true });
+    }
+  } catch (error) {
+    console.error("[ImageCache] \u91CD\u65B0\u8BA1\u7B97\u5927\u5C0F\u5931\u8D25:", error);
+    const title = document.getElementById("image-cache-recalc-title");
+    const detail = document.getElementById("image-cache-recalc-detail");
+    if (title) title.textContent = "\u7EDF\u8BA1\u5931\u8D25";
+    if (detail) detail.textContent = `\u53D1\u751F\u9519\u8BEF: ${error.message}\uFF0C\u8BE6\u60C5\u8BF7\u67E5\u770B\u63A7\u5236\u53F0\u3002`;
+  } finally {
+    syncRecalcButtons();
+  }
+}
 function initImageCache(settingsModal) {
-  settingsModal.find('a[data-tab="image-cache"]').on("click", loadImageCache);
+  settingsModal.find('a[data-tab="image-cache"]').on("click", async () => {
+    await loadImageCache();
+    const task = getSizeCalcTask();
+    if (task && task.running) {
+      renderRecalcProgress(task.lastProgress);
+    }
+    syncRecalcButtons();
+  });
   settingsModal.find("#Clear-Cache").on("click", clearCache);
   const jumpInput = document.getElementById("image-cache-jump-input");
   const jumpButton = document.getElementById("image-cache-jump-button");
@@ -70390,6 +71666,29 @@ function initImageCache(settingsModal) {
     grid.querySelectorAll(".st-chatu8-image-cache-item").forEach((item) => item.classList.remove("selected"));
     updateImageCacheInfo();
   });
+  $("#image-cache-recalc-size").on("click", () => recalcImageSizes({ force: false }));
+  $("#image-cache-recalc-all").on("click", async () => {
+    const existing = getSizeCalcTask();
+    if (existing && existing.running) {
+      alert("\u5DF2\u6709\u7EDF\u8BA1\u4EFB\u52A1\u5728\u8FDB\u884C\u4E2D\uFF0C\u8BF7\u7B49\u5F85\u5B8C\u6210\u6216\u5148\u53D6\u6D88\u3002");
+      return;
+    }
+    const ok = await stylishConfirm("\u5C06\u5FFD\u7565\u5DF2\u6709\u8BB0\u5F55\uFF0C\u91CD\u65B0\u7EDF\u8BA1\u5168\u90E8\u9879\u76EE\u3002\u786E\u5B9A\u7EE7\u7EED\uFF1F");
+    if (ok) recalcImageSizes({ force: true });
+  });
+  $("#image-cache-recalc-cancel").on("click", () => {
+    if (!cancelSizeCalc()) {
+      hideRecalcPanel();
+    }
+    syncRecalcButtons();
+  });
+  subscribeSizeCalcProgress((payload) => {
+    renderRecalcProgress(payload);
+    if (payload.phase === "finished" || payload.phase === "error") {
+      syncRecalcButtons();
+    }
+  });
+  syncRecalcButtons();
   $("#image-cache-delete-selected").on("click", async () => {
     if (selectedImages.size === 0) {
       alert("\u8BF7\u5148\u9009\u62E9\u8981\u5220\u9664\u7684\u56FE\u7247\u3002");
@@ -70518,7 +71817,7 @@ function updateNovelaiReferenceSectionsVisibility() {
   charRefSection.style.display = isCharRefVisible ? "block" : "none";
 }
 function updateNovelaiUcpOptions() {
-  const settings3 = extension_settings63[extensionName];
+  const settings3 = extension_settings64[extensionName];
   const novelaiModeSelect = document.getElementById("novelaimode");
   const ucpSelect = document.getElementById("UCP_novelai");
   if (!novelaiModeSelect || !ucpSelect) return;
@@ -70546,11 +71845,11 @@ function updateNovelaiUcpOptions() {
   if (ucpSelect.selectedIndex === -1) {
     ucpSelect.value = "Heavy";
     settings3.UCP_novelai = "Heavy";
-    saveSettingsDebounced39();
+    saveSettingsDebounced40();
   }
 }
 function updateNovelaiModelSchedule() {
-  const settings3 = extension_settings63[extensionName];
+  const settings3 = extension_settings64[extensionName];
   const novelaiModeSelect = document.getElementById("novelaimode");
   const scheduleSelect = document.getElementById("Schedule");
   const samplerSelect = document.getElementById("novelai_sampler");
@@ -70623,7 +71922,7 @@ function initNovelaiUI(settingsModal) {
         if (typeof toastr !== "undefined") {
           toastr.info("\u5DF2\u81EA\u52A8\u4E3A\u60A8\u5207\u6362\u5BA2\u6237\u7AEF\u4E3A\uFF1A\u6D4F\u89C8\u5668");
         }
-        saveSettingsDebounced39();
+        saveSettingsDebounced40();
       }
     }
   });
@@ -70755,7 +72054,7 @@ async function buildVibeJson(imageBase64, vibeBase64, model, extractVal, strengt
   };
 }
 function ensureVibePresets() {
-  const settings3 = extension_settings64[extensionName];
+  const settings3 = extension_settings65[extensionName];
   if (!settings3.vibePresets) {
     settings3.vibePresets = {
       "\u9ED8\u8BA4": {
@@ -70774,7 +72073,7 @@ function ensureVibePresets() {
 }
 function showVibeGeneratorDialog() {
   const parent = document.getElementById("st-chatu8-settings") || document.body;
-  const settings3 = extension_settings64[extensionName];
+  const settings3 = extension_settings65[extensionName];
   ensureVibePresets();
   const backdrop = document.createElement("div");
   backdrop.className = "st-chatu8-workflow-viz-backdrop";
@@ -70984,7 +72283,7 @@ function showVibeGeneratorDialog() {
   loadCurrentPreset();
   presetSelect.onchange = () => {
     settings3.vibePresetId = presetSelect.value;
-    saveSettingsDebounced40();
+    saveSettingsDebounced41();
     loadCurrentPreset();
   };
   strengthRange.oninput = (e) => {
@@ -71024,7 +72323,7 @@ function showVibeGeneratorDialog() {
       selectedFile = null;
       settings3.vibePresets[presetId].imageId = newImageId;
       settings3.vibePresets[presetId].thumbnail = null;
-      saveSettingsDebounced40();
+      saveSettingsDebounced41();
       previewImage.src = imageData;
       previewImage.style.display = "block";
       previewContainer.querySelector(".st-chatu8-image-placeholder").style.display = "none";
@@ -71041,7 +72340,7 @@ function showVibeGeneratorDialog() {
         await deleteConfigImage(currentImageId);
         const presetId = presetSelect.value;
         settings3.vibePresets[presetId].imageId = null;
-        saveSettingsDebounced40();
+        saveSettingsDebounced41();
       } catch (error) {
         console.error("[Vibe] \u5220\u9664\u56FE\u7247\u5931\u8D25:", error);
       }
@@ -71063,7 +72362,7 @@ function showVibeGeneratorDialog() {
         vibeDataId: currentVibeDataId,
         thumbnail: settings3.vibePresets[presetId]?.thumbnail || null
       };
-      saveSettingsDebounced40();
+      saveSettingsDebounced41();
       showStatus3("\u9884\u8BBE\u5DF2\u4FDD\u5B58\uFF01", "success");
     } catch (error) {
       console.error("[Vibe] \u4FDD\u5B58\u9884\u8BBE\u5931\u8D25:", error);
@@ -71087,7 +72386,7 @@ function showVibeGeneratorDialog() {
         thumbnail: null
       };
       settings3.vibePresetId = newName;
-      saveSettingsDebounced40();
+      saveSettingsDebounced41();
       loadPresetList();
       loadCurrentPreset();
       showStatus3("\u65B0\u9884\u8BBE\u5DF2\u521B\u5EFA\uFF01", "success");
@@ -71111,7 +72410,7 @@ function showVibeGeneratorDialog() {
       }
       delete settings3.vibePresets[presetId];
       settings3.vibePresetId = "\u9ED8\u8BA4";
-      saveSettingsDebounced40();
+      saveSettingsDebounced41();
       loadPresetList();
       loadCurrentPreset();
       showStatus3("\u9884\u8BBE\u5DF2\u5220\u9664\uFF01", "success");
@@ -71267,7 +72566,7 @@ function showVibeGeneratorDialog() {
             settings3.vibePresets[key] = presetData;
             importedCount++;
           }
-          saveSettingsDebounced40();
+          saveSettingsDebounced41();
           loadPresetList();
           loadCurrentPreset();
           showStatus3(`\u6210\u529F\u5BFC\u5165 ${importedCount} \u4E2A\u9884\u8BBE${skippedCount > 0 ? `\uFF0C\u8DF3\u8FC7 ${skippedCount} \u4E2A` : ""}\uFF01`, "success");
@@ -71358,7 +72657,7 @@ function showVibeGeneratorDialog() {
             vibeDataId,
             thumbnail: thumbnailDataUrl
           };
-          saveSettingsDebounced40();
+          saveSettingsDebounced41();
           updateDownloadButtonState();
           if (warnings.length > 0) {
             showStatus3(`\u26A0\uFE0F Vibe \u6587\u4EF6\u5DF2\u4FDD\u5B58\uFF0C\u4F46\u5B58\u5728\u4EE5\u4E0B\u95EE\u9898\uFF1A<br>${warnings.map((w) => "\u2022 " + w).join("<br>")}`, "success");
@@ -71508,7 +72807,7 @@ function showVibeGeneratorDialog() {
         vibeDataId,
         thumbnail: finalJson.thumbnail || null
       };
-      saveSettingsDebounced40();
+      saveSettingsDebounced41();
       updateDownloadButtonState();
       const filename = `${finalJson.name}.naiv4vibe`;
       showStatus3(`\u2705 \u5B8C\u6210\uFF01Vibe \u6570\u636E\u5DF2\u81EA\u52A8\u4FDD\u5B58\u5230\u9884\u8BBE "${presetId}"<br>\u70B9\u51FB"\u4E0B\u8F7D Vibe \u6587\u4EF6"\u53EF\u5BFC\u51FA ${filename}`, "success");
@@ -71589,7 +72888,7 @@ init_configDatabase();
 
 
 function ensureCharRefGroups() {
-  const settings3 = extension_settings65[extensionName];
+  const settings3 = extension_settings66[extensionName];
   if (!settings3.charRefGroups || typeof settings3.charRefGroups !== "object" || Array.isArray(settings3.charRefGroups)) {
     if (settings3.charRefGroups) {
       console.error("[CharRef] Corrupted charRefGroups data detected, resetting to default:", settings3.charRefGroups);
@@ -71657,7 +72956,7 @@ function showCharRefStatus(statusDiv, message, type = "info") {
   }, 5e3);
 }
 function ensureCharRefPresets() {
-  const settings3 = extension_settings65[extensionName];
+  const settings3 = extension_settings66[extensionName];
   if (!settings3.charRefPresets || typeof settings3.charRefPresets !== "object" || Array.isArray(settings3.charRefPresets)) {
     if (settings3.charRefPresets) {
       console.error("[CharRef] Corrupted charRefPresets data detected, resetting to default:", settings3.charRefPresets);
@@ -71688,7 +72987,7 @@ function ensureCharRefPresets() {
 }
 function showCharRefUploadDialog() {
   const parent = document.getElementById("st-chatu8-settings") || document.body;
-  const settings3 = extension_settings65[extensionName];
+  const settings3 = extension_settings66[extensionName];
   ensureCharRefPresets();
   const backdrop = document.createElement("div");
   backdrop.className = "st-chatu8-workflow-viz-backdrop";
@@ -71820,7 +73119,7 @@ function showCharRefUploadDialog() {
   loadCurrentPreset();
   presetSelect.onchange = () => {
     settings3.charRefPresetId = presetSelect.value;
-    saveSettingsDebounced41();
+    saveSettingsDebounced42();
     loadCurrentPreset();
   };
   selectBtn.onclick = () => imageInput.click();
@@ -71858,7 +73157,7 @@ function showCharRefUploadDialog() {
         createdAt: settings3.charRefPresets[presetId]?.createdAt || Date.now(),
         updatedAt: Date.now()
       };
-      saveSettingsDebounced41();
+      saveSettingsDebounced42();
       previewImage.src = imageData;
       previewImage.style.display = "block";
       previewContainer.querySelector(".st-chatu8-image-placeholder").style.display = "none";
@@ -71880,7 +73179,7 @@ function showCharRefUploadDialog() {
         await deleteConfigImage(currentImageId);
         const presetId = presetSelect.value;
         settings3.charRefPresets[presetId].imageId = null;
-        saveSettingsDebounced41();
+        saveSettingsDebounced42();
       } catch (error) {
         console.error("[CharRef] \u5220\u9664\u56FE\u7247\u5931\u8D25:", error);
       }
@@ -71901,7 +73200,7 @@ function showCharRefUploadDialog() {
         updatedAt: Date.now()
       };
       settings3.charRefPresetId = newName;
-      saveSettingsDebounced41();
+      saveSettingsDebounced42();
       loadPresetList();
       loadCurrentPreset();
       showCharRefStatus(statusDiv, "\u65B0\u9884\u8BBE\u5DF2\u521B\u5EFA\uFF01", "success");
@@ -71924,7 +73223,7 @@ function showCharRefUploadDialog() {
       }
       delete settings3.charRefPresets[presetId];
       settings3.charRefPresetId = "\u9ED8\u8BA4";
-      saveSettingsDebounced41();
+      saveSettingsDebounced42();
       loadPresetList();
       loadCurrentPreset();
       showCharRefStatus(statusDiv, "\u9884\u8BBE\u5DF2\u5220\u9664\uFF01", "success");
@@ -72046,7 +73345,7 @@ function showCharRefUploadDialog() {
             settings3.charRefPresets[key] = presetData;
             importedCount++;
           }
-          saveSettingsDebounced41();
+          saveSettingsDebounced42();
           loadPresetList();
           loadCurrentPreset();
           showCharRefStatus(statusDiv, `\u6210\u529F\u5BFC\u5165 ${importedCount} \u4E2A\u9884\u8BBE${skippedCount > 0 ? `\uFF0C\u8DF3\u8FC7 ${skippedCount} \u4E2A` : ""}\uFF01`, "success");
@@ -72062,7 +73361,7 @@ function showCharRefUploadDialog() {
   console.log("[CharRef] Upload dialog opened");
 }
 function loadCharRefGroupList(selectElement) {
-  const settings3 = extension_settings65[extensionName];
+  const settings3 = extension_settings66[extensionName];
   const charRefGroups = settings3.charRefGroups || {};
   const currentGroupId = settings3.charRefGroupId || "\u9ED8\u8BA4\u7EC4";
   selectElement.innerHTML = "";
@@ -72083,7 +73382,7 @@ function loadCharRefGroupList(selectElement) {
   console.log("[CharRef] Loaded preset list:", groupNames.length, "groups");
 }
 function createNewCharRefGroup(selectElement, statusDiv) {
-  const settings3 = extension_settings65[extensionName];
+  const settings3 = extension_settings66[extensionName];
   const charRefGroups = settings3.charRefGroups || {};
   const groupName = prompt("\u8BF7\u8F93\u5165\u65B0\u7EC4\u540D\u79F0:");
   if (!groupName) {
@@ -72105,7 +73404,7 @@ function createNewCharRefGroup(selectElement, statusDiv) {
   };
   settings3.charRefGroupId = trimmedName;
   try {
-    saveSettingsDebounced41();
+    saveSettingsDebounced42();
   } catch (error) {
     console.error("[CharRef] Failed to save settings after creating new group:", {
       groupName: trimmedName,
@@ -72122,7 +73421,7 @@ function createNewCharRefGroup(selectElement, statusDiv) {
   console.log("[CharRef] Created new group:", trimmedName);
 }
 function saveCurrentCharRefGroup(selectElement, statusDiv) {
-  const settings3 = extension_settings65[extensionName];
+  const settings3 = extension_settings66[extensionName];
   const charRefGroups = settings3.charRefGroups || {};
   const currentGroupId = selectElement.value;
   if (!currentGroupId) {
@@ -72137,7 +73436,7 @@ function saveCurrentCharRefGroup(selectElement, statusDiv) {
   currentGroup.updatedAt = Date.now();
   settings3.charRefGroupId = currentGroupId;
   try {
-    saveSettingsDebounced41();
+    saveSettingsDebounced42();
   } catch (error) {
     console.error("[CharRef] Failed to save settings after saving group:", {
       groupId: currentGroupId,
@@ -72153,7 +73452,7 @@ function saveCurrentCharRefGroup(selectElement, statusDiv) {
   console.log("[CharRef] Saved group:", currentGroupId);
 }
 async function deleteCharRefGroup(selectElement, statusDiv) {
-  const settings3 = extension_settings65[extensionName];
+  const settings3 = extension_settings66[extensionName];
   const charRefGroups = settings3.charRefGroups || {};
   const currentGroupId = selectElement.value;
   if (!currentGroupId) {
@@ -72194,7 +73493,7 @@ async function deleteCharRefGroup(selectElement, statusDiv) {
     }
   }
   try {
-    saveSettingsDebounced41();
+    saveSettingsDebounced42();
   } catch (error) {
     console.error("[CharRef] Failed to save settings after deleting group:", {
       groupId: currentGroupId,
@@ -72211,7 +73510,7 @@ async function deleteCharRefGroup(selectElement, statusDiv) {
 }
 function showCharRefGroupEditorDialog() {
   const parent = document.getElementById("st-chatu8-settings") || document.body;
-  const settings3 = extension_settings65[extensionName];
+  const settings3 = extension_settings66[extensionName];
   ensureCharRefGroups();
   const backdrop = document.createElement("div");
   backdrop.className = "st-chatu8-workflow-viz-backdrop";
@@ -72284,7 +73583,7 @@ function showCharRefGroupEditorDialog() {
   console.log("[CharRef] Group editor dialog opened");
 }
 async function renderCharRefSlots(slotsContainer, groupSelect, addRefBtn) {
-  const settings3 = extension_settings65[extensionName];
+  const settings3 = extension_settings66[extensionName];
   const charRefGroups = settings3.charRefGroups || {};
   const currentGroupId = groupSelect.value;
   const currentGroup = charRefGroups[currentGroupId];
@@ -72306,7 +73605,7 @@ async function renderCharRefSlots(slotsContainer, groupSelect, addRefBtn) {
     console.error("[CharRef] Corrupted group data - references is not an array:", currentGroupId, currentGroup);
     currentGroup.references = [];
     currentGroup.updatedAt = Date.now();
-    saveSettingsDebounced41();
+    saveSettingsDebounced42();
     console.log("[CharRef] Fixed corrupted group data");
   }
   const references = currentGroup.references;
@@ -72396,7 +73695,7 @@ async function renderCharRefSlots(slotsContainer, groupSelect, addRefBtn) {
 }
 async function showCharRefImageLibrary(onSelect) {
   const parent = document.getElementById("st-chatu8-settings") || document.body;
-  const settings3 = extension_settings65[extensionName];
+  const settings3 = extension_settings66[extensionName];
   ensureCharRefPresets();
   const charRefPresets = settings3.charRefPresets || {};
   let currentPage = 1;
@@ -72596,7 +73895,7 @@ async function showCharRefImageLibrary(onSelect) {
   renderCurrentPage();
 }
 function addCharRefToGroup(groupSelect, slotsContainer, addRefBtn, statusDiv) {
-  const settings3 = extension_settings65[extensionName];
+  const settings3 = extension_settings66[extensionName];
   const charRefGroups = settings3.charRefGroups || {};
   const currentGroupId = groupSelect.value;
   const currentGroup = charRefGroups[currentGroupId];
@@ -72627,7 +73926,7 @@ function addCharRefToGroup(groupSelect, slotsContainer, addRefBtn, statusDiv) {
         });
         currentGroup.updatedAt = Date.now();
         try {
-          saveSettingsDebounced41();
+          saveSettingsDebounced42();
         } catch (error) {
           console.error("[CharRef] Failed to save settings after adding reference:", {
             imageId: imageId.substring(0, 12) + "...",
@@ -72665,7 +73964,7 @@ function addCharRefToGroup(groupSelect, slotsContainer, addRefBtn, statusDiv) {
   }
 }
 async function removeCharRefFromGroup(index, groupSelect, slotsContainer, addRefBtn, statusDiv) {
-  const settings3 = extension_settings65[extensionName];
+  const settings3 = extension_settings66[extensionName];
   const charRefGroups = settings3.charRefGroups || {};
   const currentGroupId = groupSelect.value;
   const currentGroup = charRefGroups[currentGroupId];
@@ -72685,7 +73984,7 @@ async function removeCharRefFromGroup(index, groupSelect, slotsContainer, addRef
   currentGroup.references.splice(index, 1);
   currentGroup.updatedAt = Date.now();
   try {
-    saveSettingsDebounced41();
+    saveSettingsDebounced42();
   } catch (error) {
     console.error("[CharRef] Failed to save settings after removing reference:", error);
     showCharRefStatus(statusDiv, `\u9519\u8BEF: \u4FDD\u5B58\u8BBE\u7F6E\u5931\u8D25 - ${error.message}`, "error");
@@ -72696,7 +73995,7 @@ async function removeCharRefFromGroup(index, groupSelect, slotsContainer, addRef
   console.log("[CharRef] Removed reference at index:", index);
 }
 function bindCharRefSlotEvents(slotsContainer, groupSelect, addRefBtn) {
-  const settings3 = extension_settings65[extensionName];
+  const settings3 = extension_settings66[extensionName];
   const charRefGroups = settings3.charRefGroups || {};
   const currentGroupId = groupSelect.value;
   const currentGroup = charRefGroups[currentGroupId];
@@ -72711,7 +74010,7 @@ function bindCharRefSlotEvents(slotsContainer, groupSelect, addRefBtn) {
         currentGroup.references[index].type = newType;
         currentGroup.updatedAt = Date.now();
         try {
-          saveSettingsDebounced41();
+          saveSettingsDebounced42();
           console.log("[CharRef] Updated reference type:", index, newType);
         } catch (error) {
           console.error("[CharRef] Failed to save after type change:", error);
@@ -72734,7 +74033,7 @@ function bindCharRefSlotEvents(slotsContainer, groupSelect, addRefBtn) {
         currentGroup.references[index].strength = value;
         currentGroup.updatedAt = Date.now();
         try {
-          saveSettingsDebounced41();
+          saveSettingsDebounced42();
         } catch (error) {
           console.error("[CharRef] Failed to save after strength change:", error);
         }
@@ -72754,7 +74053,7 @@ function bindCharRefSlotEvents(slotsContainer, groupSelect, addRefBtn) {
         currentGroup.references[index].strength = clampedValue;
         currentGroup.updatedAt = Date.now();
         try {
-          saveSettingsDebounced41();
+          saveSettingsDebounced42();
         } catch (error) {
           console.error("[CharRef] Failed to save after strength change:", error);
         }
@@ -72775,7 +74074,7 @@ function bindCharRefSlotEvents(slotsContainer, groupSelect, addRefBtn) {
         currentGroup.references[index].fidelity = value;
         currentGroup.updatedAt = Date.now();
         try {
-          saveSettingsDebounced41();
+          saveSettingsDebounced42();
         } catch (error) {
           console.error("[CharRef] Failed to save after fidelity change:", error);
         }
@@ -72795,7 +74094,7 @@ function bindCharRefSlotEvents(slotsContainer, groupSelect, addRefBtn) {
         currentGroup.references[index].fidelity = clampedValue;
         currentGroup.updatedAt = Date.now();
         try {
-          saveSettingsDebounced41();
+          saveSettingsDebounced42();
         } catch (error) {
           console.error("[CharRef] Failed to save after fidelity change:", error);
         }
@@ -73532,7 +74831,7 @@ var updateImageUI = (role, index, imageData) => {
   }
 };
 function initBananaUI(settingsModal) {
-  const getBananaSettings = () => extension_settings67[extensionName].banana;
+  const getBananaSettings = () => extension_settings68[extensionName].banana;
   const presetSelect = document.getElementById("st-chatu8-banana-conversation-preset-id");
   const saveButton = document.getElementById("st-chatu8-banana-conversation-save");
   const saveAsButton = document.getElementById("st-chatu8-banana-conversation-save-as");
@@ -73549,6 +74848,8 @@ function initBananaUI(settingsModal) {
   const apiUrlInput2 = document.getElementById("st-chatu8-banana-api-url");
   const apiKeyInput2 = document.getElementById("st-chatu8-banana-api-key");
   const aspectRatioSelect = document.getElementById("st-chatu8-banana-aspect-ratio");
+  const imageSizeSelect = document.getElementById("st-chatu8-banana-image-size-select");
+  const imageSizeInput = document.getElementById("st-chatu8-banana-image-size-input");
   const useGrokFormatCheckbox = document.getElementById("st-chatu8-banana-use-grok-format");
   const editPresetSelect = document.getElementById("st-chatu8-banana-edit-preset");
   const videoModelSelect = document.getElementById("st-chatu8-banana-video-model-select");
@@ -73609,7 +74910,7 @@ function initBananaUI(settingsModal) {
     if (!preset) return;
     const migrated = await migratePresetIfNeeded(preset);
     if (migrated) {
-      saveSettingsDebounced43();
+      saveSettingsDebounced44();
       console.log("[BananaUI] \u9884\u8BBE\u5DF2\u8FC1\u79FB\u5230\u65B0\u683C\u5F0F");
     }
     fixedPromptInput.value = preset.fixedPrompt || "";
@@ -73679,7 +74980,7 @@ function initBananaUI(settingsModal) {
       postfixPrompt: postfixPromptInput.value,
       conversation
     };
-    saveSettingsDebounced43();
+    saveSettingsDebounced44();
     toastr.success(`\u9884\u8BBE "${presetId}" \u5DF2\u4FDD\u5B58!`);
   });
   saveAsButton.addEventListener("click", async () => {
@@ -73723,7 +75024,7 @@ function initBananaUI(settingsModal) {
     populateDropdown();
     populateEditPresetDropdown();
     populateVideoPresetDropdown();
-    saveSettingsDebounced43();
+    saveSettingsDebounced44();
     toastr.success(`\u65B0\u9884\u8BBE "${newPresetName}" \u5DF2\u521B\u5EFA\u5E76\u52A0\u8F7D!`);
   });
   newButton.addEventListener("click", async () => {
@@ -73744,7 +75045,7 @@ function initBananaUI(settingsModal) {
     populateEditPresetDropdown();
     populateVideoPresetDropdown();
     await loadPreset(newPresetName);
-    saveSettingsDebounced43();
+    saveSettingsDebounced44();
     toastr.success(`\u7A7A\u9884\u8BBE "${newPresetName}" \u5DF2\u521B\u5EFA!`);
   });
   renameButton.addEventListener("click", async () => {
@@ -73771,7 +75072,7 @@ function initBananaUI(settingsModal) {
     populateDropdown();
     populateEditPresetDropdown();
     populateVideoPresetDropdown();
-    saveSettingsDebounced43();
+    saveSettingsDebounced44();
     toastr.success(`\u9884\u8BBE\u5DF2\u91CD\u547D\u540D\u4E3A "${newName}"`);
   });
   deleteButton.addEventListener("click", async () => {
@@ -73794,7 +75095,7 @@ function initBananaUI(settingsModal) {
     populateEditPresetDropdown();
     populateVideoPresetDropdown();
     await loadPreset(newPresetId);
-    saveSettingsDebounced43();
+    saveSettingsDebounced44();
     toastr.success(`\u9884\u8BBE "${presetId}" \u5DF2\u5220\u9664\u3002`);
   });
   exportButton.addEventListener("click", async () => {
@@ -73894,7 +75195,7 @@ function initBananaUI(settingsModal) {
           populateEditPresetDropdown();
           populateVideoPresetDropdown();
           await loadPreset(presetName);
-          saveSettingsDebounced43();
+          saveSettingsDebounced44();
           toastr.success(`\u9884\u8BBE "${presetName}" \u5DF2\u6210\u529F\u5BFC\u5165\u5E76\u52A0\u8F7D\uFF01`);
         } catch (error) {
           toastr.error(`\u5BFC\u5165\u5931\u8D25: ${error.message}`);
@@ -73907,11 +75208,11 @@ function initBananaUI(settingsModal) {
   });
   apiUrlInput2.addEventListener("input", () => {
     getBananaSettings().apiUrl = apiUrlInput2.value;
-    saveSettingsDebounced43();
+    saveSettingsDebounced44();
   });
   apiKeyInput2.addEventListener("input", () => {
     getBananaSettings().apiKey = apiKeyInput2.value;
-    saveSettingsDebounced43();
+    saveSettingsDebounced44();
   });
   const apiKeyToggle = document.getElementById("st-chatu8-banana-api-key-toggle");
   if (apiKeyToggle) {
@@ -73928,42 +75229,60 @@ function initBananaUI(settingsModal) {
   }
   modelSelect2.addEventListener("change", () => {
     getBananaSettings().model = modelSelect2.value;
-    saveSettingsDebounced43();
+    saveSettingsDebounced44();
     updateVisibility();
   });
   if (editModelSelect) {
     editModelSelect.addEventListener("change", () => {
       getBananaSettings().editModel = editModelSelect.value;
-      saveSettingsDebounced43();
+      saveSettingsDebounced44();
     });
   }
   if (videoModelSelect) {
     videoModelSelect.addEventListener("change", () => {
       getBananaSettings().videoModel = videoModelSelect.value;
-      saveSettingsDebounced43();
+      saveSettingsDebounced44();
     });
   }
   aspectRatioSelect.addEventListener("change", () => {
     getBananaSettings().aspectRatio = aspectRatioSelect.value;
-    saveSettingsDebounced43();
+    saveSettingsDebounced44();
   });
+  if (imageSizeSelect && imageSizeInput) {
+    imageSizeSelect.addEventListener("change", () => {
+      if (imageSizeSelect.value === "__custom__") {
+        imageSizeInput.focus();
+        return;
+      }
+      imageSizeInput.value = imageSizeSelect.value;
+      getBananaSettings().imageSize = imageSizeSelect.value;
+      saveSettingsDebounced44();
+    });
+    imageSizeInput.addEventListener("input", () => {
+      const val = imageSizeInput.value.trim();
+      getBananaSettings().imageSize = val;
+      const matched = Array.from(imageSizeSelect.options).some((opt) => opt.value === val);
+      imageSizeSelect.value = matched ? val : "__custom__";
+      saveSettingsDebounced44();
+    });
+  }
   if (useGrokFormatCheckbox) {
     useGrokFormatCheckbox.addEventListener("change", () => {
       getBananaSettings().useGrokFormat = useGrokFormatCheckbox.checked ? "true" : "false";
-      saveSettingsDebounced43();
+      saveSettingsDebounced44();
     });
   }
   if (editPresetSelect) {
     editPresetSelect.addEventListener("change", () => {
       getBananaSettings().editPresetId = editPresetSelect.value;
-      saveSettingsDebounced43();
+      saveSettingsDebounced44();
       toastr.success(`\u4FEE\u56FE\u9884\u8BBE\u5DF2\u8BBE\u7F6E\u4E3A: "${editPresetSelect.value}"`);
     });
   }
   if (videoPresetSelect) {
     videoPresetSelect.addEventListener("change", () => {
       getBananaSettings().videoPresetId = videoPresetSelect.value;
-      saveSettingsDebounced43();
+      saveSettingsDebounced44();
       toastr.success(`\u89C6\u9891\u9884\u8BBE\u5DF2\u8BBE\u7F6E\u4E3A: "${videoPresetSelect.value}"`);
     });
   }
@@ -73982,7 +75301,7 @@ function initBananaUI(settingsModal) {
         fetchModelsButton2.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
         let baseUrl = apiUrl.replace(/\/$/, "");
         let directModelsUrl = baseUrl + "/models";
-        const client = extension_settings67[extensionName].client;
+        const client = extension_settings68[extensionName].client;
         let response;
         if (client === "jiuguan") {
           let proxyBaseUrl = baseUrl;
@@ -74063,7 +75382,7 @@ function initBananaUI(settingsModal) {
         } else {
           modelSelect2.value = models[0].id;
           getBananaSettings().model = models[0].id;
-          saveSettingsDebounced43();
+          saveSettingsDebounced44();
         }
         if (editModelSelect) {
           if (models.some((m) => m.id === currentEditModel)) {
@@ -74071,7 +75390,7 @@ function initBananaUI(settingsModal) {
           } else {
             editModelSelect.value = models[0].id;
             getBananaSettings().editModel = models[0].id;
-            saveSettingsDebounced43();
+            saveSettingsDebounced44();
           }
         }
         if (videoModelSelect) {
@@ -74080,7 +75399,7 @@ function initBananaUI(settingsModal) {
           } else {
             videoModelSelect.value = models[0].id;
             getBananaSettings().videoModel = models[0].id;
-            saveSettingsDebounced43();
+            saveSettingsDebounced44();
           }
         }
         toastr.success(`\u6210\u529F\u83B7\u53D6 ${models.length} \u4E2A\u6A21\u578B`);
@@ -74124,6 +75443,12 @@ function initBananaUI(settingsModal) {
     editModelSelect.value = savedEditModel;
   }
   aspectRatioSelect.value = bananaSettings.aspectRatio || "1:1";
+  if (imageSizeSelect && imageSizeInput) {
+    const savedSize = bananaSettings.imageSize || "1024x1024";
+    imageSizeInput.value = savedSize;
+    const matchedSize = Array.from(imageSizeSelect.options).some((opt) => opt.value === savedSize);
+    imageSizeSelect.value = matchedSize ? savedSize : "__custom__";
+  }
   if (useGrokFormatCheckbox) {
     useGrokFormatCheckbox.checked = String(bananaSettings.useGrokFormat) === "true";
   }
@@ -74146,7 +75471,7 @@ function initBananaUI(settingsModal) {
   initBananaPromptReplace();
 }
 function initBananaPromptReplace() {
-  const getBananaSettings = () => extension_settings67[extensionName].banana;
+  const getBananaSettings = () => extension_settings68[extensionName].banana;
   const presetSelect = document.getElementById("st-chatu8-banana-prompt-replace-id");
   const textarea = document.getElementById("st-chatu8-banana-prompt-replace-text");
   const saveBtn = document.getElementById("st-chatu8-banana-prompt-replace-save");
@@ -74203,7 +75528,7 @@ function initBananaPromptReplace() {
       }
     }
     loadReplacePreset(presetSelect.value);
-    saveSettingsDebounced43();
+    saveSettingsDebounced44();
     toastr.success(`\u5DF2\u52A0\u8F7D\u66FF\u6362\u89C4\u5219: "${presetSelect.value}"`);
   });
   textarea.addEventListener("input", checkUnsaved);
@@ -74216,7 +75541,7 @@ function initBananaPromptReplace() {
     const confirmed = await stylishConfirm(`\u786E\u5B9A\u8981\u8986\u76D6\u5F53\u524D\u66FF\u6362\u89C4\u5219 "${presetId}" \u5417\uFF1F`);
     if (!confirmed) return;
     bananaSettings.prompt_replace[presetId] = { text: textarea.value };
-    saveSettingsDebounced43();
+    saveSettingsDebounced44();
     if (unsavedWarning) unsavedWarning.style.display = "none";
     toastr.success(`\u66FF\u6362\u89C4\u5219 "${presetId}" \u5DF2\u4FDD\u5B58!`);
   });
@@ -74233,7 +75558,7 @@ function initBananaPromptReplace() {
     bananaSettings.prompt_replace[newName] = { text: textarea.value };
     bananaSettings.prompt_replace_id = newName;
     populateReplaceDropdown();
-    saveSettingsDebounced43();
+    saveSettingsDebounced44();
     if (unsavedWarning) unsavedWarning.style.display = "none";
     toastr.success(`\u66FF\u6362\u89C4\u5219 "${newName}" \u5DF2\u4FDD\u5B58!`);
   });
@@ -74248,7 +75573,7 @@ function initBananaPromptReplace() {
     bananaSettings.prompt_replace_id = newName;
     populateReplaceDropdown();
     loadReplacePreset(newName);
-    saveSettingsDebounced43();
+    saveSettingsDebounced44();
     if (unsavedWarning) unsavedWarning.style.display = "none";
     toastr.success(`\u7A7A\u66FF\u6362\u89C4\u5219 "${newName}" \u5DF2\u521B\u5EFA!`);
   });
@@ -74272,7 +75597,7 @@ function initBananaPromptReplace() {
     delete bananaSettings.prompt_replace[currentName];
     bananaSettings.prompt_replace_id = newName;
     populateReplaceDropdown();
-    saveSettingsDebounced43();
+    saveSettingsDebounced44();
     toastr.success(`\u66FF\u6362\u89C4\u5219\u5DF2\u91CD\u547D\u540D\u4E3A "${newName}"`);
   });
   deleteBtn.addEventListener("click", async () => {
@@ -74287,7 +75612,7 @@ function initBananaPromptReplace() {
     bananaSettings.prompt_replace_id = "\u9ED8\u8BA4";
     populateReplaceDropdown();
     loadReplacePreset("\u9ED8\u8BA4");
-    saveSettingsDebounced43();
+    saveSettingsDebounced44();
     toastr.success(`\u66FF\u6362\u89C4\u5219 "${presetId}" \u5DF2\u5220\u9664\u3002`);
   });
   exportBtn.addEventListener("click", () => {
@@ -74331,7 +75656,7 @@ function initBananaPromptReplace() {
             }
           }
           populateReplaceDropdown();
-          saveSettingsDebounced43();
+          saveSettingsDebounced44();
           toastr.success(`\u6210\u529F\u5BFC\u5165 ${Object.keys(importedData).length} \u4E2A\u66FF\u6362\u89C4\u5219\uFF0C\u5176\u4E2D ${newCount} \u4E2A\u662F\u5168\u65B0\u7684\u3002`);
         } catch (err) {
           toastr.error("\u5BFC\u5165\u5931\u8D25\uFF0C\u8BF7\u786E\u4FDD\u6587\u4EF6\u662F\u6B63\u786E\u7684 JSON \u683C\u5F0F\u3002");
@@ -74388,7 +75713,7 @@ function parseTemplate(pattern) {
   return pattern.map((row) => row.split("").map((c) => c === "1" ? 1 : 0));
 }
 function createGestureCanvas(doc) {
-  if (isMobile() && !extension_settings68[extensionName].gestureShowTrail) return;
+  if (isMobile() && !extension_settings69[extensionName].gestureShowTrail) return;
   const existing = doc.getElementById("gesture-canvas");
   if (existing) existing.remove();
   gestureCanvas = doc.createElement("canvas");
@@ -74410,7 +75735,7 @@ function createGestureCanvas(doc) {
   gestureCtx = gestureCanvas.getContext("2d");
 }
 function removeGestureCanvas() {
-  if (isMobile() && !extension_settings68[extensionName].gestureShowTrail) return;
+  if (isMobile() && !extension_settings69[extensionName].gestureShowTrail) return;
   if (gestureCanvas && gestureCanvas.parentNode) {
     gestureCanvas.remove();
   }
@@ -74418,15 +75743,15 @@ function removeGestureCanvas() {
   gestureCtx = null;
 }
 function drawGestureTrail() {
-  if (isMobile() && !extension_settings68[extensionName].gestureShowTrail) return;
-  if (!gestureCtx || gesturePoints.length < 2 || !extension_settings68[extensionName].gestureShowTrail) return;
+  if (isMobile() && !extension_settings69[extensionName].gestureShowTrail) return;
+  if (!gestureCtx || gesturePoints.length < 2 || !extension_settings69[extensionName].gestureShowTrail) return;
   gestureCtx.clearRect(0, 0, gestureCanvas.width, gestureCanvas.height);
   gestureCtx.beginPath();
   gestureCtx.moveTo(gesturePoints[0].x, gesturePoints[0].y);
   for (let i = 1; i < gesturePoints.length; i++) {
     gestureCtx.lineTo(gesturePoints[i].x, gesturePoints[i].y);
   }
-  const trailColor = extension_settings68[extensionName].gestureTrailColor ?? "#00ff00";
+  const trailColor = extension_settings69[extensionName].gestureTrailColor ?? "#00ff00";
   gestureCtx.strokeStyle = trailColor;
   gestureCtx.lineWidth = 4;
   gestureCtx.lineCap = "round";
@@ -74546,11 +75871,11 @@ function matchGesture(points) {
   const gestureTemplates = {
     "gesture1": {
       name: "\u624B\u52BF\u4E00",
-      pattern: extension_settings68[extensionName].gesture1
+      pattern: extension_settings69[extensionName].gesture1
     },
     "gesture2": {
       name: "\u624B\u52BF\u4E8C",
-      pattern: extension_settings68[extensionName].gesture2
+      pattern: extension_settings69[extensionName].gesture2
     }
   };
   const results = [];
@@ -74577,7 +75902,7 @@ function matchGesture(points) {
   results.sort((a, b) => b.score - a.score);
   const best = results[0];
   best.allResults = results.slice(0, 5);
-  const threshold = (extension_settings68[extensionName].gestureMatchThreshold ?? 60) / 100;
+  const threshold = (extension_settings69[extensionName].gestureMatchThreshold ?? 60) / 100;
   if (best.score < threshold) {
     return {
       key: "unknown",
@@ -74600,8 +75925,8 @@ function getGestureEmoji(key) {
   return emojis[key] || "\u2753";
 }
 function showGestureResult(doc, result, userGrid, targetElement) {
-  if (isMobile() && !extension_settings68[extensionName].gestureShowTrail) return;
-  if (!extension_settings68[extensionName].gestureShowRecognition) {
+  if (isMobile() && !extension_settings69[extensionName].gestureShowTrail) return;
+  if (!extension_settings69[extensionName].gestureShowRecognition) {
     console.log("[\u624B\u52BF] \u5DF2\u7981\u7528\u8BC6\u522B\u7ED3\u679C\u5C55\u793A\u3002");
     return;
   }
@@ -74644,8 +75969,8 @@ function showGestureResult(doc, result, userGrid, targetElement) {
     (r, i) => `<span style="color: ${i === 0 ? "#0f0" : "#666"}">${i + 1}. ${r.name} (${Math.round(r.score * 100)}%)</span>`
   ).join("<br>");
   const gestureTemplates = {
-    "gesture1": { pattern: extension_settings68[extensionName].gesture1 },
-    "gesture2": { pattern: extension_settings68[extensionName].gesture2 }
+    "gesture1": { pattern: extension_settings69[extensionName].gesture1 },
+    "gesture2": { pattern: extension_settings69[extensionName].gesture2 }
   };
   resultDiv.innerHTML = `
         <div style="font-size: 40px; margin-bottom: 10px;">
@@ -74690,8 +76015,8 @@ function showGestureResult(doc, result, userGrid, targetElement) {
   }, 3500);
 }
 function showGestureHint(doc, text = "\u{1F3AF} \u7ED8\u5236\u624B\u52BF...") {
-  if (isMobile() && !extension_settings68[extensionName].gestureShowTrail) return;
-  if (!extension_settings68[extensionName].gestureShowTrail) return;
+  if (isMobile() && !extension_settings69[extensionName].gestureShowTrail) return;
+  if (!extension_settings69[extensionName].gestureShowTrail) return;
   const existing = doc.getElementById("gesture-hint");
   if (existing) existing.remove();
   const hint = doc.createElement("div");
@@ -74843,7 +76168,7 @@ function initDocumentGestureEvents(doc = document) {
   doc._gestureEventsInitialized = true;
   const handlers = {
     mousedown: (e) => {
-      if (!extension_settings68[extensionName].gestureEnabled) return;
+      if (!extension_settings69[extensionName].gestureEnabled) return;
       if (isMobile() || !isRecording && e.button !== 2) return;
       const mesText = e.target.closest('.mes_text[data-gesture-bindied="true"]');
       let targetEl = mesText;
@@ -74907,7 +76232,7 @@ function initDocumentGestureEvents(doc = document) {
       }
     },
     touchstart: (e) => {
-      if (!extension_settings68[extensionName].gestureEnabled) return;
+      if (!extension_settings69[extensionName].gestureEnabled) return;
       if (!isMobile() || e.touches.length !== 1) return;
       const mesText = e.target.closest('.mes_text[data-gesture-bindied="true"]');
       let targetEl = mesText;
@@ -75440,7 +76765,7 @@ function handleDoubleClick(e, targetElement, clickPoint) {
     timer.end("\u5DF2\u5FFD\u7565 - \u5F39\u7A97\u5DF2\u5B58\u5728");
     return;
   }
-  const clickTriggerEnabled = extension_settings73[extensionName]?.clickTriggerEnabled;
+  const clickTriggerEnabled = extension_settings74[extensionName]?.clickTriggerEnabled;
   if (!clickTriggerEnabled) {
     debugBranch("handleDoubleClick", "\u70B9\u51FB\u89E6\u53D1\u529F\u80FD\u672A\u542F\u7528", true, {
       \u6761\u4EF6: "clickTriggerEnabled",
@@ -76407,17 +77732,17 @@ function collectRegexEntriesFromUI() {
 function saveRegexEntriesToProfile() {
   const profileName = profileSelect2.val();
   if (!profileName) return;
-  const profiles = extension_settings74[extensionName].regex_profiles;
+  const profiles = extension_settings75[extensionName].regex_profiles;
   if (!profiles[profileName]) {
     profiles[profileName] = {};
   }
   profiles[profileName].regexEntries = collectRegexEntriesFromUI();
-  saveSettingsDebounced47();
+  saveSettingsDebounced48();
 }
 function loadRegexEntriesFromProfile() {
   const profileName = profileSelect2.val();
   if (!profileName) return;
-  const profiles = extension_settings74[extensionName].regex_profiles;
+  const profiles = extension_settings75[extensionName].regex_profiles;
   const profile = profiles[profileName];
   console.log("[st-chatu8] \u52A0\u8F7D\u6B63\u5219\u914D\u7F6E:", {
     \u914D\u7F6E\u540D\u79F0: profileName,
@@ -76559,8 +77884,8 @@ function bindRegexEntryEvents() {
   });
 }
 function loadRegexProfiles() {
-  const profiles = extension_settings74[extensionName].regex_profiles || {};
-  const currentProfileName = extension_settings74[extensionName].current_regex_profile;
+  const profiles = extension_settings75[extensionName].regex_profiles || {};
+  const currentProfileName = extension_settings75[extensionName].current_regex_profile;
   profileSelect2.empty();
   Object.keys(profiles).forEach((name) => {
     const option = new Option(name, name, name === currentProfileName, name === currentProfileName);
@@ -76573,13 +77898,13 @@ function loadRegexProfiles() {
 function onProfileSelectChange2() {
   const profileName = $(this).val();
   if (!profileName) return;
-  const profiles = extension_settings74[extensionName].regex_profiles;
+  const profiles = extension_settings75[extensionName].regex_profiles;
   const profile = profiles[profileName];
   if (profile) {
     beforeAfterEditor.val(profile.beforeAfterRegex || "");
     textEditor.val(profile.textRegex || "");
-    extension_settings74[extensionName].current_regex_profile = profileName;
-    saveSettingsDebounced47();
+    extension_settings75[extensionName].current_regex_profile = profileName;
+    saveSettingsDebounced48();
     loadRegexEntriesFromProfile();
   }
 }
@@ -76589,20 +77914,20 @@ function onSaveProfileClick2() {
     toastr.warning("\u6CA1\u6709\u9009\u4E2D\u7684\u914D\u7F6E\u3002");
     return;
   }
-  const profiles = extension_settings74[extensionName].regex_profiles;
+  const profiles = extension_settings75[extensionName].regex_profiles;
   const existingEntries = profiles[profileName]?.regexEntries || [];
   profiles[profileName] = {
     beforeAfterRegex: beforeAfterEditor.val(),
     textRegex: textEditor.val(),
     regexEntries: existingEntries
   };
-  saveSettingsDebounced47();
+  saveSettingsDebounced48();
   toastr.success(`\u914D\u7F6E "${profileName}" \u5DF2\u4FDD\u5B58\u3002`);
 }
 function onNewProfileClick2() {
   stylInput("\u8BF7\u8F93\u5165\u65B0\u7684\u6B63\u5219\u914D\u7F6E\u540D\u79F0").then((newName) => {
     if (!newName || newName.trim() === "") return;
-    const profiles = extension_settings74[extensionName].regex_profiles;
+    const profiles = extension_settings75[extensionName].regex_profiles;
     if (profiles[newName]) {
       toastr.error(`\u914D\u7F6E "${newName}" \u5DF2\u5B58\u5728\u3002`);
       return;
@@ -76612,8 +77937,8 @@ function onNewProfileClick2() {
       textRegex: "",
       regexEntries: []
     };
-    extension_settings74[extensionName].current_regex_profile = newName;
-    saveSettingsDebounced47();
+    extension_settings75[extensionName].current_regex_profile = newName;
+    saveSettingsDebounced48();
     loadRegexProfiles();
     toastr.success(`\u7A7A\u914D\u7F6E "${newName}" \u5DF2\u521B\u5EFA\u5E76\u9009\u4E2D\u3002`);
   });
@@ -76621,7 +77946,7 @@ function onNewProfileClick2() {
 function onSaveAsProfileClick() {
   stylInput("\u8BF7\u8F93\u5165\u53E6\u5B58\u4E3A\u7684\u914D\u7F6E\u540D\u79F0").then((newName) => {
     if (!newName || newName.trim() === "") return;
-    const profiles = extension_settings74[extensionName].regex_profiles;
+    const profiles = extension_settings75[extensionName].regex_profiles;
     if (profiles[newName]) {
       toastr.error(`\u914D\u7F6E "${newName}" \u5DF2\u5B58\u5728\u3002`);
       return;
@@ -76633,8 +77958,8 @@ function onSaveAsProfileClick() {
       textRegex: currentProfile.textRegex || "",
       regexEntries: JSON.parse(JSON.stringify(currentProfile.regexEntries || []))
     };
-    extension_settings74[extensionName].current_regex_profile = newName;
-    saveSettingsDebounced47();
+    extension_settings75[extensionName].current_regex_profile = newName;
+    saveSettingsDebounced48();
     loadRegexProfiles();
     toastr.success(`\u914D\u7F6E\u5DF2\u53E6\u5B58\u4E3A "${newName}"\u3002`);
   });
@@ -76651,15 +77976,15 @@ function onRenameProfileClick() {
   }
   stylInput("\u8BF7\u8F93\u5165\u65B0\u7684\u914D\u7F6E\u540D\u79F0", currentName).then((newName) => {
     if (newName && newName.trim() !== "" && newName !== currentName) {
-      const profiles = extension_settings74[extensionName].regex_profiles;
+      const profiles = extension_settings75[extensionName].regex_profiles;
       if (profiles[newName]) {
         toastr.error(`\u914D\u7F6E "${newName}" \u5DF2\u5B58\u5728\uFF0C\u8BF7\u6362\u4E00\u4E2A\u540D\u79F0\u3002`);
         return;
       }
       profiles[newName] = profiles[currentName];
       delete profiles[currentName];
-      extension_settings74[extensionName].current_regex_profile = newName;
-      saveSettingsDebounced47();
+      extension_settings75[extensionName].current_regex_profile = newName;
+      saveSettingsDebounced48();
       loadRegexProfiles();
       toastr.success(`\u914D\u7F6E\u5DF2\u91CD\u547D\u540D\u4E3A "${newName}"`);
     }
@@ -76671,14 +77996,14 @@ function onDeleteProfileClick2() {
     toastr.warning("\u6CA1\u6709\u9009\u4E2D\u7684\u914D\u7F6E\u3002");
     return;
   }
-  if (Object.keys(extension_settings74[extensionName].regex_profiles).length <= 1) {
+  if (Object.keys(extension_settings75[extensionName].regex_profiles).length <= 1) {
     toastr.error("\u4E0D\u80FD\u5220\u9664\u6700\u540E\u4E00\u4E2A\u914D\u7F6E\u3002");
     return;
   }
   if (confirm(`\u4F60\u786E\u5B9A\u8981\u5220\u9664\u914D\u7F6E "${profileName}" \u5417\uFF1F`)) {
-    delete extension_settings74[extensionName].regex_profiles[profileName];
-    extension_settings74[extensionName].current_regex_profile = Object.keys(extension_settings74[extensionName].regex_profiles)[0];
-    saveSettingsDebounced47();
+    delete extension_settings75[extensionName].regex_profiles[profileName];
+    extension_settings75[extensionName].current_regex_profile = Object.keys(extension_settings75[extensionName].regex_profiles)[0];
+    saveSettingsDebounced48();
     loadRegexProfiles();
     toastr.success(`\u914D\u7F6E "${profileName}" \u5DF2\u5220\u9664\u3002`);
   }
@@ -76689,7 +78014,7 @@ function onExportProfileClick2() {
     toastr.warning("\u6CA1\u6709\u9009\u4E2D\u7684\u914D\u7F6E\u53EF\u5BFC\u51FA\u3002");
     return;
   }
-  const profile = extension_settings74[extensionName].regex_profiles[profileName];
+  const profile = extension_settings75[extensionName].regex_profiles[profileName];
   const exportData = { [profileName]: profile };
   const blob = new Blob([JSON.stringify(exportData, null, 4)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
@@ -76715,11 +78040,11 @@ function onImportProfileClick2() {
           let importedCount = 0;
           for (const name in importedProfiles) {
             if (Object.prototype.hasOwnProperty.call(importedProfiles, name)) {
-              extension_settings74[extensionName].regex_profiles[name] = importedProfiles[name];
+              extension_settings75[extensionName].regex_profiles[name] = importedProfiles[name];
               importedCount++;
             }
           }
-          saveSettingsDebounced47();
+          saveSettingsDebounced48();
           loadRegexProfiles();
           toastr.success(`\u6210\u529F\u5BFC\u5165 ${importedCount} \u4E2A\u914D\u7F6E\u3002`);
         } catch (error) {
@@ -77077,7 +78402,7 @@ async function onTestRegexClick(requestId, options = {}) {
     } else {
       debugBranch("onTestRegexClick", "\u524D\u540E\u6B63\u5219\u4E3A\u7A7A\uFF0C\u8DF3\u8FC7", true);
     }
-    const settings3 = extension_settings74[extensionName];
+    const settings3 = extension_settings75[extensionName];
     const startTag = settings3?.startTag || "image###";
     const endTag = settings3?.endTag || "###";
     const escapedStart = startTag.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -77186,7 +78511,7 @@ async function onTestRegexClick(requestId, options = {}) {
     addLog(`[Regex \u5904\u7406\u540E\u6587\u672C]
 ${final_text}`);
     const isAutomatedCall = !!requestId;
-    const isTestMode = extension_settings74[extensionName].regexTestMode;
+    const isTestMode = extension_settings75[extensionName].regexTestMode;
     if (isAutomatedCall || !isTestMode) {
       debugBranch("onTestRegexClick", "\u53D1\u9001\u6B63\u5219\u5904\u7406\u7ED3\u679C", true, {
         \u662F\u81EA\u52A8\u8C03\u7528: isAutomatedCall,
@@ -77210,13 +78535,13 @@ ${final_text}`);
   }
 }
 function onRegexTestModeChange() {
-  extension_settings74[extensionName].regexTestMode = $(this).is(":checked");
-  saveSettingsDebounced47();
+  extension_settings75[extensionName].regexTestMode = $(this).is(":checked");
+  saveSettingsDebounced48();
 }
 function onGestureEnabledChange() {
   const enabled = $(this).is(":checked");
-  extension_settings74[extensionName].gestureEnabled = enabled;
-  saveSettingsDebounced47();
+  extension_settings75[extensionName].gestureEnabled = enabled;
+  saveSettingsDebounced48();
   if (enabled) {
     initGestureMonitor();
   } else {
@@ -77225,8 +78550,8 @@ function onGestureEnabledChange() {
 }
 function onClickTriggerEnabledChange() {
   const enabled = $(this).is(":checked");
-  extension_settings74[extensionName].clickTriggerEnabled = enabled;
-  saveSettingsDebounced47();
+  extension_settings75[extensionName].clickTriggerEnabled = enabled;
+  saveSettingsDebounced48();
   if (enabled) {
     initClickTriggerMonitor();
   } else {
@@ -77234,34 +78559,34 @@ function onClickTriggerEnabledChange() {
   }
 }
 function onGestureShowRecognitionChange() {
-  extension_settings74[extensionName].gestureShowRecognition = $(this).is(":checked");
-  saveSettingsDebounced47();
+  extension_settings75[extensionName].gestureShowRecognition = $(this).is(":checked");
+  saveSettingsDebounced48();
 }
 function onGestureShowTrailChange() {
-  extension_settings74[extensionName].gestureShowTrail = $(this).is(":checked");
-  saveSettingsDebounced47();
+  extension_settings75[extensionName].gestureShowTrail = $(this).is(":checked");
+  saveSettingsDebounced48();
 }
 function onGestureTrailColorChange() {
-  extension_settings74[extensionName].gestureTrailColor = $(this).val();
-  saveSettingsDebounced47();
+  extension_settings75[extensionName].gestureTrailColor = $(this).val();
+  saveSettingsDebounced48();
 }
 function onImageGenDemandEnabledChange() {
-  extension_settings74[extensionName].imageGenDemandEnabled = $(this).is(":checked");
-  saveSettingsDebounced47();
+  extension_settings75[extensionName].imageGenDemandEnabled = $(this).is(":checked");
+  saveSettingsDebounced48();
 }
 function onGestureMatchThresholdChange() {
   const value = $(this).val();
   gestureMatchThresholdValue.text(`${value}%`);
-  extension_settings74[extensionName].gestureMatchThreshold = parseInt(value, 10);
-  saveSettingsDebounced47();
+  extension_settings75[extensionName].gestureMatchThreshold = parseInt(value, 10);
+  saveSettingsDebounced48();
 }
 function onDefaultCharDemandChange() {
-  extension_settings74[extensionName].defaultCharDemand = $(this).val();
-  saveSettingsDebounced47();
+  extension_settings75[extensionName].defaultCharDemand = $(this).val();
+  saveSettingsDebounced48();
 }
 function onDefaultImageDemandChange() {
-  extension_settings74[extensionName].defaultImageDemand = $(this).val();
-  saveSettingsDebounced47();
+  extension_settings75[extensionName].defaultImageDemand = $(this).val();
+  saveSettingsDebounced48();
 }
 function initRegexSettings() {
   profileSelect2 = $("#ch-regex-profile-select");
@@ -77280,18 +78605,18 @@ function initRegexSettings() {
   imageGenDemandEnabledSwitch = $("#ch-image-gen-demand-enabled");
   defaultCharDemandTextarea = $("#ch-default-char-demand");
   defaultImageDemandTextarea = $("#ch-default-image-demand");
-  regexTestModeSwitch.prop("checked", extension_settings74[extensionName].regexTestMode ?? false);
-  gestureEnabledSwitch.prop("checked", extension_settings74[extensionName].gestureEnabled ?? false);
-  clickTriggerEnabledSwitch.prop("checked", extension_settings74[extensionName].clickTriggerEnabled ?? true);
-  gestureShowRecognitionSwitch.prop("checked", extension_settings74[extensionName].gestureShowRecognition ?? true);
-  gestureShowTrailSwitch.prop("checked", extension_settings74[extensionName].gestureShowTrail ?? true);
-  gestureTrailColorPicker.val(extension_settings74[extensionName].gestureTrailColor ?? "#00ff00");
-  const threshold = extension_settings74[extensionName].gestureMatchThreshold ?? 60;
+  regexTestModeSwitch.prop("checked", extension_settings75[extensionName].regexTestMode ?? false);
+  gestureEnabledSwitch.prop("checked", extension_settings75[extensionName].gestureEnabled ?? false);
+  clickTriggerEnabledSwitch.prop("checked", extension_settings75[extensionName].clickTriggerEnabled ?? true);
+  gestureShowRecognitionSwitch.prop("checked", extension_settings75[extensionName].gestureShowRecognition ?? true);
+  gestureShowTrailSwitch.prop("checked", extension_settings75[extensionName].gestureShowTrail ?? true);
+  gestureTrailColorPicker.val(extension_settings75[extensionName].gestureTrailColor ?? "#00ff00");
+  const threshold = extension_settings75[extensionName].gestureMatchThreshold ?? 60;
   gestureMatchThresholdSlider.val(threshold);
   gestureMatchThresholdValue.text(`${threshold}%`);
-  imageGenDemandEnabledSwitch.prop("checked", extension_settings74[extensionName].imageGenDemandEnabled ?? false);
-  defaultCharDemandTextarea.val(extension_settings74[extensionName].defaultCharDemand ?? "");
-  defaultImageDemandTextarea.val(extension_settings74[extensionName].defaultImageDemand ?? "");
+  imageGenDemandEnabledSwitch.prop("checked", extension_settings75[extensionName].imageGenDemandEnabled ?? false);
+  defaultCharDemandTextarea.val(extension_settings75[extensionName].defaultCharDemand ?? "");
+  defaultImageDemandTextarea.val(extension_settings75[extensionName].defaultImageDemand ?? "");
   $("#ch-new-regex-profile-button").on("click", onNewProfileClick2);
   $("#ch-rename-regex-profile-button").on("click", onRenameProfileClick);
   $("#ch-save-regex-profile-button").on("click", onSaveProfileClick2);
@@ -77336,8 +78661,8 @@ async function onRecordGestureClick(gestureKey) {
   try {
     const newPattern = await recordGesture();
     if (newPattern) {
-      extension_settings74[extensionName][gestureKey] = newPattern;
-      saveSettingsDebounced47();
+      extension_settings75[extensionName][gestureKey] = newPattern;
+      saveSettingsDebounced48();
       toastr.success(`\u624B\u52BF "${gestureKey === "gesture1" ? "\u4E00" : "\u4E8C"}" \u5DF2\u66F4\u65B0\u3002`);
     }
   } catch (error) {
@@ -77346,7 +78671,7 @@ async function onRecordGestureClick(gestureKey) {
   }
 }
 function getRegexTestStatus() {
-  const testMode = extension_settings74[extensionName].regexTestMode ?? false;
+  const testMode = extension_settings75[extensionName].regexTestMode ?? false;
   const live = (cached, selector) => {
     if (cached && cached.length && cached[0] && $.contains(document, cached[0])) {
       return cached;
@@ -77371,8 +78696,8 @@ function getRegexTestStatus() {
     findRegex: (e.findRegex || "").substring(0, 60),
     replaceString: (e.replaceString || "").substring(0, 60)
   }));
-  const gestureEnabled = extension_settings74[extensionName].gestureEnabled ?? false;
-  const clickTriggerEnabled = extension_settings74[extensionName].clickTriggerEnabled ?? false;
+  const gestureEnabled = extension_settings75[extensionName].gestureEnabled ?? false;
+  const clickTriggerEnabled = extension_settings75[extensionName].clickTriggerEnabled ?? false;
   return {
     testMode,
     currentProfile,
@@ -77520,7 +78845,7 @@ init_knowledgeBase();
 
 
 function getKBConfig() {
-  const settings3 = extension_settings79[extensionName];
+  const settings3 = extension_settings80[extensionName];
   if (!settings3.knowledgeBaseConfig) {
     settings3.knowledgeBaseConfig = {
       enabled: false,
@@ -77535,7 +78860,7 @@ function getKBConfig() {
   return settings3.knowledgeBaseConfig;
 }
 function saveKBConfig() {
-  saveSettingsDebounced50();
+  saveSettingsDebounced51();
 }
 var kbWorldList = [];
 var kbActiveWorld = null;
@@ -78064,12 +79389,12 @@ function displayKBTestResult(container, knowledgeBaseData, triggerText) {
       const isConstant = entry.constant === true;
       const keys = Array.isArray(entry.key) ? entry.key : entry.key ? [entry.key] : [];
       const keyDisplay = keys.length > 0 ? keys.slice(0, 5).join(", ") + (keys.length > 5 ? "..." : "") : "";
-      const escapeHtml4 = (text) => $("<div>").text(text).html();
-      const escapedContent = escapeHtml4(entryContent);
-      const escapedPreview = escapeHtml4(entryPreview);
-      const escapedName = escapeHtml4(entryName);
-      const escapedKeyDisplay = escapeHtml4(keyDisplay);
-      const escapedKeysTitle = escapeHtml4(keys.join(", "));
+      const escapeHtml5 = (text) => $("<div>").text(text).html();
+      const escapedContent = escapeHtml5(entryContent);
+      const escapedPreview = escapeHtml5(entryPreview);
+      const escapedName = escapeHtml5(entryName);
+      const escapedKeyDisplay = escapeHtml5(keyDisplay);
+      const escapedKeysTitle = escapeHtml5(keys.join(", "));
       const borderColor = isConstant ? "rgba(255, 193, 7, 0.4)" : "rgba(156, 39, 176, 0.3)";
       const bgColor = isConstant ? "rgba(255, 193, 7, 0.08)" : "rgba(156, 39, 176, 0.05)";
       const titleColor = isConstant ? "#ffc107" : "#ba68c8";
@@ -78546,7 +79871,7 @@ var COMFYUI_PROFILE_KEYS = [
   "cfg_comfyui"
 ];
 function getSettings2() {
-  return extension_settings80[extensionName];
+  return extension_settings81[extensionName];
 }
 function refreshNovelaiProfileSelect() {
   const settings3 = getSettings2();
@@ -78699,7 +80024,7 @@ function initProfileControls(settingsModal) {
     if (profile) {
       applyNovelaiProfile(profile);
       settings3.novelai_profile_id = profileId;
-      saveSettingsDebounced51();
+      saveSettingsDebounced52();
       toastr.success(`\u5DF2\u52A0\u8F7D\u914D\u7F6E: ${profileId}`);
     }
   });
@@ -78714,7 +80039,7 @@ function initProfileControls(settingsModal) {
     settings3.novelai_profiles[trimmedName] = collectNovelaiProfile();
     settings3.novelai_profile_id = trimmedName;
     refreshNovelaiProfileSelect();
-    saveSettingsDebounced51();
+    saveSettingsDebounced52();
     toastr.success(`\u5DF2\u521B\u5EFA\u914D\u7F6E: ${trimmedName}`);
   });
   settingsModal.find("#novelai_profile_save").on("click", async function() {
@@ -78725,7 +80050,7 @@ function initProfileControls(settingsModal) {
     const confirmed = await stylishConfirm("\u786E\u8BA4\u4FDD\u5B58", `\u786E\u5B9A\u8981\u5C06\u5F53\u524D\u6240\u6709\u8BBE\u7F6E\u4FDD\u5B58\u5E76\u8986\u76D6\u5230\u914D\u7F6E "${profileId}" \u4E2D\u5417\uFF1F`);
     if (!confirmed) return;
     settings3.novelai_profiles[profileId] = collectNovelaiProfile();
-    saveSettingsDebounced51();
+    saveSettingsDebounced52();
     toastr.success(`\u5DF2\u4FDD\u5B58\u5F53\u524D\u914D\u7F6E: ${profileId}`);
   });
   settingsModal.find("#novelai_profile_delete").on("click", async function() {
@@ -78741,7 +80066,7 @@ function initProfileControls(settingsModal) {
     delete settings3.novelai_profiles[profileId];
     settings3.novelai_profile_id = "\u9ED8\u8BA4";
     refreshNovelaiProfileSelect();
-    saveSettingsDebounced51();
+    saveSettingsDebounced52();
     toastr.success(`\u5DF2\u5220\u9664\u914D\u7F6E: ${profileId}`);
   });
   settingsModal.find("#novelai_profile_id").on("change", function() {
@@ -78750,7 +80075,7 @@ function initProfileControls(settingsModal) {
     if (profile) {
       applyNovelaiProfile(profile);
       settings3.novelai_profile_id = profileId;
-      saveSettingsDebounced51();
+      saveSettingsDebounced52();
     }
   });
   settingsModal.find("#comfyui_profile_load").on("click", function() {
@@ -78761,7 +80086,7 @@ function initProfileControls(settingsModal) {
     if (profile) {
       applyComfyuiProfile(profile);
       settings3.comfyui_profile_id = profileId;
-      saveSettingsDebounced51();
+      saveSettingsDebounced52();
       toastr.success(`\u5DF2\u52A0\u8F7D\u914D\u7F6E: ${profileId}`);
     }
   });
@@ -78776,7 +80101,7 @@ function initProfileControls(settingsModal) {
     settings3.comfyui_profiles[trimmedName] = collectComfyuiProfile();
     settings3.comfyui_profile_id = trimmedName;
     refreshComfyuiProfileSelect();
-    saveSettingsDebounced51();
+    saveSettingsDebounced52();
     toastr.success(`\u5DF2\u521B\u5EFA\u914D\u7F6E: ${trimmedName}`);
   });
   settingsModal.find("#comfyui_profile_save").on("click", async function() {
@@ -78787,7 +80112,7 @@ function initProfileControls(settingsModal) {
     const confirmed = await stylishConfirm("\u786E\u8BA4\u4FDD\u5B58", `\u786E\u5B9A\u8981\u5C06\u5F53\u524D\u6240\u6709\u8BBE\u7F6E\u4FDD\u5B58\u5E76\u8986\u76D6\u5230\u914D\u7F6E "${profileId}" \u4E2D\u5417\uFF1F`);
     if (!confirmed) return;
     settings3.comfyui_profiles[profileId] = collectComfyuiProfile();
-    saveSettingsDebounced51();
+    saveSettingsDebounced52();
     toastr.success(`\u5DF2\u4FDD\u5B58\u5F53\u524D\u914D\u7F6E: ${profileId}`);
   });
   settingsModal.find("#comfyui_profile_delete").on("click", async function() {
@@ -78803,7 +80128,7 @@ function initProfileControls(settingsModal) {
     delete settings3.comfyui_profiles[profileId];
     settings3.comfyui_profile_id = "\u9ED8\u8BA4";
     refreshComfyuiProfileSelect();
-    saveSettingsDebounced51();
+    saveSettingsDebounced52();
     toastr.success(`\u5DF2\u5220\u9664\u914D\u7F6E: ${profileId}`);
   });
   settingsModal.find("#comfyui_profile_id").on("change", function() {
@@ -78812,7 +80137,7 @@ function initProfileControls(settingsModal) {
     if (profile) {
       applyComfyuiProfile(profile);
       settings3.comfyui_profile_id = profileId;
-      saveSettingsDebounced51();
+      saveSettingsDebounced52();
     }
   });
   refreshNovelaiProfileSelect();
@@ -78932,11 +80257,11 @@ function showCodeGenerationAnimation() {
       rollCount++;
       if (rollCount >= maxRolls) {
         clearInterval(rollInterval);
-        const settings3 = extension_settings94[extensionName];
+        const settings3 = extension_settings95[extensionName];
         const finalCode = settings3 && settings3.chatu8_code || generateRandomCode();
         if (settings3 && !settings3.chatu8_code) {
           settings3.chatu8_code = finalCode;
-          saveSettingsDebounced58();
+          saveSettingsDebounced59();
           addLog(`[OpeningVideo] \u667A\u7ED8\u59EC\u7F16\u53F7\u515C\u5E95\u4FDD\u5B58: ${finalCode}`);
         }
         codeDisplay.textContent = finalCode;
@@ -79247,7 +80572,7 @@ function createVideoContainer() {
   return videoContainer;
 }
 function playOpeningVideo() {
-  const settings3 = extension_settings94[extensionName];
+  const settings3 = extension_settings95[extensionName];
   if (settings3 && settings3.chatu8_code) {
     addLog(`[OpeningVideo] \u5DF2\u6709\u667A\u7ED8\u59EC\u7F16\u53F7 ${settings3.chatu8_code}\uFF0C\u8DF3\u8FC7\u5F00\u573A\u89C6\u9891`);
     return;
@@ -79259,7 +80584,7 @@ function playOpeningVideo() {
   if (settings3 && !settings3.chatu8_code) {
     const preGeneratedCode = generateRandomCode();
     settings3.chatu8_code = preGeneratedCode;
-    saveSettingsDebounced58();
+    saveSettingsDebounced59();
     addLog(`[OpeningVideo] \u7F16\u53F7\u524D\u7F6E\u751F\u6210\u5E76\u4FDD\u5B58: ${preGeneratedCode}`);
   }
   try {
@@ -79839,7 +81164,7 @@ var INJECTED_FLAG = "chatu8HelpTipInjected";
 var globalsInitialized = false;
 var markedLoadingTriggered = false;
 function isHelpTipsEnabled() {
-  const v = extension_settings95?.[extensionName]?.helpTipsEnabled;
+  const v = extension_settings96?.[extensionName]?.helpTipsEnabled;
   if (v === void 0 || v === null) return true;
   if (typeof v === "boolean") return v;
   return String(v).toLowerCase() !== "false";
@@ -80037,7 +81362,7 @@ window.autoLLMClick = false;
 var generationStartChatLength = 0;
 var generationStartSwipesLength = 0;
 function isPluginEnabled() {
-  const scriptEnabled = extension_settings96[extensionName]?.scriptEnabled;
+  const scriptEnabled = extension_settings97[extensionName]?.scriptEnabled;
   const enabled = scriptEnabled === true || scriptEnabled === "true";
   debugLog("autoLLMClick.isPluginEnabled", "\u68C0\u67E5\u63D2\u4EF6\u662F\u5426\u542F\u7528", {
     scriptEnabled,
@@ -80052,7 +81377,7 @@ function isAutoLLMEnabled() {
     });
     return false;
   }
-  const autoLLMImageGen = extension_settings96[extensionName]?.autoLLMImageGen;
+  const autoLLMImageGen = extension_settings97[extensionName]?.autoLLMImageGen;
   const enabled = autoLLMImageGen === true || autoLLMImageGen === "true";
   debugLog("autoLLMClick.isAutoLLMEnabled", "\u68C0\u67E5\u81EA\u52A8LLM\u751F\u56FE\u662F\u5426\u542F\u7528", {
     autoLLMImageGen,
@@ -80197,8 +81522,8 @@ eventSource37.on(event_types6.GENERATION_ENDED, async (data) => {
       debugBranch("autoLLMClick.GENERATION_ENDED", "\u6D88\u606F\u957F\u5EA6\u68C0\u67E5\u901A\u8FC7", true, {
         \u6D88\u606F\u957F\u5EA6: messageContent.length
       });
-      if (extension_settings96[extensionName]?.insertOriginalText !== "true") {
-        extension_settings96[extensionName].insertOriginalText = "true";
+      if (extension_settings97[extensionName]?.insertOriginalText !== "true") {
+        extension_settings97[extensionName].insertOriginalText = "true";
         console.log("[st-chatu8] Auto-enabled insertOriginalText due to message length > 200");
         debugLog("autoLLMClick.GENERATION_ENDED", "\u81EA\u52A8\u542F\u7528 insertOriginalText", {
           \u539F\u56E0: "\u6D88\u606F\u957F\u5EA6 > 200"
@@ -80208,8 +81533,8 @@ eventSource37.on(event_types6.GENERATION_ENDED, async (data) => {
           insertTextSwitch.checked = true;
         }
         try {
-          const { saveSettingsDebounced: saveSettingsDebounced61 } = await import("../../../../script.js");
-          saveSettingsDebounced61();
+          const { saveSettingsDebounced: saveSettingsDebounced62 } = await import("../../../../script.js");
+          saveSettingsDebounced62();
         } catch (e) {
           console.warn("[st-chatu8] Failed to save settings:", e);
         }
@@ -80272,6 +81597,7 @@ function initAutoLLMClick() {
 var settings2;
 var currentPreviewTheme2 = {};
 var generationTabs3 = ["sd", "novelai", "comfyui"];
+var MODE_NAV_TABS = ["sd", "novelai", "comfyui", "banana"];
 var tabIds = ["main", "sd", "novelai", "comfyui", "banana", "llm", "vocabulary", "knowledgeBase", "character", "theme", "fab", "image-cache", "regex", "send_data", "about", "log"];
 var FAB_ICON_ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
 var FAB_ICON_MAX_FILE_SIZE = 5 * 1024 * 1024;
@@ -80387,7 +81713,7 @@ async function handleFabIconUpload(event) {
       forceServer: true
     });
     settings2.chatu8_fab_icon_image_id = imageId;
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
     await refreshFabIconPreview(iconData);
     applyFabSettings();
     if (oldImageId && oldImageId !== imageId) {
@@ -80417,7 +81743,7 @@ async function removeFabIconImage() {
     console.warn("[st-chatu8] \u5220\u9664\u60AC\u6D6E\u7403\u56FE\u6807\u5931\u8D25:", error);
   }
   settings2.chatu8_fab_icon_image_id = "";
-  saveSettingsDebounced59();
+  saveSettingsDebounced60();
   await refreshFabIconPreview("");
   applyFabSettings();
   toastr.success("\u5DF2\u6062\u590D\u9ED8\u8BA4\u60AC\u6D6E\u7403\u56FE\u6807\u3002");
@@ -80492,19 +81818,35 @@ async function loadAllTabsContent(container) {
     return false;
   }
 }
+function updateModeNavVisibility(settingsModal) {
+  const currentMode2 = settings2.mode || "comfyui";
+  let activeTabHidden = false;
+  MODE_NAV_TABS.forEach((tab) => {
+    const $link = settingsModal.find(`.st-chatu8-nav-link[data-tab="${tab}"]`);
+    if (!$link.length) return;
+    const visible = tab === currentMode2;
+    $link.toggle(visible);
+    if (!visible && $link.hasClass("active")) {
+      activeTabHidden = true;
+    }
+  });
+  if (activeTabHidden) {
+    settingsModal.find('.st-chatu8-nav-link[data-tab="main"]').trigger("click");
+  }
+}
 function updateGenerationModeHandlers() {
   replaceWithSd();
   replaceWithnovelai();
   replaceWithcomfyui();
   replaceWithBanana();
-  addLog("[UI] Generation mode handlers updated for mode: " + extension_settings97[extensionName].mode);
+  addLog("[UI] Generation mode handlers updated for mode: " + extension_settings98[extensionName].mode);
 }
 async function initUI({ check_update: check_update2 }) {
   const existingPanel = document.getElementById("st-chatu8-settings");
   if (existingPanel) {
     existingPanel.remove();
   }
-  settings2 = extension_settings97[extensionName];
+  settings2 = extension_settings98[extensionName];
   try {
     await initJiuguanStorage();
   } catch (error) {
@@ -80529,10 +81871,10 @@ async function initUI({ check_update: check_update2 }) {
     return;
   }
   async function loadSettingsIntoUI() {
-    settings2 = extension_settings97[extensionName];
+    settings2 = extension_settings98[extensionName];
     if (settings2.vibeJiuguanchucun === void 0) {
       settings2.vibeJiuguanchucun = defaultSettings.vibeJiuguanchucun;
-      saveSettingsDebounced59();
+      saveSettingsDebounced60();
     }
     if (!settings2.cacheStorageMigrated) {
       console.log("[UI] \u68C0\u6D4B\u5230\u672A\u8FC1\u79FB\u7684 cache \u6570\u636E\uFF0C\u5F00\u59CB\u8FC1\u79FB...");
@@ -80549,7 +81891,7 @@ async function initUI({ check_update: check_update2 }) {
       addLog("[CharRef] Conflict resolved on load: Character Reference takes priority over Vibe Transfer");
       console.warn("[CharRef] Conflict detected: Both Character Reference and Vibe Transfer were enabled. Disabling Vibe Transfer (Character Reference takes priority).");
       toastr.warning("\u68C0\u6D4B\u5230\u51B2\u7A81\uFF1A\u89D2\u8272\u53C2\u8003\u4F18\u5148\uFF0CVibe Transfer \u5DF2\u7981\u7528", "\u529F\u80FD\u51B2\u7A81");
-      saveSettingsDebounced59();
+      saveSettingsDebounced60();
     }
     if (!settings2.themes) {
       settings2.themes = JSON.parse(JSON.stringify(defaultThemes));
@@ -80830,15 +82172,15 @@ async function initUI({ check_update: check_update2 }) {
     if (!settings2.workers["\u56FE\u50CF\u7F16\u8F91"]) {
       settings2.workers["\u56FE\u50CF\u7F16\u8F91"] = editwk;
       console.log('[Chatu8] \u5DF2\u81EA\u52A8\u6DFB\u52A0 "\u56FE\u50CF\u7F16\u8F91" \u5DE5\u4F5C\u6D41\u9884\u8BBE');
-      saveSettingsDebounced59();
+      saveSettingsDebounced60();
     }
     if (!settings2.editWorkerid) {
       settings2.editWorkerid = "\u56FE\u50CF\u7F16\u8F91";
-      saveSettingsDebounced59();
+      saveSettingsDebounced60();
     }
     if (!settings2.editWorker && settings2.workers[settings2.editWorkerid]) {
       settings2.editWorker = settings2.workers[settings2.editWorkerid];
-      saveSettingsDebounced59();
+      saveSettingsDebounced60();
     }
     if (!settings2.worldBookList) {
       settings2.worldBookList = { "\u9ED8\u8BA4": { "content": "" } };
@@ -80971,7 +82313,7 @@ async function initUI({ check_update: check_update2 }) {
   initVibeGroupEditor(settingsModal);
   initCharRefGroupEditor(settingsModal);
   settingsModal.find("#ch-settings-modal-close").on("click", hideSettingsPanel);
-  if (extension_settings97[extensionName].gestureEnabled == true || extension_settings97[extensionName].gestureEnabled === "true") {
+  if (extension_settings98[extensionName].gestureEnabled == true || extension_settings98[extensionName].gestureEnabled === "true") {
     initGestureMonitor();
   }
   initAutoLLMClick();
@@ -81048,9 +82390,23 @@ async function initUI({ check_update: check_update2 }) {
   if ($kbNavLink.length) {
     $kbNavLink.toggle(isKnowledgeBaseEnabled());
   }
+  updateModeNavVisibility(settingsModal);
   initAboutProtection(settingsModal[0]);
   initAiAssistant(settingsModal);
   settingsModal.find("#migrate-database-btn").on("click", migrateDatabase);
+  settingsModal.find("#diagnose-config-storage-btn").on("click", async function() {
+    const button = $(this);
+    const originalText2 = button.text();
+    button.prop("disabled", true).text("\u626B\u63CF\u4E2D...");
+    try {
+      await showConfigStorageCleanupModal();
+    } catch (e) {
+      console.error("[ConfigDB \u6E05\u7406] \u6253\u5F00\u5931\u8D25:", e);
+      showToast(`\u6253\u5F00\u6E05\u7406\u9762\u677F\u5931\u8D25: ${e.message}`, "error");
+    } finally {
+      button.prop("disabled", false).text(originalText2);
+    }
+  });
   settingsModal.find("#migrate-vibe-storage-btn").on("click", async function() {
     const button = $(this);
     const originalText2 = button.text();
@@ -81164,14 +82520,14 @@ async function initUI({ check_update: check_update2 }) {
     $("#InformationExtracted").val(value);
     $("#InformationExtracted_range").val(value);
     settings2.InformationExtracted = value;
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
   });
   $("#ReferenceStrength, #ReferenceStrength_range").on("input", (event) => {
     const value = $(event.target).val();
     $("#ReferenceStrength").val(value);
     $("#ReferenceStrength_range").val(value);
     settings2.ReferenceStrength = value;
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
   });
   const CHATU8_IMAGE_REGEX_SCRIPT_NAME = "st-chatu8-\u4E0D\u53D1\u9001image\u6807\u7B7E";
   const CHATU8_IMAGE_REGEX_SCRIPT = {
@@ -81285,7 +82641,7 @@ async function initUI({ check_update: check_update2 }) {
   settingsModal.on("change", "#helpTipsEnabled", function() {
     const isEnabled = $(this).prop("checked");
     settings2.helpTipsEnabled = isEnabled ? "true" : "false";
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
     const container = settingsModal[0]?.querySelector(".st-chatu8-content");
     if (!container) return;
     if (isEnabled) {
@@ -81297,13 +82653,13 @@ async function initUI({ check_update: check_update2 }) {
   settingsModal.find("#insertOriginalText").on("change", async function() {
     const isEnabled = $(this).prop("checked");
     settings2.insertOriginalText = isEnabled.toString();
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
     await handleInsertOriginalTextRegex(isEnabled);
   });
   settingsModal.find("#convertToJpegStorage").on("change", function() {
     const isEnabled = $(this).prop("checked");
     settings2.convertToJpegStorage = isEnabled.toString();
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
     if (isEnabled) {
       toastr.info("\u65B0\u56FE\u7247\u5C06\u4EE5JPEG\u683C\u5F0F\u50A8\u5B58\uFF0C\u53EF\u8282\u7701\u7EA670%\u7A7A\u95F4", "JPEG\u50A8\u5B58\u5DF2\u542F\u7528");
       addLog("[\u7F13\u5B58] JPEG\u50A8\u5B58\u5DF2\u542F\u7528\uFF0C\u8D28\u91CF: 0.78");
@@ -81314,24 +82670,24 @@ async function initUI({ check_update: check_update2 }) {
   settingsModal.find("#autoLLMImageGen").on("change", async function() {
     const isEnabled = $(this).prop("checked");
     settings2.autoLLMImageGen = isEnabled.toString();
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
     if (isEnabled) {
       const changes = [];
       const insertTextSwitch = settingsModal.find("#insertOriginalText");
       if (insertTextSwitch.length && !insertTextSwitch.prop("checked")) {
         insertTextSwitch.prop("checked", true);
         settings2.insertOriginalText = "true";
-        saveSettingsDebounced59();
+        saveSettingsDebounced60();
         await handleInsertOriginalTextRegex(true);
         changes.push('\u5DF2\u5F00\u542F"\u63D2\u5165\u539F\u6587(\u975E\u540C\u5C42)"');
       }
-      if (extension_settings97[extensionName]?.imageGenDemandEnabled) {
-        extension_settings97[extensionName].imageGenDemandEnabled = false;
+      if (extension_settings98[extensionName]?.imageGenDemandEnabled) {
+        extension_settings98[extensionName].imageGenDemandEnabled = false;
         const imageGenDemandSwitch = $("#ch-image-gen-demand-enabled");
         if (imageGenDemandSwitch.length) {
           imageGenDemandSwitch.prop("checked", false);
         }
-        saveSettingsDebounced59();
+        saveSettingsDebounced60();
         changes.push('\u5DF2\u5173\u95ED"\u751F\u56FE\u9700\u6C42\u5F39\u7A97"');
       }
       if (changes.length > 0) {
@@ -81342,7 +82698,7 @@ async function initUI({ check_update: check_update2 }) {
   settingsModal.find("#randomYushe").on("change", function() {
     const isEnabled = $(this).prop("checked");
     settings2.randomYushe = isEnabled.toString();
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
     if (isEnabled) {
       const yusheKeys = Object.keys(settings2.yushe || {});
       toastr.info(`\u5F53\u524D\u5171\u6709 ${yusheKeys.length} \u4E2A\u63D0\u793A\u8BCD\u9884\u8BBE\uFF0C\u6BCF\u6B21\u751F\u56FE\u5C06\u968F\u673A\u9009\u62E9`, "\u968F\u673A\u9884\u8BBE\u5DF2\u542F\u7528");
@@ -81353,12 +82709,12 @@ async function initUI({ check_update: check_update2 }) {
   });
   $("#enable_chatu8_fab").on("change", (event) => {
     settings2.enable_chatu8_fab = $(event.target).prop("checked").toString();
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
     applyFabSettings();
   });
   $("#enable_chatu8_fab_video").on("change", (event) => {
     settings2.enable_chatu8_fab_video = $(event.target).prop("checked");
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
     toggleTraditionalFabSettings();
     applyFabSettings();
   });
@@ -81366,7 +82722,7 @@ async function initUI({ check_update: check_update2 }) {
   $("#enable_chatu8_desktop_pet").on("change", async (event) => {
     const checked = $(event.target).prop("checked");
     settings2.enable_chatu8_desktop_pet = checked;
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
     if (checked) {
       try {
         const videoPlayer = getGlobalVideoPlayer();
@@ -81374,7 +82730,7 @@ async function initUI({ check_update: check_update2 }) {
           toastr.error("\u672A\u627E\u5230\u89C6\u9891\u64AD\u653E\u5668\uFF0C\u8BF7\u5148\u542F\u7528\u89C6\u9891\u5F62\u8C61", "\u72EC\u7ACB\u7A97\u53E3");
           $(event.target).prop("checked", false);
           settings2.enable_chatu8_desktop_pet = false;
-          saveSettingsDebounced59();
+          saveSettingsDebounced60();
           return;
         }
         const glCanvas = document.getElementById("st-chatu8-fab-video-canvas");
@@ -81382,7 +82738,7 @@ async function initUI({ check_update: check_update2 }) {
           toastr.error("\u672A\u627E\u5230\u89C6\u9891\u753B\u5E03\u5143\u7D20\uFF0C\u8BF7\u5148\u542F\u7528\u89C6\u9891\u5F62\u8C61", "\u72EC\u7ACB\u7A97\u53E3");
           $(event.target).prop("checked", false);
           settings2.enable_chatu8_desktop_pet = false;
-          saveSettingsDebounced59();
+          saveSettingsDebounced60();
           return;
         }
         videoPlayer.setPipBackground(true);
@@ -81414,7 +82770,7 @@ async function initUI({ check_update: check_update2 }) {
           }
           settings2.enable_chatu8_desktop_pet = false;
           $("#enable_chatu8_desktop_pet").prop("checked", false);
-          saveSettingsDebounced59();
+          saveSettingsDebounced60();
           toastr.info("\u753B\u4E2D\u753B\u5DF2\u5173\u95ED\uFF0C\u667A\u7ED8\u59EC\u56DE\u5230\u6D4F\u89C8\u5668\u5185", "\u72EC\u7ACB\u7A97\u53E3");
         });
         toastr.success("\u667A\u7ED8\u59EC\u5DF2\u5F39\u51FA\u5230\u753B\u4E2D\u753B\u7A97\u53E3\uFF0C\u53EF\u7F6E\u9876\u663E\u793A\u5728\u5176\u4ED6\u5E94\u7528\u4E0A\u65B9", "\u72EC\u7ACB\u7A97\u53E3");
@@ -81431,7 +82787,7 @@ async function initUI({ check_update: check_update2 }) {
         }
         $(event.target).prop("checked", false);
         settings2.enable_chatu8_desktop_pet = false;
-        saveSettingsDebounced59();
+        saveSettingsDebounced60();
         if (err.name === "NotAllowedError") {
           toastr.warning(
             "\u753B\u4E2D\u753B\u8BF7\u6C42\u88AB\u62D2\u7EDD\u3002\u8BF7\u786E\u4FDD\u901A\u8FC7\u7528\u6237\u64CD\u4F5C\uFF08\u5982\u70B9\u51FB\uFF09\u89E6\u53D1\uFF0C\u4E14\u6D4F\u89C8\u5668\u5141\u8BB8\u753B\u4E2D\u753B\u3002",
@@ -81476,7 +82832,7 @@ async function initUI({ check_update: check_update2 }) {
       if (settings2.enable_chatu8_desktop_pet) {
         settings2.enable_chatu8_desktop_pet = false;
         $("#enable_chatu8_desktop_pet").prop("checked", false);
-        saveSettingsDebounced59();
+        saveSettingsDebounced60();
         if (document.pictureInPictureElement) {
           document.exitPictureInPicture().catch(() => {
           });
@@ -81508,7 +82864,7 @@ async function initUI({ check_update: check_update2 }) {
       $("#chatu8_fab_opacity").val(theme.opacity);
       $("#chatu8_fab_opacity_value").val(theme.opacity);
     }
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
     applyFabSettings();
   });
   $("#chatu8_fab_bg_color").on("change", (event) => {
@@ -81520,7 +82876,7 @@ async function initUI({ check_update: check_update2 }) {
       }
       $("#chatu8_fab_theme").val("\u81EA\u5B9A\u4E49");
     }
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
     applyFabSettings();
   });
   $("#chatu8_fab_icon_color").on("change", (event) => {
@@ -81532,7 +82888,7 @@ async function initUI({ check_update: check_update2 }) {
       }
       $("#chatu8_fab_theme").val("\u81EA\u5B9A\u4E49");
     }
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
     applyFabSettings();
   });
   $("#chatu8_fab_icon_upload_btn").on("click", () => {
@@ -81552,7 +82908,7 @@ async function initUI({ check_update: check_update2 }) {
       }
       $("#chatu8_fab_theme").val("\u81EA\u5B9A\u4E49");
     }
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
     applyFabSettings();
   });
   function centerFabPosition() {
@@ -81574,7 +82930,7 @@ async function initUI({ check_update: check_update2 }) {
       settings2.chatu8_fab_position.desktop.top = fab.style.top;
       settings2.chatu8_fab_position.desktop.left = fab.style.left;
     }
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
   }
   $("#chatu8_fab_size, #chatu8_fab_size_value").on("input", (event) => {
     const value = parseInt($(event.target).val(), 10);
@@ -81593,7 +82949,7 @@ async function initUI({ check_update: check_update2 }) {
     } else {
       settings2.chatu8_fab_size.desktop = value;
     }
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
     updateFabSize(value);
     setTimeout(() => {
       centerFabPosition();
@@ -81635,17 +82991,18 @@ async function initUI({ check_update: check_update2 }) {
         settings2[settingKey] = value;
         if (settingKey == "scriptEnabled") {
           let conet = getContext22();
-          const settings3 = extension_settings97[extensionName];
+          const settings3 = extension_settings98[extensionName];
           if (conet && conet.chatId) {
             if (!conet.chatMetadata) conet.chatMetadata = {};
             if (!conet.chatMetadata.variables) conet.chatMetadata.variables = {};
             conet.chatMetadata.variables.zhihuiji = settings3.scriptEnabled;
           }
         }
-        saveSettingsDebounced59();
+        saveSettingsDebounced60();
         if (settingKey === "mode") {
           updateGenerationModeHandlers();
           updateKeepAliveStatus();
+          updateModeNavVisibility(settingsModal);
         }
         if (settingKey === "imageAlignment" || settingKey === "imageSizeScale") {
           const currentTheme = settings2.themes?.[settings2.theme_id] || {};
@@ -81672,14 +83029,14 @@ async function initUI({ check_update: check_update2 }) {
             toastr.info("Vibe Transfer \u5DF2\u81EA\u52A8\u5173\u95ED\uFF0C\u56E0\u4E3A\u89D2\u8272\u53C2\u8003\u5DF2\u542F\u7528", "\u89D2\u8272\u53C2\u8003");
             addLog("[CharRef] Vibe Transfer disabled due to Character Reference activation");
           }
-          saveSettingsDebounced59();
+          saveSettingsDebounced60();
         } else {
           checkbox.prop("checked", false);
         }
       });
     } else {
       settings2.nai3CharRef = "false";
-      saveSettingsDebounced59();
+      saveSettingsDebounced60();
     }
   });
   settingsModal.find("#enableVibeGroupTransfer").on("change", function() {
@@ -81702,7 +83059,7 @@ async function initUI({ check_update: check_update2 }) {
       toastr.info("\u89D2\u8272\u53C2\u8003\u5DF2\u81EA\u52A8\u5173\u95ED\uFF0C\u56E0\u4E3A Vibe Transfer \u5DF2\u542F\u7528", "Vibe Transfer");
       addLog("[VibeTransfer] Character Reference disabled due to Vibe Transfer activation");
     }
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
     console.log("[VibeGroup] Vibe group transfer:", settings2.enableVibeGroupTransfer);
   });
   settingsModal.find("#nai3VibeTransfer").on("change", function() {
@@ -81716,7 +83073,7 @@ async function initUI({ check_update: check_update2 }) {
       }
       console.log("[VibeGroup] Disabled Vibe group transfer (mutual exclusivity)");
     }
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
     console.log("[NovelAI] Single Vibe transfer:", settings2.nai3VibeTransfer);
   });
   window.addEventListener("comfyui-cache-updated", async (event) => {
@@ -81852,7 +83209,7 @@ var pregenManager = {
 
 // utils/settings/stream_generate.js
 function parsePrompts(text) {
-  const settings3 = extension_settings99[extensionName];
+  const settings3 = extension_settings100[extensionName];
   if (!settings3.startTag || !settings3.endTag) return [];
   const escapeRegExp2 = (string) => {
     return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -81868,11 +83225,11 @@ function parsePrompts(text) {
   });
 }
 eventSource39.on(event_types7.generation_started, () => {
-  if (String(extension_settings99[extensionName].enablePregen) !== "true") return;
+  if (String(extension_settings100[extensionName].enablePregen) !== "true") return;
   pregenManager.clear();
 });
 eventSource39.on(event_types7.STREAM_TOKEN_RECEIVED, (text) => {
-  if (String(extension_settings99[extensionName].enablePregen) !== "true" || !text) return;
+  if (String(extension_settings100[extensionName].enablePregen) !== "true" || !text) return;
   const prompts = parsePrompts(text);
   if (prompts.length > 0) {
     pregenManager.add(prompts);
@@ -82297,7 +83654,7 @@ async function check_update() {
   return true;
 }
 async function chenk() {
-  if (!(extension_settings100[extensionName].scriptEnabled == true || extension_settings100[extensionName].scriptEnabled == "true") || checkSendBuClass()) {
+  if (!(extension_settings101[extensionName].scriptEnabled == true || extension_settings101[extensionName].scriptEnabled == "true") || checkSendBuClass()) {
     return;
   }
   replaceWithcomfyui();
@@ -82392,7 +83749,7 @@ async function main() {
     "styles/summary-manager.css"
   ];
   cssFiles.forEach(loadCSS);
-  const mergedSettings = { ...JSON.parse(JSON.stringify(defaultSettings)), ...extension_settings100[extensionName] };
+  const mergedSettings = { ...JSON.parse(JSON.stringify(defaultSettings)), ...extension_settings101[extensionName] };
   if (mergedSettings.chatu8_fab_video_paths) {
     let pathsChanged = false;
     if (mergedSettings.chatu8_fab_video_paths.idle && mergedSettings.chatu8_fab_video_paths.idle.includes(".mp4")) {
@@ -82407,7 +83764,7 @@ async function main() {
       console.log("[st-chatu8] \u81EA\u52A8\u8FC1\u79FB\u65E7\u7248\u89C6\u9891\u914D\u7F6E\u8DEF\u5F84 -> .chatu8");
     }
   }
-  extension_settings100[extensionName] = mergedSettings;
+  extension_settings101[extensionName] = mergedSettings;
   installGlobalErrorHandler();
   initImageGenStatsListener();
   await initUI({ check_update });

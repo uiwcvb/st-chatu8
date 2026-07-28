@@ -1924,3 +1924,108 @@
         font-size: 0.9rem;
     }
 }
+
+/* ==================== 配置存储清理弹窗 ==================== */
+.st-chatu8-cfgclean-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.st-chatu8-cfgclean-item .st-chatu8-import-name {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+}
+
+.st-chatu8-cfgclean-thumb {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--st-chatu8-border-color, #333);
+    background-color: var(--st-chatu8-bg-tertiary, #2a2a2a);
+    cursor: pointer;
+}
+
+.st-chatu8-cfgclean-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.st-chatu8-cfgclean-thumb-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: var(--st-chatu8-text-secondary, #888);
+    cursor: default;
+}
+
+.st-chatu8-cfgclean-size {
+    margin-left: 8px;
+    font-size: 0.8rem;
+    color: var(--st-chatu8-text-secondary, #888);
+}
+
+.st-chatu8-cfgclean-badge {
+    margin-left: 8px;
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    background: rgba(243, 156, 18, 0.15);
+    color: #f39c12;
+    border: 1px solid rgba(243, 156, 18, 0.3);
+}
+
+.st-chatu8-cfgclean-section-title {
+    margin: 18px 0 8px;
+    font-weight: 600;
+    color: var(--st-chatu8-accent-primary, #6aa6ff);
+    border-bottom: 1px solid var(--st-chatu8-border-color, #333);
+    padding-bottom: 4px;
+}
+
+.st-chatu8-cfgclean-progress {
+    margin-top: 12px;
+}
+
+.st-chatu8-cfgclean-progress-track {
+    width: 100%;
+    height: 18px;
+    border-radius: 9px;
+    overflow: hidden;
+    background-color: var(--st-chatu8-bg-tertiary, #2a2a2a);
+}
+
+.st-chatu8-cfgclean-progress-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 9px;
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+    transition: width 0.2s ease;
+}
+
+.st-chatu8-cfgclean-progress-text {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    text-align: center;
+    color: var(--st-chatu8-text-secondary, #888);
+}
+
+.st-chatu8-cfgclean-empty {
+    padding: 12px 0;
+    color: var(--st-chatu8-text-secondary, #888);
+    font-size: 0.9rem;
+}
+
+/* 删除进行中按钮需要有明确的禁用观感 */
+.st-chatu8-cfgclean-modal .st-chatu8-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

@@ -21,7 +21,7 @@ import { extension_settings } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced3 } from "../../../../script.js";
 import { extension_settings as extension_settings2 } from "../../../extensions.js";
 import { extension_settings as extension_settings3 } from "../../../extensions.js";
-import { eventSource } from "../../../../script.js";
+import { eventSource, substituteParams } from "../../../../script.js";
 import { extension_settings as extension_settings4 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced4 } from "../../../../script.js";
 import { extension_settings as extension_settings5 } from "../../../extensions.js";
@@ -3177,10 +3177,12 @@ var init_config = __esm({
           novelai_width: "1024",
           novelai_height: "1024",
           novelai_steps: "28",
-          novelai_seed: "0"
+          novelai_seed: "0",
+          novelai_model_configs: {}
         }
       },
       novelai_profile_id: "\u9ED8\u8BA4",
+      novelai_model_configs: {},
       // ComfyUI 配置档案
       comfyui_profiles: {
         "\u9ED8\u8BA4": {
@@ -3947,6 +3949,45 @@ var init_settingsSaveScheduler = __esm({
 // utils/database.js
 
 
+function formatToMimeType(format, isVideo = false) {
+  if (!format || typeof format !== "string") {
+    return isVideo ? "video/mp4" : "image/png";
+  }
+  const fmt = format.toLowerCase();
+  if (fmt.includes("webm")) return "video/webm";
+  if (fmt.includes("mp4") || fmt.includes("h264")) return "video/mp4";
+  if (fmt.includes("jpeg") || fmt.includes("jpg")) return "image/jpeg";
+  if (fmt.includes("png")) return "image/png";
+  if (fmt.includes("webp")) return "image/webp";
+  if (fmt.includes("gif")) return "image/gif";
+  if (fmt.startsWith("video/")) return fmt;
+  if (fmt.startsWith("image/")) return fmt;
+  return isVideo ? "video/mp4" : "image/png";
+}
+function detectMimeFromBuffer(buffer, isVideo = false) {
+  if (!buffer) return isVideo ? "video/mp4" : "image/png";
+  const bytes = buffer instanceof Uint8Array ? buffer : new Uint8Array(buffer);
+  if (bytes.length < 4) return isVideo ? "video/mp4" : "image/png";
+  if (bytes[0] === 26 && bytes[1] === 69 && bytes[2] === 223 && bytes[3] === 163) {
+    return "video/webm";
+  }
+  if (bytes.length >= 8 && bytes[4] === 102 && bytes[5] === 116 && bytes[6] === 121 && bytes[7] === 112) {
+    return "video/mp4";
+  }
+  if (bytes.length >= 8 && bytes[0] === 137 && bytes[1] === 80 && bytes[2] === 78 && bytes[3] === 71 && bytes[4] === 13 && bytes[5] === 10 && bytes[6] === 26 && bytes[7] === 10) {
+    return "image/png";
+  }
+  if (bytes[0] === 255 && bytes[1] === 216 && bytes[2] === 255) {
+    return "image/jpeg";
+  }
+  if (bytes[0] === 71 && bytes[1] === 73 && bytes[2] === 70) {
+    return "image/gif";
+  }
+  if (bytes.length >= 12 && bytes[0] === 82 && bytes[1] === 73 && bytes[2] === 70 && bytes[3] === 70 && bytes[8] === 87 && bytes[9] === 69 && bytes[10] === 66 && bytes[11] === 80) {
+    return "image/webp";
+  }
+  return isVideo ? "video/mp4" : "image/png";
+}
 function blobToBase64(blob) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -4568,7 +4609,7 @@ async function getItemImg(tag, index = null) {
   } else if (imageEntry.source === "db" && imageEntry.uuid) {
     const imageData = await storeReadOnly(imageEntry.uuid);
     if (imageData && imageData.data) {
-      const mimeType = isVideo ? "video/mp4" : "image/png";
+      const mimeType = imageEntry.format ? formatToMimeType(imageEntry.format, isVideo) : detectMimeFromBuffer(imageData.data, isVideo);
       const mediaBase64 = `data:${mimeType};base64,` + arrayBufferToBase64(imageData.data);
       return [mediaBase64, change, finalIndex, isVideo, originalUrl, video, activeMode];
     }
@@ -4751,6 +4792,7 @@ async function setItemImg(tag, imgBase64, options = { format: "png" }) {
         thumbnail_path: thumbnailPath,
         date: newDate,
         isVideo,
+        format: uploadFormat || format || (isVideo ? "mp4" : "png"),
         originalUrl: originalUrl || "",
         size: base64ByteLength(base64Data),
         thumbnail_size: thumbnailSize,
@@ -4869,6 +4911,7 @@ async function setItemImg(tag, imgBase64, options = { format: "png" }) {
       thumbnail_uuid: thumbnailUUID,
       date: newDate,
       isVideo,
+      format: format || (isVideo ? "mp4" : "png"),
       originalUrl: originalUrl || "",
       size: imageBuffer.byteLength,
       thumbnail_size: thumbnailSize,
@@ -4924,12 +4967,75 @@ async function setItemImg(tag, imgBase64, options = { format: "png" }) {
     return "indexeddb_saved";
   }
 }
+function awaitIdbRequest(request, transaction = null, timeoutMs = 3e4) {
+  return new Promise((resolve, reject) => {
+    let settled = false;
+    let timer = null;
+    const cleanup = () => {
+      settled = true;
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
+      }
+    };
+    if (timeoutMs > 0) {
+      timer = setTimeout(() => {
+        if (settled) return;
+        cleanup();
+        try {
+          if (transaction && typeof transaction.abort === "function") {
+            transaction.abort();
+          }
+        } catch (_) {
+        }
+        reject(new Error(`[IDB] \u64CD\u4F5C\u8D85\u65F6\u7194\u65AD (${timeoutMs}ms)`));
+      }, timeoutMs);
+    }
+    request.onsuccess = (event) => {
+      if (settled) return;
+      cleanup();
+      resolve(event.target.result);
+    };
+    request.onerror = (event) => {
+      if (settled) return;
+      cleanup();
+      reject(event.target.error || new Error("[IDB] Request \u9519\u8BEF"));
+    };
+    if (transaction) {
+      transaction.onabort = (event) => {
+        if (settled) return;
+        cleanup();
+        const err = transaction.error || event && event.target && event.target.error || new Error("[IDB] Transaction \u4E8B\u52A1\u88AB\u4E2D\u6B62 (onabort)");
+        reject(err);
+      };
+      transaction.onerror = (event) => {
+        if (settled) return;
+        cleanup();
+        reject(transaction.error || event && event.target && event.target.error || new Error("[IDB] Transaction \u9519\u8BEF"));
+      };
+    }
+  });
+}
 async function openDB() {
   if (db) {
     return db;
   }
   return new Promise((resolve, reject) => {
+    let settled = false;
+    const openTimeout = setTimeout(() => {
+      if (!settled) {
+        settled = true;
+        reject(new Error("[DB] \u6253\u5F00\u6570\u636E\u5E93\u8D85\u65F6 (30000ms)\uFF0C\u53EF\u80FD\u88AB\u540E\u53F0\u5347\u7EA7\u6216\u8FDE\u63A5\u6B7B\u9501\u963B\u6B62"));
+      }
+    }, 3e4);
+    const cleanupTimer = () => {
+      settled = true;
+      clearTimeout(openTimeout);
+    };
     const request = indexedDB.open(dbName, dbVersion);
+    request.onblocked = (event) => {
+      console.warn("[DB] \u6570\u636E\u5E93\u6253\u5F00\u88AB\u963B\u585E (onblocked)\uFF0C\u53EF\u80FD\u5176\u4ED6\u9875\u9762\u6B63\u5728\u4F7F\u7528\u65E7\u7248\u8FDE\u63A5\uFF0C\u7B49\u5F85\u4E2D...", event);
+    };
     request.onupgradeneeded = (event) => {
       const tempDb = event.target.result;
       console.log(`[DB] \u6570\u636E\u5E93\u5347\u7EA7: \u65E7\u7248\u672C ${event.oldVersion} -> \u65B0\u7248\u672C ${event.newVersion}`);
@@ -4987,10 +5093,14 @@ async function openDB() {
       }
     };
     request.onerror = (event) => {
+      if (settled) return;
+      cleanupTimer();
       console.error("[DB] \u6253\u5F00\u6570\u636E\u5E93\u5931\u8D25:", event.target.error);
       reject(event.target.error);
     };
     request.onsuccess = (event) => {
+      if (settled) return;
+      cleanupTimer();
       db = event.target.result;
       console.log(`[DB] \u6570\u636E\u5E93 '${dbName}' v${dbVersion} \u6253\u5F00\u6210\u529F\u3002`);
       resolve(db);
@@ -5001,11 +5111,8 @@ async function storeReadWrite(data) {
   const dbInstance = db || await openDB();
   const transaction = dbInstance.transaction([objectStoreName], "readwrite");
   const objectStore = transaction.objectStore(objectStoreName);
-  return new Promise((resolve, reject) => {
-    const request = objectStore.put(data);
-    request.onsuccess = () => resolve();
-    request.onerror = (event) => reject(event.target.error);
-  });
+  const request = objectStore.put(data);
+  return await awaitIdbRequest(request, transaction, 6e4);
 }
 async function getManualTags() {
   const db2 = await openDB();
@@ -5013,10 +5120,7 @@ async function getManualTags() {
   const store = transaction.objectStore("tags");
   const index = store.index("fileName");
   const request = index.getAll(IDBKeyRange.only("manual"));
-  return new Promise((resolve, reject) => {
-    request.onsuccess = () => resolve(request.result);
-    request.onerror = (event) => reject(event.target.error);
-  });
+  return await awaitIdbRequest(request, transaction, 3e4);
 }
 async function deleteTagByName(tagName) {
   const db2 = await openDB();
@@ -5040,6 +5144,7 @@ async function deleteTagByName(tagName) {
       }
     };
     request.onerror = (event) => reject(event.target.error);
+    transaction.onabort = () => reject(new Error("[IDB] \u5220\u9664\u6807\u7B7E\u4E8B\u52A1\u88AB\u4E2D\u6B62"));
   });
   return new Promise((resolve, reject) => {
     transaction.oncomplete = () => {
@@ -5050,27 +5155,22 @@ async function deleteTagByName(tagName) {
       }
     };
     transaction.onerror = (event) => reject(event.target.error);
+    transaction.onabort = () => reject(new Error("[IDB] \u5220\u9664\u6807\u7B7E\u4E8B\u52A1\u88AB\u4E2D\u6B62"));
   });
 }
 async function storeReadOnly(id) {
-  const db2 = await openDB();
-  const transaction = db2.transaction([objectStoreName], "readonly");
+  const dbInstance = db || await openDB();
+  const transaction = dbInstance.transaction([objectStoreName], "readonly");
   const objectStore = transaction.objectStore(objectStoreName);
-  return new Promise((resolve, reject) => {
-    const request = objectStore.get(id);
-    request.onsuccess = (event) => resolve(event.target.result);
-    request.onerror = (event) => reject(event.target.error);
-  });
+  const request = objectStore.get(id);
+  return await awaitIdbRequest(request, transaction, 3e4);
 }
 async function storeDelete(id) {
   const dbInstance = db || await openDB();
   const transaction = dbInstance.transaction([objectStoreName], "readwrite");
   const objectStore = transaction.objectStore(objectStoreName);
-  return new Promise((resolve, reject) => {
-    const request = objectStore.delete(id);
-    request.onsuccess = () => resolve();
-    request.onerror = (event) => reject(event.target.error);
-  });
+  const request = objectStore.delete(id);
+  return await awaitIdbRequest(request, transaction, 3e4);
 }
 function __chatu8T03Enabled() {
   if (__chatu8T03EnabledMemo === void 0) {
@@ -5244,7 +5344,9 @@ async function getItemBlob(tag, index = null) {
     const uuid = imageEntry.uuid;
     const imageData = await storeReadOnly(uuid);
     if (imageData && imageData.data) {
-      return new Blob([imageData.data], { type: "image/png" });
+      const isVideo = imageEntry.isVideo || false;
+      const mimeType = imageEntry.format ? formatToMimeType(imageEntry.format, isVideo) : detectMimeFromBuffer(imageData.data, isVideo);
+      return new Blob([imageData.data], { type: mimeType });
     }
   }
   return null;
@@ -5501,7 +5603,9 @@ async function getAllImages(md5ORtag) {
     const imagePromises = dbEntry.images.map(async (imageEntry) => {
       const imageData = await storeReadOnly(imageEntry.uuid);
       if (imageData && imageData.data) {
-        return "data:image/png;base64," + arrayBufferToBase64(imageData.data);
+        const isVideo = imageEntry.isVideo || false;
+        const mimeType = imageEntry.format ? formatToMimeType(imageEntry.format, isVideo) : detectMimeFromBuffer(imageData.data, isVideo);
+        return `data:${mimeType};base64,` + arrayBufferToBase64(imageData.data);
       }
       return null;
     });
@@ -5553,14 +5657,16 @@ async function getAllImageBlobs(md5ORtag) {
 async function getImageByUUID(uuid) {
   const imageData = await storeReadOnly(uuid);
   if (imageData && imageData.data) {
-    return "data:image/png;base64," + arrayBufferToBase64(imageData.data);
+    const mimeType = detectMimeFromBuffer(imageData.data);
+    return `data:${mimeType};base64,` + arrayBufferToBase64(imageData.data);
   }
   return null;
 }
 async function getImageBlobByUUID(uuid) {
   const imageData = await storeReadOnly(uuid);
   if (imageData && imageData.data) {
-    return new Blob([imageData.data], { type: "image/png" });
+    const mimeType = detectMimeFromBuffer(imageData.data);
+    return new Blob([imageData.data], { type: mimeType });
   }
   const serverStorage = extension_settings[extensionName].jiuguanStorage || {};
   for (const md5 in serverStorage) {
@@ -8927,49 +9033,45 @@ function deduplicateTags(tagString) {
   }
   return result;
 }
+function getSortedCharacterIds(promptData) {
+  if (!promptData || typeof promptData !== "object") return [];
+  const ids = Object.keys(promptData).map((k) => {
+    const m = k.match(/^Character\s+(\d+)\s+Prompt$/i);
+    return m ? parseInt(m[1], 10) : null;
+  }).filter((id) => id !== null && promptData[`Character ${id} Prompt`]);
+  return Array.from(new Set(ids)).sort((a, b) => a - b);
+}
 function parsePromptStringWithCoordinates(promptString) {
   addLog(`\u89E3\u6790\u573A\u666F\u6784\u56FE\u5B57\u7B26\u4E32: ${promptString}`);
   const result = {
-    "Scene Composition": "",
-    "Character 1 Prompt": "",
-    "Character 1 UC": "",
-    "Character 2 Prompt": "",
-    "Character 2 UC": "",
-    "Character 3 Prompt": "",
-    "Character 3 UC": "",
-    "Character 4 Prompt": "",
-    "Character 4 UC": "",
-    "Character 1 centers": "",
-    "Character 2 centers": "",
-    "Character 3 centers": "",
-    "Character 4 centers": "",
-    "Character 1 coordinates": {},
-    "Character 2 coordinates": {},
-    "Character 3 coordinates": {},
-    "Character 4 coordinates": {}
+    "Scene Composition": ""
   };
-  const sceneMatch = promptString.match(/Scene Composition:([^;]+);/);
+  if (!promptString || typeof promptString !== "string") {
+    return result;
+  }
+  const sceneMatch = promptString.match(/Scene Composition:([\s\S]*?);/i);
   if (sceneMatch) {
     result["Scene Composition"] = deduplicateTags(sceneMatch[1].trim());
   }
-  for (let i = 1; i <= 4; i++) {
-    const promptMatch = promptString.match(new RegExp(`Character ${i} Prompt:(.*?)(?:\\s*\\|\\s*centers:(\\{[^}]+\\}|[^;\\s]+))?\\s*;`));
-    if (promptMatch) {
-      result[`Character ${i} Prompt`] = deduplicateTags(promptMatch[1].trim());
-      if (promptMatch[2]) {
-        result[`Character ${i} centers`] = promptMatch[2].trim();
-        result[`Character ${i} coordinates`] = centersToCoordinates(promptMatch[2].trim());
-      } else {
-        result[`Character ${i} coordinates`] = {
-          // x:  0.5,
-          // y: y2
-        };
-      }
+  const promptRegex = /Character\s+(\d+)\s+Prompt:([\s\S]*?)(?:\s*\|\s*centers:(\{[^}]+\}|[^;\s]+))?\s*;/gi;
+  let match;
+  while ((match = promptRegex.exec(promptString)) !== null) {
+    const charId = parseInt(match[1], 10);
+    const promptContent = match[2] ? deduplicateTags(match[2].trim()) : "";
+    result[`Character ${charId} Prompt`] = promptContent;
+    if (match[3]) {
+      const centersStr = match[3].trim();
+      result[`Character ${charId} centers`] = centersStr;
+      result[`Character ${charId} coordinates`] = centersToCoordinates(centersStr);
+    } else if (!result[`Character ${charId} coordinates`]) {
+      result[`Character ${charId} coordinates`] = {};
     }
-    const ucMatch = promptString.match(new RegExp(`Character ${i} UC:([^;]+);`));
-    if (ucMatch) {
-      result[`Character ${i} UC`] = ucMatch[1].trim();
-    }
+  }
+  const ucRegex = /Character\s+(\d+)\s+UC:([\s\S]*?);/gi;
+  let ucMatch;
+  while ((ucMatch = ucRegex.exec(promptString)) !== null) {
+    const charId = parseInt(ucMatch[1], 10);
+    result[`Character ${charId} UC`] = ucMatch[2] ? ucMatch[2].trim() : "";
   }
   addLog(`\u89E3\u6790\u7ED3\u679C: ${JSON.stringify(result, null, 2)}`);
   return result;
@@ -9934,6 +10036,35 @@ async function fixMp4Faststart(blob) {
     return blob;
   }
   try {
+    if (blob.size && blob.size > 16) {
+      const headerBuf = await blob.slice(0, Math.min(8192, blob.size)).arrayBuffer();
+      const headerBytes = new Uint8Array(headerBuf);
+      const headerView = new DataView(headerBuf);
+      let hPos = 0;
+      let firstBoxType = "";
+      let secondBoxType = "";
+      if (hPos + 8 <= headerBytes.length) {
+        const b1Size = headerView.getUint32(hPos);
+        firstBoxType = String.fromCharCode(headerBytes[hPos + 4], headerBytes[hPos + 5], headerBytes[hPos + 6], headerBytes[hPos + 7]);
+        if (b1Size >= 8 && hPos + b1Size + 8 <= headerBytes.length) {
+          hPos += b1Size;
+          secondBoxType = String.fromCharCode(headerBytes[hPos + 4], headerBytes[hPos + 5], headerBytes[hPos + 6], headerBytes[hPos + 7]);
+        }
+      }
+      if (firstBoxType === "ftyp" && secondBoxType === "moov") {
+        let hasMp4aV1 = false;
+        for (let i = 0; i < headerBytes.length - 18; i++) {
+          if (headerBytes[i + 4] === 109 && headerBytes[i + 5] === 112 && headerBytes[i + 6] === 52 && headerBytes[i + 7] === 97) {
+            const v = headerView.getUint16(i + 16);
+            if (v === 1) hasMp4aV1 = true;
+            break;
+          }
+        }
+        if (!hasMp4aV1) {
+          return blob;
+        }
+      }
+    }
     const buffer = await blob.arrayBuffer();
     const bytes = new Uint8Array(buffer);
     const view = new DataView(buffer);
@@ -9945,8 +10076,7 @@ async function fixMp4Faststart(blob) {
       if (size === 0) {
         size = bytes.length - pos;
       }
-      if (size < 8) break;
-      boxes.push({ type, pos, size, data: bytes.slice(pos, pos + size) });
+      boxes.push({ type, pos, size, data: bytes.subarray(pos, pos + size) });
       pos += size;
     }
     const moovIdx = boxes.findIndex((b) => b.type === "moov");
@@ -10028,11 +10158,37 @@ async function safeDataUrlToBlob(dataUrl) {
   }
   return new Blob(parts, { type: mimeType });
 }
+function clearMacroSubstitutionCache() {
+  macroSubstitutionCache.clear();
+}
+function safeSubstituteParams(text) {
+  if (!text || typeof text !== "string") return "";
+  if (!text.includes("{{")) return text;
+  if (macroSubstitutionCache.has(text)) {
+    return macroSubstitutionCache.get(text);
+  }
+  let substituted = text;
+  try {
+    if (typeof substituteParams === "function") {
+      substituted = substituteParams(text);
+    }
+  } catch (e) {
+    console.warn("[Macro] \u5B8F\u5C55\u5F00\u6267\u884C\u5F02\u5E38\uFF0C\u56DE\u9000\u4F7F\u7528\u539F\u59CB\u6587\u672C:", e);
+    substituted = text;
+  }
+  if (macroSubstitutionCache.size >= MAX_MACRO_CACHE_ENTRIES) {
+    const firstKey = macroSubstitutionCache.keys().next().value;
+    macroSubstitutionCache.delete(firstKey);
+  }
+  macroSubstitutionCache.set(text, substituted);
+  return substituted;
+}
 function normalizePromptTag(tag) {
   if (!tag || typeof tag !== "string") return "";
-  return tag.trim().replaceAll("\r", "").replaceAll("\n", "").replaceAll("\u300A", "<").replaceAll("\u300B", ">").replace(/，/g, ",").replace(/；/g, ";").replace(/：/g, ":");
+  const substituted = safeSubstituteParams(tag);
+  return substituted.trim().replaceAll("\r", "").replaceAll("\n", "").replaceAll("\u300A", "<").replaceAll("\u300B", ">").replace(/，/g, ",").replace(/；/g, ";").replace(/：/g, ":");
 }
-var REFERENCE_PIXEL_COUNT, SIGMA_MAGIC_NUMBER, SIGMA_MAGIC_NUMBER_V4_5, LOG_RETENTION_MS, MAX_PERSISTED_LOG_SESSIONS, MAX_LOG_STORE_CHARS, LOG_ROLLING_TRIM_TARGET, logPersistenceStatePromise, logWriteQueue, _logInitialized, _pendingLogBuffer, _persistDebounceTimer, LOG_PERSIST_DEBOUNCE_MS, LOG_PERSIST_MAX_WAIT_MS, _persistFirstRequestTime, _expiredLogCleanupRunning, _expiredLogCleanupBudgetRemaining, SerialLockManager, serialLock, _logDomUpdateTimer, _logDomLastUpdate;
+var REFERENCE_PIXEL_COUNT, SIGMA_MAGIC_NUMBER, SIGMA_MAGIC_NUMBER_V4_5, LOG_RETENTION_MS, MAX_PERSISTED_LOG_SESSIONS, MAX_LOG_STORE_CHARS, LOG_ROLLING_TRIM_TARGET, logPersistenceStatePromise, logWriteQueue, _logInitialized, _pendingLogBuffer, _persistDebounceTimer, LOG_PERSIST_DEBOUNCE_MS, LOG_PERSIST_MAX_WAIT_MS, _persistFirstRequestTime, _expiredLogCleanupRunning, _expiredLogCleanupBudgetRemaining, SerialLockManager, serialLock, _logDomUpdateTimer, _logDomLastUpdate, MAX_MACRO_CACHE_ENTRIES, macroSubstitutionCache;
 var init_utils = __esm({
   "utils/utils.js"() {
     init_config();
@@ -10172,6 +10328,15 @@ var init_utils = __esm({
     serialLock = new SerialLockManager();
     _logDomUpdateTimer = null;
     _logDomLastUpdate = 0;
+    MAX_MACRO_CACHE_ENTRIES = 200;
+    macroSubstitutionCache = /* @__PURE__ */ new Map();
+    if (typeof eventSource !== "undefined" && eventSource.on) {
+      try {
+        eventSource.on("chat_changed", clearMacroSubstitutionCache);
+        eventSource.on("generation_started", clearMacroSubstitutionCache);
+      } catch (_) {
+      }
+    }
   }
 });
 
@@ -14502,7 +14667,8 @@ var init_taskQueue = __esm({
       AUTO_CLICK: "auto_click",
       SD: "sd",
       LLM: "llm",
-      BANANA: "banana"
+      BANANA: "banana",
+      PREGEN: "pregen"
     };
     TaskQueue = class {
       constructor() {
@@ -14520,23 +14686,25 @@ var init_taskQueue = __esm({
       /**
        * 添加任务到队列
        * @param {object} task 任务信息
+       * @param {string} [task.id] 可选自定义任务ID
        * @param {string} task.name 任务名称
-       * @param {string} task.type 任务类型 (button | comfyui)
+       * @param {string} task.type 任务类型
        * @param {string} [task.prompt] 完整 prompt
        * @param {HTMLElement} [task.buttonElement] 按钮元素引用
+       * @param {string} [task.status] 初始状态
        * @returns {string} 任务ID
        */
       addTask(task) {
-        const id = this.generateId();
+        const id = task.id || this.generateId();
         const newTask = {
           id,
           name: task.name || "\u672A\u547D\u540D\u4EFB\u52A1",
           type: task.type || TaskType.BUTTON,
           prompt: task.prompt || "",
           buttonElement: task.buttonElement || null,
-          status: TaskStatus.QUEUED,
+          status: task.status || TaskStatus.QUEUED,
           createdAt: Date.now(),
-          startedAt: null,
+          startedAt: task.status === TaskStatus.RUNNING ? Date.now() : null,
           completedAt: null
         };
         this.tasks.set(id, newTask);
@@ -33383,7 +33551,8 @@ function processMultiCharacterPrompt(prompt2) {
     const enabledOutfits = outfitEnablePresetId && defaultCharacterSettings2.outfitEnablePresets?.[outfitEnablePresetId]?.outfits || [];
     const characterOutfits = enabledCharacters.flatMap((charId) => characterPresets[charId]?.outfits || []);
     const allAvailableOutfits = [.../* @__PURE__ */ new Set([...enabledOutfits, ...characterOutfits])];
-    for (let i = 1; i <= 4; i++) {
+    const charIds = getSortedCharacterIds(prompt_data);
+    for (const i of charIds) {
       const promptKey = `Character ${i} Prompt`;
       const ucKey = `Character ${i} UC`;
       if (prompt_data[promptKey]) {
@@ -33601,7 +33770,8 @@ function reconstructPromptString(prompt_data) {
   if (prompt_data["Scene Composition"]) {
     result += `Scene Composition: ${prompt_data["Scene Composition"]};`;
   }
-  for (let i = 1; i <= 4; i++) {
+  const charIds = getSortedCharacterIds(prompt_data);
+  for (const i of charIds) {
     const promptKey = `Character ${i} Prompt`;
     const ucKey = `Character ${i} UC`;
     const centersKey = `Character ${i} centers`;
@@ -41654,32 +41824,55 @@ var init_gorkVideo = __esm({
 
 // utils/positionEditor.js
 
+function getCharacterTheme(charId) {
+  if (CLASSIC_CHARACTER_THEMES[charId]) {
+    return CLASSIC_CHARACTER_THEMES[charId];
+  }
+  const hue = Math.round(charId * 137.508 % 360);
+  return {
+    name: `\u89D2\u8272 ${charId}`,
+    color: `hsl(${hue}, 85%, 60%)`,
+    bg: `hsla(${hue}, 85%, 60%, 0.2)`,
+    border: `hsl(${hue}, 85%, 72%)`,
+    shadow: `hsla(${hue}, 85%, 60%, 0.5)`
+  };
+}
 async function openPositionEditorDialog({ input, button, doc = document, onApply }) {
   if (!input) return;
   const currentText = input.value || "";
   const activeCharacters = [];
-  for (let i = 1; i <= 4; i++) {
-    const regex = new RegExp(`Character\\s+${i}\\s+Prompt:`, "i");
-    if (regex.test(currentText)) {
-      activeCharacters.push(i);
+  const charRegex = /Character\s+(\d+)\s+Prompt:/gi;
+  let charMatch;
+  while ((charMatch = charRegex.exec(currentText)) !== null) {
+    const id = parseInt(charMatch[1], 10);
+    if (!activeCharacters.includes(id)) {
+      activeCharacters.push(id);
     }
   }
+  activeCharacters.sort((a, b) => a - b);
   if (activeCharacters.length === 0) {
     if (typeof toastr !== "undefined") {
-      toastr.info("\u672A\u68C0\u6D4B\u5230\u5206\u89D2\u8272\u63D0\u793A\u8BCD (Character 1~4 Prompt)\uFF0C\u5982\u9700\u7F16\u8F91\u4F4D\u7F6E\u8BF7\u5148\u5C55\u5F00\u5206\u89D2\u8272\u9884\u8BBE\u3002");
+      toastr.info("\u672A\u68C0\u6D4B\u5230\u5206\u89D2\u8272\u63D0\u793A\u8BCD (Character Prompt)\uFF0C\u5982\u9700\u7F16\u8F91\u4F4D\u7F6E\u8BF7\u5148\u5C55\u5F00\u5206\u89D2\u8272\u9884\u8BBE\u3002");
     } else {
       alert("\u672A\u68C0\u6D4B\u5230\u5206\u89D2\u8272\u63D0\u793A\u8BCD\uFF0C\u5982\u9700\u7F16\u8F91\u4F4D\u7F6E\u8BF7\u5148\u5C55\u5F00\u5206\u89D2\u8272\u9884\u8BBE\u3002");
     }
     return;
   }
   const charCoords = {};
-  const defaultDistribution = {
+  const classicDistribution = {
     1: [0.5],
     2: [0.35, 0.65],
     3: [0.25, 0.5, 0.75],
     4: [0.2, 0.4, 0.6, 0.8]
   };
-  const defaultXs = defaultDistribution[activeCharacters.length] || [0.5, 0.5, 0.5, 0.5];
+  const getInitialX = (index, totalCount) => {
+    if (classicDistribution[totalCount]) {
+      return classicDistribution[totalCount][index] ?? 0.5;
+    }
+    if (totalCount <= 1) return 0.5;
+    const step = 0.72 / (totalCount - 1);
+    return Number((0.14 + index * step).toFixed(3));
+  };
   activeCharacters.forEach((charId, index) => {
     const match = currentText.match(new RegExp(`Character\\s+${charId}\\s+Prompt:[^;\\n]*?(?:\\|\\s*centers:(\\{[^}]+\\}|[^;\\s]+))`, "i"));
     if (match && match[1]) {
@@ -41690,7 +41883,7 @@ async function openPositionEditorDialog({ input, button, doc = document, onApply
       }
     }
     charCoords[charId] = {
-      x: Number((defaultXs[index] || 0.5).toFixed(3)),
+      x: getInitialX(index, activeCharacters.length),
       y: 0.5
     };
   });
@@ -41932,14 +42125,16 @@ async function openPositionEditorDialog({ input, button, doc = document, onApply
     `;
   const charElements = {};
   const cardElements = {};
+  const dotDiameter = activeCharacters.length > 10 ? 26 : activeCharacters.length > 6 ? 30 : 34;
+  const dotFontSize = activeCharacters.length > 10 ? 11 : activeCharacters.length > 6 ? 13 : 15;
   activeCharacters.forEach((charId) => {
-    const theme = CHARACTER_THEMES[charId] || CHARACTER_THEMES[1];
+    const theme = getCharacterTheme(charId);
     const coord = charCoords[charId];
     const dot = doc.createElement("div");
     dot.style.cssText = `
             position: absolute;
-            width: 34px;
-            height: 34px;
+            width: ${dotDiameter}px;
+            height: ${dotDiameter}px;
             border-radius: 50%;
             background: ${theme.color};
             border: 2px solid #ffffff;
@@ -41948,7 +42143,7 @@ async function openPositionEditorDialog({ input, button, doc = document, onApply
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 15px;
+            font-size: ${dotFontSize}px;
             color: #ffffff;
             cursor: grab;
             transform: translate(-50%, -50%);
@@ -42214,17 +42409,21 @@ async function openPositionEditorDialog({ input, button, doc = document, onApply
     clampPopupToViewport(dialog, win);
   }
 }
-var CHARACTER_THEMES;
+var CLASSIC_CHARACTER_THEMES;
 var init_positionEditor = __esm({
   "utils/positionEditor.js"() {
     init_utils();
     init_database();
     init_config();
-    CHARACTER_THEMES = {
+    CLASSIC_CHARACTER_THEMES = {
       1: { name: "\u89D2\u8272 1", color: "#3b82f6", bg: "rgba(59, 130, 246, 0.2)", border: "#60a5fa", shadow: "rgba(59, 130, 246, 0.5)" },
       2: { name: "\u89D2\u8272 2", color: "#ec4899", bg: "rgba(236, 72, 153, 0.2)", border: "#f472b6", shadow: "rgba(236, 72, 153, 0.5)" },
       3: { name: "\u89D2\u8272 3", color: "#10b981", bg: "rgba(16, 185, 129, 0.2)", border: "#34d399", shadow: "rgba(16, 185, 129, 0.5)" },
-      4: { name: "\u89D2\u8272 4", color: "#f59e0b", bg: "rgba(245, 158, 11, 0.2)", border: "#fbbf24", shadow: "rgba(245, 158, 11, 0.5)" }
+      4: { name: "\u89D2\u8272 4", color: "#f59e0b", bg: "rgba(245, 158, 11, 0.2)", border: "#fbbf24", shadow: "rgba(245, 158, 11, 0.5)" },
+      5: { name: "\u89D2\u8272 5", color: "#8b5cf6", bg: "rgba(139, 92, 246, 0.2)", border: "#a78bfa", shadow: "rgba(139, 92, 246, 0.5)" },
+      6: { name: "\u89D2\u8272 6", color: "#06b6d4", bg: "rgba(6, 182, 212, 0.2)", border: "#22d3ee", shadow: "rgba(6, 182, 212, 0.5)" },
+      7: { name: "\u89D2\u8272 7", color: "#f97316", bg: "rgba(249, 115, 22, 0.2)", border: "#fb923c", shadow: "rgba(249, 115, 22, 0.5)" },
+      8: { name: "\u89D2\u8272 8", color: "#14b8a6", bg: "rgba(20, 184, 166, 0.2)", border: "#2dd4bf", shadow: "rgba(20, 184, 166, 0.5)" }
     };
   }
 });
@@ -43367,17 +43566,11 @@ function showEditDialog(img, button) {
       let tokens = [];
       if (cleaned.includes("Scene Composition")) {
         const parsed = parsePromptStringWithCoordinates(cleaned);
-        const keys = [
-          "Scene Composition",
-          "Character 1 Prompt",
-          "Character 1 UC",
-          "Character 2 Prompt",
-          "Character 2 UC",
-          "Character 3 Prompt",
-          "Character 3 UC",
-          "Character 4 Prompt",
-          "Character 4 UC"
-        ];
+        const charIds = getSortedCharacterIds(parsed);
+        const keys = ["Scene Composition"];
+        charIds.forEach((id) => {
+          keys.push(`Character ${id} Prompt`, `Character ${id} UC`);
+        });
         keys.forEach((k) => {
           const v = parsed?.[k];
           if (typeof v === "string" && v.trim()) {
@@ -43453,27 +43646,7 @@ function showEditDialog(img, button) {
       let annotated = "";
       const localCleanTagForMatching = (tag) => {
         let clean = tag.replace(/^[\{\[\(\<]+|[\}\]\)\>]+$/g, "").replace(/^\{+|\}+$/g, "").replace(/:[\d.]+$/, "").trim();
-        const novelaiKeywords2 = [
-          "Scene Composition:",
-          "Character 1 Prompt:",
-          "Character 1 UC:",
-          "Character 1 coordinates:",
-          "Character 2 Prompt:",
-          "Character 2 UC:",
-          "Character 2 coordinates:",
-          "Character 3 Prompt:",
-          "Character 3 UC:",
-          "Character 3 coordinates:",
-          "Character 4 Prompt:",
-          "Character 4 UC:",
-          "Character 4 coordinates:"
-        ];
-        for (const kw of novelaiKeywords2) {
-          if (clean.startsWith(kw)) {
-            clean = clean.slice(kw.length).trim();
-            break;
-          }
-        }
+        clean = clean.replace(/^(?:Scene Composition:|Character\s+\d+\s+(?:Prompt|UC|coordinates):)\s*/i, "").trim();
         clean = clean.replace(/\|centers:(?:\{[^}]*\}|[a-zA-Z0-9]+)$/, "").trim();
         return clean;
       };
@@ -43503,29 +43676,13 @@ function showEditDialog(img, button) {
         annotated += mapped + (item.sep === "," ? ", " : item.sep);
       });
       console.log("[\u7FFB\u8BD1\u8C03\u8BD5] annotated:", annotated);
-      const novelaiKeywords = [
-        "Scene Composition:",
-        "Character 1 Prompt:",
-        "Character 1 UC:",
-        "Character 1 coordinates:",
-        "Character 2 Prompt:",
-        "Character 2 UC:",
-        "Character 2 coordinates:",
-        "Character 3 Prompt:",
-        "Character 3 UC:",
-        "Character 3 coordinates:",
-        "Character 4 Prompt:",
-        "Character 4 UC:",
-        "Character 4 coordinates:"
-      ];
-      const hasNovelAIFormat = novelaiKeywords.some((kw) => annotated.includes(kw));
-      if (hasNovelAIFormat) {
-        for (const keyword of novelaiKeywords) {
-          const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-          annotated = annotated.replace(new RegExp(`\\s*${escaped}`, "g"), (match, offset) => offset === 0 ? match : `
+      const rolePattern = /(?:Scene Composition:|Character\s+\d+\s+(?:Prompt|UC|coordinates):)/i;
+      if (rolePattern.test(annotated)) {
+        annotated = annotated.replace(/(?:[ \t\r\n]*)(Scene Composition:|Character\s+\d+\s+(?:Prompt|UC|coordinates):)/gi, (match, p1, offset) => {
+          return offset === 0 ? p1 : `
 
-${keyword}`);
-        }
+${p1}`;
+        });
         annotated = annotated.replace(/^\s+/, "").replace(/\n{3,}/g, "\n\n");
       }
       input.value = annotated;
@@ -43938,30 +44095,14 @@ ${keyword}`);
     const originalValue = input.value;
     let expandedValue = processCharacterPrompt(originalValue);
     let processedValue = expandedValue;
-    const novelaiKeywords = [
-      "Scene Composition:",
-      "Character 1 Prompt:",
-      "Character 1 UC:",
-      "Character 1 coordinates:",
-      "Character 2 Prompt:",
-      "Character 2 UC:",
-      "Character 2 coordinates:",
-      "Character 3 Prompt:",
-      "Character 3 UC:",
-      "Character 3 coordinates:",
-      "Character 4 Prompt:",
-      "Character 4 UC:",
-      "Character 4 coordinates:"
-    ];
-    const hasNovelAIFormat = novelaiKeywords.some((kw) => processedValue.includes(kw));
-    if (hasNovelAIFormat) {
+    const rolePattern = /(?:Scene Composition:|Character\s+\d+\s+(?:Prompt|UC|coordinates):)/i;
+    if (rolePattern.test(processedValue)) {
       processedValue = processedValue.replace(/;\s*/g, ";\n");
-      for (const keyword of novelaiKeywords) {
-        const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-        processedValue = processedValue.replace(new RegExp(`\\s*${escaped}`, "g"), (match, offset) => offset === 0 ? match : `
+      processedValue = processedValue.replace(/(?:[ \t\r\n]*)(Scene Composition:|Character\s+\d+\s+(?:Prompt|UC|coordinates):)/gi, (match, p1, offset) => {
+        return offset === 0 ? p1 : `
 
-${keyword}`);
-      }
+${p1}`;
+      });
       processedValue = processedValue.replace(/^\s+/, "").replace(/\n{3,}/g, "\n\n");
     }
     if (processedValue !== originalValue) {
@@ -44114,16 +44255,15 @@ ${keyword}`);
       if (parsed) {
         positiveText = parsed["Scene Composition"] || "";
         negativeText = "";
-        const positiveKeys = ["Character 1 Prompt", "Character 2 Prompt", "Character 3 Prompt", "Character 4 Prompt"];
-        for (const key of positiveKeys) {
-          if (parsed[key] && parsed[key].trim()) {
-            charTokens += await calculateNovelAITokens(parsed[key]);
+        const charIds = getSortedCharacterIds(parsed);
+        for (const id of charIds) {
+          const promptVal = parsed[`Character ${id} Prompt`];
+          if (promptVal && promptVal.trim()) {
+            charTokens += await calculateNovelAITokens(promptVal);
           }
-        }
-        const negativeKeys = ["Character 1 UC", "Character 2 UC", "Character 3 UC", "Character 4 UC"];
-        for (const key of negativeKeys) {
-          if (parsed[key] && parsed[key].trim()) {
-            charNegTokens += await calculateNovelAITokens(parsed[key]);
+          const ucVal = parsed[`Character ${id} UC`];
+          if (ucVal && ucVal.trim()) {
+            charNegTokens += await calculateNovelAITokens(ucVal);
           }
         }
       }
@@ -46948,7 +47088,8 @@ async function generateComfyUIImage({ prompt: link, width: Xwidth, height: Xheig
     addLog("\u5206\u89D2\u8272\u6A21\u5F0F: \u89E3\u6790\u5E26\u5750\u6807\u7684\u63D0\u793A\u8BCD\u5B57\u7B26\u4E32\u3002");
     prompt_data = parsePromptStringWithCoordinates(promptForGeneration);
     mainPrompt = prompt_data["Scene Composition"];
-    for (let i = 1; i <= 4; i++) {
+    const charIds = getSortedCharacterIds(prompt_data);
+    for (const i of charIds) {
       if (prompt_data[`Character ${i} Prompt`]) {
         other_prompt = other_prompt + ", " + prompt_data[`Character ${i} Prompt`];
       }
@@ -46959,7 +47100,8 @@ async function generateComfyUIImage({ prompt: link, width: Xwidth, height: Xheig
   }
   let { modifiedPrompt, insertions } = await prompt_replace(mainPrompt, other_prompt);
   if (Divide_roles) {
-    for (let i = 1; i <= 4; i++) {
+    const charIds = getSortedCharacterIds(prompt_data);
+    for (const i of charIds) {
       if (prompt_data[`Character ${i} Prompt`]) {
         modifiedPrompt = modifiedPrompt + " | " + prompt_replace_for_character(prompt_data[`Character ${i} Prompt`], (mainPrompt || "") + " " + (other_prompt || ""));
       }
@@ -47251,10 +47393,38 @@ Scheduler: ${payload.scheduler}
           }
           if (re.hasOwnProperty(id)) {
             let getImageInfoFromOutputs = function(outputs) {
+              if (!outputs || typeof outputs !== "object") return null;
+              const isVideoExt = (fn) => typeof fn === "string" && /\.(mp4|webm|mkv|mov|avi)$/i.test(fn);
               for (const key in outputs) {
                 const value = outputs[key];
-                if (value.images && value.images.length > 0) {
-                  const outputImage = value.images.find((img) => img.type === "output");
+                if (!value) continue;
+                if (Array.isArray(value.gifs) && value.gifs.length > 0) {
+                  const gif = value.gifs[0];
+                  const isVideo2 = gif.format && gif.format.startsWith("video/") || isVideoExt(gif.filename);
+                  return {
+                    filename: gif.filename,
+                    subfolder: gif.subfolder || "",
+                    isVideo: Boolean(isVideo2),
+                    format: gif.format || (isVideo2 ? "video/mp4" : "image/gif")
+                  };
+                }
+                if (Array.isArray(value.images) && value.images.length > 0) {
+                  const videoImg = value.images.find((img) => img.type === "output" && isVideoExt(img.filename));
+                  if (videoImg) {
+                    return {
+                      filename: videoImg.filename,
+                      subfolder: videoImg.subfolder || "",
+                      isVideo: true,
+                      format: videoImg.filename.endsWith(".webm") ? "video/webm" : "video/mp4"
+                    };
+                  }
+                }
+              }
+              for (const key in outputs) {
+                const value = outputs[key];
+                if (!value) continue;
+                if (Array.isArray(value.images) && value.images.length > 0) {
+                  const outputImage = value.images.find((img) => img.type === "output") || value.images[0];
                   if (outputImage) {
                     return {
                       filename: outputImage.filename,
@@ -47263,17 +47433,6 @@ Scheduler: ${payload.scheduler}
                       format: "image"
                     };
                   }
-                  continue;
-                }
-                if (value.gifs && value.gifs.length > 0) {
-                  const gif = value.gifs[0];
-                  const isVideo2 = gif.format && gif.format.startsWith("video/");
-                  return {
-                    filename: gif.filename,
-                    subfolder: gif.subfolder || "",
-                    isVideo: isVideo2,
-                    format: gif.format || "image/gif"
-                  };
                 }
               }
               return null;
@@ -47294,11 +47453,13 @@ Scheduler: ${payload.scheduler}
             if (imageInfo.isVideo) {
               let correctedMimeType = "video/mp4";
               if (imageInfo.format) {
-                if (imageInfo.format.includes("webm")) {
+                if (imageInfo.format.includes("webm") || imageInfo.filename && imageInfo.filename.toLowerCase().endsWith(".webm")) {
                   correctedMimeType = "video/webm";
-                } else if (imageInfo.format.includes("mp4") || imageInfo.format.includes("h264")) {
+                } else if (imageInfo.format.includes("mp4") || imageInfo.format.includes("h264") || imageInfo.filename && imageInfo.filename.toLowerCase().endsWith(".mp4")) {
                   correctedMimeType = "video/mp4";
                 }
+              } else if (imageInfo.filename && imageInfo.filename.toLowerCase().endsWith(".webm")) {
+                correctedMimeType = "video/webm";
               }
               const arrayBuffer = await blob.arrayBuffer();
               blob = new Blob([arrayBuffer], { type: correctedMimeType });
@@ -47875,7 +48036,8 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
     addLog("\u5206\u89D2\u8272\u6A21\u5F0F: \u89E3\u6790\u5E26\u5750\u6807\u7684\u63D0\u793A\u8BCD\u5B57\u7B26\u4E32\u3002");
     prompt_data = parsePromptStringWithCoordinates(prompt2);
     mainPrompt = prompt_data["Scene Composition"];
-    for (let i = 1; i <= 4; i++) {
+    const charIds = getSortedCharacterIds(prompt_data);
+    for (const i of charIds) {
       if (prompt_data[`Character ${i} Prompt`]) {
         other_prompt = other_prompt + ", " + prompt_data[`Character ${i} Prompt`];
       }
@@ -47886,7 +48048,8 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
   }
   let { modifiedPrompt, insertions } = await prompt_replace_banana(mainPrompt, other_prompt);
   if (Divide_roles) {
-    for (let i = 1; i <= 4; i++) {
+    const charIds = getSortedCharacterIds(prompt_data);
+    for (const i of charIds) {
       if (prompt_data[`Character ${i} Prompt`]) {
         modifiedPrompt = modifiedPrompt + " | " + prompt_replace_banana_for_character(prompt_data[`Character ${i} Prompt`], (mainPrompt || "") + " " + (other_prompt || ""));
       }
@@ -48021,9 +48184,9 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
         throw new Error(`Grok \u54CD\u5E94\u7F3A\u5C11\u56FE\u7247\u6570\u636E (data[0]/images)\uFF0C\u539F\u59CB\u54CD\u5E94: ${JSON.stringify(grokResult).slice(0, 500)}`);
       }
       let imageUrl = "";
-      const rawB64 = item.b64_json || item.base64;
-      if (rawB64) {
-        imageUrl = rawB64.startsWith("data:image") ? rawB64 : `data:image/png;base64,${rawB64}`;
+      const rawB642 = item.b64_json || item.base64;
+      if (rawB642) {
+        imageUrl = rawB642.startsWith("data:image") ? rawB642 : `data:image/png;base64,${rawB642}`;
         addLog("[Banana] Grok \u6A21\u5F0F\uFF1A\u4ECE b64_json/base64 \u63D0\u53D6\u5230\u56FE\u7247");
       } else if (item.url) {
         addLog(`[Banana] Grok \u6A21\u5F0F\uFF1A\u4E0B\u8F7D\u56FE\u7247 URL ${item.url}`);
@@ -48042,17 +48205,29 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
       if (!imageUrl) {
         throw new Error("Grok \u54CD\u5E94\u672A\u5305\u542B\u56FE\u7247\uFF08b64_json/url \u5747\u4E3A\u7A7A\uFF09");
       }
-      if (String(extension_settings50[extensionName].convertToJpegStorage) === "true") {
+      const rawUrl = item.url || "";
+      const isVideo = Boolean(
+        imageUrl && imageUrl.startsWith("data:video/") || typeof rawB642 === "string" && (rawB642.startsWith("data:video/") || rawB642.startsWith("AAAA")) || rawUrl && /\.(mp4|webm|mkv|mov)(\?.*)?$/i.test(rawUrl)
+      );
+      const format = isVideo ? imageUrl.includes("webm") || rawUrl.includes("webm") ? "video/webm" : "video/mp4" : "image/png";
+      if (!isVideo && String(extension_settings50[extensionName].convertToJpegStorage) === "true") {
         imageUrl = await convertImageToJpeg(imageUrl);
       }
       const duration = ((Date.now() - startTime) / 1e3).toFixed(1);
-      addLog(`[Banana] Grok \u6A21\u5F0F\uFF1A\u56FE\u7247\u751F\u6210\u6210\u529F (\u8017\u65F6 ${duration} \u79D2)`);
+      addLog(`[Banana] Grok \u6A21\u5F0F\uFF1A${isVideo ? "\u89C6\u9891" : "\u56FE\u7247"}\u751F\u6210\u6210\u529F (\u8017\u65F6 ${duration} \u79D2)`);
       taskQueue.completeTask(taskId, true);
       if (!isPluginToastDisabled()) {
-        toastr.success(`\u2705 Grok \u751F\u56FE\u5B8C\u6210\uFF0C\u8017\u65F6 ${duration} \u79D2`);
+        toastr.success(isVideo ? `\u2705 Grok \u89C6\u9891\u751F\u6210\u5B8C\u6210\uFF0C\u8017\u65F6 ${duration} \u79D2` : `\u2705 Grok \u751F\u56FE\u5B8C\u6210\uFF0C\u8017\u65F6 ${duration} \u79D2`);
       }
       currentTaskId3 = null;
-      return { image: imageUrl, change: change_ || "", genParams: _banana_gen_params };
+      return {
+        image: imageUrl,
+        change: change_ || "",
+        isVideo,
+        format,
+        originalUrl: rawUrl,
+        genParams: _banana_gen_params
+      };
     } catch (error) {
       addLog(`[Banana] Grok \u6A21\u5F0F\u9519\u8BEF: ${error.message}`);
       console.error("[Banana] Grok mode error:", error);
@@ -48323,16 +48498,16 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
         const markdownImageRegex = /!\[.*?\]\(((?:https?:\/\/|data:image\/[^;]+;base64,)[^\s\)]+)\)/;
         const match = content.match(markdownImageRegex);
         if (match && match[1]) {
-          const mdImageData = match[1];
-          if (mdImageData.startsWith("data:image/")) {
+          const mdImageData2 = match[1];
+          if (mdImageData2.startsWith("data:image/")) {
             addLog("[Banana] Detected Markdown embedded base64 image.");
-            imageUrl = mdImageData;
+            imageUrl = mdImageData2;
             addLog("[Banana] Successfully extracted base64 image from Markdown.");
           } else {
             addLog("[Banana] Detected Markdown image URL, extracting...");
-            addLog(`[Banana] Markdown image URL: ${mdImageData}`);
+            addLog(`[Banana] Markdown image URL: ${mdImageData2}`);
             try {
-              const imageResponse = await fetch(mdImageData, { headers: getDirectHeaders() });
+              const imageResponse = await fetch(mdImageData2, { headers: getDirectHeaders() });
               if (!imageResponse.ok) {
                 throw new Error(`Failed to fetch image: ${imageResponse.status}`);
               }
@@ -48344,13 +48519,16 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
                 reader.readAsDataURL(imageBlob);
               });
               imageUrl = base64Data;
-              if (String(extension_settings50[extensionName].convertToJpegStorage) === "true") {
+              const isMdVideo = Boolean(
+                base64Data && base64Data.startsWith("data:video/") || typeof mdImageData2 === "string" && /\.(mp4|webm|mkv|mov)(\?.*)?$/i.test(mdImageData2)
+              );
+              if (!isMdVideo && String(extension_settings50[extensionName].convertToJpegStorage) === "true") {
                 imageUrl = await convertImageToJpeg(imageUrl);
               }
               addLog("[Banana] Successfully converted Markdown image to base64.");
             } catch (fetchError) {
               addLog(`[Banana] Failed to fetch Markdown image: ${fetchError.message}`);
-              imageUrl = mdImageData;
+              imageUrl = mdImageData2;
               addLog("[Banana] Using direct URL as fallback.");
             }
           }
@@ -48362,14 +48540,26 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
     if (!imageUrl) {
       throw new Error("API response did not contain image in OpenAI format");
     }
+    const isVideo = Boolean(
+      imageUrl && imageUrl.startsWith("data:video/") || typeof rawB64 === "string" && (rawB64.startsWith("data:video/") || rawB64.startsWith("AAAA")) || typeof mdImageData === "string" && /\.(mp4|webm|mkv|mov)(\?.*)?$/i.test(mdImageData)
+    );
+    const format = isVideo ? imageUrl.includes("webm") || typeof mdImageData === "string" && mdImageData.includes("webm") ? "video/webm" : "video/mp4" : "image/png";
+    const originalUrl = typeof mdImageData === "string" ? mdImageData : "";
     const duration = ((Date.now() - startTime) / 1e3).toFixed(1);
-    addLog(`[Banana] Image generated successfully (\u8017\u65F6 ${duration} \u79D2).`);
+    addLog(`[Banana] ${isVideo ? "Video" : "Image"} generated successfully (\u8017\u65F6 ${duration} \u79D2).`);
     taskQueue.completeTask(taskId, true);
     if (!isPluginToastDisabled()) {
       toastr.success(isGrok ? `\u2705 Grok \u751F\u56FE\u5B8C\u6210\uFF0C\u8017\u65F6 ${duration} \u79D2` : `\u2705 Banana \u751F\u56FE\u5B8C\u6210\uFF0C\u8017\u65F6 ${duration} \u79D2`);
     }
     currentTaskId3 = null;
-    return { image: imageUrl, change: change_ || "", genParams: _banana_gen_params };
+    return {
+      image: imageUrl,
+      change: change_ || "",
+      isVideo,
+      format,
+      originalUrl,
+      genParams: _banana_gen_params
+    };
   } catch (error) {
     addLog(`[Banana] Fetch error: ${error.message}`);
     console.error("[Banana] Fetch error:", error);
@@ -48919,7 +49109,8 @@ async function generateRunningHubImage({ prompt: link, width: Xwidth, height: Xh
     addLog("\u5206\u89D2\u8272\u6A21\u5F0F: \u89E3\u6790\u5E26\u5750\u6807\u7684\u63D0\u793A\u8BCD\u5B57\u7B26\u4E32\u3002");
     prompt_data = parsePromptStringWithCoordinates(promptForGeneration);
     mainPrompt = prompt_data["Scene Composition"];
-    for (let i = 1; i <= 4; i++) {
+    const charIds = getSortedCharacterIds(prompt_data);
+    for (const i of charIds) {
       if (prompt_data[`Character ${i} Prompt`]) {
         other_prompt = other_prompt + ", " + prompt_data[`Character ${i} Prompt`];
       }
@@ -48930,7 +49121,8 @@ async function generateRunningHubImage({ prompt: link, width: Xwidth, height: Xh
   }
   let { modifiedPrompt, insertions } = await prompt_replace(mainPrompt, other_prompt);
   if (Divide_roles) {
-    for (let i = 1; i <= 4; i++) {
+    const charIds = getSortedCharacterIds(prompt_data);
+    for (const i of charIds) {
       if (prompt_data[`Character ${i} Prompt`]) {
         modifiedPrompt = modifiedPrompt + " | " + prompt_replace_for_character(prompt_data[`Character ${i} Prompt`], (mainPrompt || "") + " " + (other_prompt || ""));
       }
@@ -51375,8 +51567,10 @@ async function generateComfyUIRefVideo({ prompt: rawPrompt, width: Xwidth, heigh
         }
         const outputs = promptHistory.outputs || {};
         let foundFile = null;
+        const isVideoExt = (fn) => typeof fn === "string" && /\.(mp4|webm|mkv|mov|avi)$/i.test(fn);
         for (const key in outputs) {
           const val = outputs[key];
+          if (!val) continue;
           if (val.gifs && val.gifs.length > 0) {
             const gif = val.gifs[0];
             foundFile = {
@@ -51388,14 +51582,32 @@ async function generateComfyUIRefVideo({ prompt: rawPrompt, width: Xwidth, heigh
             break;
           }
           if (val.images && val.images.length > 0) {
-            const outImg = val.images.find((img) => img.type === "output") || val.images[0];
-            foundFile = {
-              filename: outImg.filename,
-              subfolder: outImg.subfolder || "",
-              isVideo: false,
-              format: "image/png"
-            };
-            break;
+            const videoImg = val.images.find((img) => img.type === "output" && isVideoExt(img.filename));
+            if (videoImg) {
+              foundFile = {
+                filename: videoImg.filename,
+                subfolder: videoImg.subfolder || "",
+                isVideo: true,
+                format: videoImg.filename.endsWith(".webm") ? "video/webm" : "video/mp4"
+              };
+              break;
+            }
+          }
+        }
+        if (!foundFile) {
+          for (const key in outputs) {
+            const val = outputs[key];
+            if (!val) continue;
+            if (val.images && val.images.length > 0) {
+              const outImg = val.images.find((img) => img.type === "output") || val.images[0];
+              foundFile = {
+                filename: outImg.filename,
+                subfolder: outImg.subfolder || "",
+                isVideo: false,
+                format: "image/png"
+              };
+              break;
+            }
           }
         }
         if (foundFile) {
@@ -51587,8 +51799,10 @@ async function executeComfyUIVideoDirectTest({
       }
       const outputs = promptHistory.outputs || {};
       let foundFile = null;
+      const isVideoExt = (fn) => typeof fn === "string" && /\.(mp4|webm|mkv|mov|avi)$/i.test(fn);
       for (const key in outputs) {
         const val = outputs[key];
+        if (!val) continue;
         if (val.gifs && val.gifs.length > 0) {
           const gif = val.gifs[0];
           foundFile = {
@@ -51600,14 +51814,32 @@ async function executeComfyUIVideoDirectTest({
           break;
         }
         if (val.images && val.images.length > 0) {
-          const outImg = val.images.find((img) => img.type === "output") || val.images[0];
-          foundFile = {
-            filename: outImg.filename,
-            subfolder: outImg.subfolder || "",
-            isVideo: false,
-            format: "image/png"
-          };
-          break;
+          const videoImg = val.images.find((img) => img.type === "output" && isVideoExt(img.filename));
+          if (videoImg) {
+            foundFile = {
+              filename: videoImg.filename,
+              subfolder: videoImg.subfolder || "",
+              isVideo: true,
+              format: videoImg.filename.endsWith(".webm") ? "video/webm" : "video/mp4"
+            };
+            break;
+          }
+        }
+      }
+      if (!foundFile) {
+        for (const key in outputs) {
+          const val = outputs[key];
+          if (!val) continue;
+          if (val.images && val.images.length > 0) {
+            const outImg = val.images.find((img) => img.type === "output") || val.images[0];
+            foundFile = {
+              filename: outImg.filename,
+              subfolder: outImg.subfolder || "",
+              isVideo: false,
+              format: "image/png"
+            };
+            break;
+          }
         }
       }
       if (foundFile) {
@@ -51785,13 +52017,20 @@ function createAndShowImage(container, imageUrl, alt, button, change, isVideo = 
           media.src = originalUrl || imageUrl;
         });
       } else if (imageUrl.startsWith("http://") || imageUrl.startsWith("https://") || imageUrl.startsWith("/") || imageUrl.startsWith(".")) {
-        fetch(imageUrl).then((res) => {
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          return res.blob();
-        }).then((rawBlob) => fixMp4Faststart(rawBlob)).then((blob) => applyBlob(blob)).catch((e) => {
-          console.warn("[video] \u7F51\u7EDC URL faststart \u9884\u62C9\u53D6\u5931\u8D25\uFF0C\u76F4\u63A5\u8D4B\u503C:", e);
-          media.src = originalUrl || imageUrl;
-        });
+        media.src = imageUrl;
+        const onDirectErr = () => {
+          media.removeEventListener("error", onDirectErr);
+          if (media.src !== imageUrl && !media.src.endsWith(imageUrl)) return;
+          console.log("[video] \u76F4\u94FE\u539F\u751F\u6D41\u64AD\u653E\u5931\u8D25\uFF0C\u5C1D\u8BD5\u964D\u7EA7\u62C9\u53D6 Blob \u4FEE\u590D:", imageUrl);
+          fetch(imageUrl).then((res) => {
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            return res.blob();
+          }).then((rawBlob) => fixMp4Faststart(rawBlob)).then((blob) => applyBlob(blob)).catch((e) => {
+            console.warn("[video] \u964D\u7EA7\u62C9\u53D6\u5931\u8D25\uFF0C\u56DE\u9000\u539F\u59CB URL:", e);
+            if (originalUrl) media.src = originalUrl;
+          });
+        };
+        media.addEventListener("error", onDirectErr, { once: true });
       } else {
         media.src = imageUrl;
       }
@@ -52322,6 +52561,13 @@ function createAndShowImage(container, imageUrl, alt, button, change, isVideo = 
       showControls();
       if (hideTimer2) clearTimeout(hideTimer2);
     };
+    media2.onended = () => {
+      if (media2.loop) {
+        media2.currentTime = 0;
+        media2.play().catch(() => {
+        });
+      }
+    };
     div2.addEventListener("mouseenter", resetHideTimer);
     div2.addEventListener("mousemove", resetHideTimer);
     div2.addEventListener("touchstart", resetHideTimer, { passive: true });
@@ -52614,6 +52860,7 @@ var init_generation = __esm({
           if (alreadyGenerating) {
             addLog(`[VideoGen] \u89C6\u9891\u751F\u6210\u8BF7\u6C42\u5DF2\u5728\u8FDB\u884C\u4E2D\uFF0C\u7B49\u5F85\u54CD\u5E94: ${link}`);
             button.setAttribute("data-loading", "true");
+            button.dataset.loadingStartedAt = String(Date.now());
             button.textContent = "\u89C6\u9891\u751F\u6210\u4E2D...";
             const videoResponseHandler = (responseData) => {
               if (responseData.id !== requestId) return;
@@ -52623,6 +52870,7 @@ var init_generation = __esm({
             return;
           }
           button.setAttribute("data-loading", "true");
+          button.dataset.loadingStartedAt = String(Date.now());
           button.textContent = "\u89C6\u9891\u751F\u6210\u4E2D...";
           startGenerating(link);
           const videoPromise = isRh ? Promise.resolve().then(() => (init_runninghubVideo(), runninghubVideo_exports)).then((m) => m.generateRunningHubRefVideo) : Promise.resolve().then(() => (init_comfyuiVideo(), comfyuiVideo_exports)).then((m) => m.generateComfyUIRefVideo);
@@ -52750,58 +52998,70 @@ var init_generation = __esm({
         const imageResponseHandler = (responseData) => {
           if (responseData.id !== requestId) return;
           console.log("Image response:", responseData);
-          untrackImageResponseHandler(requestId, imageResponseHandler);
-          addLog(`\u56FE\u50CF\u54CD\u5E94\u76D1\u542C\u5668\u5DF2\u9500\u6BC1 (ID: ${requestId})`);
-          const { success, imageData, error, prompt: prompt2, change: change2, isVideo, originalUrl, video: video2, activeMode: activeMode2 } = responseData;
-          if (prompt2) stopGenerating(prompt2);
-          const docs2 = [document, ...Array.from(document.querySelectorAll("iframe")).map((f) => f.contentDocument).filter(Boolean)];
-          if (!success) {
-            addLog(`\u56FE\u50CF\u751F\u6210\u5931\u8D25 (ID: ${requestId}): ${error}`);
-            toastr.error(`\u751F\u6210\u5931\u8D25: ${error || "\u672A\u77E5\u9519\u8BEF"}`);
-          }
-          let totalMatchedSpans = 0;
-          docs2.forEach((doc) => {
-            const spans = doc.querySelectorAll(`span[data-request-id="${requestId}"]`);
-            const buttons = doc.querySelectorAll(`button[data-request-id="${requestId}"]`);
-            if (success && spans.length > 0) {
-              totalMatchedSpans += spans.length;
-              addLog(`${isVideo ? "\u89C6\u9891" : "\u56FE\u50CF"}\u751F\u6210\u6210\u529F (ID: ${requestId}), targeting ${spans.length} element(s).`);
-              spans.forEach((span) => {
-                const associatedButton = span.previousElementSibling;
-                const finalVideo = video2 || (associatedButton ? associatedButton.dataset.video : "");
-                const finalActiveMode = activeMode2 || (associatedButton ? associatedButton.dataset.activeMode : "");
-                if (associatedButton && associatedButton.matches(`button[data-request-id="${requestId}"]`)) {
-                  createAndShowImage(span, imageData, "Generated Image", associatedButton, change2, isVideo, originalUrl || "", finalVideo, finalActiveMode);
-                } else {
-                  createAndShowImage(span, imageData, "Generated Image", null, change2, isVideo, originalUrl || "", finalVideo, finalActiveMode);
-                }
-              });
+          try {
+            untrackImageResponseHandler(requestId, imageResponseHandler);
+            addLog(`\u56FE\u50CF\u54CD\u5E94\u76D1\u542C\u5668\u5DF2\u9500\u6BC1 (ID: ${requestId})`);
+            const { success, imageData, error, prompt: prompt2, change: change2, isVideo, originalUrl, video: video2, activeMode: activeMode2 } = responseData;
+            if (prompt2) stopGenerating(prompt2);
+            else stopGenerating(link);
+            const docs2 = [document, ...Array.from(document.querySelectorAll("iframe")).map((f) => f.contentDocument).filter(Boolean)];
+            if (!success) {
+              addLog(`\u56FE\u50CF\u751F\u6210\u5931\u8D25 (ID: ${requestId}): ${error}`);
+              toastr.error(`\u751F\u6210\u5931\u8D25: ${error || "\u672A\u77E5\u9519\u8BEF"}`);
             }
-            buttons.forEach((b) => {
-              b.removeAttribute("data-loading");
-              if (success && extension_settings54[extensionName].dbclike == "true") {
-                b.style.setProperty("display", "none", "important");
-              } else {
-                b.disabled = false;
-                const bMode = b.dataset.activeMode || (isVideo ? "video" : "image");
-                b.textContent = bMode === "video" ? "\u751F\u6210\u89C6\u9891" : "\u751F\u6210\u56FE\u7247";
+            let totalMatchedSpans = 0;
+            docs2.forEach((doc) => {
+              const spans = doc.querySelectorAll(`span[data-request-id="${requestId}"]`);
+              if (success && spans.length > 0) {
+                totalMatchedSpans += spans.length;
+                addLog(`${isVideo ? "\u89C6\u9891" : "\u56FE\u50CF"}\u751F\u6210\u6210\u529F (ID: ${requestId}), targeting ${spans.length} element(s).`);
+                spans.forEach((span) => {
+                  const associatedButton = span.previousElementSibling;
+                  const finalVideo = video2 || (associatedButton ? associatedButton.dataset.video : "");
+                  const finalActiveMode = activeMode2 || (associatedButton ? associatedButton.dataset.activeMode : "");
+                  if (associatedButton && associatedButton.matches(`button[data-request-id="${requestId}"]`)) {
+                    createAndShowImage(span, imageData, "Generated Image", associatedButton, change2, isVideo, originalUrl || "", finalVideo, finalActiveMode);
+                  } else {
+                    createAndShowImage(span, imageData, "Generated Image", null, change2, isVideo, originalUrl || "", finalVideo, finalActiveMode);
+                  }
+                });
               }
             });
-          });
-          if (success && totalMatchedSpans === 0) {
-            setTimeout(() => {
-              Promise.resolve().then(() => (init_chatProcessor(), chatProcessor_exports)).then(({ processMesTextElements: processMesTextElements2, processIframes: processIframes2 }) => {
-                processMesTextElements2();
-                processIframes2();
-              }).catch(() => {
+            if (success && totalMatchedSpans === 0) {
+              setTimeout(() => {
+                Promise.resolve().then(() => (init_chatProcessor(), chatProcessor_exports)).then(({ processMesTextElements: processMesTextElements2, processIframes: processIframes2 }) => {
+                  processMesTextElements2();
+                  processIframes2();
+                }).catch(() => {
+                });
+              }, 80);
+            }
+          } catch (err) {
+            console.error("[generation] imageResponseHandler \u5904\u7406\u5F02\u5E38:", err);
+          } finally {
+            stopGenerating(link);
+            const docs2 = [document, ...Array.from(document.querySelectorAll("iframe")).map((f) => f.contentDocument).filter(Boolean)];
+            docs2.forEach((doc) => {
+              const buttons = doc.querySelectorAll(`button[data-request-id="${requestId}"]`);
+              buttons.forEach((b) => {
+                b.removeAttribute("data-loading");
+                delete b.dataset.loadingStartedAt;
+                if (responseData && responseData.success && extension_settings54[extensionName].dbclike == "true") {
+                  b.style.setProperty("display", "none", "important");
+                } else {
+                  b.disabled = false;
+                  const bMode = b.dataset.activeMode || (responseData && responseData.isVideo ? "video" : "image");
+                  b.textContent = bMode === "video" ? "\u751F\u6210\u89C6\u9891" : "\u751F\u6210\u56FE\u7247";
+                }
               });
-            }, 80);
+            });
           }
         };
         trackImageResponseHandler(requestId, imageResponseHandler);
         addLog(`\u56FE\u50CF\u54CD\u5E94\u76D1\u542C\u5668\u5DF2\u521B\u5EFA (ID: ${requestId})`);
         if (!alreadyGenerating) {
           button.setAttribute("data-loading", "true");
+          button.dataset.loadingStartedAt = String(Date.now());
           button.textContent = isVideoMode ? "\u89C6\u9891\u751F\u6210\u4E2D..." : "\u52A0\u8F7D\u4E2D...";
           startGenerating(link);
           const buttonChange = isVideoMode ? video || button.dataset.videoPrompt || (/asset_manifest\s*:/i.test(link) ? link : "") : change || link;
@@ -53437,9 +53697,22 @@ async function findAndReplaceInElement(rootElement, imageAlt = "Generated Image"
   }
   const loadingButton = rootElement.querySelector('button.image-tag-button[data-loading="true"]');
   if (loadingButton) {
-    console.log("[iframe] Element has loading button, skipping processing");
-    notifyAutoClick(true);
-    return;
+    const startedAt = Number(loadingButton.dataset.loadingStartedAt || 0);
+    const btnLink = loadingButton.dataset.link || loadingButton.dataset.imageTag;
+    const generating = btnLink ? isGenerating(btnLink) : false;
+    const isStale = startedAt > 0 && Date.now() - startedAt > 9e4 || !generating && startedAt > 0 && Date.now() - startedAt > 1e4;
+    if (isStale) {
+      console.warn("[iframe] \u68C0\u6D4B\u5230\u9648\u65E7 loading \u6B7B\u9501\u6309\u94AE\uFF0C\u81EA\u52A8\u590D\u4F4D\u81EA\u6108:", btnLink);
+      loadingButton.removeAttribute("data-loading");
+      delete loadingButton.dataset.loadingStartedAt;
+      loadingButton.disabled = false;
+      const bMode = loadingButton.dataset.activeMode || "image";
+      loadingButton.textContent = bMode === "video" ? "\u751F\u6210\u89C6\u9891" : "\u751F\u6210\u56FE\u7247";
+    } else {
+      console.log("[iframe] Element has loading button, skipping processing");
+      notifyAutoClick(true);
+      return;
+    }
   }
   if (!settings3.startTag || !settings3.endTag) {
     console.warn("[iframe] startTag or endTag is empty, skipping placeholder processing");
@@ -54846,98 +55119,71 @@ function showImagePreview(img, button, autoFullscreen = false) {
       isVideo: entry.isVideo || false,
       genParams: entry.genParams || null,
       date: entry.date || 0,
-      originalUrl: entry.originalUrl || ""
+      originalUrl: entry.originalUrl || "",
+      path: entry.path || "",
+      thumbnail_path: entry.thumbnail_path || "",
+      thumbnail_uuid: entry.thumbnail_uuid || "",
+      source: entry.source || "",
+      uuid: entry.uuid || ""
     }));
-    const blobPromises = merged.images.map(async (imageEntry) => {
-      const isVideo = imageEntry.isVideo || false;
-      let rawBlob = null;
-      if (imageEntry.source === "server" && imageEntry.path) {
-        try {
-          const response = await fetch(imageEntry.path);
-          if (response.ok) {
-            rawBlob = await response.blob();
-          }
-        } catch (error) {
-          console.error("Failed to fetch media blob:", error);
-        }
-      } else if (imageEntry.source === "db" && imageEntry.uuid) {
-        const imageData = await dbs.storeReadOnly(imageEntry.uuid);
-        if (imageData && imageData.data) {
-          const mimeType = isVideo ? "video/mp4" : "image/png";
-          rawBlob = new Blob([imageData.data], { type: mimeType });
-        }
-      }
-      if (rawBlob && isVideo) {
-        try {
-          return await fixMp4Faststart(rawBlob);
-        } catch (e) {
-          console.warn("[imagePreview] fixMp4Faststart \u5931\u8D25\uFF0C\u56DE\u9000\u4F7F\u7528\u539F\u59CB Blob:", e);
-          return rawBlob;
-        }
-      }
-      return rawBlob;
-    });
-    const allBlobs = await Promise.all(blobPromises);
-    const validIndices = [];
-    images = allBlobs.filter((b, i) => {
-      if (b !== null) {
-        validIndices.push(i);
-        return true;
-      }
-      return false;
-    });
-    mediaInfos = validIndices.map((i) => mediaInfos[i]);
-    thumbnailContainer.querySelectorAll("img").forEach((thumb) => {
-      if (thumb.src && thumb.src.startsWith("blob:")) {
-        window.top["URL"].revokeObjectURL(thumb.src);
-      }
-    });
-    thumbnailContainer.innerHTML = "";
-    const filteredMergedImages = validIndices.map((i) => merged.images[i]);
-    const thumbnailPromises = filteredMergedImages.map(async (imageEntry, index) => {
-      const isVideo = imageEntry.isVideo || false;
-      if (isVideo) {
-        if (imageEntry.source === "server" && imageEntry.thumbnail_path) {
-          try {
-            const response = await fetch(imageEntry.thumbnail_path);
-            if (response.ok) {
-              return await response.blob();
+    images = new Array(merged.images.length).fill(null);
+    let newIndex = currentIndex;
+    if (newIndex >= images.length) {
+      newIndex = Math.max(0, images.length - 1);
+    }
+    updateLargeImage(newIndex);
+    (async () => {
+      const thumbnailPromises = merged.images.map(async (imageEntry, index) => {
+        const isVideo = imageEntry.isVideo || false;
+        if (isVideo) {
+          if (imageEntry.source === "server" && imageEntry.thumbnail_path) {
+            try {
+              const response = await fetch(imageEntry.thumbnail_path);
+              if (response.ok) return await response.blob();
+            } catch (_) {
             }
-          } catch (error) {
-            console.warn("[iframe] Failed to fetch video thumbnail from server:", error);
           }
+          if (imageEntry.thumbnail_uuid) {
+            try {
+              const tb = await dbs.getImageThumbnailBlobByUUID(imageEntry.thumbnail_uuid);
+              if (tb) return tb;
+            } catch (_) {
+            }
+          }
+          return null;
         }
-        if (imageEntry.thumbnail_uuid) {
-          const thumbnailBlob = await dbs.getImageThumbnailBlobByUUID(imageEntry.thumbnail_uuid);
-          if (thumbnailBlob) {
-            return thumbnailBlob;
-          }
+        if (imageEntry.source === "server" && imageEntry.path) {
+          return imageEntry.path;
         }
         return null;
-      }
-      return images[index];
-    });
-    const thumbnailBlobs = await Promise.all(thumbnailPromises);
-    thumbnailBlobs.forEach((thumbnailBlob, index) => {
-      const thumb = doc.createElement("img");
-      if (thumbnailBlob) {
-        thumb.src = window.top["URL"].createObjectURL(thumbnailBlob);
-      } else {
-        thumb.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCIgdmlld0JveD0iMCAwIDEyOCAxMjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiIGZpbGw9IiMxYTFhMmUiLz48cG9seWdvbiBwb2ludHM9IjUwLDQwIDUwLDg4IDkwLDY0IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNSkiLz48dGV4dCB4PSI2NCIgeT0iMTEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC41KSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VklERU88L3RleHQ+PC9zdmc+";
-        thumb.alt = "Video";
-      }
-      thumb.className = "st-chatu8-preview-thumbnail";
-      thumb.dataset.index = String(index);
-      thumb.onclick = () => updateLargeImage(index);
-      thumbnailContainer.appendChild(thumb);
-    });
+      });
+      const thumbnailResults = await Promise.all(thumbnailPromises);
+      thumbnailContainer.innerHTML = "";
+      thumbnailResults.forEach((res, index) => {
+        const thumb = doc.createElement("img");
+        if (res instanceof Blob) {
+          thumb.src = (window.top["URL"] || URL).createObjectURL(res);
+        } else if (typeof res === "string" && res) {
+          thumb.src = res;
+        } else {
+          thumb.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCIgdmlld0JveD0iMCAwIDEyOCAxMjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiIGZpbGw9IiMxYTFhMmUiLz48cG9seWdvbiBwb2ludHM9IjUwLDQwIDUwLDg4IDkwLDY0IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNSkiLz48dGV4dCB4PSI2NCIgeT0iMTEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC41KSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VklERU88L3RleHQ+PC9zdmc+";
+          thumb.alt = "Media";
+        }
+        thumb.className = "st-chatu8-preview-thumbnail";
+        thumb.dataset.index = String(index);
+        thumb.onclick = () => updateLargeImage(index);
+        thumbnailContainer.appendChild(thumb);
+      });
+      const thumbs = thumbnailContainer.querySelectorAll(".st-chatu8-preview-thumbnail");
+      thumbs.forEach((t, i) => t.classList.toggle("active", i === currentIndex));
+    })();
     if (images.length > 0) {
-      let newIndex = currentIndex;
-      if (newIndex >= images.length) {
-        newIndex = images.length - 1;
+      let newIndex2 = currentIndex;
+      if (newIndex2 >= images.length) {
+        newIndex2 = images.length - 1;
       }
-      updateLargeImage(newIndex);
-      const [newImgSrc, change, , isVideoNew, origUrl] = await getItemImg(tag, newIndex);
+      updateLargeImage(newIndex2);
+      const [newImgSrc, change, , isVideoNew, origUrl] = await getItemImg(tag, newIndex2);
       if (newImgSrc) {
         const newIsVideo = isVideoNew || false;
         const originalIsVideo = img.tagName === "VIDEO";
@@ -54971,16 +55217,17 @@ function showImagePreview(img, button, autoFullscreen = false) {
             overflow: hidden;
             box-sizing: border-box;
         `;
-    if (index === null || index < 0 || index >= images.length) return slot;
-    const blob = images[index];
-    if (!blob) return slot;
+    if (index === null || index < 0 || index >= mediaInfos.length) return slot;
     const isVideo = !!(mediaInfos[index] && mediaInfos[index].isVideo);
     const info = mediaInfos[index] || {};
+    const blob = images[index];
     let blobUrl = "";
-    try {
-      blobUrl = (window.top["URL"] || URL).createObjectURL(blob);
-    } catch (_) {
-      blobUrl = URL.createObjectURL(blob);
+    if (blob) {
+      try {
+        blobUrl = (window.top["URL"] || URL).createObjectURL(blob);
+      } catch (_) {
+        blobUrl = URL.createObjectURL(blob);
+      }
     }
     let el;
     if (isVideo) {
@@ -55003,10 +55250,40 @@ function showImagePreview(img, button, autoFullscreen = false) {
       el.setAttribute("webkit-playsinline", "true");
       el.setAttribute("x5-playsinline", "true");
       el.setAttribute("x5-video-player-type", "h5");
-      el.setAttribute("preload", isCurrent ? "metadata" : "none");
+      el.setAttribute("preload", isCurrent ? "auto" : "none");
+      el.onended = () => {
+        if (el.loop) {
+          el.currentTime = 0;
+          el.play().catch(() => {
+          });
+        }
+      };
       if (info.verifiedSrc) {
         el.src = info.verifiedSrc;
         el.dataset.blobUrl = info.verifiedSrc;
+      } else if (info.path) {
+        el.src = info.path;
+      } else if (info.originalUrl) {
+        el.src = info.originalUrl;
+      } else if (blobUrl) {
+        el.src = blobUrl;
+        el.dataset.blobUrl = blobUrl;
+      } else if (info.source === "db" && info.uuid) {
+        dbs.storeReadOnly(info.uuid).then((imageData) => {
+          if (imageData && imageData.data) {
+            const rawBlob = new Blob([imageData.data], { type: "video/mp4" });
+            fixMp4Faststart(rawBlob).then((fixedBlob) => {
+              images[index] = fixedBlob;
+              const bUrl = (window.top["URL"] || URL).createObjectURL(fixedBlob);
+              el.dataset.blobUrl = bUrl;
+              el.src = bUrl;
+            }).catch(() => {
+              const bUrl = (window.top["URL"] || URL).createObjectURL(rawBlob);
+              el.dataset.blobUrl = bUrl;
+              el.src = bUrl;
+            });
+          }
+        }).catch((e) => console.warn("[imagePreview] \u8BFB\u53D6 DB \u89C6\u9891\u5931\u8D25:", e));
       } else {
         getItemImg(currentTag, index).then(([dataUrl, , , , origUrl]) => {
           if (dataUrl) {
@@ -55033,6 +55310,24 @@ function showImagePreview(img, button, autoFullscreen = false) {
           }
           return;
         }
+        if (info.path && el.src !== info.path) {
+          console.log("[iframe] \u5C1D\u8BD5\u56DE\u9000\u81F3\u670D\u52A1\u7AEF\u76F4\u94FE\u8DEF\u5F84:", info.path);
+          el.src = info.path;
+          try {
+            el.load();
+          } catch (_) {
+          }
+          return;
+        }
+        if (blobUrl && el.src !== blobUrl) {
+          console.log("[iframe] \u5C1D\u8BD5\u56DE\u9000\u81F3\u672C\u5730 BlobURL:", blobUrl);
+          el.src = blobUrl;
+          try {
+            el.load();
+          } catch (_) {
+          }
+          return;
+        }
         const fallback = doc.createElement("div");
         fallback.style.cssText = `
                     display: flex;
@@ -55046,7 +55341,7 @@ function showImagePreview(img, button, autoFullscreen = false) {
                     color: #fff;
                     text-align: center;
                 `;
-        const dlUrl = el.dataset.blobUrl || blobUrl || info.originalUrl || "";
+        const dlUrl = el.dataset.blobUrl || blobUrl || info.path || info.originalUrl || "";
         fallback.innerHTML = `
                     <div style="font-size: 64px; margin-bottom: 15px;">\u{1F3AC}</div>
                     <div style="margin-bottom: 15px; opacity: 0.8;">\u89C6\u9891\u5728\u5F53\u524D\u6D4F\u89C8\u5668\u4E2D\u65E0\u6CD5\u76F4\u63A5\u89E3\u7801</div>
@@ -55062,8 +55357,24 @@ function showImagePreview(img, button, autoFullscreen = false) {
       };
     } else {
       el = doc.createElement("img");
-      el.src = blobUrl;
       el.draggable = false;
+      if (blobUrl) {
+        el.src = blobUrl;
+      } else if (info.path) {
+        el.src = info.path;
+      } else if (info.source === "db" && info.uuid) {
+        dbs.storeReadOnly(info.uuid).then((imageData) => {
+          if (imageData && imageData.data) {
+            const imgBlob = new Blob([imageData.data], { type: "image/png" });
+            images[index] = imgBlob;
+            el.src = (window.top["URL"] || URL).createObjectURL(imgBlob);
+          }
+        }).catch((e) => console.warn("[imagePreview] \u8BFB\u53D6 DB \u56FE\u7247\u5931\u8D25:", e));
+      } else {
+        getItemImg(currentTag, index).then(([dataUrl]) => {
+          if (dataUrl) el.src = dataUrl;
+        }).catch((e) => console.warn("[imagePreview] \u83B7\u53D6\u56FE\u7247\u6570\u636E\u5931\u8D25:", e));
+      }
     }
     el.className = "st-chatu8-preview-large-image";
     el.style.cssText = `
@@ -55215,89 +55526,61 @@ function showImagePreview(img, button, autoFullscreen = false) {
       genParams: entry.genParams || null,
       date: entry.date || 0,
       originalUrl: entry.originalUrl || "",
+      path: entry.path || "",
+      thumbnail_path: entry.thumbnail_path || "",
+      thumbnail_uuid: entry.thumbnail_uuid || "",
+      source: entry.source || "",
+      uuid: entry.uuid || "",
       verifiedSrc: idx === merged.currentIndex && verifiedInitialSrc ? verifiedInitialSrc : ""
     }));
-    const blobPromises = merged.images.map(async (imageEntry) => {
-      const isVideo = imageEntry.isVideo || false;
-      let rawBlob = null;
-      if (imageEntry.source === "server" && imageEntry.path) {
-        try {
-          const response = await fetch(imageEntry.path);
-          if (response.ok) {
-            rawBlob = await response.blob();
-          }
-        } catch (error) {
-          console.error("Failed to fetch media blob:", error);
-        }
-      } else if (imageEntry.source === "db" && imageEntry.uuid) {
-        const imageData = await dbs.storeReadOnly(imageEntry.uuid);
-        if (imageData && imageData.data) {
-          const mimeType = isVideo ? "video/mp4" : "image/png";
-          rawBlob = new Blob([imageData.data], { type: mimeType });
-        }
-      }
-      if (rawBlob && isVideo) {
-        try {
-          return await fixMp4Faststart(rawBlob);
-        } catch (e) {
-          console.warn("[imagePreview] fixMp4Faststart \u5931\u8D25\uFF0C\u56DE\u9000\u4F7F\u7528\u539F\u59CB Blob:", e);
-          return rawBlob;
-        }
-      }
-      return rawBlob;
-    });
-    const allBlobs = await Promise.all(blobPromises);
-    const validIndices = [];
-    images = allBlobs.filter((b, i) => {
-      if (b !== null) {
-        validIndices.push(i);
-        return true;
-      }
-      return false;
-    });
-    mediaInfos = validIndices.map((i) => mediaInfos[i]);
-    if (images.length > 0) {
-      const filteredMergedImages = validIndices.map((i) => merged.images[i]);
-      const thumbnailPromises = filteredMergedImages.map(async (imageEntry, index) => {
+    images = new Array(merged.images.length).fill(null);
+    const targetIndex = merged.currentIndex >= 0 && merged.currentIndex < merged.images.length ? merged.currentIndex : 0;
+    updateLargeImage(targetIndex);
+    (async () => {
+      const thumbnailPromises = merged.images.map(async (imageEntry, index) => {
         const isVideo = imageEntry.isVideo || false;
         if (isVideo) {
           if (imageEntry.source === "server" && imageEntry.thumbnail_path) {
             try {
               const response = await fetch(imageEntry.thumbnail_path);
-              if (response.ok) {
-                return await response.blob();
-              }
-            } catch (error) {
-              console.warn("[iframe] Failed to fetch video thumbnail from server:", error);
+              if (response.ok) return await response.blob();
+            } catch (_) {
             }
           }
           if (imageEntry.thumbnail_uuid) {
-            const thumbnailBlob = await dbs.getImageThumbnailBlobByUUID(imageEntry.thumbnail_uuid);
-            if (thumbnailBlob) {
-              return thumbnailBlob;
+            try {
+              const tb = await dbs.getImageThumbnailBlobByUUID(imageEntry.thumbnail_uuid);
+              if (tb) return tb;
+            } catch (_) {
             }
           }
-          console.warn("[iframe] No thumbnail available for video, index:", index);
           return null;
         }
-        return images[index];
+        if (imageEntry.source === "server" && imageEntry.path) {
+          return imageEntry.path;
+        }
+        return null;
       });
-      const thumbnailBlobs = await Promise.all(thumbnailPromises);
-      thumbnailBlobs.forEach((thumbnailBlob, index) => {
+      const thumbnailResults = await Promise.all(thumbnailPromises);
+      thumbnailContainer.innerHTML = "";
+      thumbnailResults.forEach((res, index) => {
         const thumb = doc.createElement("img");
-        if (thumbnailBlob) {
-          thumb.src = window.top["URL"].createObjectURL(thumbnailBlob);
+        if (res instanceof Blob) {
+          thumb.src = (window.top["URL"] || URL).createObjectURL(res);
+        } else if (typeof res === "string" && res) {
+          thumb.src = res;
         } else {
           thumb.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCIgdmlld0JveD0iMCAwIDEyOCAxMjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiIGZpbGw9IiMxYTFhMmUiLz48cG9seWdvbiBwb2ludHM9IjUwLDQwIDUwLDg4IDkwLDY0IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNSkiLz48dGV4dCB4PSI2NCIgeT0iMTEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC41KSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VklERU88L3RleHQ+PC9zdmc+";
-          thumb.alt = "Video";
+          thumb.alt = "Media";
         }
         thumb.className = "st-chatu8-preview-thumbnail";
         thumb.dataset.index = String(index);
         thumb.onclick = () => updateLargeImage(index);
         thumbnailContainer.appendChild(thumb);
       });
-      updateLargeImage(merged.currentIndex);
-    }
+      const thumbs = thumbnailContainer.querySelectorAll(".st-chatu8-preview-thumbnail");
+      thumbs.forEach((t, i) => t.classList.toggle("active", i === currentIndex));
+    })();
   })();
 }
 var init_imagePreview = __esm({
@@ -64302,7 +64585,7 @@ var init_novelaiSettingsModule = __esm({
 \u25A0 API \u8FDE\u63A5\u95EE\u9898
 - API Key \u65E0\u6548\uFF1A\u786E\u8BA4 novelaiApi \u683C\u5F0F\u6B63\u786E\uFF08pst- \u5F00\u5934\uFF09\uFF0C\u68C0\u67E5\u662F\u5426\u8FC7\u671F\u6216\u4F59\u989D\u4E0D\u8DB3
 - \u65E0\u6CD5\u8FDE\u63A5\u5B98\u7F51\uFF1A\u68C0\u67E5\u7F51\u7EDC\u8FDE\u63A5\uFF0C\u6D4F\u89C8\u5668\u662F\u5426\u5F00\u542F\u7684vpn\uFF08\u68AF\u5B50/\u9B54\u6CD5\uFF09\uFF0C\u5982\u679C\u662Fjiuguan\u5BA2\u6237\u7AEF\u90A3\u4E48\u5982\u679C\u662F\u7535\u8111\uFF0C\u9700\u8981vpn\u5F00\u542Ftun\uFF08\u865A\u62DF\u7F51\u5361\uFF09\u6A21\u5F0F\uFF0C\u6216\u8005\u5728\u9152\u9986\u7684\u914D\u7F6E\u91CC\u8BBE\u7F6E\u4EE3\u7406\u3002
-- \u955C\u50CF\u7AD9\u65E0\u6CD5\u4F7F\u7528\uFF1A\u786E\u8BA4 novelaiOtherSite \u5730\u5740\u6B63\u786E\uFF0C\u5305\u542B\u5B8C\u6574\u7684 URL\uFF0C\u4EC5\u652F\u6301\u955C\u50CF\u7AD9\uFF0C\u5982\u679C\u662F\u5176\u4ED6\u7684\u7B2C\u4E09\u653E\u63A5\u53E3\u4E0D\u540C\u53EF\u80FD\u65E0\u6CD5\u652F\u6301\u3002
+- \u955C\u50CF\u7AD9/\u7B2C\u4E09\u65B9\u4E2D\u8F6C\u65E0\u6CD5\u4F7F\u7528\uFF1A\u786E\u8BA4 novelaiOtherSite \u5730\u5740\u6B63\u786E\uFF08\u652F\u6301\u5B98\u65B9\u53CD\u4EE3\u6839\u5730\u5740\u4E0E\u5355 Endpoint \u5B8C\u6574\u751F\u56FE\u5730\u5740\uFF0C\u63D2\u4EF6\u5185\u7F6E\u5931\u8D25\u81EA\u52A8\u56DE\u9000\uFF09\u3002\u6CE8\u610F\u5BA2\u6237\u7AEF\u9700\u9009\u62E9\u6D4F\u89C8\u5668\u6A21\u5F0F\u3002
 - 429\u62A5\u9519\uFF1A\u662F\u5176\u4ED6\u4EBA\u5728\u540C\u65F6\u4F7F\u7528\u62A5\u9519\u4E86\u3002
 
 \u25A0 \u6A21\u578B\u9009\u62E9\u95EE\u9898
@@ -79471,7 +79754,8 @@ async function generateSDImage({ prompt: link, width: Xwidth, height: Xheight, c
     addLog("\u5206\u89D2\u8272\u6A21\u5F0F: \u89E3\u6790\u5E26\u5750\u6807\u7684\u63D0\u793A\u8BCD\u5B57\u7B26\u4E32\u3002");
     prompt_data = parsePromptStringWithCoordinates(promptForGeneration);
     mainPrompt = prompt_data["Scene Composition"];
-    for (let i = 1; i <= 4; i++) {
+    const charIds = getSortedCharacterIds(prompt_data);
+    for (const i of charIds) {
       if (prompt_data[`Character ${i} Prompt`]) {
         other_prompt = other_prompt + ", " + prompt_data[`Character ${i} Prompt`];
       }
@@ -79482,7 +79766,8 @@ async function generateSDImage({ prompt: link, width: Xwidth, height: Xheight, c
   }
   let { modifiedPrompt, insertions } = await prompt_replace(mainPrompt, other_prompt);
   if (Divide_roles) {
-    for (let i = 1; i <= 4; i++) {
+    const charIds = getSortedCharacterIds(prompt_data);
+    for (const i of charIds) {
       if (prompt_data[`Character ${i} Prompt`]) {
         modifiedPrompt = modifiedPrompt + ", " + prompt_replace_for_character(prompt_data[`Character ${i} Prompt`], (mainPrompt || "") + " " + (other_prompt || ""));
       }
@@ -83050,6 +83335,153 @@ function getDirectHeaders3(contentType = null, auth = null) {
   }
   return headers;
 }
+var workingNovelAIUrlCache = /* @__PURE__ */ new Map();
+function clearNovelAIUrlCache() {
+  workingNovelAIUrlCache.clear();
+}
+function getNovelAICandidateUrls(endpointPath = "/ai/generate-image") {
+  const settings3 = extension_settings62[extensionName];
+  if (settings3.novelaisite === "\u5B98\u7F51") {
+    return {
+      candidates: [`https://image.novelai.net${endpointPath}`],
+      rawOtherSite: ""
+    };
+  }
+  const otherSite = normalizeNovelAIOtherSiteUrl(settings3.novelaiOtherSite);
+  if (!otherSite) {
+    throw new Error("\u5DF2\u9009\u62E9\u7B2C\u4E09\u65B9\u7AD9\u70B9\uFF0C\u4F46\u672A\u586B\u5199 novelaiOtherSite \u5730\u5740");
+  }
+  const normalizedPath = endpointPath.startsWith("/") ? endpointPath : `/${endpointPath}`;
+  const pathKeyword = endpointPath.replace(/^\/+/, "");
+  const cacheKey = `${otherSite}|${normalizedPath}`;
+  const cachedUrl = workingNovelAIUrlCache.get(cacheKey);
+  const candidates = [];
+  if (otherSite.includes(pathKeyword) || otherSite.endsWith(normalizedPath)) {
+    candidates.push(otherSite);
+  } else {
+    const joinedUrl = `${otherSite}${normalizedPath}`;
+    candidates.push(joinedUrl);
+    if (otherSite !== joinedUrl) {
+      candidates.push(otherSite);
+    }
+  }
+  if (cachedUrl && candidates.includes(cachedUrl)) {
+    return {
+      candidates: [cachedUrl, ...candidates.filter((u) => u !== cachedUrl)],
+      rawOtherSite: otherSite
+    };
+  }
+  return {
+    candidates,
+    rawOtherSite: otherSite
+  };
+}
+async function postNovelAIWithFallback({
+  candidates,
+  rawOtherSite = "",
+  endpointPath = "/ai/generate-image",
+  headers,
+  body,
+  signal,
+  logPrefix = "[NovelAI]"
+}) {
+  let lastError = null;
+  let lastResponse = null;
+  let lastErrorText = "";
+  for (let i = 0; i < candidates.length; i++) {
+    const currentUrl = candidates[i];
+    const isLast = i === candidates.length - 1;
+    const nextUrl = !isLast ? candidates[i + 1] : null;
+    addLog(`${logPrefix} \u5C1D\u8BD5\u8BF7\u6C42\u7AEF\u70B9: ${currentUrl}`);
+    let response = null;
+    try {
+      response = await fetch(currentUrl, {
+        method: "POST",
+        headers,
+        body,
+        signal
+      });
+    } catch (networkError) {
+      if (signal && signal.aborted) {
+        throw networkError;
+      }
+      if (isLast) {
+        addLog(`${logPrefix} \u7F51\u7EDC\u9519\u8BEF: ${networkError.message}\u3002\u5C06\u57281\u79D2\u540E\u91CD\u8BD5...`);
+        await sleep(1e3);
+        try {
+          response = await fetch(currentUrl, {
+            method: "POST",
+            headers,
+            body,
+            signal
+          });
+        } catch (retryError) {
+          lastError = retryError;
+          continue;
+        }
+      } else {
+        addLog(`${logPrefix} \u7AEF\u70B9\u7F51\u7EDC\u8BF7\u6C42\u5931\u8D25 (${networkError.message})\uFF0C\u56DE\u9000\u5C1D\u8BD5\u5019\u9009\u7AEF\u70B9: ${nextUrl}`);
+        lastError = networkError;
+        continue;
+      }
+    }
+    if (response && response.ok) {
+      if (rawOtherSite) {
+        const normalizedPath = endpointPath.startsWith("/") ? endpointPath : `/${endpointPath}`;
+        workingNovelAIUrlCache.set(`${rawOtherSite}|${normalizedPath}`, currentUrl);
+      }
+      return response;
+    }
+    if (response) {
+      lastResponse = response;
+      try {
+        lastErrorText = await response.text();
+      } catch (e) {
+        lastErrorText = "";
+      }
+      if (!isLast) {
+        addLog(`${logPrefix} \u7AEF\u70B9 ${currentUrl} \u8FD4\u56DE HTTP ${response.status}\uFF0C\u56DE\u9000\u5C1D\u8BD5\u5019\u9009\u7AEF\u70B9: ${nextUrl}`);
+        continue;
+      }
+    }
+  }
+  if (lastResponse) {
+    let userFriendlyError = `\u8BF7\u6C42\u5931\u8D25, \u72B6\u6001\u7801: ${lastResponse.status}, \u9519\u8BEF\u4FE1\u606F: ${lastErrorText}`;
+    switch (lastResponse.status) {
+      case 400:
+        try {
+          const errorJson = JSON.parse(lastErrorText);
+          if (errorJson.message) {
+            userFriendlyError = `\u8BF7\u6C42\u9A8C\u8BC1\u5931\u8D25: ${errorJson.message}`;
+            addLog(`${logPrefix} [API \u9519\u8BEF] 400 \u9A8C\u8BC1\u9519\u8BEF: ${errorJson.message}`);
+          }
+        } catch (e) {
+          userFriendlyError = `\u8BF7\u6C42\u9A8C\u8BC1\u5931\u8D25: ${lastErrorText}`;
+          addLog(`${logPrefix} [API \u9519\u8BEF] 400 \u9A8C\u8BC1\u9519\u8BEF: ${lastErrorText}`);
+        }
+        break;
+      case 401:
+        userFriendlyError = "API Key \u9519\u8BEF\u6216\u65E0\u6548\uFF0C\u8BF7\u68C0\u67E5 API Key\u3002";
+        addLog(`${logPrefix} [API \u9519\u8BEF] 401 \u8BA4\u8BC1\u5931\u8D25`);
+        break;
+      case 402:
+        userFriendlyError = "\u9700\u8981\u6709\u6548\u8BA2\u9605\u624D\u80FD\u8BBF\u95EE\u6B64\u7AEF\u70B9\u3002";
+        addLog(`${logPrefix} [API \u9519\u8BEF] 402 \u9700\u8981\u8BA2\u9605`);
+        break;
+      case 405:
+        userFriendlyError = `\u7AEF\u70B9\u4E0D\u652F\u6301 POST \u8BF7\u6C42 (405 Method Not Allowed): ${lastErrorText || "\u8BF7\u68C0\u67E5\u662F\u5426\u4E3A\u5355 Endpoint \u6216\u8DEF\u5F84\u914D\u7F6E"}`;
+        addLog(`${logPrefix} [API \u9519\u8BEF] 405 Method Not Allowed`);
+        break;
+      default:
+        addLog(`${logPrefix} [API \u9519\u8BEF] ${lastResponse.status}: ${lastErrorText}`);
+    }
+    throw new Error(userFriendlyError);
+  }
+  if (lastError) {
+    throw lastError;
+  }
+  throw new Error(`${logPrefix} \u672A\u80FD\u83B7\u5F97\u6709\u6548\u54CD\u5E94`);
+}
 var activeAbortControllers = /* @__PURE__ */ new Map();
 var currentCloudQueueInfo = null;
 function cleanNovelAIPayload(payload, modelVersion) {
@@ -83581,7 +84013,8 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
     addLog("\u5206\u89D2\u8272\u6A21\u5F0F: \u89E3\u6790\u5E26\u5750\u6807\u7684\u63D0\u793A\u8BCD\u5B57\u7B26\u4E32\u3002");
     prompt_data = parsePromptStringWithCoordinates(promptForGeneration);
     mainPrompt = prompt_data["Scene Composition"];
-    for (let i = 1; i <= 4; i++) {
+    const charIds = getSortedCharacterIds(prompt_data);
+    for (const i of charIds) {
       if (prompt_data[`Character ${i} coordinates`]) {
         const isAiDefaultCoords2 = extension_settings62[extensionName].AI_use_coords === true || extension_settings62[extensionName].AI_use_coords === "true";
         if (isAiDefaultCoords2) {
@@ -83596,10 +84029,10 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
     addLog("\u6807\u51C6\u6A21\u5F0F: \u4F7F\u7528\u8BF7\u6C42\u4E2D\u7684 prompt\u3002");
     mainPrompt = deduplicateTags(promptForGeneration);
   }
-  console.log("11111111" + JSON.stringify(prompt_data[`Character 1 coordinates`]));
   let { modifiedPrompt, insertions } = await prompt_replace(mainPrompt, other_prompt);
   if (Divide_roles && extension_settings62[extensionName].client == "jiuguan") {
-    for (let i = 1; i <= 4; i++) {
+    const charIds = getSortedCharacterIds(prompt_data);
+    for (const i of charIds) {
       if (prompt_data[`Character ${i} Prompt`]) {
         modifiedPrompt = modifiedPrompt + " | " + prompt_replace_for_character(prompt_data[`Character ${i} Prompt`], (mainPrompt || "") + " " + (other_prompt || ""));
       }
@@ -83744,26 +84177,27 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
   };
   if (extension_settings62[extensionName].novelaimode !== "nai-diffusion-3") {
     if (Divide_roles) {
-      for (let i = 1; i <= 4; i++) {
+      const charIds = getSortedCharacterIds(prompt_data);
+      for (const i of charIds) {
         if (prompt_data[`Character ${i} Prompt`]) {
           prompt_data[`Character ${i} Prompt`] = await prompt_replace_for_character(prompt_data[`Character ${i} Prompt`], (mainPrompt || "") + " " + (other_prompt || ""));
           prompt_data[`Character ${i} Prompt`] = prompt_data[`Character ${i} Prompt`].replace(/1boy/gi, "boy").replace(/1girl/gi, "girl");
         }
       }
       let characterPrompts = [];
-      for (let i = 1; i <= 4; i++) {
+      for (const i of charIds) {
         if (prompt_data[`Character ${i} Prompt`]) {
           characterPrompts.push({ enabled: true, prompt: prompt_data[`Character ${i} Prompt`], center: prompt_data[`Character ${i} coordinates`], uc: prompt_data[`Character ${i} UC`] ? prompt_data[`Character ${i} UC`] : "" });
         }
       }
       let v4_negative_prompt = { caption: { base_caption: negative_prompt, char_captions: [] }, legacy_uc: false };
-      for (let i = 1; i <= 4; i++) {
+      for (const i of charIds) {
         if (prompt_data[`Character ${i} Prompt`]) {
           v4_negative_prompt.caption.char_captions.push({ char_caption: prompt_data[`Character ${i} UC`] ? prompt_data[`Character ${i} UC`] : "", centers: [prompt_data[`Character ${i} coordinates`]] });
         }
       }
       let v4_prompt = { caption: { base_caption: prompt2, char_captions: [] }, use_coords, use_order: true };
-      for (let i = 1; i <= 4; i++) {
+      for (const i of charIds) {
         if (prompt_data[`Character ${i} Prompt`]) {
           v4_prompt.caption.char_captions.push({ char_caption: prompt_data[`Character ${i} Prompt`], centers: [prompt_data[`Character ${i} coordinates`]] });
         }
@@ -83983,7 +84417,6 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
   if (extension_settings62[extensionName].client != "jiuguan") {
     addLog(`\u6700\u7EC8\u751F\u56FE\u53C2\u6570 (payload): ${JSON.stringify(loggablePayload, null, 2)}`);
   }
-  let urlObj = new URL("https://image.novelai.net/ai/generate-image");
   if (extension_settings62[extensionName].novelaisite != "\u5B98\u7F51") {
     if (extension_settings62[extensionName].client == "jiuguan") {
       taskQueue.completeTask(taskId, false);
@@ -83994,7 +84427,6 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
       taskQueue.completeTask(taskId, false);
       throw new Error("\u5DF2\u9009\u62E9\u7B2C\u4E09\u65B9\u7AD9\u70B9\uFF0C\u4F46\u672A\u586B\u5199 novelaiOtherSite \u5730\u5740");
     }
-    urlObj = otherSite.includes("generate-image") ? new URL(otherSite) : new URL(`${otherSite}/ai/generate-image`);
   }
   try {
     let re = "";
@@ -84084,46 +84516,16 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
       const Authorization = "Bearer " + access_token;
       let data11 = { "input": prompt2, "model": extension_settings62[extensionName].novelaimode, "action": "generate", "parameters": payload, "use_new_shared_trial": true };
       console.log("data11:", data11);
-      let response;
-      try {
-        response = await fetch(urlObj.href, { method: "POST", headers: getDirectHeaders3("application/json", Authorization), body: JSON.stringify(data11), signal: abortController.signal });
-      } catch (networkError) {
-        if (abortController.signal.aborted) {
-          throw networkError;
-        }
-        addLog(`\u8BF7\u6C42\u9047\u5230\u7F51\u7EDC\u9519\u8BEF: ${networkError.message}\u3002\u5C06\u57281\u79D2\u540E\u91CD\u8BD5...`);
-        await sleep(1e3);
-        response = await fetch(urlObj.href, { method: "POST", headers: getDirectHeaders3("application/json", Authorization), body: JSON.stringify(data11), signal: abortController.signal });
-      }
-      if (!response.ok) {
-        const mess = await response.text();
-        let userFriendlyError = `\u8BF7\u6C42\u5931\u8D25, \u72B6\u6001\u7801: ${response.status}, \u9519\u8BEF\u4FE1\u606F: ${mess}`;
-        switch (response.status) {
-          case 400:
-            try {
-              const errorJson = JSON.parse(mess);
-              if (errorJson.message) {
-                userFriendlyError = `\u8BF7\u6C42\u9A8C\u8BC1\u5931\u8D25: ${errorJson.message}`;
-                addLog(`[API \u9519\u8BEF] 400 \u9A8C\u8BC1\u9519\u8BEF: ${errorJson.message}`);
-              }
-            } catch (e) {
-              userFriendlyError = `\u8BF7\u6C42\u9A8C\u8BC1\u5931\u8D25: ${mess}`;
-              addLog(`[API \u9519\u8BEF] 400 \u9A8C\u8BC1\u9519\u8BEF: ${mess}`);
-            }
-            break;
-          case 401:
-            userFriendlyError = "API Key \u9519\u8BEF\u6216\u65E0\u6548\uFF0C\u8BF7\u68C0\u67E5 API Key\u3002";
-            addLog("[API \u9519\u8BEF] 401 \u8BA4\u8BC1\u5931\u8D25");
-            break;
-          case 402:
-            userFriendlyError = "\u9700\u8981\u6709\u6548\u8BA2\u9605\u624D\u80FD\u8BBF\u95EE\u6B64\u7AEF\u70B9\u3002";
-            addLog("[API \u9519\u8BEF] 402 \u9700\u8981\u8BA2\u9605");
-            break;
-          default:
-            addLog(`[API \u9519\u8BEF] ${response.status}: ${mess}`);
-        }
-        throw new Error(userFriendlyError);
-      }
+      const { candidates, rawOtherSite } = getNovelAICandidateUrls("/ai/generate-image");
+      const response = await postNovelAIWithFallback({
+        candidates,
+        rawOtherSite,
+        endpointPath: "/ai/generate-image",
+        headers: getDirectHeaders3("application/json", Authorization),
+        body: JSON.stringify(data11),
+        signal: abortController.signal,
+        logPrefix: "[NovelAI]"
+      });
       const data123 = await response.arrayBuffer();
       re = await unzipFile(data123);
     }
@@ -84348,54 +84750,21 @@ async function generateNovelAIInpaint({ prompt: link, width: Xwidth, height: Xhe
       }
     }
     resetInpaintTimeout(120);
-    let urlObj = new URL("https://image.novelai.net/ai/generate-image");
-    if (extension_settings62[extensionName].novelaisite != "\u5B98\u7F51") {
-      if (extension_settings62[extensionName].client == "jiuguan") {
-        throw new Error("\u9152\u9986\u7AEF\u4E0D\u652F\u6301\u81EA\u5B9A\u4E49\u7AD9\u70B9\u7684\u5C40\u90E8\u91CD\u7ED8\uFF01");
-      }
-      const otherSite = normalizeNovelAIOtherSiteUrl(extension_settings62[extensionName].novelaiOtherSite);
-      if (!otherSite) {
-        throw new Error("\u5DF2\u9009\u62E9\u7B2C\u4E09\u65B9\u7AD9\u70B9\uFF0C\u4F46\u672A\u586B\u5199 novelaiOtherSite \u5730\u5740");
-      }
-      urlObj = otherSite.includes("generate-image") ? new URL(otherSite) : new URL(`${otherSite}/ai/generate-image`);
+    if (extension_settings62[extensionName].novelaisite != "\u5B98\u7F51" && extension_settings62[extensionName].client == "jiuguan") {
+      throw new Error("\u9152\u9986\u7AEF\u4E0D\u652F\u6301\u81EA\u5B9A\u4E49\u7AD9\u70B9\u7684\u5C40\u90E8\u91CD\u7ED8\uFF01");
     }
-    addLog(`[NovelAI Inpaint] \u8BF7\u6C42 URL: ${urlObj.toString()}`);
     const Authorization = "Bearer " + access_token;
+    const { candidates, rawOtherSite } = getNovelAICandidateUrls("/ai/generate-image");
     addLog("[NovelAI Inpaint] \u6B63\u5728\u53D1\u9001\u8BF7\u6C42\u5230 NovelAI API...");
-    let response;
-    try {
-      response = await fetch(urlObj.href, {
-        method: "POST",
-        headers: getDirectHeaders3("application/json", Authorization),
-        body: JSON.stringify(payload),
-        signal: abortController.signal
-      });
-    } catch (networkError) {
-      if (abortController.signal.aborted) {
-        throw networkError;
-      }
-      addLog(`[NovelAI Inpaint] \u8BF7\u6C42\u9047\u5230\u7F51\u7EDC\u9519\u8BEF: ${networkError.message}\u3002\u5C06\u57281\u79D2\u540E\u91CD\u8BD5...`);
-      await sleep(1e3);
-      response = await fetch(urlObj.href, {
-        method: "POST",
-        headers: getDirectHeaders3("application/json", Authorization),
-        body: JSON.stringify(payload),
-        signal: abortController.signal
-      });
-    }
-    if (!response.ok) {
-      const errorText = await response.text();
-      let userFriendlyError = `\u8BF7\u6C42\u5931\u8D25, \u72B6\u6001\u7801: ${response.status}, \u9519\u8BEF\u4FE1\u606F: ${errorText}`;
-      switch (response.status) {
-        case 401:
-          userFriendlyError = "API Key \u9519\u8BEF\u6216\u65E0\u6548\uFF0C\u8BF7\u68C0\u67E5 API Key\u3002";
-          break;
-        case 402:
-          userFriendlyError = "\u9700\u8981\u6709\u6548\u8BA2\u9605\u624D\u80FD\u8BBF\u95EE\u6B64\u7AEF\u70B9\u3002";
-          break;
-      }
-      throw new Error(userFriendlyError);
-    }
+    const response = await postNovelAIWithFallback({
+      candidates,
+      rawOtherSite,
+      endpointPath: "/ai/generate-image",
+      headers: getDirectHeaders3("application/json", Authorization),
+      body: JSON.stringify(payload),
+      signal: abortController.signal,
+      logPrefix: "[NovelAI Inpaint]"
+    });
     addLog("[NovelAI Inpaint] \u6B63\u5728\u89E3\u538B\u8FD4\u56DE\u7684 ZIP \u6587\u4EF6...");
     const arrayBuffer = await response.arrayBuffer();
     const imageBase64Result = await unzipFile(arrayBuffer);
@@ -85763,7 +86132,8 @@ var typeTexts = {
   [TaskType.AUTO_CLICK]: "\u81EA\u52A8\u70B9\u51FB",
   [TaskType.LLM]: "LLM \u8BF7\u6C42",
   [TaskType.BANANA]: "Banana \u751F\u56FE",
-  [TaskType.SD]: "SD \u751F\u56FE"
+  [TaskType.SD]: "SD \u751F\u56FE",
+  [TaskType.PREGEN]: "\u6D41\u5F0F\u9884\u751F\u6210"
 };
 function renderTaskList(tasks) {
   const container = document.getElementById("ch-task-list");
@@ -85815,7 +86185,10 @@ function handleCancelTask(taskId) {
   }
   cancelSerialLock(taskId);
   const wasRunning = taskQueue.cancelTask(taskId);
-  if (task.type === TaskType.AUTO_CLICK) {
+  if (task.type === TaskType.PREGEN) {
+    eventSource32.emit("st_chatu8_cancel_pregen_task", { taskId });
+    console.log("[TaskManager] \u5DF2\u89E6\u53D1\u9884\u751F\u6210\u53D6\u6D88\u4E8B\u4EF6:", taskId);
+  } else if (task.type === TaskType.AUTO_CLICK) {
     window.zidongdianji = false;
     console.log("[TaskManager] \u5DF2\u505C\u6B62\u81EA\u52A8\u70B9\u51FB\u4EFB\u52A1");
   } else if (task.type === TaskType.LLM) {
@@ -85857,6 +86230,7 @@ function handleCancelAll() {
   for (const task of runningTasks) {
     handleCancelTask(task.id);
   }
+  eventSource32.emit("st_chatu8_cancel_pregen_task", {});
   eventSource32.emit("st_chatu8_cancel_novelai_task", {});
   eventSource32.emit("st_chatu8_cancel_banana_task", {});
   eventSource32.emit("st_chatu8_cancel_runninghub_task", {});
@@ -87707,17 +88081,11 @@ async function translateAndAnnotateField(fieldBase, suffix) {
     let tokens = [];
     if (cleaned.includes("Scene Composition")) {
       const parsed = parsePromptStringWithCoordinates(cleaned);
-      const keys = [
-        "Scene Composition",
-        "Character 1 Prompt",
-        "Character 1 UC",
-        "Character 2 Prompt",
-        "Character 2 UC",
-        "Character 3 Prompt",
-        "Character 3 UC",
-        "Character 4 Prompt",
-        "Character 4 UC"
-      ];
+      const charIds = getSortedCharacterIds(parsed);
+      const keys = ["Scene Composition"];
+      charIds.forEach((id) => {
+        keys.push(`Character ${id} Prompt`, `Character ${id} UC`);
+      });
       keys.forEach((k) => {
         const v = parsed?.[k];
         if (typeof v === "string" && v.trim()) {
@@ -87761,29 +88129,13 @@ async function translateAndAnnotateField(fieldBase, suffix) {
       return t;
     });
     let annotated = annotatedTokens.join(", ");
-    const novelaiKeywords = [
-      "Scene Composition:",
-      "Character 1 Prompt:",
-      "Character 1 UC:",
-      "Character 1 coordinates:",
-      "Character 2 Prompt:",
-      "Character 2 UC:",
-      "Character 2 coordinates:",
-      "Character 3 Prompt:",
-      "Character 3 UC:",
-      "Character 3 coordinates:",
-      "Character 4 Prompt:",
-      "Character 4 UC:",
-      "Character 4 coordinates:"
-    ];
-    const hasNovelAIFormat = novelaiKeywords.some((kw) => annotated.includes(kw));
-    if (hasNovelAIFormat) {
-      for (const keyword of novelaiKeywords) {
-        const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-        annotated = annotated.replace(new RegExp(`\\s*${escaped}`, "g"), (match, offset) => offset === 0 ? match : `
+    const rolePattern = /(?:Scene Composition:|Character\s+\d+\s+(?:Prompt|UC|coordinates):)/i;
+    if (rolePattern.test(annotated)) {
+      annotated = annotated.replace(/(?:[ \t\r\n]*)(Scene Composition:|Character\s+\d+\s+(?:Prompt|UC|coordinates):)/gi, (match, p1, offset) => {
+        return offset === 0 ? p1 : `
 
-${keyword}`);
-      }
+${p1}`;
+      });
       annotated = annotated.replace(/^\s+/, "").replace(/\n{3,}/g, "\n\n");
     }
     textarea.value = annotated;
@@ -90500,6 +90852,16 @@ function updateNovelaiModelSchedule(isInitial = false) {
     $(fixedPromptEl).trigger("input");
   }
 }
+function refreshNovelaiUIFromSettings(targetModel = null) {
+  const settings3 = extension_settings75[extensionName] || {};
+  const novelaiModeSelect = document.getElementById("novelaimode");
+  const model = targetModel || settings3.novelaimode || (novelaiModeSelect ? novelaiModeSelect.value : "nai-diffusion-4-5-full");
+  if (novelaiModeSelect && novelaiModeSelect.value !== model) {
+    novelaiModeSelect.value = model;
+  }
+  lastSelectedNovelaiModel = model;
+  updateNovelaiModelSchedule(true);
+}
 function updateNovelaiOtherSiteVisibility() {
   const novelaiSiteSelect = document.getElementById("novelaisite");
   const otherSiteField = document.getElementById("novelai-other-site-field");
@@ -90568,7 +90930,11 @@ function initNovelaiUI(settingsModal) {
         saveSettingsDebounced47();
       }
     }
+    clearNovelAIUrlCache();
     updateNovelaiOtherSiteVisibility();
+  });
+  settingsModal.find("#novelaiOtherSite").on("change input", function() {
+    clearNovelAIUrlCache();
   });
   settingsModal.find("#novelaiApiToggle").on("click", function() {
     const input = settingsModal.find("#novelaiApi")[0];
@@ -90593,12 +90959,6 @@ init_configDatabase();
 
 init_utils();
 var FIXED_ENCODING_KEY = "b36a8472fe418d9f80d6bb1c54e3a6e62c62936aa7bf31dae2bcf7e929f6430f";
-function normalizeNovelAIOtherSiteUrl2(value) {
-  if (typeof value !== "string") {
-    return "";
-  }
-  return value.trim().replace(/\/+$/, "");
-}
 async function sha256(message) {
   if (typeof crypto !== "undefined" && crypto.subtle) {
     try {
@@ -91370,37 +91730,22 @@ function showVibeGeneratorDialog() {
         information_extracted: extractVal,
         model
       };
-      let encodeVibeUrl = "https://image.novelai.net/ai/encode-vibe";
-      if (settings3.novelaisite && settings3.novelaisite !== "\u5B98\u7F51") {
-        if (settings3.client === "jiuguan") {
-          throw new Error("\u9152\u9986\u7AEF\u4E0D\u652F\u6301\u81EA\u5B9A\u4E49\u7AD9\u70B9\u7684 Vibe \u7F16\u7801\uFF01");
-        }
-        const otherSite = normalizeNovelAIOtherSiteUrl2(settings3.novelaiOtherSite);
-        if (!otherSite) {
-          throw new Error("\u5DF2\u9009\u62E9\u7B2C\u4E09\u65B9\u7AD9\u70B9\uFF0C\u4F46\u672A\u586B\u5199 novelaiOtherSite \u5730\u5740");
-        }
-        encodeVibeUrl = otherSite.includes("encode-vibe") ? otherSite : `${otherSite}/ai/encode-vibe`;
+      if (settings3.novelaisite && settings3.novelaisite !== "\u5B98\u7F51" && settings3.client === "jiuguan") {
+        throw new Error("\u9152\u9986\u7AEF\u4E0D\u652F\u6301\u81EA\u5B9A\u4E49\u7AD9\u70B9\u7684 Vibe \u7F16\u7801\uFF01");
       }
-      console.log(`[Vibe] \u7F16\u7801\u8BF7\u6C42 URL: ${encodeVibeUrl}`);
-      const response = await fetch(encodeVibeUrl, {
-        method: "POST",
+      const { candidates, rawOtherSite } = getNovelAICandidateUrls("/ai/encode-vibe");
+      console.log(`[Vibe] \u7F16\u7801\u8BF7\u6C42\u5019\u9009 URLs:`, candidates);
+      const response = await postNovelAIWithFallback({
+        candidates,
+        rawOtherSite,
+        endpointPath: "/ai/encode-vibe",
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${apiKey}`
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        logPrefix: "[Vibe]"
       });
-      if (!response.ok) {
-        let errorDetail;
-        try {
-          errorDetail = await response.text();
-          const errorJson = JSON.parse(errorDetail);
-          throw new Error(`API \u9519\u8BEF (${response.status}): ${errorJson.message || errorDetail}`);
-        } catch (e) {
-          if (e.message.startsWith("API \u9519\u8BEF")) throw e;
-          throw new Error(`HTTP ${response.status}: ${errorDetail || response.statusText}`);
-        }
-      }
       const arrayBuffer = await response.arrayBuffer();
       const vibeUint8 = new Uint8Array(arrayBuffer);
       const vibeBase64 = uint8ArrayToBase642(vibeUint8);
@@ -96923,12 +97268,74 @@ function initRunningHubUI(settingsModal) {
   eventSource33.on("st_chatu8_cancel_runninghub_task", handleTaskMgrCancel);
   async function compressImageSource(source, maxDim = 768, quality = 0.8) {
     if (!source) return null;
+    const calcFitDimensions = (origWidth, origHeight, maxLimit) => {
+      let width = origWidth || 512;
+      let height = origHeight || 512;
+      if (width > maxLimit || height > maxLimit) {
+        if (width >= height) {
+          height = Math.round(height * maxLimit / width);
+          width = maxLimit;
+        } else {
+          width = Math.round(width * maxLimit / height);
+          height = maxLimit;
+        }
+      }
+      return {
+        width: Math.max(1, width),
+        height: Math.max(1, height)
+      };
+    };
+    const drawAndExport = (drawable, origWidth, origHeight) => {
+      const { width, height } = calcFitDimensions(origWidth, origHeight, maxDim);
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
+      ctx.drawImage(drawable, 0, 0, width, height);
+      try {
+        return canvas.toDataURL("image/jpeg", quality);
+      } catch (err) {
+        console.warn("[compressImageSource] canvas.toDataURL \u5BFC\u51FA\u5931\u8D25 (\u53EF\u80FD\u88AB\u6C61\u67D3):", err);
+        return null;
+      }
+    };
+    if (source instanceof HTMLImageElement) {
+      if (!source.src || source.style.display === "none") return null;
+      if (source.complete && source.naturalWidth > 0) {
+        try {
+          if (typeof createImageBitmap === "function") {
+            const bitmap = await createImageBitmap(source);
+            const dataUrl = drawAndExport(bitmap, bitmap.width, bitmap.height);
+            bitmap.close();
+            if (dataUrl) return dataUrl;
+          } else {
+            const dataUrl = drawAndExport(source, source.naturalWidth, source.naturalHeight);
+            if (dataUrl) return dataUrl;
+          }
+        } catch (e) {
+          console.warn("[compressImageSource] HTMLImageElement \u76F4\u63A5\u8BFB\u53D6\u5931\u8D25\uFF0C\u5C1D\u8BD5\u5E38\u89C4\u56DE\u9000:", e);
+        }
+      }
+    }
+    if (source instanceof Blob || source instanceof File) {
+      if (typeof createImageBitmap === "function") {
+        try {
+          const bitmap = await createImageBitmap(source);
+          const dataUrl = drawAndExport(bitmap, bitmap.width, bitmap.height);
+          bitmap.close();
+          if (dataUrl) return dataUrl;
+        } catch (err) {
+          console.warn("[compressImageSource] createImageBitmap \u89E3\u7801 Blob \u5931\u8D25\uFF0C\u5C1D\u8BD5\u56DE\u9000:", err);
+        }
+      }
+    }
     let imgSrc = "";
     let shouldRevoke = false;
     if (typeof source === "string") {
       imgSrc = source;
     } else if (source instanceof HTMLImageElement) {
-      if (!source.src || source.style.display === "none") return null;
       imgSrc = source.src;
     } else if (source instanceof Blob || source instanceof File) {
       imgSrc = URL.createObjectURL(source);
@@ -96937,7 +97344,10 @@ function initRunningHubUI(settingsModal) {
     if (!imgSrc) return null;
     return new Promise((resolve) => {
       const img = new Image();
-      img.crossOrigin = "Anonymous";
+      const isHttpUrl = imgSrc.startsWith("http://") || imgSrc.startsWith("https://");
+      if (isHttpUrl) {
+        img.crossOrigin = "Anonymous";
+      }
       img.onload = () => {
         if (shouldRevoke) {
           try {
@@ -96945,26 +97355,8 @@ function initRunningHubUI(settingsModal) {
           } catch (e) {
           }
         }
-        let width = img.naturalWidth || img.width || 512;
-        let height = img.naturalHeight || img.height || 512;
-        if (width > maxDim || height > maxDim) {
-          if (width >= height) {
-            height = Math.round(height * maxDim / width);
-            width = maxDim;
-          } else {
-            width = Math.round(width * maxDim / height);
-            height = maxDim;
-          }
-        }
-        const canvas = document.createElement("canvas");
-        canvas.width = Math.max(1, width);
-        canvas.height = Math.max(1, height);
-        const ctx = canvas.getContext("2d");
-        ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = "high";
-        ctx.drawImage(img, 0, 0, width, height);
-        const compressedDataUrl = canvas.toDataURL("image/jpeg", quality);
-        resolve(compressedDataUrl);
+        const dataUrl = drawAndExport(img, img.naturalWidth || img.width, img.naturalHeight || img.height);
+        resolve(dataUrl);
       };
       img.onerror = (err) => {
         if (shouldRevoke) {
@@ -96973,7 +97365,7 @@ function initRunningHubUI(settingsModal) {
           } catch (e) {
           }
         }
-        console.warn("[compressImageSource] \u56FE\u7247\u52A0\u8F7D\u5931\u8D25:", err);
+        console.warn("[compressImageSource] \u56FE\u7247\u52A0\u8F7D\u5931\u8D25:", err, imgSrc?.slice?.(0, 100));
         resolve(null);
       };
       img.src = imgSrc;
@@ -97111,10 +97503,17 @@ ${imgName}` : `
       let img1Desc = "";
       if (!isImg1Muted) {
         const img1Source = sessionUploadedMedia.imgFiles?.[1] || document.getElementById("runninghub_file_img_1")?.files?.[0] || document.getElementById("runninghub_preview_img_1");
+        const hasImg1 = Boolean(
+          sessionUploadedMedia.imgFiles?.[1] || document.getElementById("runninghub_file_img_1")?.files?.[0] || document.getElementById("runninghub_preview_img_1")?.getAttribute("src") && !document.getElementById("runninghub_preview_img_1")?.getAttribute("src")?.endsWith("/")
+        );
         img1Desc = (document.getElementById("runninghub_img_desc_1")?.value || settings3.runninghub_img_desc_1 || "").trim();
         compressedImg1 = await compressImageSource(img1Source, 768, 0.8);
         if (!compressedImg1) {
-          toastr.info("\u63D0\u793A\uFF1A\u56FE\u7247 1 \u672A\u4E0A\u4F20\u6216\u672A\u80FD\u52A0\u8F7D\uFF0C\u5C06\u4EE5\u7EAF\u9700\u6C42\u6587\u672C\u65B9\u5F0F\u751F\u6210\u63D0\u793A\u8BCD");
+          if (hasImg1) {
+            toastr.warning("\u8B66\u544A\uFF1A\u56FE\u7247 1 \u8BFB\u53D6\u6216\u538B\u7F29\u5931\u8D25\uFF0C\u5C06\u4EC5\u4EE5\u6587\u5B57\u65B9\u5F0F\u8BF7\u6C42 LLM");
+          } else {
+            toastr.info("\u63D0\u793A\uFF1A\u56FE\u7247 1 \u672A\u4E0A\u4F20\uFF0C\u5C06\u4EE5\u7EAF\u9700\u6C42\u6587\u672C\u65B9\u5F0F\u751F\u6210\u63D0\u793A\u8BCD");
+          }
         }
       } else {
         toastr.info("\u63D0\u793A\uFF1A\u56FE\u7247 1 \u5F53\u524D\u8BBE\u7F6E\u4E3A\u505C\u7528 (Mute)\uFF0C\u5DF2\u8DF3\u8FC7\u4F5C\u4E3A\u53C2\u8003\u9644\u4EF6");
@@ -97191,12 +97590,16 @@ ${imgName}` : `
     try {
       const collectedImages = [];
       const textOnlyImageDescs = [];
+      const failedImageIndices = [];
       for (let i = 1; i <= 9; i++) {
         const ctrlMode = document.getElementById(`runninghub_img_ctrl_${i}`)?.value || settings3[`runninghub_img_ctrl_${i}`] || "bypass";
         if (ctrlMode === "mute") {
           continue;
         }
         const imgSource = sessionUploadedMedia.imgFiles?.[i] || document.getElementById(`runninghub_file_img_${i}`)?.files?.[0] || document.getElementById(`runninghub_preview_img_${i}`);
+        const hasImgSource = Boolean(
+          sessionUploadedMedia.imgFiles?.[i] || document.getElementById(`runninghub_file_img_${i}`)?.files?.[0] || document.getElementById(`runninghub_preview_img_${i}`)?.getAttribute("src") && !document.getElementById(`runninghub_preview_img_${i}`)?.getAttribute("src")?.endsWith("/")
+        );
         const desc = (document.getElementById(`runninghub_img_desc_${i}`)?.value || settings3[`runninghub_img_desc_${i}`] || "").trim();
         const compressed = await compressImageSource(imgSource, 512, 0.8);
         if (compressed) {
@@ -97205,8 +97608,19 @@ ${imgName}` : `
             name: `<Picture ${i}>`,
             description: desc
           });
-        } else if (desc) {
-          textOnlyImageDescs.push({ index: i, description: desc });
+        } else {
+          if (hasImgSource) {
+            failedImageIndices.push(i);
+          }
+          if (desc) {
+            textOnlyImageDescs.push({ index: i, description: desc });
+          }
+        }
+      }
+      if (failedImageIndices.length > 0) {
+        console.warn(`[RunningHub] \u56FE\u7247 ${failedImageIndices.join(", ")} \u8BFB\u53D6\u6216\u538B\u7F29\u5931\u8D25\uFF0C\u672A\u80FD\u4F5C\u4E3A\u591A\u6A21\u6001\u9644\u4EF6\u53D1\u9001`);
+        if (window.toastr) {
+          toastr.warning(`\u56FE\u7247 ${failedImageIndices.join(", ")} \u8BFB\u53D6\u6216\u538B\u7F29\u5931\u8D25\uFF0C\u5DF2\u8F6C\u4E3A\u4EC5\u6587\u5B57\u8BF4\u660E\u6216\u8DF3\u8FC7`);
         }
       }
       const collectedAudios = [];
@@ -98302,12 +98716,74 @@ function initComfyUIVideoUI() {
   eventSource34.on("st_chatu8_cancel_comfyui_task", handleTaskMgrCancel);
   async function compressImageSource(source, maxDim = 768, quality = 0.8) {
     if (!source) return null;
+    const calcFitDimensions = (origWidth, origHeight, maxLimit) => {
+      let width = origWidth || 512;
+      let height = origHeight || 512;
+      if (width > maxLimit || height > maxLimit) {
+        if (width >= height) {
+          height = Math.round(height * maxLimit / width);
+          width = maxLimit;
+        } else {
+          width = Math.round(width * maxLimit / height);
+          height = maxLimit;
+        }
+      }
+      return {
+        width: Math.max(1, width),
+        height: Math.max(1, height)
+      };
+    };
+    const drawAndExport = (drawable, origWidth, origHeight) => {
+      const { width, height } = calcFitDimensions(origWidth, origHeight, maxDim);
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
+      ctx.drawImage(drawable, 0, 0, width, height);
+      try {
+        return canvas.toDataURL("image/jpeg", quality);
+      } catch (err) {
+        console.warn("[compressImageSource] canvas.toDataURL \u5BFC\u51FA\u5931\u8D25 (\u53EF\u80FD\u88AB\u6C61\u67D3):", err);
+        return null;
+      }
+    };
+    if (source instanceof HTMLImageElement) {
+      if (!source.src || source.style.display === "none") return null;
+      if (source.complete && source.naturalWidth > 0) {
+        try {
+          if (typeof createImageBitmap === "function") {
+            const bitmap = await createImageBitmap(source);
+            const dataUrl = drawAndExport(bitmap, bitmap.width, bitmap.height);
+            bitmap.close();
+            if (dataUrl) return dataUrl;
+          } else {
+            const dataUrl = drawAndExport(source, source.naturalWidth, source.naturalHeight);
+            if (dataUrl) return dataUrl;
+          }
+        } catch (e) {
+          console.warn("[compressImageSource] HTMLImageElement \u76F4\u63A5\u8BFB\u53D6\u5931\u8D25\uFF0C\u5C1D\u8BD5\u5E38\u89C4\u56DE\u9000:", e);
+        }
+      }
+    }
+    if (source instanceof Blob || source instanceof File) {
+      if (typeof createImageBitmap === "function") {
+        try {
+          const bitmap = await createImageBitmap(source);
+          const dataUrl = drawAndExport(bitmap, bitmap.width, bitmap.height);
+          bitmap.close();
+          if (dataUrl) return dataUrl;
+        } catch (err) {
+          console.warn("[compressImageSource] createImageBitmap \u89E3\u7801 Blob \u5931\u8D25\uFF0C\u5C1D\u8BD5\u56DE\u9000:", err);
+        }
+      }
+    }
     let imgSrc = "";
     let shouldRevoke = false;
     if (typeof source === "string") {
       imgSrc = source;
     } else if (source instanceof HTMLImageElement) {
-      if (!source.src || source.style.display === "none") return null;
       imgSrc = source.src;
     } else if (source instanceof Blob || source instanceof File) {
       imgSrc = URL.createObjectURL(source);
@@ -98316,7 +98792,10 @@ function initComfyUIVideoUI() {
     if (!imgSrc) return null;
     return new Promise((resolve) => {
       const img = new Image();
-      img.crossOrigin = "Anonymous";
+      const isHttpUrl = imgSrc.startsWith("http://") || imgSrc.startsWith("https://");
+      if (isHttpUrl) {
+        img.crossOrigin = "Anonymous";
+      }
       img.onload = () => {
         if (shouldRevoke) {
           try {
@@ -98324,26 +98803,8 @@ function initComfyUIVideoUI() {
           } catch (e) {
           }
         }
-        let width = img.naturalWidth || img.width || 512;
-        let height = img.naturalHeight || img.height || 512;
-        if (width > maxDim || height > maxDim) {
-          if (width >= height) {
-            height = Math.round(height * maxDim / width);
-            width = maxDim;
-          } else {
-            width = Math.round(width * maxDim / height);
-            height = maxDim;
-          }
-        }
-        const canvas = document.createElement("canvas");
-        canvas.width = Math.max(1, width);
-        canvas.height = Math.max(1, height);
-        const ctx = canvas.getContext("2d");
-        ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = "high";
-        ctx.drawImage(img, 0, 0, width, height);
-        const compressedDataUrl = canvas.toDataURL("image/jpeg", quality);
-        resolve(compressedDataUrl);
+        const dataUrl = drawAndExport(img, img.naturalWidth || img.width, img.naturalHeight || img.height);
+        resolve(dataUrl);
       };
       img.onerror = (err) => {
         if (shouldRevoke) {
@@ -98352,7 +98813,7 @@ function initComfyUIVideoUI() {
           } catch (e) {
           }
         }
-        console.warn("[compressImageSource] \u56FE\u7247\u52A0\u8F7D\u5931\u8D25:", err);
+        console.warn("[compressImageSource] \u56FE\u7247\u52A0\u8F7D\u5931\u8D25:", err, imgSrc?.slice?.(0, 100));
         resolve(null);
       };
       img.src = imgSrc;
@@ -98490,10 +98951,17 @@ ${imgName}` : `
       let img1Desc = "";
       if (!isImg1Muted) {
         const img1Source = sessionUploadedMedia2.imgFiles?.[1] || document.getElementById("comfyui_img_file_1")?.files?.[0] || document.getElementById("comfyui_preview_img_1");
+        const hasImg1 = Boolean(
+          sessionUploadedMedia2.imgFiles?.[1] || document.getElementById("comfyui_img_file_1")?.files?.[0] || document.getElementById("comfyui_preview_img_1")?.getAttribute("src") && !document.getElementById("comfyui_preview_img_1")?.getAttribute("src")?.endsWith("/")
+        );
         img1Desc = (document.getElementById("comfyui_img_desc_1")?.value || settings3.comfyui_img_desc_1 || "").trim();
         compressedImg1 = await compressImageSource(img1Source, 768, 0.8);
         if (!compressedImg1) {
-          toastr.info("\u63D0\u793A\uFF1A\u56FE\u7247 1 \u672A\u4E0A\u4F20\u6216\u672A\u80FD\u52A0\u8F7D\uFF0C\u5C06\u4EE5\u7EAF\u9700\u6C42\u6587\u672C\u65B9\u5F0F\u751F\u6210\u63D0\u793A\u8BCD");
+          if (hasImg1) {
+            toastr.warning("\u8B66\u544A\uFF1A\u56FE\u7247 1 \u8BFB\u53D6\u6216\u538B\u7F29\u5931\u8D25\uFF0C\u5C06\u4EC5\u4EE5\u6587\u5B57\u65B9\u5F0F\u8BF7\u6C42 LLM");
+          } else {
+            toastr.info("\u63D0\u793A\uFF1A\u56FE\u7247 1 \u672A\u4E0A\u4F20\uFF0C\u5C06\u4EE5\u7EAF\u9700\u6C42\u6587\u672C\u65B9\u5F0F\u751F\u6210\u63D0\u793A\u8BCD");
+          }
         }
       } else {
         toastr.info("\u63D0\u793A\uFF1A\u56FE\u7247 1 \u5F53\u524D\u8BBE\u7F6E\u4E3A\u505C\u7528 (Mute)\uFF0C\u5DF2\u8DF3\u8FC7\u4F5C\u4E3A\u53C2\u8003\u9644\u4EF6");
@@ -98570,12 +99038,16 @@ ${imgName}` : `
     try {
       const collectedImages = [];
       const textOnlyImageDescs = [];
+      const failedImageIndices = [];
       for (let i = 1; i <= 9; i++) {
         const ctrlMode = document.getElementById(`comfyui_img_ctrl_${i}`)?.value || settings3[`comfyui_img_ctrl_${i}`] || "bypass";
         if (ctrlMode === "mute") {
           continue;
         }
         const imgSource = sessionUploadedMedia2.imgFiles?.[i] || document.getElementById(`comfyui_img_file_${i}`)?.files?.[0] || document.getElementById(`comfyui_preview_img_${i}`);
+        const hasImgSource = Boolean(
+          sessionUploadedMedia2.imgFiles?.[i] || document.getElementById(`comfyui_img_file_${i}`)?.files?.[0] || document.getElementById(`comfyui_preview_img_${i}`)?.getAttribute("src") && !document.getElementById(`comfyui_preview_img_${i}`)?.getAttribute("src")?.endsWith("/")
+        );
         const desc = (document.getElementById(`comfyui_img_desc_${i}`)?.value || settings3[`comfyui_img_desc_${i}`] || "").trim();
         const compressed = await compressImageSource(imgSource, 512, 0.8);
         if (compressed) {
@@ -98584,8 +99056,19 @@ ${imgName}` : `
             name: `<Picture ${i}>`,
             description: desc
           });
-        } else if (desc) {
-          textOnlyImageDescs.push({ index: i, description: desc });
+        } else {
+          if (hasImgSource) {
+            failedImageIndices.push(i);
+          }
+          if (desc) {
+            textOnlyImageDescs.push({ index: i, description: desc });
+          }
+        }
+      }
+      if (failedImageIndices.length > 0) {
+        console.warn(`[ComfyUI] \u56FE\u7247 ${failedImageIndices.join(", ")} \u8BFB\u53D6\u6216\u538B\u7F29\u5931\u8D25\uFF0C\u672A\u80FD\u4F5C\u4E3A\u591A\u6A21\u6001\u9644\u4EF6\u53D1\u9001`);
+        if (window.toastr) {
+          toastr.warning(`\u56FE\u7247 ${failedImageIndices.join(", ")} \u8BFB\u53D6\u6216\u538B\u7F29\u5931\u8D25\uFF0C\u5DF2\u8F6C\u4E3A\u4EC5\u6587\u5B57\u8BF4\u660E\u6216\u8DF3\u8FC7`);
         }
       }
       const collectedAudios = [];
@@ -107654,7 +108137,9 @@ var NOVELAI_PROFILE_KEYS = [
   "cloudQueueUrl",
   "cloudQueueGreeting",
   "showQueueGreeting",
+  "cloudQueueTimeout",
   "novelaimode",
+  "novelai_straight_alpha",
   "novelai_sampler",
   "Schedule",
   "nai3Scale",
@@ -107664,11 +108149,17 @@ var NOVELAI_PROFILE_KEYS = [
   "dyn",
   "nai3Variety",
   "nai3Deceisp",
-  // Vibe Transfer
+  "AQT_novelai",
+  "UCP_novelai",
+  "addFurryDataset",
+  // Vibe Transfer 与参考图
+  "nai3VibeTransfer",
+  "nai3CharRef",
   "enableVibeGroupTransfer",
   "randomVibeGroup",
   "normalizeRefStrength",
   // 生成参数
+  "novelai_size",
   "novelai_width",
   "novelai_height",
   "novelai_steps",
@@ -107845,6 +108336,11 @@ function refreshComfyuiProfileSelect() {
 }
 function collectNovelaiProfile() {
   const settings3 = getSettings3();
+  const modeSelect = document.getElementById("novelaimode");
+  const currentModel = modeSelect ? modeSelect.value : settings3.novelaimode || "nai-diffusion-4-5-full";
+  if (currentModel) {
+    saveModelConfigFromUI(currentModel);
+  }
   const profile = {};
   for (const key of NOVELAI_PROFILE_KEYS) {
     let val = settings3[key];
@@ -107852,6 +108348,11 @@ function collectNovelaiProfile() {
       val = val.trim();
     }
     profile[key] = val;
+  }
+  if (settings3.novelai_model_configs) {
+    profile.novelai_model_configs = JSON.parse(JSON.stringify(settings3.novelai_model_configs));
+  } else {
+    profile.novelai_model_configs = {};
   }
   return profile;
 }
@@ -107865,6 +108366,7 @@ function collectComfyuiProfile() {
 }
 function applyNovelaiProfile(profile) {
   const settings3 = getSettings3();
+  if (!profile) return;
   if (profile.enableVibeGroupTransfer === void 0) {
     profile.enableVibeGroupTransfer = "false";
   }
@@ -107873,6 +108375,21 @@ function applyNovelaiProfile(profile) {
   }
   if (profile.randomVibeGroup === void 0) {
     profile.randomVibeGroup = "false";
+  }
+  const targetModel = profile.novelaimode || settings3.novelaimode || "nai-diffusion-4-5-full";
+  if (profile.novelai_model_configs && typeof profile.novelai_model_configs === "object" && Object.keys(profile.novelai_model_configs).length > 0) {
+    settings3.novelai_model_configs = JSON.parse(JSON.stringify(profile.novelai_model_configs));
+  } else {
+    settings3.novelai_model_configs = settings3.novelai_model_configs || {};
+    const legacyConfig = {};
+    NOVELAI_MODEL_PARAM_KEYS.forEach((key) => {
+      if (profile[key] !== void 0) {
+        legacyConfig[key] = profile[key];
+      }
+    });
+    if (Object.keys(legacyConfig).length > 0) {
+      settings3.novelai_model_configs[targetModel] = legacyConfig;
+    }
   }
   for (const key of NOVELAI_PROFILE_KEYS) {
     if (profile[key] !== void 0) {
@@ -107884,17 +108401,14 @@ function applyNovelaiProfile(profile) {
       const element = document.getElementById(key);
       if (element) {
         if (element.type === "checkbox") {
-          element.checked = String(val) === "true";
+          element.checked = String(val) === "true" || val === true;
         } else {
           element.value = val;
         }
       }
     }
   }
-  const novelaiModeSelect = document.getElementById("novelaimode");
-  if (novelaiModeSelect) {
-    $(novelaiModeSelect).trigger("change");
-  }
+  refreshNovelaiUIFromSettings(targetModel);
   syncSliders();
   updateNovelaiOtherSiteVisibility();
   if (settings3.novelaisite && settings3.novelaisite !== "\u5B98\u7F51") {
@@ -109064,8 +109578,8 @@ image### 1girl, solo, blue hair ###
   comfyui_profile_id: "\u968F\u65F6\u4FDD\u5B58\u548C\u5207\u6362\u4EE5\u4E0B\u7684\u8FD9\u4E9B\u8BBE\u7F6E",
   novelaiApi: "NovelAI Persistent API Token\uFF08\u5728\u8D26\u53F7\u8BA2\u9605\u9875\u83B7\u53D6\uFF09",
   novelaimode: "NovelAI \u6A21\u578B\u7248\u672C\uFF08v3 / v4 / v4.5\uFF0C**v4.5 Curated** \u6700\u65B0\uFF09",
-  novelaisite: "\u8BF7\u6C42\u8D70\u54EA\u4E2A\u7AD9\u70B9\uFF1A\u5B98\u65B9 / \u7B2C\u4E09\u65B9\u4EE3\u7406\uFF08\u4EC5\u652F\u6301\u5B98\u7F51\u683C\u5F0F\uFF09\uFF08\u6CE8\u610F\u8981\u5207\u6362\u4E3A\u4E3B\u8981\u8BBE\u7F6E\u7684\u5BA2\u6237\u7AEF\u4E3A\u6D4F\u89C8\u5668\uFF0C\u5426\u5219\u4E0D\u652F\u6301\uFF01\uFF09",
-  novelaiOtherSite: "\u81EA\u5B9A\u4E49\u7B2C\u4E09\u65B9 NovelAI \u517C\u5BB9\u7AD9\u70B9 URL",
+  novelaisite: "\u8BF7\u6C42\u8D70\u54EA\u4E2A\u7AD9\u70B9\uFF1A\u5B98\u65B9 / \u7B2C\u4E09\u65B9\u4EE3\u7406\uFF08\u652F\u6301\u5B98\u65B9\u53CD\u4EE3\u6839\u5730\u5740\u4E0E\u5355 Endpoint \u4E2D\u8F6C\u81EA\u52A8\u56DE\u9000\uFF09\uFF08\u6CE8\u610F\u9700\u4F7F\u7528\u6D4F\u89C8\u5668\u5BA2\u6237\u7AEF\uFF09",
+  novelaiOtherSite: "\u81EA\u5B9A\u4E49\u7B2C\u4E09\u65B9 NovelAI \u517C\u5BB9\u7AD9\u70B9 URL\uFF08\u652F\u6301\u53CD\u4EE3\u6839\u5730\u5740\u6216\u5B8C\u6574\u5355 Endpoint\uFF0C\u5185\u7F6E\u81EA\u52A8\u56DE\u9000\u4E0E\u7AEF\u70B9\u81EA\u6108\uFF09",
   enableCloudQueue: "\u5F53\u6709\u591A\u4E2A\u5C0F\u4F19\u4F34\u540C\u65F6\u4F7F\u7528\u4E00\u4E2Akey\u65F6\uFF0C\u5B98\u7F51\u4F1A429\u62A5\u9519\uFF0C\u5F00\u542F\u540E\u4F1A\u81EA\u52A8\u6392\u961F\uFF0C\u8BA9\u4F60\u4EEC\u4F9D\u6B21\u751F\u56FE\u3002\uFF08\u4E0D\u4F1A\u53D1\u9001\u4EFB\u4F55\u654F\u611F\u6570\u636E\uFF09",
   cloudQueueUrl: "\u4E91\u7AEF\u961F\u5217\u670D\u52A1\u5730\u5740\uFF08\u81EA\u90E8\u7F72\u6216\u793E\u533A\u516C\u5171\u8282\u70B9\uFF09",
   cloudQueueGreeting: "\u4E91\u961F\u5217\u9996\u6B21\u8FDE\u63A5\u65F6\u7684\u95EE\u5019\u8BED\uFF08\u793E\u533A\u793C\u4EEA\uFF09",
@@ -111450,6 +111964,7 @@ init_utils();
 init_generation_status();
 init_placeholder();
 init_database();
+init_taskQueue();
 
 
 function generateStableId3(str) {
@@ -111464,37 +111979,104 @@ function generateStableId3(str) {
 var pregenDispatched = /* @__PURE__ */ new Set();
 var currentSessionEpoch = 0;
 var activeTaskCleanups = /* @__PURE__ */ new Set();
-async function dispatchPregenTask(normPrompt) {
+var taskIdToCleanup = /* @__PURE__ */ new Map();
+var promptToTaskId = /* @__PURE__ */ new Map();
+function setupCancelListeners() {
+  const handleCancel = ({ taskId } = {}) => {
+    if (taskId) {
+      const cleanup = taskIdToCleanup.get(taskId);
+      if (cleanup) {
+        try {
+          cleanup();
+        } catch (e) {
+          console.error("[Pregen] \u53D6\u6D88\u4EFB\u52A1\u6E05\u7406\u5931\u8D25:", e);
+        }
+        taskIdToCleanup.delete(taskId);
+      }
+      taskQueue.updateStatus(taskId, TaskStatus.CANCELLED);
+      addLog(`[Pregen] \u9884\u751F\u6210\u4EFB\u52A1\u5DF2\u53D6\u6D88 (ID: ${taskId})`);
+    } else {
+      cancelAllPregenTasks();
+    }
+  };
+  eventSource46.on("st_chatu8_cancel_pregen_task", handleCancel);
+  eventSource46.on("st_chatu8_cancel_task", handleCancel);
+}
+setupCancelListeners();
+function cancelAllPregenTasks() {
+  currentSessionEpoch++;
+  pregenDispatched.clear();
+  for (const [norm, taskId] of promptToTaskId) {
+    if (taskQueue.isTaskInQueue(taskId)) {
+      taskQueue.updateStatus(taskId, TaskStatus.CANCELLED);
+    }
+  }
+  promptToTaskId.clear();
+  for (const [taskId, cleanup] of taskIdToCleanup) {
+    try {
+      cleanup();
+    } catch (e) {
+      console.error("[Pregen] \u6E05\u7406\u5728\u9014\u4EFB\u52A1\u5931\u8D25:", e);
+    }
+  }
+  taskIdToCleanup.clear();
+  for (const cleanup of activeTaskCleanups) {
+    try {
+      cleanup();
+    } catch (e) {
+      console.error("[Pregen] \u6E05\u7406\u5728\u9014\u4EFB\u52A1\u5931\u8D25:", e);
+    }
+  }
+  activeTaskCleanups.clear();
+  clearAllGenerating();
+  addLog(`[Pregen] \u6240\u6709\u9884\u751F\u6210\u4EFB\u52A1\u5DF2\u5168\u90E8\u53D6\u6D88\u5E76\u6E05\u7A7A\u72B6\u6001 (epoch: ${currentSessionEpoch})\u3002`);
+}
+async function dispatchPregenTask(normPrompt, taskId, requestId) {
   const taskEpoch = currentSessionEpoch;
   let cleanup = null;
-  const onTaskFinish = () => {
+  const onTaskFinish = (success = true) => {
     if (cleanup) {
       cleanup();
       activeTaskCleanups.delete(cleanup);
+      if (taskId) taskIdToCleanup.delete(taskId);
       cleanup = null;
     }
     if (taskEpoch !== currentSessionEpoch) {
       addLog(`[Pregen] \u4EFB\u52A1\u6240\u5C5E\u4F1A\u8BDD\u5DF2\u8FC7\u671F (epoch: ${taskEpoch} vs ${currentSessionEpoch})\uFF0C\u5FFD\u7565\u4EFB\u52A1\u7ED3\u675F\u56DE\u8C03`);
       return;
     }
+    if (taskId && taskQueue.isTaskInQueue(taskId)) {
+      taskQueue.completeTask(taskId, success);
+    }
   };
   try {
+    if (taskId && !taskQueue.isTaskInQueue(taskId)) {
+      addLog(`[Pregen] \u4EFB\u52A1\u5DF2\u88AB\u7528\u6237\u53D6\u6D88\uFF0C\u8DF3\u8FC7\u6267\u884C: ${normPrompt}`);
+      onTaskFinish(false);
+      return;
+    }
     const [imageUrl] = await getItemImg(normPrompt);
     if (taskEpoch !== currentSessionEpoch) return;
     if (imageUrl) {
       registerAutoClickHandled(normPrompt);
       addLog(`[Pregen] \u672C\u5730/\u8FDC\u7AEF\u5DF2\u5B58\u5728\u8BE5\u56FE\u7247\uFF0C\u8DF3\u8FC7\u9884\u751F\u6210: ${normPrompt}`);
-      onTaskFinish();
+      onTaskFinish(true);
       return;
     }
     if (isGenerating(normPrompt)) {
       addLog(`[Pregen] \u56FE\u50CF\u6B63\u5728\u751F\u6210\u4E2D\uFF0C\u8DF3\u8FC7\u91CD\u590D\u6D3E\u53D1: ${normPrompt}`);
-      onTaskFinish();
+      onTaskFinish(true);
       return;
     }
-    const requestId = generateStableId3(normPrompt);
+    if (taskId && !taskQueue.isTaskInQueue(taskId)) {
+      onTaskFinish(false);
+      return;
+    }
     registerAutoClickHandled(normPrompt, requestId);
     startGenerating(normPrompt);
+    if (taskId) {
+      taskQueue.updateStatus(taskId, TaskStatus.RUNNING);
+    }
     let timeoutTimer = null;
     let isCompleted = false;
     const imageResponseHandler = (responseData) => {
@@ -111503,7 +112085,7 @@ async function dispatchPregenTask(normPrompt) {
       isCompleted = true;
       const { success, error, prompt: responsePrompt } = responseData;
       addLog(`[Pregen] \u6536\u5230\u751F\u6210\u54CD\u5E94 (ID: ${requestId}, \u72B6\u6001: ${success ? "\u6210\u529F" : "\u5931\u8D25"}${error ? ", \u9519\u8BEF: " + error : ""})`);
-      onTaskFinish();
+      onTaskFinish(Boolean(success));
     };
     cleanup = () => {
       if (timeoutTimer) {
@@ -111514,11 +112096,14 @@ async function dispatchPregenTask(normPrompt) {
       stopGenerating(normPrompt);
     };
     activeTaskCleanups.add(cleanup);
+    if (taskId) {
+      taskIdToCleanup.set(taskId, cleanup);
+    }
     timeoutTimer = setTimeout(() => {
       if (isCompleted) return;
       isCompleted = true;
       addLog(`[Pregen] \u4EFB\u52A1\u8D85\u65F6\u672A\u54CD\u5E94 (ID: ${requestId})\uFF0C\u5DF2\u81EA\u52A8\u89E3\u9664\u72B6\u6001`);
-      onTaskFinish();
+      onTaskFinish(false);
     }, 18e4);
     eventSource46.on(EventType.GENERATE_IMAGE_RESPONSE, imageResponseHandler);
     let finalWidth = null;
@@ -111539,11 +112124,11 @@ async function dispatchPregenTask(normPrompt) {
     addLog(`[Pregen] \u5DF2\u5E76\u53D1\u6D3E\u53D1\u751F\u56FE\u8BF7\u6C42 (ID: ${requestId}): ${normPrompt}`);
   } catch (err) {
     console.error(`[Pregen] \u6D3E\u53D1\u9884\u751F\u6210\u4EFB\u52A1\u5F02\u5E38: ${normPrompt}`, err);
-    onTaskFinish();
+    onTaskFinish(false);
   }
 }
-function schedulePregenTask(normPrompt) {
-  dispatchPregenTask(normPrompt);
+function schedulePregenTask(normPrompt, taskId, requestId) {
+  dispatchPregenTask(normPrompt, taskId, requestId);
 }
 function add(prompts) {
   if (!Array.isArray(prompts)) return;
@@ -111552,26 +112137,25 @@ function add(prompts) {
     if (!norm) return;
     if (pregenDispatched.has(norm)) return;
     pregenDispatched.add(norm);
-    schedulePregenTask(norm);
+    const requestId = generateStableId3(norm);
+    const taskId = taskQueue.addTask({
+      id: requestId,
+      name: norm.substring(0, 30) + (norm.length > 30 ? "..." : ""),
+      type: TaskType.PREGEN,
+      prompt: norm,
+      status: TaskStatus.QUEUED
+    });
+    promptToTaskId.set(norm, taskId);
+    schedulePregenTask(norm, taskId, requestId);
   });
 }
 function clear() {
-  currentSessionEpoch++;
-  pregenDispatched.clear();
-  for (const cleanup of activeTaskCleanups) {
-    try {
-      cleanup();
-    } catch (e) {
-      console.error("[Pregen] \u6E05\u7406\u5728\u9014\u4EFB\u52A1\u5931\u8D25:", e);
-    }
-  }
-  activeTaskCleanups.clear();
-  clearAllGenerating();
-  addLog(`[Pregen] \u9884\u751F\u6210\u72B6\u6001\u5DF2\u5B8C\u5168\u91CD\u7F6E (epoch: ${currentSessionEpoch})\uFF0C\u9632\u91CD\u8868\u5DF2\u6E05\u7A7A\u3002`);
+  cancelAllPregenTasks();
 }
 var pregenManager = {
   add,
-  clear
+  clear,
+  cancelAll: cancelAllPregenTasks
 };
 
 // utils/settings/stream_generate.js
@@ -111613,11 +112197,6 @@ eventSource47.on(genStartedEvent, () => {
 });
 var genStoppedEvent = event_types7.GENERATION_STOPPED || "generation_stopped";
 eventSource47.on(genStoppedEvent, () => {
-  if (String(extension_settings115[extensionName]?.enablePregen) !== "true") return;
-  pregenManager.clear();
-});
-var genEndedEvent = event_types7.GENERATION_ENDED || "generation_ended";
-eventSource47.on(genEndedEvent, () => {
   if (String(extension_settings115[extensionName]?.enablePregen) !== "true") return;
   pregenManager.clear();
 });

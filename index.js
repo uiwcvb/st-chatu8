@@ -1,3 +1,4 @@
+/** Modified by Codex, 2026-10-26: MOSS/LoRA compatibility. Original copyright and AFPL v9: LICENSE. */
 /**
  * ====================================================
  * st-chatu8 (智绘姬) - SillyTavern 文生图扩展
@@ -16,6 +17,7 @@
  * 尊重原创，从你我做起。
  * ====================================================
  */
+import { isMossWorkflow, readMossLayoutPrompt, usesModelPlaceholder, discoverComfyOptions, preserveMossImport, renderComfyWorkflow, applyMossLoraTags, describeComfyWorkflow, createMossPreset } from './comfy-moss-compat.js';
 import { saveSettingsDebounced as saveSettingsDebounced2 } from "../../../../script.js";
 import { extension_settings } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced3 } from "../../../../script.js";
@@ -45389,6 +45391,7 @@ var init_runninghubKeyManager = __esm({
 
 
 function eidtJSON(obj) {
+  if (isMossWorkflow(obj)) return preserveMossImport(obj);
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
       if (typeof obj[key] === "object" && obj[key] !== null) {
@@ -45433,7 +45436,8 @@ function eidtJSON(obj) {
   return obj;
 }
 function eidtwork() {
-  alert("\u8BF7\u5728\u5BFC\u51FA\u65F6\u8BBE\u7F6E\u4E3A\u6B63\u9762\u63D0\u793A\u8BCD\u201C\u6B63\u9762\u201D\uFF0C\u8D1F\u9762\u8BBE\u7F6E\u4E3A\u201D\u8D1F\u9762\u201D\uFF0C\u60C5\u51B5\u590D\u6742\uFF0C\u4E0D\u4FDD\u8BC1\u53EF\u7528\u6027\u3002\u4F1A\u7B80\u6613\u7684\u66FF\u6362\uFF1A\u6A21\u578B\u540D\u79F0\u3001\u63D0\u793A\u8BCD\u3001\u6B65\u6570\u3001cfg\u3001\u91C7\u6837\u5668\u3001\u5BBD\u5EA6\u3001\u9AD8\u5EA6\u3001seed\u3002");
+  if (isMossWorkflow(document.getElementById("worker")?.value)) alert("MOSS 工作流：保留固定模型、LoRA、采样和种子，只把正面/负面标记改成提示词占位符。");
+  else alert("\u8BF7\u5728\u5BFC\u51FA\u65F6\u8BBE\u7F6E\u4E3A\u6B63\u9762\u63D0\u793A\u8BCD\u201C\u6B63\u9762\u201D\uFF0C\u8D1F\u9762\u8BBE\u7F6E\u4E3A\u201D\u8D1F\u9762\u201D\uFF0C\u60C5\u51B5\u590D\u6742\uFF0C\u4E0D\u4FDD\u8BC1\u53EF\u7528\u6027\u3002\u4F1A\u7B80\u6613\u7684\u66FF\u6362\uFF1A\u6A21\u578B\u540D\u79F0\u3001\u63D0\u793A\u8BCD\u3001\u6B65\u6570\u3001cfg\u3001\u91C7\u6837\u5668\u3001\u5BBD\u5EA6\u3001\u9AD8\u5EA6\u3001seed\u3002");
   let el = document.getElementById("worker");
   try {
     let textrejsons = JSON.parse(el.value.trim());
@@ -46916,7 +46920,30 @@ async function editWorker_import() {
   };
   input.click();
 }
+async function loadMossDmd2Preset() {
+  const settings3 = extension_settings48[extensionName];
+  const info = await getComfyuiCache("objectinfo") || {};
+  const data = JSON.stringify(createMossPreset(info), null, 2);
+  settings3.workers ||= {};
+  const base = "MOSS｜DMD2八步＋鬼针草0.8";
+  let name = base, suffix = 2;
+  while (settings3.workers[name] && settings3.workers[name] !== data) name = `${base} (${suffix++})`;
+  settings3.workers[name] = data;
+  settings3.workerid = name;
+  settings3.worker = data;
+  for (const id of ["workerid", "editWorkerid"]) {
+    const select = document.getElementById(id);
+    if (select && !Array.from(select.options).some((option) => option.value === name)) select.add(new Option(name, name));
+  }
+  const select = document.getElementById("workerid");
+  if (select) select.value = name;
+  const textarea = document.getElementById("worker");
+  if (textarea) textarea.value = data;
+  saveSettingsDebounced29();
+  toastr.success("已载入固定双LoRA工作流；提示词由你填写，画风激活词 @ypuddinneko。未提交出图。");
+}
 function initWorkerControls(settingsModal) {
+  settingsModal.find("#load_moss_dmd2_preset").on("click", loadMossDmd2Preset);
   settingsModal.find("#eidtwork").on("click", eidtwork);
   settingsModal.find("#visualize_workflow").on("click", visualizeWorkflow);
   settingsModal.find("#workerid").on("change", worker_change);
@@ -47101,50 +47128,9 @@ function normalizeBackslashPath(value) {
   return normalizeSettingString(value).replace(/\\{2,}/g, "\\");
 }
 async function replacepro(payload, json4) {
-  console.log("payload222", payload);
-  json4 = json4.replaceAll('"%seed%"', stringifyJsonNumber(payload.seed));
-  json4 = json4.replaceAll('"%steps%"', stringifyJsonNumber(payload.steps));
-  json4 = json4.replaceAll('"%cfg_scale%"', stringifyJsonNumber(payload.cfg_scale));
-  json4 = json4.replaceAll('"%sampler_name%"', stringifyJsonString(payload.sampler_name));
-  json4 = json4.replaceAll('"%width%"', stringifyJsonNumber(payload.width));
-  json4 = json4.replaceAll('"%height%"', stringifyJsonNumber(payload.height));
-  json4 = json4.replaceAll('"%negative_prompt%"', stringifyJsonString(payload.negative_prompt));
-  json4 = json4.replaceAll('"%prompt%"', stringifyJsonString(payload.prompt));
-  json4 = json4.replaceAll('"%MODEL_NAME%"', stringifyJsonString(payload.MODEL_NAME));
-  json4 = json4.replaceAll('"%c_quanzhong%"', stringifyJsonNumber(payload.c_quanzhong));
-  json4 = json4.replaceAll('"%c_idquanzhong%"', stringifyJsonNumber(payload.c_idquanzhong));
-  json4 = json4.replaceAll('"%c_xijie%"', stringifyJsonNumber(payload.c_xijie));
-  json4 = json4.replaceAll('"%c_fenwei%"', stringifyJsonNumber(payload.c_fenwei));
-  json4 = json4.replaceAll('"%comfyuicankaotupian%"', stringifyJsonString(payload.comfyuicankaotupian));
-  json4 = json4.replaceAll('"%ipa%"', stringifyJsonString(payload.ipa));
-  json4 = json4.replaceAll('"%scheduler%"', stringifyJsonString(payload.scheduler));
-  json4 = json4.replaceAll('"%vae%"', stringifyJsonString(payload.vae));
-  json4 = json4.replaceAll('"%clip%"', stringifyJsonString(payload.clip));
-  console.log(json4);
-  if (payload.inpaint_image) {
-    json4 = json4.replaceAll('"%inpaint_image%"', stringifyJsonString(payload.inpaint_image));
-  } else {
-    json4 = json4.replaceAll('"%inpaint_image%"', stringifyJsonString(""));
-  }
-  if (payload.inpaint_mask) {
-    json4 = json4.replaceAll('"%inpaint_mask%"', stringifyJsonString(payload.inpaint_mask));
-  } else {
-    json4 = json4.replaceAll('"%inpaint_mask%"', stringifyJsonString(""));
-  }
-  json4 = json4.replaceAll('"%inpaint_denoise%"', stringifyJsonNumber(payload.inpaint_denoise || 0.75, 0.75));
-  if (payload.inpaint_positive) {
-    json4 = json4.replaceAll('"%inpaint_positive%"', stringifyJsonString(payload.inpaint_positive));
-  } else {
-    json4 = json4.replaceAll('"%inpaint_positive%"', stringifyJsonString(""));
-  }
-  if (payload.inpaint_negative) {
-    json4 = json4.replaceAll('"%inpaint_negative%"', stringifyJsonString(payload.inpaint_negative));
-  } else {
-    json4 = json4.replaceAll('"%inpaint_negative%"', stringifyJsonString(""));
-  }
-  JSON.parse(json4);
-  return json4;
+  return JSON.stringify(renderComfyWorkflow(payload, json4));
 }
+
 async function generateComfyUIImage({ prompt: link, width: Xwidth, height: Xheight, change, extraNegativePrompt }) {
   clearLog();
   let taskType = TaskType.COMFYUI_IMG;
@@ -47182,6 +47168,7 @@ async function generateComfyUIImage({ prompt: link, width: Xwidth, height: Xheig
   if (!isPluginToastDisabled()) {
     toastr.info(`\u{1F3A8} \u5DF2\u53D1\u8D77 ${taskTypeName} \u8BF7\u6C42...`);
   }
+  try {
   link = typeof link === "string" ? link : "";
   change = typeof change === "string" ? change : "";
   console.log("link", link);
@@ -47191,8 +47178,14 @@ async function generateComfyUIImage({ prompt: link, width: Xwidth, height: Xheig
   } else {
     change_ = link;
   }
+  let workflowToUse = extension_settings49[extensionName].worker;
+  if (change.includes("{ComfyUI\u5C40\u90E8\u91CD\u7ED8}") || change.includes("{\u5C40\u90E8\u91CD\u7ED8}")) {
+    workflowToUse = extension_settings49[extensionName].editWorker;
+  }
+  const mossWorkflow = isMossWorkflow(workflowToUse);
+  const preservedMossLayout = mossWorkflow ? readMossLayoutPrompt(change_ || link) : null;
   const sizeRegex = /,?\s*(\d{2,4})x(\d{2,4})(?=[;\s]|$)/i;
-  if (typeof link === "string") {
+  if (!preservedMossLayout && typeof link === "string") {
     const match = link.match(sizeRegex);
     if (match) {
       if (String(extension_settings49[extensionName].aiAutonomousResolution) !== "false") {
@@ -47202,7 +47195,7 @@ async function generateComfyUIImage({ prompt: link, width: Xwidth, height: Xheig
     }
     link = link.replace(sizeRegex, "");
   }
-  if (typeof change === "string") {
+  if (!preservedMossLayout && typeof change === "string") {
     const match = change.match(sizeRegex);
     if (match) {
       if (String(extension_settings49[extensionName].aiAutonomousResolution) !== "false") {
@@ -47212,25 +47205,24 @@ async function generateComfyUIImage({ prompt: link, width: Xwidth, height: Xheig
     }
     change = change.replace(sizeRegex, "");
   }
+  if (!mossWorkflow) {
   link = processCharacterPrompt(link);
   link = await stripChineseAnnotations(link);
   change = processCharacterPrompt(change);
   change = await stripChineseAnnotations(change);
+  }
   addLog(`\u5F00\u59CB ComfyUI \u751F\u56FE\u6D41\u7A0B\u3002\u5BA2\u6237\u7AEF\u4E3A${extension_settings49[extensionName].client}`);
   addLog(`\u8BF7\u6C42\u5DE5\u4F5C\u6D41id - ${extension_settings49[extensionName].workerid}`);
   addLog(`\u8BF7\u6C42\u5C3A\u5BF8: \u5BBD\u5EA6 - ${Xwidth || "\u9ED8\u8BA4"}, \u9AD8\u5EA6 - ${Xheight || "\u9ED8\u8BA4"}`);
-  if (extension_settings49[extensionName].MODEL_NAME.trim() === "\u8FDE\u63A5\u540E\u9009\u62E9") {
-    addLog("\u8BF7\u586B\u5199ComfyUI\u6A21\u578B\u3002");
-    toastr.error("\u8BF7\u586B\u5199ComfyUI\u6A21\u578B\u3002");
-    taskQueue.completeTask(taskId, false);
-    activeComfyuiTasks.delete(taskId);
-    return;
+  const selectedModelName = normalizeSettingString(extension_settings49[extensionName].MODEL_NAME);
+  if (usesModelPlaceholder(workflowToUse) && (!selectedModelName || selectedModelName === "连接后选择")) {
+    throw new Error("工作流使用了 %MODEL_NAME%，请先选择模型；固定模型工作流无需填写面板模型。");
   }
   const url = extension_settings49[extensionName].comfyuiUrl.trim();
-  const promptForGeneration = change && change.trim() !== "" ? change : link;
+  const promptForGeneration = preservedMossLayout || (change && change.trim() !== "" ? change : link);
   addLog(`\u7528\u4E8E\u751F\u6210\u7684Tag: ${promptForGeneration}`);
   let Divide_roles = false;
-  if (promptForGeneration.includes("Scene Composition")) {
+  if (!mossWorkflow && promptForGeneration.includes("Scene Composition")) {
     Divide_roles = true;
   }
   addLog(`\u662F\u5426\u542F\u7528\u5206\u89D2\u8272\u6A21\u5F0F (Divide_roles): ${Divide_roles}`);
@@ -47249,9 +47241,9 @@ async function generateComfyUIImage({ prompt: link, width: Xwidth, height: Xheig
     }
   } else {
     addLog("\u6807\u51C6\u6A21\u5F0F: \u4F7F\u7528\u8BF7\u6C42\u4E2D\u7684 prompt\u3002");
-    mainPrompt = deduplicateTags(promptForGeneration);
+    mainPrompt = mossWorkflow ? promptForGeneration : deduplicateTags(promptForGeneration);
   }
-  let { modifiedPrompt, insertions } = await prompt_replace(mainPrompt, other_prompt);
+  let { modifiedPrompt, insertions } = preservedMossLayout ? {modifiedPrompt: preservedMossLayout, insertions: []} : await prompt_replace(mainPrompt, other_prompt);
   if (Divide_roles) {
     const charIds = getSortedCharacterIds(prompt_data);
     for (const i of charIds) {
@@ -47261,21 +47253,18 @@ async function generateComfyUIImage({ prompt: link, width: Xwidth, height: Xheig
     }
   }
   const _comfyui_yushe_id = getRandomYusheId("yusheid_comfyui");
-  if (!extension_settings49[extensionName].yushe || !extension_settings49[extensionName].yushe[_comfyui_yushe_id]) {
-    toastr.error("\u672A\u80FD\u627E\u5230\u6240\u9009\u7684\u56FA\u5B9A\u63D0\u793A\u8BCD\u9884\u8BBE\u3002\u8BF7\u524D\u5F80\u63D2\u4EF6\u8BBE\u7F6E\u4E2D\u65B0\u5EFA\u6216\u9009\u62E9\u4E00\u4E2A\u56FA\u5B9A\u63D0\u793A\u8BCD\u3002", "ComfyUI \u751F\u56FE\u9519\u8BEF");
-    taskQueue.completeTask(taskId, false);
-    activeComfyuiTasks.delete(taskId);
-    throw new Error("\u56FA\u5B9A\u63D0\u793A\u8BCD\u9884\u8BBE\u672A\u914D\u7F6E");
+  if (!preservedMossLayout && !extension_settings49[extensionName].yushe?.[_comfyui_yushe_id]) {
+    throw new Error("固定提示词预设未配置，请在设置中选择一个预设。");
   }
-  const _comfyui_preset = extension_settings49[extensionName].yushe[_comfyui_yushe_id];
-  let prompt2 = await zhengmian(
+  const _comfyui_preset = extension_settings49[extensionName].yushe?.[_comfyui_yushe_id] || {fixedPrompt: "", fixedPrompt_end: "", negativePrompt: ""};
+  let prompt2 = preservedMossLayout || await zhengmian(
     _comfyui_preset.fixedPrompt,
     modifiedPrompt,
     _comfyui_preset.fixedPrompt_end,
     extension_settings49[extensionName].AQT_comfyui,
     insertions
   );
-  prompt2 = replaceLoraTags(prompt2);
+  if (!preservedMossLayout) prompt2 = replaceLoraTags(prompt2);
   function replaceLoraTags(input, addClipSkip = false) {
     const regex = /<lora:([^:>]+):([^>]+)>/g;
     return input.replace(regex, (match, filename, paramStr) => {
@@ -47296,7 +47285,7 @@ async function generateComfyUIImage({ prompt: link, width: Xwidth, height: Xheig
       }
     });
   }
-  if (extension_settings49[extensionName].worker.includes("WeiLin") && !extension_settings49[extensionName].worker.includes("WeiLinPromptUI")) {
+  if (!preservedMossLayout && extension_settings49[extensionName].worker.includes("WeiLin") && !extension_settings49[extensionName].worker.includes("WeiLinPromptUI")) {
     prompt2 = replaceLoraTags(prompt2, true);
     prompt2 = prompt2.replace(/<lora:([^:>]+)(\.safetensors)?:([^>]+)>/g, (match, filename, ext, weight) => {
       if (!prompt2.includes(".safetensors")) {
@@ -47305,7 +47294,7 @@ async function generateComfyUIImage({ prompt: link, width: Xwidth, height: Xheig
       return match;
     });
   }
-  if (extension_settings49[extensionName].worker.includes("WeiLinPromptUI")) {
+  if (!preservedMossLayout && extension_settings49[extensionName].worker.includes("WeiLinPromptUI")) {
     prompt2 = replaceLoraTags(prompt2, true);
     prompt2 = prompt2.replaceAll("<lora:", "<wlr:");
     prompt2 = prompt2.replaceAll(".safetensors", "");
@@ -47327,14 +47316,16 @@ async function generateComfyUIImage({ prompt: link, width: Xwidth, height: Xheig
     addLog(`[\u667A\u7ED8\u59EC] \u6DFB\u52A0\u989D\u5916\u8D1F\u9762\u63D0\u793A\u8BCD: ${trimmedExtra} `);
     console.log("[ComfyUI] \u5408\u5E76\u667A\u7ED8\u59EC\u989D\u5916\u8D1F\u9762\u63D0\u793A\u8BCD:", trimmedExtra);
   }
-  if (extension_settings49[extensionName].worker.includes("WeiLinPromptUI")) {
+  if (!preservedMossLayout && extension_settings49[extensionName].worker.includes("WeiLinPromptUI")) {
     negative_prompt = replaceLoraTags(negative_prompt, true);
     negative_prompt = negative_prompt.replaceAll("<lora:", "<wlr:");
   } else {
     negative_prompt = replaceLoraTags(negative_prompt);
   }
   addLog(`\u8D1F\u9762\u63D0\u793A\u8BCD: ${negative_prompt} `);
+  if (!preservedMossLayout) {
   prompt2 = prompt2.replaceAll("\n", ",").replace(/,{2,}/g, ",");
+  }
   negative_prompt = negative_prompt.replaceAll("\n", ",").replace(/,{2,}/g, ",");
   const normalizedModelName = normalizeBackslashPath(extension_settings49[extensionName].MODEL_NAME);
   let payload = {
@@ -47363,44 +47354,11 @@ async function generateComfyUIImage({ prompt: link, width: Xwidth, height: Xheig
     "inpaint_positive": window.comfyuiInpaintPositivePrompt || "",
     "inpaint_negative": window.comfyuiInpaintNegativePrompt || ""
   };
-  if (!payload.MODEL_NAME) {
+  if (usesModelPlaceholder(workflowToUse) && !payload.MODEL_NAME) {
     throw new Error("ComfyUI \u6A21\u578B\u540D\u4E3A\u7A7A\u6216\u53EA\u5305\u542B\u7A7A\u767D\u5B57\u7B26\u3002");
   }
-  const report = `
--- - \u751F\u56FE\u53C2\u6570\u62A5\u544A-- -
-\u6B63\u9762\u63D0\u793A\u8BCD: ${payload.prompt} 
-\u8D1F\u9762\u63D0\u793A\u8BCD: ${payload.negative_prompt} 
-\u6A21\u578B: ${payload.MODEL_NAME} 
-\u91C7\u6837\u5668: ${payload.sampler_name} 
-\u6B65\u6570: ${payload.steps} 
-CFG Scale: ${payload.cfg_scale} 
-\u79CD\u5B50: ${payload.seed} 
-\u5C3A\u5BF8: ${payload.width}x${payload.height} 
-VAE: ${payload.vae} 
-Scheduler: ${payload.scheduler} 
---------------------
-`;
-  addLog(report);
-  const _comfy_gen_params = buildGenParams("ComfyUI", {
-    model: payload.MODEL_NAME,
-    yushe: _comfyui_yushe_id,
-    yusheRandom: isSettingTrue(extension_settings49[extensionName].randomYushe),
-    promptReplaceId: extension_settings49[extensionName].prompt_replace_id,
-    resolvedPrompt: payload.prompt,
-    negativePrompt: payload.negative_prompt,
-    width: payload.width,
-    height: payload.height,
-    seed: payload.seed,
-    steps: payload.steps,
-    sampler: payload.sampler_name,
-    scheduler: payload.scheduler,
-    cfgScale: payload.cfg_scale
-  });
   const clientId = "533ef3a3-39c0-4e39-9ced-37d290f371f8";
-  let workflowToUse = extension_settings49[extensionName].worker;
-  if (change.includes("{ComfyUI\u5C40\u90E8\u91CD\u7ED8}") || change.includes("{\u5C40\u90E8\u91CD\u7ED8}")) {
-    workflowToUse = extension_settings49[extensionName].editWorker;
-  }
+
   try {
     const workflowObj = JSON.parse(workflowToUse);
     const skippedCount = Object.values(workflowObj).filter((n) => n && n._skip).length;
@@ -47417,10 +47375,43 @@ Scheduler: ${payload.scheduler}
   } catch (e) {
     throw new Error(`ComfyUI \u5DE5\u4F5C\u6D41 JSON \u65E0\u6548: ${e.message}`);
   }
-  payload = await replacepro(payload, workflowToUse);
-  payload = JSON.stringify({ client_id: clientId, prompt: JSON.parse(payload) });
+  const nativeLoras = applyMossLoraTags(workflowToUse, payload.prompt, await getComfyuiCache("loras") || []);
+  payload.prompt = nativeLoras.prompt;
+  const renderedWorkflow = JSON.parse(await replacepro(payload, JSON.stringify(nativeLoras.workflow)));
+  const actualParameters = describeComfyWorkflow(renderedWorkflow, payload);
+  const report = `
+-- - \u751F\u56FE\u53C2\u6570\u62A5\u544A-- -
+\u6B63\u9762\u63D0\u793A\u8BCD: ${actualParameters.prompt}
+\u8D1F\u9762\u63D0\u793A\u8BCD: ${actualParameters.negative_prompt}
+\u6A21\u578B: ${actualParameters.MODEL_NAME}
+\u91C7\u6837\u5668: ${actualParameters.sampler_name}
+\u6B65\u6570: ${actualParameters.steps}
+CFG Scale: ${actualParameters.cfg_scale}
+\u79CD\u5B50: ${actualParameters.seed}
+\u5C3A\u5BF8: ${actualParameters.width}x${actualParameters.height}
+VAE: ${actualParameters.vae}
+Scheduler: ${actualParameters.scheduler}
+--------------------
+`;
+  addLog(report);
+  const _comfy_gen_params = buildGenParams("ComfyUI", {
+    model: actualParameters.MODEL_NAME,
+    yushe: _comfyui_yushe_id,
+    yusheRandom: isSettingTrue(extension_settings49[extensionName].randomYushe),
+    promptReplaceId: extension_settings49[extensionName].prompt_replace_id,
+    resolvedPrompt: actualParameters.prompt,
+    negativePrompt: actualParameters.negative_prompt,
+    width: actualParameters.width,
+    height: actualParameters.height,
+    seed: actualParameters.seed,
+    steps: actualParameters.steps,
+    sampler: actualParameters.sampler_name,
+    scheduler: actualParameters.scheduler,
+    cfgScale: actualParameters.cfg_scale
+  });
+  _comfy_gen_params.loras = actualParameters.loras;
+  payload = JSON.stringify({ client_id: clientId, prompt: renderedWorkflow });
   addLog(`\u53D1\u9001\u5230 ComfyUI \u7684\u6700\u7EC8 payload: ${payload} `);
-  try {
     if (!taskQueue.isTaskInQueue(taskId)) {
       addLog("\u6B63\u5F0F\u8BF7\u6C42\u524D\u68C0\u6D4B\u5230\u4EFB\u52A1\u5DF2\u88AB\u53D6\u6D88\u3002");
       throw new Error("\u4EFB\u52A1\u5DF2\u53D6\u6D88");
@@ -89502,27 +89493,7 @@ async function testComfyui() {
       if (response.ok) {
         alert("\u8FDE\u63A5\u6210\u529F");
         const responseData = await response.json();
-        const loralist = responseData["LoraLoader"]["input"]["required"]["lora_name"][0];
-        const ckpts = responseData.CheckpointLoaderSimple.input.required.ckpt_name[0].map((it) => ({ value: it, text: it })) || [];
-        const unets = responseData.UNETLoader.input.required.unet_name[0].map((it) => ({ value: it, text: `UNet: ${it}` })) || [];
-        const ggufs = responseData.UnetLoaderGGUF?.input.required.unet_name[0].map((it) => ({ value: it, text: `GGUF: ${it}` })) || [];
-        const ModelList = [...ckpts, ...unets, ...ggufs];
-        const samplerList = responseData["KSampler"]["input"]["required"]["sampler_name"][0];
-        const schedulerList = responseData["KSampler"]["input"]["required"]["scheduler"][0];
-        const vaeList = responseData["VAELoader"]["input"]["required"]["vae_name"][0];
-        const CLIPLoaderList = responseData["CLIPLoader"]["input"]["required"]["clip_name"][0];
-        const CLIPLoaderGGUFList = responseData["CLIPLoaderGGUF"]?.input?.required?.clip_name?.[0]?.map((it) => `GGUF: ${it}`) || [];
-        const AllCLIPs = [...CLIPLoaderList, ...CLIPLoaderGGUFList];
-        const cacheData = {
-          loras: loralist,
-          models: ModelList,
-          samplers: samplerList,
-          schedulers: schedulerList,
-          vaes: vaeList,
-          CLIPs: AllCLIPs,
-          objectInfo: responseData
-          // 缓存完整的节点类型定义
-        };
+        const cacheData = discoverComfyOptions(responseData);
         await saveFullComfyuiCache(cacheData);
         window.dispatchEvent(new CustomEvent("comfyui-cache-updated", { detail: cacheData }));
       } else {
@@ -112970,7 +112941,7 @@ function setUpdateStatus(text, cls) {
     el.className = `st-chatu8-update-status ${cls || ""}`.trim();
   }
 }
-var REINSTALL_GIT_URL = "https://github.com/damoshen123/st-chatu8.git";
+var REINSTALL_GIT_URL = "https://github.com/uiwcvb/st-chatu8.git";
 function showReinstallGuide(reason) {
   const existing = document.getElementById("st-chatu8-reinstall-guide");
   if (existing) existing.remove();
